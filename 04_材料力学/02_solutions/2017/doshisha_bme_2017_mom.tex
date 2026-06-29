@@ -1,0 +1,311 @@
+% !TEX program = xelatex
+% AY2017 材料力学 解答例（同志社 生命医科学 医工学コース 院試）
+% 問題・図は 01_exams/2017/tex を土台に、参考/ の粒度で解答を付した。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../00_common/preamble}
+\usetikzlibrary{positioning,arrows.meta,calc,patterns,decorations.pathmorphing}
+
+\title{材料力学 AY2017 解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{符号規約}：軸力・応力は引張りを正，圧縮を負とする．
+たわみ $v$ は荷重 $P$ の向き（鉛直下向き）を正とする．ねじれ角・たわみ角は右ねじを正とする．
+円形断面（直径 $d$）の断面諸量は
+\[
+  I=\frac{\pi d^4}{64},\quad I_p=\frac{\pi d^4}{32},\quad
+  Z=\frac{\pi d^3}{32},\quad Z_p=\frac{\pi d^3}{16}
+\]
+を用いる（$I$：断面二次モーメント，$I_p$：断面二次極モーメント，$Z,Z_p$：断面係数・極断面係数）．
+
+%====================================================================
+\section*{〔I〕}
+
+図1に示すように，丸棒\textcircled{1}（断面積 $2A$，長さ $L_1$，ヤング率 $2E$）と
+2 本の丸棒\textcircled{2}（断面積 $A$，長さ $L_2$，ヤング率 $E$）を剛体板に接合した．
+丸棒\textcircled{1}が左右の丸棒\textcircled{2}に比べてわずかに短いため，
+高さ $L_3\,(>L_2-L_1)$ の剛体円盤（断面積 $2A$）をはめ込んだ．
+棒や剛体板の自重は無視し，剛体板・剛体円盤は変形しないものとする．
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=1.0]
+  \draw[thick] (-0.4,0) -- (5.4,0);
+  \foreach \x in {-0.3,0.0,...,5.3} {\draw (\x,0) -- (\x-0.22,-0.22);}
+  \fill[gray!20] (0.2,0) rectangle (4.8,0.4); \draw (0.2,0) rectangle (4.8,0.4);
+  \fill[gray!20] (0.2,4.2) rectangle (4.8,4.6); \draw (0.2,4.2) rectangle (4.8,4.6);
+  \draw (0.7,0.4) rectangle (1.2,4.2);
+  \draw (3.8,0.4) rectangle (4.3,4.2);
+  \draw (2.1,0.4) rectangle (2.9,3.2);
+  \fill[gray!35] (2.1,3.2) rectangle (2.9,4.2); \draw (2.1,3.2) rectangle (2.9,4.2);
+  \node at (0.95,3.6) {\textcircled{2}}; \node at (4.05,3.6) {\textcircled{2}}; \node at (2.5,1.7) {\textcircled{1}};
+  \draw[<->] (-0.1,0.4) -- (-0.1,4.2) node[midway,fill=white]{$L_2$};
+  \draw[<->] (1.6,0.4) -- (1.6,3.2) node[midway,fill=white]{$L_1$};
+  \node[left] at (0.2,4.4) {\footnotesize 剛体板};
+  \node[left] at (0.2,0.2) {\footnotesize 剛体板};
+\end{tikzpicture}
+\quad
+\begin{tabular}{@{}l@{}}
+  丸棒\textcircled{1}\\ 断面積 $2A$, 長さ $L_1$, ヤング率 $2E$\\[6pt]
+  丸棒\textcircled{2}\\ 断面積 $A$, 長さ $L_2$, ヤング率 $E$
+\end{tabular}
+
+\vspace{1mm}
+図1
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 丸棒\textcircled{1}, \textcircled{2}に生じる応力 $\sigma_1$, $\sigma_2$ を求めよ.
+  \item 丸棒\textcircled{1}, \textcircled{2}の変位 $\lambda_1$, $\lambda_2$ を求めよ.
+  \item 上面の剛体板中央に力を加え, 丸棒\textcircled{2}を元の長さ $L_2$ まで戻すために必要な外力 $P$ を求めよ.
+\end{enumerate}
+
+\subsection*{解答}
+
+\noindent\textbf{下準備（不整合のモデル化）}\quad
+左右の丸棒\textcircled{2}は上下の剛体板間にちょうど収まり，その長さ $L_2$ が両板の間隔を定める．
+中央には丸棒\textcircled{1}（自然長 $L_1$）の上に剛体円盤（高さ $L_3$）を載せた中央列があり，
+その自然長は $L_1+L_3$ である．$L_1+L_3>L_2$（条件 $L_3>L_2-L_1$）であるから，
+中央列は両板間の間隔 $L_2$ に押し込まれて圧縮され，逆に左右の\textcircled{2}は引き伸ばされる．
+このとき生じる「縮み＋伸び」の合計が初期の長さ過剰分に等しい．剛体円盤は変形しないので，
+中央列の縮みはすべて丸棒\textcircled{1}が負担する．丸棒\textcircled{1}の縮みを $\lambda_1$，
+丸棒\textcircled{2}の伸びを $\lambda_2$ とおくと，適合条件は
+\[
+  \lambda_1+\lambda_2=(L_1+L_3)-L_2=L_1+L_3-L_2 \;(\equiv \Delta).
+\]
+
+\medskip
+\noindent\textbf{力のつり合い}\quad
+丸棒\textcircled{1}に生じる圧縮の内力を $N_1$，丸棒\textcircled{2}各 1 本に生じる引張りの内力を $N_2$ とおく．
+上面剛体板の鉛直つり合いより，中央の圧縮力が左右 2 本の引張り力と釣り合うので
+\[
+  N_1 = 2N_2.
+\]
+各棒のフックの法則（縮み・伸びを正の大きさで表す）より
+\[
+  \lambda_1=\frac{N_1\,L_1}{(2E)(2A)}=\frac{N_1 L_1}{4EA},\qquad
+  \lambda_2=\frac{N_2\,L_2}{E A}.
+\]
+
+\medskip
+\noindent\textbf{(1)}\quad 適合条件に代入し，$N_1=2N_2$ を使うと
+\[
+  \frac{2N_2\,L_1}{4EA}+\frac{N_2 L_2}{EA}
+  =\frac{N_2(L_1+2L_2)}{2EA}=\Delta
+  \;\Longrightarrow\;
+  N_2=\frac{2EA\,\Delta}{L_1+2L_2},\qquad N_1=\frac{4EA\,\Delta}{L_1+2L_2}.
+\]
+よって応力は（\textcircled{1}は圧縮，\textcircled{2}は引張り）
+\[
+  \sigma_1=-\frac{N_1}{2A}=-\frac{2E\,\Delta}{L_1+2L_2},\qquad
+  \sigma_2=\frac{N_2}{A}=\frac{2E\,\Delta}{L_1+2L_2}.
+\]
+\[
+  \ans{\;\sigma_1=-\dfrac{2E(L_1+L_3-L_2)}{L_1+2L_2}\ (\text{圧縮}),\qquad
+        \sigma_2=\dfrac{2E(L_1+L_3-L_2)}{L_1+2L_2}\ (\text{引張})\;}
+\]
+検算：$|\sigma_1|=|\sigma_2|$ であり，力のつり合い $|\sigma_1|\cdot 2A=2(|\sigma_2|\cdot A)$ が満たされる ✓．
+
+\medskip
+\noindent\textbf{(2)}\quad 上で求めた $N_1,N_2$ を縮み・伸びの式に戻すと
+\[
+  \lambda_1=\frac{N_1 L_1}{4EA}=\frac{\Delta\,L_1}{L_1+2L_2},\qquad
+  \lambda_2=\frac{N_2 L_2}{EA}=\frac{2\Delta\,L_2}{L_1+2L_2}.
+\]
+\[
+  \ans{\;\lambda_1=\dfrac{(L_1+L_3-L_2)\,L_1}{L_1+2L_2}\ (\text{縮み}),\qquad
+        \lambda_2=\dfrac{2(L_1+L_3-L_2)\,L_2}{L_1+2L_2}\ (\text{伸び})\;}
+\]
+検算：$\lambda_1+\lambda_2=\dfrac{\Delta(L_1+2L_2)}{L_1+2L_2}=\Delta=L_1+L_3-L_2$ となり，適合条件に一致する ✓．
+
+\medskip
+\noindent\textbf{(3)}\quad 丸棒\textcircled{2}を元の長さ $L_2$ に戻すとは，その伸びを $0$ にすること，
+すなわち\textcircled{2}の内力を $0$ にすることである．このとき両板の間隔は $L_2$ のままで，
+中央列の縮みはすべて丸棒\textcircled{1}が負担し，その大きさは
+\[
+  \lambda_1'=(L_1+L_3)-L_2=\Delta.
+\]
+したがって丸棒\textcircled{1}の圧縮内力は
+\[
+  N_1'=\frac{(2E)(2A)}{L_1}\,\lambda_1'=\frac{4EA\,\Delta}{L_1}.
+\]
+上面剛体板のつり合いを考えると，\textcircled{2}の内力が $0$ であるから，
+外力 $P$（下向き）は丸棒\textcircled{1}の圧縮反力（上向き）とだけ釣り合う．ゆえに $P=N_1'$ となり
+\[
+  \ans{\;P=\dfrac{4EA(L_1+L_3-L_2)}{L_1}\;}
+\]
+検算：$P$ により\textcircled{1}の縮みが $\Delta$ となり，\textcircled{2}の伸びが $0$（元の長さ $L_2$）に戻る ✓．
+
+%====================================================================
+\clearpage
+\section*{〔II〕}
+
+図2に示すような直角に折れ曲がった円形断面の部材（直径 $d$）がある.
+固定端 A から区間 AB（長さ $L$）を経て直角に折れ，区間 BC（長さ $L$）を経て自由端 C に至る.
+先端 C に鉛直下向きの外力 $P$ が作用する. ヤング率 $E$, 横弾性係数 $G$, $L\gg d$ とする.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  \draw[line width=14pt,gray!30,line cap=round] (1.9,1.7) -- (4.3,0.4) -- (7.3,1.4);
+  \draw[fill=gray!30] (1.9,1.7) ellipse (0.12 and 0.32);
+  \draw[fill=gray!30] (7.3,1.4) ellipse (0.12 and 0.32);
+  \fill[pattern=north east lines] (1.35,1.0) rectangle (2.15,2.4);
+  \draw (1.35,1.0) rectangle (2.15,2.4);
+  \node[left] at (1.3,1.7) {\footnotesize 固定端};
+  \node at (2.05,1.55) {A}; \node[below] at (4.35,0.3) {B}; \node[right] at (7.4,1.4) {C};
+  \draw[->] (5.0,0.7) -- (5.0,2.0) node[left]{$y$};
+  \draw[->] (5.0,0.7) -- (3.7,0.95) node[above]{$z$};
+  \draw[->] (5.0,0.7) -- (5.9,0.2) node[below]{$x$};
+  \draw[->,very thick] (7.3,2.6) -- (7.3,1.55) node[above]{$P$};
+  \draw[<->] (2.0,0.95) -- (4.3,-0.15) node[midway,below,fill=white,inner sep=1pt]{$L$};
+  \draw[<->] (4.5,-0.05) -- (7.4,0.85) node[midway,below,fill=white,inner sep=1pt]{$L$};
+  \begin{scope}[shift={(0.6,-1.6)}]
+    \draw[dashed] (0,0) circle (0.5);
+    \draw[->] (0,0) -- (0,0.95) node[right]{$y$};
+    \draw[->] (0,0) -- (-1.0,0) node[above]{$z$};
+    \fill (0,0.5) circle (1.6pt); \node[right] at (0.05,0.55) {D};
+    \fill (-0.5,0) circle (1.6pt); \node[above left] at (-0.5,0.05) {E};
+    \node at (0,-0.95) {A 断面};
+  \end{scope}
+\end{tikzpicture}
+
+\vspace{1mm}
+図2
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item B 点でのねじれ角 $\Psi_B$ を求めよ.
+  \item B 点および C 点でのたわみ $v_B$ および $v_C$ を求めよ.
+  \item 固定端 A の断面の上表面の点 D および中立面の点 E に生じる垂直応力およびせん断応力を求め,
+        点 D・E のモールの応力円を示し, 最大せん断応力および最大主応力を求めよ.
+\end{enumerate}
+
+\subsection*{解答}
+
+\noindent\textbf{下準備（断面力の整理）}\quad
+部材は水平面内にあり，AB を $x$ 軸方向，BC を $z$ 軸方向にとる．先端 C は B から $z$ 方向に $L$ の位置にあり，
+そこに鉛直下向き（$-y$）の荷重 $P$ が作用する．
+
+\noindent(i) 区間 BC：先端から距離 $s$ の断面には，せん断力 $P$ と曲げモーメント $M=Ps$ が生じる（ねじりは無い）．
+B 端（$s=L$）では曲げモーメント $PL$ をもつ．
+
+\noindent(ii) B での荷重を区間 AB に伝える．B まわりのモーメントは
+$\vec r\times\vec F=(L\hat z)\times(-P\hat y)=PL\,\hat x$ であり，これは AB の軸（$x$ 軸）まわりのモーメント，
+すなわち AB にとっては\textbf{ねじりモーメント} $T=PL$ である．
+さらに荷重 $P$（$-y$）が横荷重として AB に作用する．
+したがって区間 AB は，先端 B に横荷重 $P$ とねじりトルク $T=PL$ を受ける片持ちはりとなる．
+
+\medskip
+\noindent\textbf{(1)}\quad 区間 AB（長さ $L$）が一様なねじり $T=PL$ を受けるから，B のねじれ角は
+\[
+  \Psi_B=\frac{T\,L}{G\,I_p}=\frac{PL\cdot L}{G\,(\pi d^4/32)}.
+\]
+\[
+  \ans{\;\Psi_B=\dfrac{32\,P L^2}{\pi G d^4}\;}
+\]
+
+\medskip
+\noindent\textbf{(2)}\quad B 点のたわみ $v_B$ は，区間 AB を先端横荷重 $P$ の片持ちはりとみた先端たわみである：
+\[
+  v_B=\frac{P L^3}{3EI}=\frac{P L^3}{3E\,(\pi d^4/64)}.
+\]
+\[
+  \ans{\;v_B=\dfrac{64\,P L^3}{3\pi E d^4}\;}
+\]
+C 点のたわみ $v_C$ は，次の 3 つの寄与の和である．
+\begin{enumerate}[label=(\alph*)]
+  \item B 点そのものの鉛直変位 $v_B$．
+  \item AB のねじれ角 $\Psi_B$ により区間 BC が $x$ 軸まわりに回転し，
+        $z$ 方向に距離 $L$ 離れた C 点が鉛直に $\Psi_B\cdot L$ 下がる寄与．
+  \item 区間 BC 自身を先端荷重 $P$ の片持ちはりとみた先端たわみ $\dfrac{P L^3}{3EI}$．
+\end{enumerate}
+（AB の曲げによる B でのたわみ角は $z$ 軸まわりの回転であり，BC を水平面内で回すだけで C の鉛直変位には寄与しない．）
+よって
+\[
+  v_C=v_B+\Psi_B L+\frac{P L^3}{3EI}
+     =\frac{2P L^3}{3EI}+\frac{P L^3}{G I_p}.
+\]
+断面諸量を代入して
+\[
+  \ans{\;v_C=\dfrac{2P L^3}{3EI}+\dfrac{P L^3}{G I_p}
+        =\dfrac{128\,P L^3}{3\pi E d^4}+\dfrac{32\,P L^3}{\pi G d^4}\;}
+\]
+検算：第 1・3 項（曲げ）の合計 $\dfrac{2PL^3}{3EI}=\dfrac{128PL^3}{3\pi Ed^4}$ は
+$v_B=\dfrac{64PL^3}{3\pi Ed^4}$ のちょうど 2 倍で，AB・BC の 2 区間の曲げ寄与が等しいことと整合する ✓．
+
+\medskip
+\noindent\textbf{(3)}\quad 固定端 A の断面には，区間 AB の根元として
+曲げモーメント $M=PL$，ねじりモーメント $T=PL$，せん断力 $V=P$ が作用する．
+$L\gg d$ より，せん断力 $V$ による横せん断応力（中立軸で $\dfrac{4V}{3A}\sim P/d^2$）は，
+ねじり・曲げ応力（$\sim PL/d^3$）の $d/L$ 倍と小さいので無視する．
+
+\noindent\textit{点 D（上表面，$y=d/2$）}：曲げによる垂直応力が最大，ねじりによるせん断応力が表面に生じる．
+\[
+  \sigma_D=\frac{M}{Z}=\frac{PL}{\pi d^3/32}=\frac{32PL}{\pi d^3},\qquad
+  \tau_D=\frac{T}{Z_p}=\frac{PL}{\pi d^3/16}=\frac{16PL}{\pi d^3}.
+\]
+応力状態 $(\sigma_x,\sigma_y,\tau_{xy})=(\sigma_D,0,\tau_D)$ のモールの応力円は，
+中心 $\dfrac{\sigma_D}{2}=\dfrac{16PL}{\pi d^3}$，半径 $R_D=\sqrt{(\sigma_D/2)^2+\tau_D^2}$ である．
+ここで $\sigma_D/2=\tau_D=\dfrac{16PL}{\pi d^3}$ だから
+\[
+  R_D=\sqrt{\Bigl(\tfrac{16PL}{\pi d^3}\Bigr)^2+\Bigl(\tfrac{16PL}{\pi d^3}\Bigr)^2}
+     =\frac{16\sqrt{2}\,PL}{\pi d^3}.
+\]
+\[
+  \ans{\;\sigma_D=\dfrac{32PL}{\pi d^3},\quad \tau_D=\dfrac{16PL}{\pi d^3}\,;\quad
+        \tau_{\max,D}=R_D=\dfrac{16\sqrt2\,PL}{\pi d^3}\,;}
+\]
+\[
+  \ans{\;\sigma_{1,D}=\dfrac{16(1+\sqrt2)PL}{\pi d^3},\qquad
+        \sigma_{2,D}=\dfrac{16(1-\sqrt2)PL}{\pi d^3}\;}
+\]
+
+\noindent\textit{点 E（中立面，$y=0$）}：曲げによる垂直応力は $0$．ねじりによるせん断応力のみ：
+\[
+  \sigma_E=0,\qquad \tau_E=\frac{T}{Z_p}=\frac{16PL}{\pi d^3}.
+\]
+これは純せん断状態であり，モールの応力円は原点を中心，半径 $\tau_E$ の円となる．
+\[
+  \ans{\;\sigma_E=0,\quad \tau_E=\dfrac{16PL}{\pi d^3}\,;\quad
+        \tau_{\max,E}=\dfrac{16PL}{\pi d^3}\,;\quad
+        \sigma_{1,E}=+\dfrac{16PL}{\pi d^3},\ \sigma_{2,E}=-\dfrac{16PL}{\pi d^3}\;}
+\]
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=0.78]
+  \def\u{0.09} % 1単位 = 16PL/(pi d^3) を 0.09*16 ... 簡単化のため軸目盛のみ
+  % --- 点D のモール円 ---
+  \begin{scope}
+    \draw[->] (-1.2,0) -- (5.4,0) node[right]{$\sigma$};
+    \draw[->] (0,-3.0) -- (0,3.0) node[above]{$\tau$};
+    % 中心(2,0) 半径 2*sqrt2 ~2.83  (1単位=16PL/pi d^3 を長さ1とする)
+    \draw[thick,blue] (2,0) circle ({2*sqrt(2)});
+    \fill (2,0) circle (1.2pt);
+    % 応力点 (sigma_D, tau_D)=(4,2) と (0,-2)
+    \fill[red] (4,2) circle (1.4pt) node[above right]{\scriptsize $(\sigma_D,\tau_D)$};
+    \fill[red] (0,-2) circle (1.4pt) node[below left]{\scriptsize $(0,-\tau_D)$};
+    \draw[red] (4,2) -- (0,-2);
+    \node[below] at ({2+2*sqrt(2)},0) {\scriptsize $\sigma_{1,D}$};
+    \node[below] at ({2-2*sqrt(2)},-0.1) {\scriptsize $\sigma_{2,D}$};
+    \node at (2,-3.3) {点 D（単位 $16PL/\pi d^3$）};
+  \end{scope}
+  % --- 点E のモール円 ---
+  \begin{scope}[xshift=9cm]
+    \draw[->] (-2.6,0) -- (2.6,0) node[right]{$\sigma$};
+    \draw[->] (0,-2.6) -- (0,2.6) node[above]{$\tau$};
+    \draw[thick,blue] (0,0) circle (2);
+    \fill (0,0) circle (1.2pt);
+    \fill[red] (0,2) circle (1.4pt) node[above right]{\scriptsize $(0,\tau_E)$};
+    \fill[red] (0,-2) circle (1.4pt) node[below left]{\scriptsize $(0,-\tau_E)$};
+    \node[below right] at (2,0) {\scriptsize $\sigma_{1,E}$};
+    \node[below left] at (-2,0) {\scriptsize $\sigma_{2,E}$};
+    \node at (0,-2.9) {点 E（単位 $16PL/\pi d^3$）};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+検算：点 D で $\sigma_{1,D}+\sigma_{2,D}=\dfrac{32PL}{\pi d^3}=\sigma_D+\sigma_E^{(y)}$（応力の不変量・和は保存）✓，
+点 E は $\sigma_{1,E}=-\sigma_{2,E}=\tau_E$ で純せん断の関係を満たす ✓．
+
+\end{document}

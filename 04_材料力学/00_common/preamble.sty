@@ -1,0 +1,69 @@
+% 00_common/preamble.sty
+% 同志社大学大学院 生命医科学研究科 医工学コース 院試 — 共通プリアンブル
+% エンジン: XeLaTeX 固定（pdflatex は使わない）
+% フォント: Noto Serif CJK JP（未導入なら Sans 等へ差し替え可）
+%
+% 注意: これは「叩き台」。最初の手本解答を1本コンパイルして
+%       崩れ・はみ出しが無いことを確認してから確定すること（仕様書 Step4/§5）。
+
+\ProvidesPackage{preamble}[2026/06/13 Doshisha BME exam common preamble]
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{siunitx}
+
+% --- 和文（XeLaTeX + fontspec / xeCJK）---
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK JP}
+\setCJKsansfont{Noto Sans CJK JP}
+
+% --- 演算子・記号マクロ（仕様書§5。マクロ名は科目間で維持する）---
+\newcommand{\E}{\mathbb{E}}        % 期待値
+\renewcommand{\P}{\mathbb{P}}      % 確率
+\DeclareMathOperator{\Var}{Var}    % 分散
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\tr}{tr}      % トレース
+\DeclareMathOperator{\rank}{rank}
+\newcommand{\T}{^{\mathsf{T}}}     % 転置
+\newcommand{\dd}{\mathrm{d}}       % 微分演算子 d
+\newcommand{\e}{\mathrm{e}}        % 自然対数の底
+\newcommand{\im}{\mathrm{i}}       % 虚数単位
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+% ベクトル（太字）
+\newcommand{\vx}{\bm{x}}
+\newcommand{\vy}{\bm{y}}
+\newcommand{\va}{\bm{a}}
+\newcommand{\vb}{\bm{b}}
+\newcommand{\vv}{\bm{v}}
+\newcommand{\vu}{\bm{u}}
+\newcommand{\vF}{\bm{F}}
+\newcommand{\vzero}{\bm{0}}
+
+% --- 定理環境（amsthm, 日本語。注意 = rem）---
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}{補題}
+\newtheorem{prop}{命題}
+\theoremstyle{definition}
+\newtheorem{dfn}{定義}
+\newtheorem{ex}{例}
+\theoremstyle{remark}
+\newtheorem*{rem}{注意}
+
+% --- \meta タグ（出典・分野ラベル）---
+% 使い方: \meta{年度}{問番号}{科目}{モジュール}
+\newcommand{\meta}[4]{%
+  \par\noindent{\small\color{gray}[出典: AY#1 第#2問 / #3 / #4]}\par\medskip}
+
+% 最終解答の囲み（仕様書§6: 最終解答は必ず boxed）
+\newcommand{\ans}[1]{\boxed{\,#1\,}}

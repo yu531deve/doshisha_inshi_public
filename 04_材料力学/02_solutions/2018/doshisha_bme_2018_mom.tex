@@ -1,0 +1,269 @@
+% !TEX program = xelatex
+% AY2018 材料力学 解答例（同志社 生命医科学 医工学コース 院試）
+% 問題・図は 01_exams/2018/tex を土台に、参考/ の粒度で解答を付した。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../00_common/preamble}
+\usetikzlibrary{positioning,arrows.meta,calc,patterns,decorations.pathmorphing}
+
+\title{材料力学 AY2018 解答例（専門応用科目I）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{符号規約}：軸力・内力は引張りを正．たわみは上向きを正とし，
+分布荷重 $f_0$ は下向き．せん断力 $Q$ は断面左側に働く上向き外力の和，
+曲げモーメント $M$ は下に凸（さがり）を正とし，たわみの基礎式は
+$EI\,\dfrac{d^2v}{dx^2}=M(x)$ を用いる．
+
+%====================================================================
+\section*{〔I〕}
+
+図1に示すように並列配置された棒\textcircled{1}と棒\textcircled{2}に固体壁 A でピン支持された剛体棒の右端 D に
+外力 $P$ を負荷する. 棒の断面積および縦弾性係数（ヤング率）は図中に示す.
+剛体棒と棒\textcircled{1}, 棒\textcircled{2}はピン支持で連結されている. 棒\textcircled{1}, 棒\textcircled{2}は下端においてもピン支持され,
+伸縮のみが生じるものとする. 棒\textcircled{1}, \textcircled{2}の長さは共に $4L$ とする.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=0.95]
+  \draw[thick] (0,-0.2) -- (0,4.6);
+  \foreach \y in {-0.1,0.2,...,4.55} {\draw (0,\y) -- (-0.26,\y+0.26);}
+  \draw[thick] (-0.2,0) -- (7.6,0);
+  \foreach \x in {0.0,0.3,...,7.5} {\draw (\x,0) -- (\x-0.22,-0.22);}
+  \draw[line width=1.6pt] (0,4) -- (7,4);
+  \draw (0.85,0) rectangle (1.15,4);
+  \foreach \y in {0.2,0.5,...,3.8} {\draw (0.85,\y) -- (1.15,\y+0.15);}
+  \draw (2.85,0) rectangle (3.15,4);
+  \foreach \y in {0.2,0.5,...,3.8} {\draw (2.85,\y) -- (3.15,\y+0.15);}
+  \foreach \p in {(0,4),(1,4),(3,4),(1,0),(3,0)} {\draw[fill=white] \p circle (2.6pt);}
+  \node[below] at (0,3.85) {A}; \node[below] at (1,3.85) {B};
+  \node[below] at (3,3.85) {C}; \node[below right] at (7,3.95) {D};
+  \draw[->,very thick] (7,4) -- (7,5.3) node[above]{$P$};
+  \draw[<->] (0.45,0) -- (0.45,4) node[midway,fill=white]{$4L$};
+  \draw[<->] (0,4.45) -- (1,4.45) node[midway,fill=white,font=\scriptsize]{$L$};
+  \draw[<->] (1,4.45) -- (3,4.45) node[midway,fill=white,font=\scriptsize]{$2L$};
+  \draw[<->] (3,4.45) -- (7,4.45) node[midway,fill=white,font=\scriptsize]{$4L$};
+  \draw[<->] (0,5.05) -- (7,5.05) node[midway,fill=white]{$7L$};
+  \node[right,font=\footnotesize] at (1.2,2.6) {棒\textcircled{1}\,$(A_1,E_1)$};
+  \node[right,font=\footnotesize] at (3.2,1.4) {棒\textcircled{2}\,$(A_2,E_2)$};
+  \node[right] at (4.6,3.7) {\footnotesize 剛体棒};
+\end{tikzpicture}
+
+\vspace{1mm}
+図1
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 棒\textcircled{1}と棒\textcircled{2}に生じる内力 $N_1$, $N_2$ を求めよ.
+  \item 棒\textcircled{1}と棒\textcircled{2}の変位 $\lambda_1$, $\lambda_2$ を求めよ.
+\end{enumerate}
+
+\subsection*{解答}
+
+\noindent\textbf{(1)}\quad 剛体棒は A 点まわりに微小角 $\theta$ だけ回転する（D 端が上がる向きを正）．
+A から距離 $x$ にある点の鉛直変位は $x\theta$ であるから，連結点 B（$x=L$）と C（$x=3L$）の鉛直変位，
+すなわち棒\textcircled{1}, \textcircled{2}の伸び $\lambda_1$, $\lambda_2$ は
+\[
+  \lambda_1 = L\theta, \qquad \lambda_2 = 3L\theta. \tag{適合条件}
+\]
+ここで D 端が上がると B, C も上がり，下端を固定された棒\textcircled{1}, \textcircled{2}は引張られる．
+長さ $4L$ の棒の伸び $\lambda_i = \dfrac{N_i\,(4L)}{A_iE_i}$ より，内力は
+\[
+  N_1 = \frac{A_1E_1}{4L}\lambda_1 = \frac{A_1E_1}{4}\theta, \qquad
+  N_2 = \frac{A_2E_2}{4L}\lambda_2 = \frac{3A_2E_2}{4}\theta.
+\]
+棒は引張りなので剛体棒を下向きに引く．A 点まわりのモーメントのつり合い（上向き $P$ と下向き内力の釣合い）は
+\[
+  P\cdot 7L = N_1\cdot L + N_2\cdot 3L.
+\]
+$N_1, N_2$ を代入すると
+\[
+  7PL = \frac{A_1E_1}{4}\theta\,L + \frac{3A_2E_2}{4}\theta\cdot 3L
+      = \frac{L\theta}{4}\bigl(A_1E_1 + 9A_2E_2\bigr),
+\]
+\[
+  \therefore\ \theta = \frac{28P}{A_1E_1 + 9A_2E_2}.
+\]
+これより内力は
+\[
+  \ans{\;N_1 = \frac{7P\,A_1E_1}{A_1E_1 + 9A_2E_2}, \qquad
+        N_2 = \frac{21P\,A_2E_2}{A_1E_1 + 9A_2E_2}\;}
+\]
+検算：$N_1\cdot L + N_2\cdot 3L
+= \dfrac{(7A_1E_1 + 63A_2E_2)PL}{A_1E_1+9A_2E_2}
+= \dfrac{7(A_1E_1+9A_2E_2)PL}{A_1E_1+9A_2E_2} = 7PL$（$=P\cdot 7L$）✓．
+
+\medskip
+\noindent\textbf{(2)}\quad 変位は伸びの式 $\lambda_i = \dfrac{N_i(4L)}{A_iE_i}$ にそれぞれ代入して
+\[
+  \lambda_1 = \frac{4L}{A_1E_1}\cdot\frac{7P\,A_1E_1}{A_1E_1+9A_2E_2}
+            = \frac{28PL}{A_1E_1+9A_2E_2},
+\]
+\[
+  \lambda_2 = \frac{4L}{A_2E_2}\cdot\frac{21P\,A_2E_2}{A_1E_1+9A_2E_2}
+            = \frac{84PL}{A_1E_1+9A_2E_2}.
+\]
+\[
+  \ans{\;\lambda_1 = \frac{28PL}{A_1E_1 + 9A_2E_2}, \qquad
+        \lambda_2 = \frac{84PL}{A_1E_1 + 9A_2E_2}\;}
+\]
+検算：$\lambda_2/\lambda_1 = 84/28 = 3$ となり，剛体棒の幾何（$\lambda_2=3\lambda_1$，距離比 $3L:L$）と一致する ✓．
+
+%====================================================================
+\clearpage
+\section*{〔II〕}
+
+図2に示すように, はり\textcircled{1}, はり\textcircled{2}からなる片持ちはりに単位長さ当たり $f_0$ の等分布荷重が
+作用している. はり\textcircled{1}, はり\textcircled{2}の断面は長方形であり, 高さはそれぞれ $2h$ および $h$,
+幅（図の奥行き方向）は $b$, はり\textcircled{1}, \textcircled{2}の長さは共に $L$ とする.
+縦弾性係数（ヤング率）を $E$ とする.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=0.95]
+  \fill[pattern=north east lines] (-0.4,-1.1) rectangle (0,1.6);
+  \draw (0,-1.1) -- (0,1.6);
+  \draw (0,1.0) rectangle (4,-1.0);
+  \draw (4,0.5) rectangle (8,-0.5);
+  \draw[dash dot] (-0.3,0) -- (8.7,0) node[right]{$x$};
+  \draw[->] (0,0) -- (0,2.0) node[left]{$y$};
+  \foreach \x in {0.4,1.0,...,3.8} {\draw[->] (\x,1.7) -- (\x,1.05);}
+  \foreach \x in {4.2,4.8,...,7.8} {\draw[->] (\x,1.7) -- (\x,0.55);}
+  \node at (5.0,2.0) {$f_0$};
+  \node[below] at (0,-1.05) {A}; \node[below] at (4,-1.05) {B}; \node[below] at (8,-0.55) {C};
+  \node at (1.3,0.55) {はり\textcircled{1}}; \node at (5.3,0.25) {はり\textcircled{2}};
+  \draw[<->] (3.6,-1.0) -- (3.6,1.0) node[midway,fill=white]{$2h$};
+  \draw[<->] (7.0,-0.5) -- (7.0,0.5) node[midway,fill=white]{$h$};
+  \draw[<->] (0,-1.35) -- (4,-1.35) node[midway,fill=white]{$L$};
+  \draw[<->] (4,-1.35) -- (8,-1.35) node[midway,fill=white]{$L$};
+\end{tikzpicture}
+
+\vspace{1mm}
+図2
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item せん断力図（SFD）および曲げモーメント図（BMD）を求めよ.
+  \item はり\textcircled{1}およびはり\textcircled{2}の断面二次モーメント $I_1$, $I_2$ を求めよ.
+  \item はり\textcircled{1}およびはり\textcircled{2}における最大せん断応力 $\tau_1$, $\tau_2$ を求めよ.
+  \item はり先端 C のたわみ $\delta$ を求めよ.
+\end{enumerate}
+
+\subsection*{解答}
+
+\noindent\textbf{(1)}\quad 固定端 A を原点とし，右向きに $x$（$0\le x\le 2L$）をとる．
+任意断面 $x$ より右側に残る長さは $2L-x$，その区間にかかる下向き荷重は $f_0(2L-x)$ である．
+断面左側の上向き外力の和（＝右側の下向き荷重に等しい）より
+\[
+  Q(x) = f_0\,(2L-x).
+\]
+曲げモーメントは右側荷重の合力 $f_0(2L-x)$ がその重心（断面から $\tfrac{2L-x}{2}$）に作用すると考え，
+さがりを正として
+\[
+  M(x) = -\,\frac{f_0}{2}(2L-x)^2.
+\]
+（$\dfrac{dM}{dx}=f_0(2L-x)=Q(x)$ で整合．）端・接続点の値は
+\[
+  Q(0)=2f_0L,\quad Q(L)=f_0L,\quad Q(2L)=0,
+\]
+\[
+  M(0)=-2f_0L^2,\quad M(L)=-\tfrac{1}{2}f_0L^2,\quad M(2L)=0.
+\]
+\[
+  \ans{\;Q(x)=f_0(2L-x),\qquad M(x)=-\frac{f_0}{2}(2L-x)^2\quad(0\le x\le 2L)\;}
+\]
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=1.0]
+  \def\L{1.7}
+  \begin{scope}
+    \draw[->] (-0.3,0) -- (2*\L+0.6,0) node[right]{$x$};
+    \draw[->] (0,-0.3) -- (0,1.7) node[above]{SFD};
+    \draw[line width=1pt,blue] (0,1.4) -- (2*\L,0);
+    \draw[dashed] (0,1.4) -- (0,0); \draw[dashed] (\L,0.7) -- (\L,0);
+    \node[left] at (0,1.4) {$2f_0L$}; \node[left,font=\footnotesize] at (-0.05,0.7) {$f_0L$};
+    \node[below] at (0,0) {$A$}; \node[below] at (\L,0) {$B$}; \node[below] at (2*\L,0) {$C$};
+  \end{scope}
+  \begin{scope}[xshift=7.2cm]
+    \draw[->] (-0.3,0) -- (2*\L+0.6,0) node[right]{$x$};
+    \draw[->] (0,-1.7) -- (0,0.5) node[above]{BMD};
+    \draw[line width=1pt,red,smooth,samples=60,domain=0:2] plot (\L*\x,{-0.35*(2-\x)*(2-\x)});
+    \draw[dashed] (0,-1.4) -- (0,0); \draw[dashed] (\L,-0.35) -- (\L,0);
+    \node[left] at (0,-1.4) {$-2f_0L^2$};
+    \node[left,font=\footnotesize] at (-0.05,-0.35) {$-\tfrac{1}{2}f_0L^2$};
+    \node[above] at (0,0) {$A$}; \node[above] at (\L,0.05) {$B$}; \node[above] at (2*\L,0) {$C$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\medskip
+\noindent\textbf{(2)}\quad 幅 $b$，高さ $H$ の長方形断面の断面二次モーメントは $I=\dfrac{bH^3}{12}$．
+はり\textcircled{1}は $H=2h$，はり\textcircled{2}は $H=h$ だから
+\[
+  \ans{\;I_1=\frac{b(2h)^3}{12}=\frac{2bh^3}{3},\qquad I_2=\frac{bh^3}{12}\;}
+\]
+（$I_1=8I_2$．）
+
+\medskip
+\noindent\textbf{(3)}\quad 長方形断面のせん断応力は中立軸で最大となり，
+$\tau_{\max}=\dfrac{3}{2}\dfrac{Q}{A}$（$A$ は断面積）．各はり内でせん断力が最大となるのは固定側端である．
+
+\noindent はり\textcircled{1}（$0\le x\le L$）：最大 $Q$ は $x=0$ で $Q_1=2f_0L$，断面積 $A_1=b\cdot 2h=2bh$．
+\[
+  \tau_1=\frac{3}{2}\cdot\frac{2f_0L}{2bh}=\frac{3f_0L}{2bh}.
+\]
+はり\textcircled{2}（$L\le x\le 2L$）：最大 $Q$ は $x=L$ で $Q_2=f_0L$，断面積 $A_2=b\cdot h=bh$．
+\[
+  \tau_2=\frac{3}{2}\cdot\frac{f_0L}{bh}=\frac{3f_0L}{2bh}.
+\]
+\[
+  \ans{\;\tau_1=\tau_2=\frac{3f_0L}{2bh}\;}
+\]
+検算：せん断力比 $Q_1:Q_2=2:1$ と断面積比 $A_1:A_2=2:1$ が等しいため $\tau_1=\tau_2$ となる ✓．
+
+\medskip
+\noindent\textbf{(4)}\quad 各区間で基礎式 $EI\,v''=M(x)$ を2回積分する．$M=-\dfrac{f_0}{2}(2L-x)^2$ より
+
+\noindent 区間 AB（$0\le x\le L$，$I=I_1$）：
+\[
+  EI_1\,v_1' = \frac{f_0}{6}(2L-x)^3 + C_1,\qquad
+  EI_1\,v_1 = -\frac{f_0}{24}(2L-x)^4 + C_1 x + C_2.
+\]
+固定端条件 $v_1(0)=0,\ v_1'(0)=0$ より
+\[
+  C_1=-\frac{4f_0L^3}{3},\qquad C_2=\frac{2f_0L^4}{3}.
+\]
+これより接続点 $x=L$ で
+\[
+  EI_1\,v_1'(L)=-\frac{7f_0L^3}{6},\qquad EI_1\,v_1(L)=-\frac{17f_0L^4}{24}.
+\]
+区間 BC（$L\le x\le 2L$，$I=I_2$）：
+\[
+  EI_2\,v_2' = \frac{f_0}{6}(2L-x)^3 + C_3,\qquad
+  EI_2\,v_2 = -\frac{f_0}{24}(2L-x)^4 + C_3 x + C_4.
+\]
+連続条件 $v_1'(L)=v_2'(L),\ v_1(L)=v_2(L)$（傾き・たわみが連続）に $I_1=8I_2$ を用いると
+\[
+  C_3=-\frac{5f_0L^3}{16},\qquad C_4=\frac{17f_0L^4}{64}.
+\]
+先端 C（$x=2L$）では $(2L-x)=0$ となり
+\[
+  EI_2\,v_2(2L)= C_3\cdot 2L + C_4
+   = -\frac{5f_0L^3}{16}\cdot 2L + \frac{17f_0L^4}{64}
+   = -\frac{23f_0L^4}{64}.
+\]
+$I_2=\dfrac{bh^3}{12}$ を代入して
+\[
+  \delta = v_2(2L) = -\frac{23f_0L^4}{64\,EI_2}
+   = -\frac{23f_0L^4}{64E}\cdot\frac{12}{bh^3}
+   = -\frac{69f_0L^4}{16\,Ebh^3}.
+\]
+\[
+  \ans{\;\delta = -\frac{69f_0L^4}{16\,Ebh^3}\quad
+        \left(\text{下向きに}\ \frac{69f_0L^4}{16\,Ebh^3}\right)\;}
+\]
+検算：仮に全長で $I=I_2$（高さ一定 $h$）の片持ちはりに等分布荷重 $f_0$，長さ $2L$ を負荷すると
+$|\delta|=\dfrac{f_0(2L)^4}{8EI_2}=\dfrac{2f_0L^4}{EI_2}$．本問は固定側 AB の剛性が高い（$I_1=8I_2$）ため
+たわみはこれより小さく，$\dfrac{23}{64}\,\dfrac{f_0L^4}{EI_2}<\dfrac{2f_0L^4}{EI_2}$ で整合する ✓．
+
+\end{document}

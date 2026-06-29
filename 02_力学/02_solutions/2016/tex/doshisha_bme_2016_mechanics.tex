@@ -1,0 +1,162 @@
+% AY2016 力学 解答例
+% 体裁・粒度は 参考/ のPDFに揃える（行間を埋め、最終解答は \ans{} で boxed）。
+% 解答・数値・問題は本年度過去問から自力で導いた（東大版は体裁の手本のみ）。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\title{力学 AY2016 解答例（専門基礎科目）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+天井に固定された質量 $M$，半径 $r$，慣性モーメント $I=\dfrac{1}{2}Mr^2$ の滑車に糸を
+巻きつけ，糸の端に質量 $m$ のおもりをつける。おもりは重力で落下し，滑車は回転する。
+重力加速度を $g$，糸の張力を $T$，おもりの加速度（落下を正）を $a$ とする。
+糸は伸びず滑車上を滑らないので，滑車の角加速度 $\alpha$ とは $a=r\alpha$ で結ばれる。
+
+\subsection*{(1) おもりの並進運動方程式}
+おもりには下向きに重力 $mg$，上向きに張力 $T$ がはたらく。落下方向を正にとると
+\[
+  \ans{\;m a = mg - T\;}
+\]
+
+\subsection*{(2) 滑車の回転運動方程式}
+滑車には糸の張力 $T$ が半径 $r$ の腕で回転トルク $Tr$ を与える
+（吊り糸や軸からの反力は中心 $O$ まわりにモーメントを生まない）。
+中心 $O$ まわりの回転の運動方程式は，慣性モーメント $I=\tfrac12 Mr^2$ を用いて
+\[
+  I\alpha = Tr
+  \quad\Longrightarrow\quad
+  \frac{1}{2}Mr^2\,\alpha = Tr.
+\]
+\[
+  \ans{\;\dfrac{1}{2}Mr^2\,\alpha = T r,\qquad
+  \text{すなわち}\quad \dfrac{1}{2}M r\,\alpha = T\;}
+\]
+
+\subsection*{(3) おもりの加速度}
+拘束条件 $a=r\alpha$ より $\alpha=a/r$。これを (2) に代入すると
+\[
+  T=\frac{1}{2}Mr\,\alpha=\frac{1}{2}Mr\cdot\frac{a}{r}=\frac{1}{2}Ma.
+\]
+これを (1) の $ma=mg-T$ へ代入して
+\begin{align*}
+  m a &= mg-\frac{1}{2}Ma
+  \;\;\Longrightarrow\;\;
+  \left(m+\frac{M}{2}\right)a = mg
+  \;\;\Longrightarrow\;\;
+  a=\frac{mg}{m+\frac{M}{2}}.
+\end{align*}
+分母を $2$ 倍して整理すると
+\[
+  \ans{\;a=\dfrac{2m}{2m+M}\,g\;}
+\]
+
+\subsection*{(4) 糸の張力}
+(3) で得た $T=\dfrac{1}{2}Ma$ に $a=\dfrac{2m}{2m+M}g$ を代入して
+\begin{align*}
+  T=\frac{1}{2}M\cdot\frac{2m}{2m+M}\,g
+   =\frac{Mm}{2m+M}\,g.
+\end{align*}
+\[
+  \ans{\;T=\dfrac{Mm}{2m+M}\,g\;}
+\]
+
+\medskip
+検算: 滑車が非常に軽い極限 $M\to0$ では $a\to g$（自由落下），$T\to0$ となり，
+おもりが抵抗なく落ちる描像と一致。逆に滑車が非常に重い極限 $M\to\infty$ では
+$a\to0$，$T\to mg$ となり，おもりがほぼ静止して張力が重力と釣り合う描像と一致。
+また $T=mg-ma=m(g-a)>0$ であり，$0<a<g$ と整合する。✓
+
+% ==================================================================
+\clearpage
+\section*{第2問〔II〕}
+
+静止系 $XY$ に対し，一定角速度 $\omega$ で（$Z$ 軸まわり反時計回りに）回転する
+座標系 $X'Y'$ を考える。$t=0$ で両系が一致し，時刻 $t$ で $X'Y'$ 系は $\omega t$ だけ
+回転している。点 P の位置を，静止系で $(x,y)$，回転系で $(x',y')$ と表す。
+
+\subsection*{(1) $x$，$y$ の表示}
+回転系の基底ベクトルは，静止系から見て
+$\bm{e}_{x'}=(\cos\omega t,\ \sin\omega t)$，
+$\bm{e}_{y'}=(-\sin\omega t,\ \cos\omega t)$ である。
+点 P の位置は $\bm{r}=x'\bm{e}_{x'}+y'\bm{e}_{y'}$ だから，その成分を読みとって
+\[
+  \ans{\;
+  \begin{aligned}
+    x &= x'\cos\omega t - y'\sin\omega t,\\
+    y &= x'\sin\omega t + y'\cos\omega t
+  \end{aligned}\;}
+\]
+（回転角 $\omega t$ の回転行列による変換である。）
+
+\subsection*{(2) 回転系の軸方向の速度成分}
+(1) を時間微分する（$x',y'$ も時間の関数であることに注意）。
+\begin{align*}
+  \dot{x} &= \dot{x}'\cos\omega t - x'\omega\sin\omega t
+             - \dot{y}'\sin\omega t - y'\omega\cos\omega t,\\
+  \dot{y} &= \dot{x}'\sin\omega t + x'\omega\cos\omega t
+             + \dot{y}'\cos\omega t - y'\omega\sin\omega t.
+\end{align*}
+速度ベクトル $(\dot{x},\dot{y})$ の，回転系の軸方向（$\bm{e}_{x'},\bm{e}_{y'}$ 方向）
+の成分 $v_{x'},v_{y'}$ を内積でとる。
+\begin{align*}
+  v_{x'} &= \dot{x}\cos\omega t + \dot{y}\sin\omega t\\
+         &= \dot{x}'(\cos^2\omega t+\sin^2\omega t)
+            - y'\omega(\cos^2\omega t+\sin^2\omega t)
+          = \dot{x}' - \omega y',\\
+  v_{y'} &= -\dot{x}\sin\omega t + \dot{y}\cos\omega t\\
+         &= \dot{y}'(\sin^2\omega t+\cos^2\omega t)
+            + x'\omega(\sin^2\omega t+\cos^2\omega t)
+          = \dot{y}' + \omega x'.
+\end{align*}
+（途中の $\dot{x}',\dot{y}',x',y'$ どうしの交差項は $\sin\omega t\cos\omega t$ が
+相殺してすべて消える。）
+\[
+  \ans{\;
+  v_{x'} = \dot{x}' - \omega y',\qquad
+  v_{y'} = \dot{y}' + \omega x'\;}
+\]
+
+\subsection*{(3) 回転系から見た運動方程式}
+質点の絶対加速度を回転系の軸方向に射影するため，(2) の $v_{x'},v_{y'}$ を
+さらに時間微分する。回転系で測る加速度成分 $a_{x'},a_{y'}$ は，速度ベクトルを
+回転系基底に分解した量をもう一度同じ手続きで微分して得られ，結果は
+\begin{align*}
+  a_{x'} &= \ddot{x}' - 2\omega\dot{y}' - \omega^2 x',\\
+  a_{y'} &= \ddot{y}' + 2\omega\dot{x}' - \omega^2 y'
+\end{align*}
+となる（$\omega$ は一定）。すなわち絶対加速度の回転系成分は，回転系で見た相対加速度
+$(\ddot{x}',\ddot{y}')$ に，コリオリ項 $-2\omega\dot{y}',\,+2\omega\dot{x}'$ と
+求心項 $-\omega^2 x',\,-\omega^2 y'$ が加わる。
+ニュートンの法則 $m(a_{x'},a_{y'})=(F_x',F_y')$ をこれについて解くと
+\begin{align*}
+  m\ddot{x}' &= F_x' + 2m\omega\dot{y}' + m\omega^2 x',\\
+  m\ddot{y}' &= F_y' - 2m\omega\dot{x}' + m\omega^2 y'.
+\end{align*}
+ベクトル表記（$\bm{\omega}=\omega\bm{e}_z$）では，外力 $\bm{F}'$ に
+コリオリ力 $-2m\,\bm{\omega}\times\dot{\bm{r}}'$ と
+遠心力 $-m\,\bm{\omega}\times(\bm{\omega}\times\bm{r}')=m\omega^2\bm{r}'$ が加わる。
+\[
+  \ans{\;
+  \begin{aligned}
+    m\ddot{x}' &= F_x' + 2m\omega\dot{y}' + m\omega^2 x',\\
+    m\ddot{y}' &= F_y' - 2m\omega\dot{x}' + m\omega^2 y'
+  \end{aligned}\;}
+\]
+
+\medskip
+検算: 外力なし $\bm{F}'=\bm{0}$ かつ静止系で等速直線運動する質点を考えると，
+静止系では加速度 $0$ であるべきだから，回転系では見かけの力（遠心力＋コリオリ力）
+のみで運動する。上式で $\bm{F}'=\bm0$ とおいた右辺がちょうどその見かけの力に等しく，
+形式が整合する。また $\omega\to0$ の極限で
+$m\ddot{x}'=F_x',\,m\ddot{y}'=F_y'$ と通常のニュートンの運動方程式に帰着する。✓
+
+\end{document}

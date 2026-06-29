@@ -1,0 +1,56 @@
+% AY2014 力学 第2問 転記（問題のみ）
+\section*{第2問〔II〕}
+
+図1に示す一辺 $L$ の立方体の容器中に，$n$ モルの単原子分子の理想気体が入っている。
+気体分子の質量を $m$，$i$ 番目の気体分子の速度を
+$\bm{v}_i=(v_{ix},\,v_{iy},\,v_{iz})$ として，以下の問い (1)〜(5) に答えよ。
+ここで，気体分子は立方体容器中を乱雑な運動をしており，単原子分子は壁と完全弾性衝突
+するとし，気体分子同士の衝突は無視する。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item $i$ 番目の気体分子が $x=L$ の位置にある $yz$ 面に平行な壁 A と完全弾性衝突を
+        1 回するとき，壁面が受ける $x$ 軸方向の力積を求めよ。
+  \item $i$ 番目の気体分子が壁 A に 1 秒間に衝突する回数を求めよ。
+  \item $i$ 番目の気体分子が壁 A に加える力を求めよ。
+  \item $n$ モルの気体分子が壁 A に加える力を，$x$ 方向の速度の 2 乗平均
+        $\langle v_x^2\rangle$ を用いて求めよ。ただし，アボガドロ定数を $N_A$ とする。
+  \item $n$ モルの気体分子の全運動エネルギー $E$ が，
+        \[ E=\frac{3}{2}nRT \]
+        と表されることを示せ。ここで，$n$ モルの気体分子は $PV=nRT$ の関係式を
+        満たしており，$P$ は圧力，$T$ は温度，$V$ は立方体容器の体積，$R$ は気体定数で
+        あり，$\langle v^2\rangle=\langle v_x^2\rangle+\langle v_y^2\rangle+\langle v_z^2\rangle$，
+        $\langle v_x^2\rangle=\langle v_y^2\rangle=\langle v_z^2\rangle$，
+        $\langle v_x^2\rangle=\frac{1}{3}\langle v^2\rangle$ の関係が成り立っている。
+\end{enumerate}
+
+\begin{center}
+% 図1：一辺Lの立方体容器。中央の分子から速度成分 v_ix,v_iy,v_iz、x=L面が壁A
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \def\d{1.1}\def\dy{0.8}
+  % 立方体（前面 0..3、奥行き (d,dy)）
+  \coordinate (A) at (0,0); \coordinate (B) at (3,0);
+  \coordinate (C) at (3,3); \coordinate (D) at (0,3);
+  \coordinate (A2) at (\d,\dy); \coordinate (B2) at (3+\d,\dy);
+  \coordinate (C2) at (3+\d,3+\dy); \coordinate (D2) at (\d,3+\dy);
+  \draw (A)--(B)--(C)--(D)--cycle;
+  \draw (A2)--(B2)--(C2)--(D2)--cycle;
+  \draw (A)--(A2) (B)--(B2) (C)--(C2) (D)--(D2);
+  % 壁A（x=L 面 = 右面）を網掛け
+  \fill[gray!25] (B)--(C)--(C2)--(B2)--cycle;
+  \node at (3.55,1.5) {壁 A};
+  % 寸法 L
+  \node[below] at (1.5,0) {$L$}; \node[left] at (0,1.5) {$L$};
+  % 中央の分子と速度成分
+  \coordinate (P) at (1.3,1.3);
+  \draw[fill=white] (P) circle (3pt);
+  \draw[->,thick] (P) -- ++(1.0,0) node[right] {$v_{ix}$};
+  \draw[->,thick] (P) -- ++(0.55,0.9) node[above] {$v_{iy}$};
+  \draw[->,thick] (P) -- ++(0,1.1) node[left] {$v_{iz}$};
+  % 軸
+  \draw[->] (A) -- ++(0,3.7) node[left] {$z$};
+  \draw[->] (A) -- ++(3.9,0) node[below] {$x$};
+  \draw[->] (A) -- ++(\d+0.4,\dy+0.3) node[right] {$y$};
+\end{tikzpicture}
+
+{\small 図 1\quad 容器内の気体分子}
+\end{center}

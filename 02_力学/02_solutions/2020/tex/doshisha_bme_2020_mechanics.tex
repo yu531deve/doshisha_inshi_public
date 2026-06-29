@@ -1,0 +1,159 @@
+% AY2020 力学 解答例
+% 体裁・粒度は 参考/ のPDFに揃える（行間を埋め、最終解答は \ans{} で boxed）。
+% 解答・数値・問題は本年度過去問から自力で導いた（東大版は体裁の手本のみ）。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\title{力学 AY2020 解答例（専門基礎科目）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+なめらかな床の上で，ばね定数 $k$ のばねにつながれた質量 $m$ の物体が，
+速度に比例する空気抵抗（比例定数 $B>0$）と外力 $F\cos\omega t$ を受けて
+往復運動する。ばねが自然長のときの重心位置を $x=0$ とする。
+
+\subsection*{(1) 運動方程式}
+物体にはたらく $x$ 方向の力は，
+ばねの復元力 $-kx$，速度に比例する抵抗力 $-B\dot{x}$，外力 $F\cos\omega t$ である。
+ニュートンの運動方程式 $m\ddot{x}=\sum F$ より
+\begin{align*}
+  m\ddot{x} = -kx - B\dot{x} + F\cos\omega t.
+\end{align*}
+整理して
+\[
+  \ans{\;m\ddot{x}+B\dot{x}+kx = F\cos\omega t\;}
+\]
+
+\subsection*{(2) 特解}
+強制振動の特解は外力と同じ角振動数 $\omega$ で振動する。
+$x_p = C\cos(\omega t-\varphi)$ とおく（$C>0$）。
+このとき
+\begin{align*}
+  \dot{x}_p &= -C\omega\sin(\omega t-\varphi),\\
+  \ddot{x}_p &= -C\omega^2\cos(\omega t-\varphi).
+\end{align*}
+運動方程式へ代入すると
+\begin{align*}
+  C\bigl[(k-m\omega^2)\cos(\omega t-\varphi)-B\omega\sin(\omega t-\varphi)\bigr]
+  = F\cos\omega t.
+\end{align*}
+左辺を $\omega t$ について展開する。
+$\cos(\omega t-\varphi)=\cos\omega t\cos\varphi+\sin\omega t\sin\varphi$，
+$\sin(\omega t-\varphi)=\sin\omega t\cos\varphi-\cos\omega t\sin\varphi$ を用いて，
+$\cos\omega t$ と $\sin\omega t$ の係数をそれぞれ比較すると
+\begin{align*}
+  &\cos\omega t:\quad C\bigl[(k-m\omega^2)\cos\varphi+B\omega\sin\varphi\bigr]=F,\\
+  &\sin\omega t:\quad C\bigl[(k-m\omega^2)\sin\varphi-B\omega\cos\varphi\bigr]=0.
+\end{align*}
+第2式より
+\begin{align*}
+  \tan\varphi=\frac{B\omega}{k-m\omega^2}.
+\end{align*}
+このとき
+$\cos\varphi=\dfrac{k-m\omega^2}{R}$，$\sin\varphi=\dfrac{B\omega}{R}$，
+$R\equiv\sqrt{(k-m\omega^2)^2+(B\omega)^2}$ とおける。第1式へ代入すると
+\begin{align*}
+  C\cdot\frac{(k-m\omega^2)^2+(B\omega)^2}{R}=F
+  \quad\therefore\quad C=\frac{F}{R}.
+\end{align*}
+ゆえに特解は
+\[
+  \ans{\;
+  x_p(t)=\dfrac{F}{\sqrt{(k-m\omega^2)^2+(B\omega)^2}}\,\cos(\omega t-\varphi),\quad
+  \tan\varphi=\dfrac{B\omega}{k-m\omega^2}\;}
+\]
+
+\subsection*{(3) 振幅が最大となる $\omega$}
+十分時間が経過すると，減衰する余関数（過渡解）は消え，
+運動は (2) の特解（定常振動）のみになる。
+その振幅は
+\begin{align*}
+  C(\omega)=\frac{F}{\sqrt{(k-m\omega^2)^2+(B\omega)^2}}.
+\end{align*}
+$C$ が最大となるのは分母内の
+\begin{align*}
+  D(\omega)\equiv (k-m\omega^2)^2+B^2\omega^2
+\end{align*}
+が最小となるときである。$u\equiv\omega^2\,(\ge 0)$ とおくと
+\begin{align*}
+  D=(k-mu)^2+B^2u,\qquad
+  \frac{dD}{du}=2(k-mu)(-m)+B^2=-2m(k-mu)+B^2.
+\end{align*}
+$\dfrac{dD}{du}=0$ より
+\begin{align*}
+  k-mu=\frac{B^2}{2m}
+  \quad\therefore\quad u=\frac{k}{m}-\frac{B^2}{2m^2}=\frac{2mk-B^2}{2m^2}.
+\end{align*}
+$\dfrac{d^2D}{du^2}=2m^2>0$ よりこれは極小（最小）である。
+$2mk-B^2>0$ のとき実数の $\omega>0$ が存在し
+\[
+  \ans{\;\omega=\sqrt{\dfrac{k}{m}-\dfrac{B^2}{2m^2}}
+  =\sqrt{\dfrac{2mk-B^2}{2m^2}}\;}
+\]
+
+\medskip
+検算: 抵抗がない極限 $B\to0$ では $\omega\to\sqrt{k/m}$ となり，
+無減衰系の共振角振動数（固有角振動数 $\omega_0=\sqrt{k/m}$）に一致する。
+また $B$ が大きく $2mk-B^2\le0$ になると上式は実数解をもたず，
+このとき $D(u)$ は $u\ge0$ で単調増加だから振幅は $\omega\to0$ で最大となり，
+共振ピークが消える（過減衰的）。物理的に妥当である。✓
+
+% ==================================================================
+\clearpage
+\section*{第2問〔II〕}
+
+質量 $M$，半径 $a$ の円盤の重心 G から距離 $h$ 離れた点に水平な軸 S を取り付け，
+鉛直面内で振り子運動させる。振れ角 $\theta$ は小さく $\sin\theta\simeq\theta$。
+重心 G まわりの慣性モーメントは $Ma^2/2$，重力加速度の大きさを $g$，
+軸 S の摩擦は無視する。
+
+\subsection*{(1) 軸 S まわりの慣性モーメント}
+平行軸の定理より，重心 G を通る軸まわりの慣性モーメント $I_G=\dfrac{1}{2}Ma^2$ に
+$Mh^2$ を加えればよい。
+\begin{align*}
+  I_S=I_G+Mh^2=\frac{1}{2}Ma^2+Mh^2.
+\end{align*}
+\[
+  \ans{\;I_S=\dfrac{1}{2}Ma^2+Mh^2=M\!\left(\dfrac{a^2}{2}+h^2\right)\;}
+\]
+
+\subsection*{(2) 振り子運動の周期}
+軸 S まわりの回転の運動方程式（剛体の固定軸まわりの回転）は，
+重力 $Mg$ が重心 G にはたらき，S まわりの復元トルクが $-Mgh\sin\theta$ なので
+\begin{align*}
+  I_S\ddot{\theta}=-Mgh\sin\theta.
+\end{align*}
+微小振動 $\sin\theta\simeq\theta$ を用いると
+\begin{align*}
+  I_S\ddot{\theta}=-Mgh\,\theta
+  \quad\therefore\quad
+  \ddot{\theta}=-\frac{Mgh}{I_S}\,\theta.
+\end{align*}
+これは角振動数 $\Omega=\sqrt{\dfrac{Mgh}{I_S}}$ の単振動である。周期は
+\begin{align*}
+  T=\frac{2\pi}{\Omega}=2\pi\sqrt{\frac{I_S}{Mgh}}
+   =2\pi\sqrt{\frac{\tfrac12 Ma^2+Mh^2}{Mgh}}
+   =2\pi\sqrt{\frac{a^2+2h^2}{2gh}}.
+\end{align*}
+\[
+  \ans{\;T=2\pi\sqrt{\dfrac{I_S}{Mgh}}
+   =2\pi\sqrt{\dfrac{a^2+2h^2}{2gh}}\;}
+\]
+
+\medskip
+検算: 円盤の大きさを無視できる極限 $a\to0$ では，
+質点が長さ $h$ の糸で吊られた単振り子とみなせ，
+$T\to2\pi\sqrt{2h^2/(2gh)}=2\pi\sqrt{h/g}$ となり，
+単振り子の周期 $2\pi\sqrt{\ell/g}$（$\ell=h$）に一致する。
+また $T=2\pi\sqrt{(a^2+2h^2)/(2gh)}$ は質量 $M$ によらず，
+物理振り子の周期が質量に依存しないことと整合する。✓
+
+\end{document}

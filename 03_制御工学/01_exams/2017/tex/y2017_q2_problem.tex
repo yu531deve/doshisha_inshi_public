@@ -1,0 +1,56 @@
+% AY2017 制御工学 第2問〔II〕（転記）
+% 出典: 03_制御工学/original/03_制御工学/2017/2017se.pdf
+% 要約: 二段階制御システム（サーボ補償器 G2(s) で G1(s),K0 のループを補償）。
+%       伝達関数・ボード線図・定常値（比例補償／位相進み補償）。構造は AY2012 第1問と同型。
+
+\section*{第2問〔II〕}
+
+下図のブロック線図に示す二段階制御システムに関する次の問い (1)〜(4) に答えよ.
+なお, サーボ補償器 $G_2(s)$ によって $G_1(s)$ および $K_0$ から構成されるフィードバックループの
+補償を行うことが可能になる.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  \node (in)   at (0,0)   {$U(s)$};
+  \node (sum1) [sum] at (1.3,0) {};
+  \node (G2)   [block] at (2.9,0) {$G_2(s)$};
+  \node (sum2) [sum] at (4.7,0) {};
+  \node (G1)   [block] at (6.2,0) {$G_1(s)$};
+  \coordinate (tapi) at (7.5,0);
+  \coordinate (tapo) at (7.9,0);
+  \node (out)  at (9.0,0) {$Y(s)$};
+  \node (K0)   [block] at (6.2,1.8) {$K_0$};
+
+  \draw[->] (in)   -- (sum1);
+  \draw[->] (sum1) -- (G2);
+  \draw[->] (G2)   -- (sum2);
+  \draw[->] (sum2) -- (G1);
+  \draw[->] (G1)   -- (out);
+  \fill (tapi) circle (1.4pt);
+  \fill (tapo) circle (1.4pt);
+
+  \draw (tapi) -- (7.5,1.8) -- (K0.east);
+  \draw[->] (K0.west) -| (sum2);
+  \draw (tapo) -- (7.9,-1.5) -| (sum1);
+
+  \node at ($(sum1.north west)+(0.02,0.10)$) {\scriptsize $+$};
+  \node at ($(sum1.south west)+(0.02,-0.10)$) {\scriptsize $-$};
+  \node at ($(sum2.north west)+(0.02,0.10)$) {\scriptsize $-$};
+  \node at ($(sum2.south west)+(0.02,-0.10)$) {\scriptsize $+$};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 入力を $U(s)$, 出力を $Y(s)$ として, システムの伝達関数を求めよ.
+
+  \item $G_1(s)=\dfrac{10}{(s+1)(10s+1)}$ とするとき, $G_1(s)$ のゲイン (dB) ならびに
+        位相 (deg.) を求め, $G_1(s)$ のボード線図のうち, ゲイン曲線を漸近線によって描け.
+        解答用紙の縦軸・横軸には適宜数値を記入すること.
+
+  \item $K_0=1$, $G_2(s)=K_1$（$K_1$ は定数）となるシステムに対して, 単位ステップ入力を
+        印加する. 出力 $y(t)$ が定常状態になったときの値を求めよ.
+
+  \item 問い (3) のシステムに対して, $G_2(s)=\dfrac{s+1}{0.1s+1}\,K_1$（$K_1$ は定数）となる
+        補償器を挿入し, 単位ステップ入力を印加する. 出力 $y(t)$ が定常状態になったときの値を
+        求めよ.
+\end{enumerate}

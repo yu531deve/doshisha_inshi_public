@@ -1,0 +1,72 @@
+% AY2024 材料力学 〔I〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2024/2024za.pdf
+% 要約: 断面積2A・縦弾性係数E・長さLの棒\textcircled{1}と, 断面積A・縦弾性係数3E・長さ2Lの棒\textcircled{2}からなる
+%       段付き棒。上端を天井に固定, 下端に受皿。(a) 質量mのリング状おもりを受皿に静置。
+%       (b) 同おもりを高さhまで持ち上げて静かに落下。棒・受皿の重さ無視, 重力加速度g。
+%       (1) (a)のσ1,σ2, (2) (a)全体の伸びλ,
+%       (3) (b)の最大応力σ'1,σ'2に対し位置エネルギーとひずみエネルギーの関係式,
+%       (4) (b)の最大応力σ'1,σ'2。
+
+\section*{〔I〕}
+
+図1に示すように, 断面積 $2A$, 縦弾性係数 $E$, 長さ $L$ の棒\textcircled{1}と, 断面積 $A$, 縦弾性係数 $3E$,
+長さ $2L$ の棒\textcircled{2}からなる段付き棒の上端が天井に固定され, 下端に受皿が取り付けられている.
+図1 (a) では質量 $m$ のリング状のおもりを受皿の上に静置した場合について考え, 図1 (b) では
+同じおもりを図に示す $h$ の位置まで持ち上げて静かに落下させた場合について考える.
+各棒の重さと受皿の重さは無視し, 重力加速度を $g$ とするとき, 次の問い (1)\,$\sim$\,(4) に答えよ.
+
+\begin{center}
+% (a)
+\begin{tikzpicture}[>=Latex,scale=0.9,baseline=(current bounding box.north)]
+  \node[above] at (0,6.2) {(a)};
+  % 天井
+  \fill[pattern=north east lines] (-1.3,6) rectangle (1.3,6.3); \draw (-1.3,6) -- (1.3,6);
+  % 棒\textcircled{1}（太, L）, 棒\textcircled{2}（細, 2L）
+  \draw (-0.7,4.5) rectangle (0.7,6.0);
+  \draw (-0.35,1.5) rectangle (0.35,4.5);
+  % 受皿
+  \draw[line width=1.2pt] (-1.0,1.5) -- (1.0,1.5);
+  % おもり（受皿上, リング→両脇の黒）
+  \fill (-0.95,1.5) rectangle (-0.4,2.0);
+  \fill (0.4,1.5) rectangle (0.95,2.0);
+  % ラベル
+  \node at (0,5.25) {棒\textcircled{1}}; \node at (0,3.0) {棒\textcircled{2}};
+  \node[left] at (-0.95,2.3) {おもり}; \node[below] at (0,1.45) {受皿};
+  % 寸法 L, 2L
+  \draw[<->] (1.05,4.5) -- (1.05,6.0) node[midway,fill=white]{$L$};
+  \draw[<->] (1.05,1.5) -- (1.05,4.5) node[midway,fill=white]{$2L$};
+\end{tikzpicture}
+\hspace{14mm}
+% (b)
+\begin{tikzpicture}[>=Latex,scale=0.9,baseline=(current bounding box.north)]
+  \node[above] at (0,6.2) {(b)};
+  \fill[pattern=north east lines] (-1.3,6) rectangle (1.3,6.3); \draw (-1.3,6) -- (1.3,6);
+  \draw (-0.7,4.5) rectangle (0.7,6.0);
+  \draw (-0.35,1.5) rectangle (0.35,4.5);
+  \draw[line width=1.2pt] (-1.0,1.5) -- (1.0,1.5);
+  % おもり（高さhに持ち上げ, 両脇の黒）
+  \fill (-0.95,3.0) rectangle (-0.4,3.5);
+  \fill (0.4,3.0) rectangle (0.95,3.5);
+  \node[left] at (-0.95,3.8) {おもり}; \node[below] at (0,1.45) {受皿};
+  \node at (0,5.25) {棒\textcircled{1}}; \node at (0,2.2) {棒\textcircled{2}};
+  % 高さ h（受皿→おもり下端）
+  \draw[<->] (-1.15,1.5) -- (-1.15,3.0) node[midway,fill=white]{$h$};
+  \draw[<->] (1.05,4.5) -- (1.05,6.0) node[midway,fill=white]{$L$};
+  \draw[<->] (1.05,1.5) -- (1.05,4.5) node[midway,fill=white]{$2L$};
+\end{tikzpicture}
+
+\vspace{1mm}
+図1
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 図1 (a) において, 棒\textcircled{1}と棒\textcircled{2}に生じる応力 $\sigma_1$ と $\sigma_2$ を求めよ.
+
+  \item 図1 (a) において, 段付き棒全体の伸び $\lambda$ を求めよ.
+
+  \item 図1 (b) において, 棒\textcircled{1}と棒\textcircled{2}に生じる最大応力を $\sigma'_1$ と $\sigma'_2$ とするとき,
+        位置エネルギーとひずみエネルギーの間に成立する関係性を $\sigma'_1$ と $\sigma'_2$ を
+        使った式で示せ.
+
+  \item 図1 (b) において, 棒\textcircled{1}と棒\textcircled{2}に生じる最大応力 $\sigma'_1$ と $\sigma'_2$ を求めよ.
+\end{enumerate}

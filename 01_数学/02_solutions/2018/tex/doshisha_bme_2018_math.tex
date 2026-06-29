@@ -1,0 +1,148 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\title{2018年度 (AY2018) 同志社大学大学院 生命医科学研究科\\
+医工学コース 入学試験問題「数学」解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+%======================================================================
+\section*{第1問}
+
+\subsection*{前提整理}
+
+\[
+\Delta=\begin{vmatrix}0&a&b&c\\a&0&c&b\\b&c&0&a\\c&b&a&0\end{vmatrix}
+=(a+b+c)(a-b-c)(\text{ア})(\text{イ})
+\]
+の空欄を求める.この行列は対称で,$(\pm1)$ 成分のベクトルが固有ベクトルになる
+構造をもつ.各符号パターンに対する固有値が因数を与える.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 符号ベクトルで固有値を読む.}
+$M$ を行列とすると,
+\[
+M\!\begin{psmallmatrix}1\\1\\1\\1\end{psmallmatrix}=(a+b+c)\!\begin{psmallmatrix}1\\1\\1\\1\end{psmallmatrix},\quad
+M\!\begin{psmallmatrix}1\\1\\-1\\-1\end{psmallmatrix}=(a-b-c)\!\begin{psmallmatrix}1\\1\\-1\\-1\end{psmallmatrix},
+\]
+\[
+M\!\begin{psmallmatrix}1\\-1\\1\\-1\end{psmallmatrix}=(-a+b-c)\!\begin{psmallmatrix}1\\-1\\1\\-1\end{psmallmatrix},\quad
+M\!\begin{psmallmatrix}1\\-1\\-1\\1\end{psmallmatrix}=(-a-b+c)\!\begin{psmallmatrix}1\\-1\\-1\\1\end{psmallmatrix}.
+\]
+これら $4$ ベクトルは互いに直交し基底をなすので,$\det M$ は $4$ 固有値の積:
+\[
+\Delta=(a+b+c)(a-b-c)(-a+b-c)(-a-b+c).
+\]
+
+\paragraph{Step 2: 残り $2$ 因子を整える.}
+$(-a+b-c)=-(a-b+c)$,$(-a-b+c)=-(a+b-c)$ で負号が相殺するので
+\[
+\Delta=(a+b+c)(a-b-c)(a-b+c)(a+b-c).
+\]
+\[
+\ans{\ (\text{ア})=a-b+c,\qquad (\text{イ})=a+b-c\ }
+\]
+
+検算:展開すると
+$\Delta=a^4+b^4+c^4-2a^2b^2-2b^2c^2-2c^2a^2$ となり,
+$(a+b+c)(a-b-c)(a-b+c)(a+b-c)$ の展開と一致する.$\checkmark$
+
+%======================================================================
+\section*{第2問}
+
+\subsection*{前提整理}
+
+\[
+A=\begin{pmatrix}5&1&0&0\\0&2&1&0\\0&1&2&0\\0&0&1&2\end{pmatrix}
+\]
+について $|A|$,$x_3$,固有値の空欄を求める.Cramer の公式を用いる.
+
+\subsection*{計算}
+
+\paragraph{Step 1: $|A|$（空欄ウ）.}
+第1列で展開し,続く $3$ 次行列式を第3列で展開すると
+\[
+|A|=5\begin{vmatrix}2&1&0\\1&2&0\\0&1&2\end{vmatrix}
+=5\cdot2\begin{vmatrix}2&1\\1&2\end{vmatrix}=5\cdot2\cdot3=30.
+\]
+よって $(\text{ウ})=30$.
+
+\paragraph{Step 2: $x_3$（空欄エ）.}
+Cramer の公式 $x_3=\dfrac{1}{|A|}\det A_3$,$A_3$ は $A$ の第3列を $\vb$ に置換した行列.
+\[
+\det A_3=\begin{vmatrix}5&1&b_1&0\\0&2&b_2&0\\0&1&b_3&0\\0&0&b_4&2\end{vmatrix}
+=5\cdot2\begin{vmatrix}2&b_2\\1&b_3\end{vmatrix}=10(2b_3-b_2)=20b_3-10b_2.
+\]
+よって $(\text{エ})=20b_3-10b_2$,すなわち $x_3=\dfrac{20b_3-10b_2}{30}=\dfrac{2b_3-b_2}{3}$.
+
+\paragraph{Step 3: 固有値（空欄オ）.}
+第1列展開で特性多項式は
+\[
+\det(A-\lambda I)=(5-\lambda)(2-\lambda)\bigl[(2-\lambda)^2-1\bigr]
+=(5-\lambda)(2-\lambda)(1-\lambda)(3-\lambda).
+\]
+固有値は $5,2,1,3$ なので残りは $(\text{オ})=3$.
+\[
+\ans{\ (\text{ウ})=30,\quad (\text{エ})=20b_3-10b_2,\quad (\text{オ})=3\ }
+\]
+
+検算:固有値の積 $5\cdot1\cdot2\cdot3=30=|A|$,和 $5+1+2+3=11=\operatorname{tr}A$ と整合.$\checkmark$
+
+%======================================================================
+\section*{第3問}
+
+\subsection*{前提整理}
+
+$D:\ |x-1|+y\le1,\ y\ge0$ 上で $\displaystyle\iint_D xy\,dx\,dy$ を求める.
+$D$ は頂点 $(0,0),(2,0),(1,1)$ の三角形である.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 領域を不等式で表す.}
+$|x-1|\le1-y$ より $y\le x\le2-y$（$0\le y\le1$）.
+
+\paragraph{Step 2: $x$ について先に積分する.}
+\[
+\int_{y}^{2-y}x\,dx=\frac{(2-y)^2-y^2}{2}=\frac{4-4y}{2}=2-2y.
+\]
+したがって
+\[
+\iint_D xy\,dxdy=\int_0^1 y(2-2y)\,dy
+=\int_0^1(2y-2y^2)\,dy=\Bigl[y^2-\frac{2y^3}{3}\Bigr]_0^1=1-\frac23=\frac13.
+\]
+\[
+\ans{\ \iint_D xy\,dx\,dy=\frac13\ }
+\]
+
+検算:三角形は直線 $x=1$ について対称で,$x=1+t$ と書くと $xy=(1+t)y$ の
+$ty$ 部分は奇関数として相殺し,$\iint y\,dV=\frac13$ が残る.値は上と一致.$\checkmark$
+
+%======================================================================
+\section*{第4問}
+
+\subsection*{前提整理}
+
+$f(x,y)=\dfrac{1}{1+x+y^2}$ の Maclaurin 展開を $2$ 次まで求め,空欄を埋める.
+$u=x+y^2$ とおき $\dfrac{1}{1+u}=1-u+u^2-\cdots$ を用いる（$y^2$ は $2$ 次）.
+
+\subsection*{計算}
+
+$u=x+y^2$ を代入し,全次数 $\le2$ の項を残す.$u^2=(x+y^2)^2$ の $\le2$ 次は $x^2$ のみ
+（$2xy^2$ 以降は $3$ 次以上）だから
+\[
+f\simeq1-(x+y^2)+x^2=1-x+x^2-y^2.
+\]
+\[
+\ans{\ (\text{カ})=-1,\quad (\text{キ})=1,\quad (\text{ク})=-1\ }
+\]
+
+検算:$y=0$ で $\dfrac{1}{1+x}=1-x+x^2-\cdots$ に一致.
+$x=0$ で $\dfrac{1}{1+y^2}=1-y^2+\cdots$ の $y^2$ 係数 $-1$ も一致.$\checkmark$
+
+\end{document}

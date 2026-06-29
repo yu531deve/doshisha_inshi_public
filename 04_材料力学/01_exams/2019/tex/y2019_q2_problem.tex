@@ -1,0 +1,64 @@
+% AY2019 材料力学 〔II〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2019/2019za.pdf
+% 要約: 長さ2Lの単純支持はり（縦弾性係数E, 断面二次モーメントI）。
+%       (1) 図2: 外力モーメントM0が両端A,Bに作用 → たわみ角とたわみの式。
+%       (2) 図3: M0が両端A,Bに, 集中荷重Wが中央Cに → Cでのたわみが0となるW。
+
+\section*{〔II〕}
+
+長さ $2L$ の単純支持はりにおいて, はりの縦弾性係数を $E$, 断面 2 次モーメントを $I$ とした
+場合に, 次の問い (1) および (2) に答えよ.
+
+\begin{center}
+% 図2: 両端に外力モーメント M0
+\begin{tikzpicture}[>=Latex]
+  \draw[line width=1.2pt] (0,0) -- (8,0);
+  % 支持 A（ピン）, B（ローラー）
+  \draw (0,0) -- (-0.35,-0.6) -- (0.35,-0.6) -- cycle;
+  \draw[pattern=north east lines] (-0.5,-0.8) rectangle (0.5,-0.6);
+  \draw (8,0) -- (7.65,-0.6) -- (8.35,-0.6) -- cycle;
+  \draw (7.6,-0.6) circle (0); \draw[pattern=north east lines] (7.5,-0.8) rectangle (8.5,-0.6);
+  % 外力モーメント M0（両端）
+  \draw[->,thick] (-0.55,0.35) arc (130:-130:0.45);
+  \node[left] at (-0.95,0) {$M_0$};
+  \draw[->,thick] (8.55,-0.35) arc (-50:50:0.45);
+  \node[right] at (8.95,0) {$M_0$};
+  % 節点
+  \node[above] at (0.2,0.05) {A}; \node[above] at (7.8,0.05) {B};
+  % 寸法 2L
+  \draw[<->] (0,0.7) -- (8,0.7) node[midway,fill=white]{$2L$};
+\end{tikzpicture}
+
+図2
+
+\vspace{4mm}
+% 図3: M0 + 中央集中荷重 W
+\begin{tikzpicture}[>=Latex]
+  \draw[line width=1.2pt] (0,0) -- (8,0);
+  \draw (0,0) -- (-0.35,-0.6) -- (0.35,-0.6) -- cycle;
+  \draw[pattern=north east lines] (-0.5,-0.8) rectangle (0.5,-0.6);
+  \draw (8,0) -- (7.65,-0.6) -- (8.35,-0.6) -- cycle;
+  \draw[pattern=north east lines] (7.5,-0.8) rectangle (8.5,-0.6);
+  \draw[->,thick] (-0.55,0.35) arc (130:-130:0.45);
+  \node[left] at (-0.95,0) {$M_0$};
+  \draw[->,thick] (8.55,-0.35) arc (-50:50:0.45);
+  \node[right] at (8.95,0) {$M_0$};
+  % 集中荷重 W（中央C）
+  \draw[->,very thick] (4,1.2) -- (4,0.05) node[midway,right]{$W$};
+  % 節点
+  \node[above] at (0.2,0.05) {A}; \node[below right] at (4,-0.05) {C}; \node[above] at (7.8,0.05) {B};
+  % 寸法 L, L
+  \draw[<->] (0,0.7) -- (4,0.7) node[midway,fill=white]{$L$};
+  \draw[<->] (4,0.7) -- (8,0.7) node[midway,fill=white]{$L$};
+\end{tikzpicture}
+
+図3
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 図2のように外力モーメント $M_0$ が両端 A と B に作用している場合を考える.
+        はりのたわみ角とたわみの式を求めよ.
+
+  \item 図3のように, 外力モーメント $M_0$ が両端 A と B に, 集中荷重 $W$ がはりの中央 C に
+        負荷されている場合を考える. C でのたわみが 0 となる $W$ を求めよ.
+\end{enumerate}

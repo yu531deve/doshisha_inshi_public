@@ -1,0 +1,162 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\title{2020年度 (AY2020) 同志社大学大学院 生命医科学研究科\\
+医工学コース 入学試験問題「数学」解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+%======================================================================
+\section*{第1問}
+
+\subsection*{前提整理}
+
+$z=f(x,y)$,$x=r\cos\theta,\ y=r\sin\theta$ のとき
+\[
+\Bigl(\frac{\partial z}{\partial x}\Bigr)^2+\Bigl(\frac{\partial z}{\partial y}\Bigr)^2
+=\Bigl(\frac{\partial z}{\partial r}\Bigr)^2+\frac1{r^2}\Bigl(\frac{\partial z}{\partial\theta}\Bigr)^2
+\]
+を示す.連鎖律で右辺を $z_x,z_y$ で表す.
+
+\subsection*{証明}
+
+\paragraph{Step 1: $z_r,z_\theta$ を求める.}
+$\dfrac{\partial x}{\partial r}=\cos\theta,\ \dfrac{\partial y}{\partial r}=\sin\theta$,
+$\dfrac{\partial x}{\partial\theta}=-r\sin\theta,\ \dfrac{\partial y}{\partial\theta}=r\cos\theta$ より
+\[
+z_r=z_x\cos\theta+z_y\sin\theta,\qquad
+z_\theta=-z_x\,r\sin\theta+z_y\,r\cos\theta.
+\]
+
+\paragraph{Step 2: 右辺を計算する.}
+\[
+z_r^2=z_x^2\cos^2\theta+2z_xz_y\cos\theta\sin\theta+z_y^2\sin^2\theta,
+\]
+\[
+\frac1{r^2}z_\theta^2=z_x^2\sin^2\theta-2z_xz_y\cos\theta\sin\theta+z_y^2\cos^2\theta.
+\]
+両者を加えると交差項 $\pm2z_xz_y\cos\theta\sin\theta$ が相殺し,
+$\cos^2\theta+\sin^2\theta=1$ により
+\[
+z_r^2+\frac1{r^2}z_\theta^2=z_x^2+z_y^2.
+\]
+よって等式が成り立つ.$\qquad\blacksquare$
+
+検算:$z=x^2+y^2=r^2$ では左辺 $=(2x)^2+(2y)^2=4r^2$,
+右辺 $=(2r)^2+0=4r^2$ で一致.$\checkmark$
+
+%======================================================================
+\section*{第2問}
+
+\subsection*{前提整理}
+
+$D:\ x^2+y^2<a^2$（$a>0$）上で
+$\displaystyle\iint_D\frac{dx\,dy}{\sqrt{a^2-x^2-y^2}}$ を求める.
+境界 $r\to a$ で被積分関数が発散する広義積分なので,極座標で評価する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 極座標へ変換する.}
+$x=r\cos\theta,\ y=r\sin\theta$,$dxdy=r\,drd\theta$,$x^2+y^2=r^2$ より
+\[
+\iint_D\frac{dxdy}{\sqrt{a^2-x^2-y^2}}
+=\int_0^{2\pi}\!\!\int_0^{a}\frac{r}{\sqrt{a^2-r^2}}\,dr\,d\theta.
+\]
+
+\paragraph{Step 2: 動径方向を積分する.}
+$\dfrac{d}{dr}\bigl(-\sqrt{a^2-r^2}\bigr)=\dfrac{r}{\sqrt{a^2-r^2}}$ なので
+\[
+\int_0^{a}\frac{r}{\sqrt{a^2-r^2}}\,dr
+=\Bigl[-\sqrt{a^2-r^2}\Bigr]_0^{a}=0-(-a)=a.
+\]
+（$r\to a$ で収束する広義積分.）角度方向は $2\pi$ だから
+\[
+\ans{\
+\iint_D\frac{dx\,dy}{\sqrt{a^2-x^2-y^2}}=2\pi a\ }
+\]
+
+検算:被積分関数は正で,$a$ について $1$ 次同次（$x=as,y=at$ とすると
+積分は $a$ に比例）であることと整合.数値的にも $a=1$ で $2\pi$ が得られる.$\checkmark$
+
+%======================================================================
+\section*{第3問}
+
+\subsection*{前提整理}
+
+\[
+A=\begin{pmatrix}1&1&0\\0&1&0\\1&0&1\end{pmatrix}
+\]
+の対角化可能性を調べる.固有値の代数的重複度と幾何的重複度（固有空間の次元）を
+比較する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 固有値.}
+第2行で展開すると
+\[
+\det(A-\lambda I)
+=\begin{vmatrix}1-\lambda&1&0\\0&1-\lambda&0\\1&0&1-\lambda\end{vmatrix}
+=(1-\lambda)^3.
+\]
+よって固有値は $\lambda=1$ のみ（代数的重複度 $3$）.
+
+\paragraph{Step 2: 固有空間の次元.}
+\[
+A-I=\begin{pmatrix}0&1&0\\0&0&0\\1&0&0\end{pmatrix},\qquad \operatorname{rank}(A-I)=2.
+\]
+よって幾何的重複度は $\dim\ker(A-I)=3-2=1$.
+
+\paragraph{Step 3: 判定.}
+幾何的重複度 $1$ が代数的重複度 $3$ より小さいので,1次独立な固有ベクトルが
+$3$ 個とれない.したがって
+\[
+\ans{\ A\ \text{は対角化}\textbf{不可能}\ (\text{固有値}1\text{の固有空間が1次元のため})\ }
+\]
+
+検算:$A-I$ の核は $\operatorname{Span}\{(0,0,1)^\top\}$ の $1$ 次元のみで,確かに固有ベクトルは
+$1$ 方向しかない.（$A$ は Jordan 細胞をもつ.）$\checkmark$
+
+%======================================================================
+\section*{第4問}
+
+\subsection*{前提整理}
+
+1次独立な $\va,\vb,\bm{c}\in\R^3$ について
+$(\va\times\vb,\bm{c})=(\va,\vb\times\bm{c})$ を示し,$\va,\vb,\bm{c}$ を $3$ 辺とする
+四面体 $OABC$ の体積を求める.
+
+\subsection*{計算}
+
+\paragraph{Step 1: スカラー三重積を行列式で表す.}
+$\va=(a_1,a_2,a_3)$ などとすると,外積と内積の定義から
+\[
+(\va\times\vb,\bm{c})=\det\begin{pmatrix}c_1&c_2&c_3\\a_1&a_2&a_3\\b_1&b_2&b_3\end{pmatrix}
+=\det\begin{pmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{pmatrix}.
+\]
+（行の偶置換で行列式は不変.）同様に
+\[
+(\va,\vb\times\bm{c})=\det\begin{pmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{pmatrix}.
+\]
+両者は同じ行列式に等しいので
+\[
+(\va\times\vb,\bm{c})=(\va,\vb\times\bm{c}).\qquad\blacksquare
+\]
+
+\paragraph{Step 2: 四面体の体積.}
+$\va,\vb,\bm{c}$ が張る平行六面体の体積は $\bigl|(\va\times\vb,\bm{c})\bigr|$.
+四面体 $OABC$ の体積はその $\dfrac16$ なので
+\[
+\ans{\
+V=\frac16\bigl|(\va\times\vb,\bm{c})\bigr|
+=\frac16\left|\det\begin{pmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{pmatrix}\right|\ }
+\]
+
+検算:$\va=(1,0,0),\vb=(0,1,0),\bm{c}=(0,0,1)$ なら $V=\frac16|1|=\frac16$,
+これは頂点 $O$ と $3$ 単位点がなす四面体の体積に一致する.$\checkmark$
+
+\end{document}

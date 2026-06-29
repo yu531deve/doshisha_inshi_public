@@ -1,0 +1,46 @@
+% AY2022 制御工学 第2問〔II〕（転記）
+% 出典: 03_制御工学/original/03_制御工学/2022/2022se.pdf
+% 要約: G1,G2 直列の前向き経路に K の負帰還を持つフィードバック系。
+%       一巡伝達関数のゲイン位相・ゲイン線図・ステップ応答・G2 変更時の比較考察。
+
+\section*{第2問〔II〕}
+
+制御システムに関する次の問い (1)〜(4) に答えよ. なお, 伝達関数は $G_1(s)=\dfrac{1}{s+1}$,
+$G_2(s)=\dfrac{1}{10s+1}$, フィードバックゲインは $K=2$ とする.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  \node (in)  at (0,0) {};
+  \node (sum) [sum] at (1.0,0) {};
+  \node (G1)  [block] at (2.6,0) {$G_1(s)$};
+  \node (G2)  [block] at (4.6,0) {$G_2(s)$};
+  \coordinate (nd) at (5.9,0);
+  \node (out) at (7.2,0) {};
+  \node (K)   [block] at (3.6,-1.5) {$K$};
+
+  \draw[->] (in)  -- (sum);
+  \draw[->] (sum) -- (G1);
+  \draw[->] (G1)  -- (G2);
+  \draw[->] (G2)  -- (out);
+  \fill (nd) circle (1.4pt);
+  \draw (nd) -- (5.9,-1.5) -- (K.east);
+  \draw[->] (K.west) -| (sum);
+
+  \node at ($(sum.north west)+(0.02,0.10)$) {\scriptsize $+$};
+  \node at ($(sum.south west)+(0.02,-0.10)$) {\scriptsize $-$};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 下図のシステムについて, 一巡伝達関数のゲインと位相を求めよ.
+
+  \item 一巡伝達関数のゲイン線図を漸近線で描け. 折れ点等の特徴点を明示し,
+        解答用紙内の縦軸・横軸の目盛には適宜数値を記入すること.
+
+  \item 下図のシステムに単位ステップ入力を与えた時の応答を求めよ.
+
+  \item 次に, $G_2(s)=\dfrac{1}{0.2s+1}$, $K=1$ とするシステムを考える. 一巡伝達関数の
+        ゲイン線図を問い (2) で描いたゲイン線図上に破線で描き, 単位ステップ入力を与えた時の
+        応答を求めたうえで, 問い (2) と (3) で得られたゲイン線図や応答と比較し, 2 つの
+        システムに関する過渡特性の違いについて考察せよ.
+\end{enumerate}

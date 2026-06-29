@@ -1,0 +1,156 @@
+% AY2019 力学 解答例
+% 体裁・粒度は 参考/ のPDFに揃える（行間を埋め、最終解答は \ans{} で boxed）。
+% 解答・数値・問題は本年度過去問から自力で導いた（東大版は体裁の手本のみ）。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\title{力学 AY2019 解答例（専門基礎科目）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+質量 $M$ の太陽の周りを質量 $m$ の地球が，焦点 $O_1$ を太陽の位置とする長径 $2a$，
+短径 $2b$ の楕円軌道上を反時計回りに公転する。太陽・地球間の距離を $r$，$x$ 軸から
+測った角度を $\theta$ とし，万有引力定数を $G$ とする。地球には太陽からの万有引力のみが
+働くものとする。
+
+\subsection*{(1) 角運動量保存の証明}
+地球に働く力は，太陽（点 $O_1$）に向かう万有引力のみである。その大きさは
+\[
+  F=\frac{GMm}{r^2}
+\]
+で，向きは常に動径 $\bm{r}$（$O_1$ から地球へ向かうベクトル）と反平行（中心向き）である。
+すなわち力は中心力 $\bm{F}=-F\,\hat{\bm{r}}$ と書ける。
+
+点 $O_1$ まわりの地球の角運動量を $\bm{L}=\bm{r}\times m\dot{\bm{r}}$ とすると，その時間変化は
+\begin{align*}
+  \frac{d\bm{L}}{dt}
+  &=\frac{d}{dt}\bigl(\bm{r}\times m\dot{\bm{r}}\bigr)
+   =\dot{\bm{r}}\times m\dot{\bm{r}}+\bm{r}\times m\ddot{\bm{r}}.
+\end{align*}
+第1項は同じベクトル同士の外積だから $\bm{0}$。第2項は運動方程式
+$m\ddot{\bm{r}}=\bm{F}=-F\hat{\bm{r}}$ より
+\[
+  \bm{r}\times m\ddot{\bm{r}}
+  =\bm{r}\times(-F\hat{\bm{r}})
+  =-F\,(\bm{r}\times\hat{\bm{r}})=\bm{0}
+\]
+となる（$\bm{r}$ と $\hat{\bm{r}}$ が平行だから）。よって
+\[
+  \frac{d\bm{L}}{dt}=\bm{0}
+  \quad\therefore\quad \bm{L}=\text{一定}.
+\]
+極座標 $(r,\theta)$ で表すと面積速度一定の関係になり，
+\[
+  \ans{\;L=m r^2\dot{\theta}=\text{一定}\;}
+\]
+が成り立つ。すなわち $O_1$ まわりの角運動量は保存される。
+
+\subsection*{(2) 動径方向の運動方程式}
+平面極座標 $(r,\theta)$ における加速度の動径成分は
+\[
+  a_r=\ddot{r}-r\dot{\theta}^2
+\]
+である。地球に働く力は中心向き（$-\hat{\bm{r}}$ 方向）の万有引力のみで，その動径成分は
+$-\dfrac{GMm}{r^2}$。よって動径方向（$r$ 方向）の運動方程式は
+\[
+  m\bigl(\ddot{r}-r\dot{\theta}^2\bigr)=-\frac{GMm}{r^2}.
+\]
+\[
+  \ans{\;m\bigl(\ddot{r}-r\dot{\theta}^2\bigr)=-\dfrac{GMm}{r^2}\;}
+\]
+なお (1) の保存量 $L=mr^2\dot\theta$ を用いて $\dot\theta=L/(mr^2)$ を代入すれば，
+\[
+  m\ddot{r}=\frac{L^2}{mr^3}-\frac{GMm}{r^2}
+\]
+と $r$ のみの方程式に書ける。
+
+\medskip
+検算: 円軌道（$r=a$ 一定，$\ddot r=0$）を仮定すると (2) より
+$-mr\dot\theta^2=-GMm/r^2$，すなわち $r\dot\theta^2=GM/r^2$。
+このとき公転角速度は $\dot\theta=\sqrt{GM/r^3}$，公転周期は
+$T=2\pi/\dot\theta=2\pi\sqrt{r^3/(GM)}$ となり，
+$T^2\propto r^3$（ケプラー第3法則）を再現する。物理的に妥当。\checkmark
+
+% ==================================================================
+\clearpage
+\section*{第2問〔II〕}
+
+質量 $M$，慣性モーメント $I=Ma^2/2$，半径 $a$ の円板の周りに糸を巻きつけ，糸の一端を
+固定して円板を落下させる（いわゆるヨーヨー）。円板の重心 $P$ は鉛直線（$x$ 軸，鉛直下向きを
+正）に沿って降下し，円板は反時計回りに回転する。糸の張力を $T$，重力加速度の大きさを $g$ とする。
+重心の変位を $x$，回転角を $\phi$ とする。
+
+糸は鉛直に張られ，巻きついた半径 $a$ の縁の接点で円板に接する。糸が固定端側で伸びないので，
+重心が $x$ だけ降下する間に縁が同じだけ繰り出される。よって幾何学的拘束条件
+\[
+  x=a\phi
+  \quad\therefore\quad \ddot{x}=a\ddot{\phi}
+  \tag{$\ast$}
+\]
+が成り立つ（$\ddot\phi$ は角加速度）。
+
+\subsection*{(1) 重心 P の運動方程式}
+重心に働く鉛直方向の力は，下向きの重力 $Mg$ と上向きの糸の張力 $T$ である。
+$x$ 軸（鉛直下向き正）に沿った重心の運動方程式は
+\[
+  M\ddot{x}=Mg-T.
+\]
+\[
+  \ans{\;M\ddot{x}=Mg-T\;}
+\]
+
+\subsection*{(2) 角運動量の単位時間あたりの変化量}
+重心 $P$ まわりの角運動量は $L=I\dot{\phi}$ であり，その単位時間あたりの変化量の大きさは
+重心まわりの力のモーメントに等しい（回転の運動方程式）。重力は重心に作用するためモーメントを
+もたず，張力 $T$ のみが腕の長さ $a$ でモーメントを与えるから
+\[
+  \left|\frac{dL}{dt}\right|=I\ddot{\phi}=T a.
+\]
+ここで張力 $T$ を求める。回転の運動方程式 $I\ddot\phi=Ta$ に $I=\dfrac{Ma^2}{2}$ と
+拘束条件 $(\ast)$ の $\ddot\phi=\ddot x/a$ を代入すると
+\[
+  \frac{Ma^2}{2}\cdot\frac{\ddot{x}}{a}=Ta
+  \quad\therefore\quad T=\frac{M\ddot{x}}{2}.
+  \tag{$\ast\ast$}
+\]
+これを (1) の $M\ddot x=Mg-T$ に代入して
+\[
+  M\ddot{x}=Mg-\frac{M\ddot{x}}{2}
+  \quad\Longrightarrow\quad \frac{3}{2}M\ddot{x}=Mg
+  \quad\therefore\quad \ddot{x}=\frac{2}{3}g.
+\]
+$(\ast\ast)$ より $T=\dfrac{M}{2}\cdot\dfrac{2}{3}g=\dfrac{Mg}{3}$。したがって
+\[
+  \left|\frac{dL}{dt}\right|=Ta=\frac{Mg}{3}\,a=\frac{Mga}{3}.
+\]
+\[
+  \ans{\;\left|\dfrac{dL}{dt}\right|=Ta=\dfrac{Mga}{3}\;}
+\]
+
+\subsection*{(3) 重心 P の加速度の大きさ}
+(2) の途中で得たとおり，
+\[
+  \ddot{x}=\frac{2}{3}g.
+\]
+\[
+  \ans{\;|\ddot{x}|=\dfrac{2}{3}g\;}
+\]
+重力加速度より小さく，糸の張力によって落下が抑えられていることがわかる。
+
+\medskip
+検算: エネルギーで確認する。重心が $x$ 降下するとき，並進と回転の運動エネルギーは
+$\frac12 M\dot x^2+\frac12 I\dot\phi^2$。拘束 $\dot\phi=\dot x/a$，$I=Ma^2/2$ より
+$\frac12 M\dot x^2+\frac12\cdot\frac{Ma^2}{2}\cdot\frac{\dot x^2}{a^2}
+=\frac34 M\dot x^2$。
+これが重力の仕事 $Mgx$ に等しいので $\frac34 M\dot x^2=Mgx$。両辺を時間微分して
+$\frac32 M\dot x\ddot x=Mg\dot x$，すなわち $\ddot x=\frac23 g$ を得て (3) と一致。\checkmark
+
+\end{document}

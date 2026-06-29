@@ -1,0 +1,32 @@
+% AY2025 力学 第1問 転記（問題のみ）
+\section*{第1問〔I〕}
+
+図1のように，質量 $m_1$ の質点 1 と質量 $m_2$ の質点 2 の間に，力の大きさが $F$ の
+作用反作用の力のみが働いている場合を考える。原点を O，時刻 $t$ における質点 1 の
+位置ベクトルを $\bm{r}_1$，質点 2 の位置ベクトルを $\bm{r}_2$ として，次の問い (1)
+および (2) に答えよ。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 質点 1 と質点 2 の系において，運動量保存則が成り立つことを示せ。
+  \item 一方の質点上に立っている観測者が他方の質点の運動を観測した場合の運動方程式を
+        求めよ。
+\end{enumerate}
+
+\begin{center}
+% 図1：原点Oから質点1(m1),質点2(m2)へr1,r2。両質点間に作用反作用の力F
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \coordinate (O)  at (1.7,0);
+  \coordinate (P1) at (0,1.7);
+  \coordinate (P2) at (3.8,2.1);
+  \draw (O) -- (P1); \node at (0.65,0.75) {$\bm{r}_1$};
+  \draw (O) -- (P2); \node at (3.1,0.95) {$\bm{r}_2$};
+  \node[below] at (O) {O};
+  \draw[dashed] (P1) -- (P2);
+  \draw (P1) circle (0.2); \node[left] at (-0.2,1.7) {$m_1$};
+  \draw (P2) circle (0.2); \node[above right] at (P2) {$m_2$};
+  % 作用反作用の力 F（P1は右向き、P2は左向き）
+  \draw[->,thick] (0.25,1.78) -- (1.15,1.9) node[above] {$F$};
+  \draw[->,thick] (3.55,2.02) -- (2.65,1.9) node[above] {$F$};
+  \node at (3.7,-0.2) {図 1};
+\end{tikzpicture}
+\end{center}

@@ -1,0 +1,61 @@
+% AY2016 材料力学 〔1〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2016/2016za.pdf
+% 要約: 組合せ棒。丸棒1(断面積3A, 縦弾性係数2E, 長さL/2), 丸棒2(A, E, L/2),
+%       円管3(4A, 5E, L)。下面固定・上面剛体板で固定。丸棒1(下)と丸棒2(上)は接点Xで接合。
+%       上面に外力P（上向き）。
+%       (1) N1,N2,N3, σ1,σ2,σ3, 変位λ1,λ2,λ3。
+%       (2) P=200kN, E=100GPa, L=1m, A=100mm^2 のとき λ1,λ2,λ3。
+%       (3) 接点Xに外力Fを負荷し丸棒1の応力が0となるFと, (2)の数値でN,σ,λ。
+
+\section*{〔1〕}
+
+図に示す組合せ棒について次の問いに答えよ. 組合せ棒の下面は固定され, 上面は剛体板で
+固定されている. 丸棒 1（下）と丸棒 2（上）は接点 X で接合され, 上面に外力 $P$ が
+作用している. 各部材の諸量は次のとおりとする.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=0.95]
+  % 地面（下面固定）
+  \draw[thick] (-2.0,0) -- (2.0,0);
+  \foreach \x in {-1.9,-1.6,...,1.95} {\draw (\x,0) -- (\x-0.25,-0.25);}
+  % 剛体板（上面）
+  \draw[line width=2pt] (-2.0,4.5) -- (2.0,4.5);
+  % 円管3（外側2壁, 全長L）
+  \fill[gray!20] (-1.6,0) rectangle (-1.3,4.5);
+  \fill[gray!20] (1.3,0) rectangle (1.6,4.5);
+  \draw (-1.6,0) rectangle (-1.3,4.5); \draw (1.3,0) rectangle (1.6,4.5);
+  % 丸棒1（下, 3A, x:-0.7..0.7, y:0..2.25）
+  \fill[gray!45] (-0.7,0) rectangle (0.7,2.25); \draw (-0.7,0) rectangle (0.7,2.25);
+  % 丸棒2（上, A, x:-0.4..0.4, y:2.25..4.5）
+  \draw (-0.4,2.25) rectangle (0.4,4.5);
+  % 接点 X
+  \fill (0,2.25) circle (1.6pt);
+  \node[right] at (0.1,2.45) {X};
+  % 番号
+  \node at (0,1.1) {\large \textcircled{1}};
+  \node at (0,3.4) {\large \textcircled{2}};
+  \node at (1.45,2.4) {\large \textcircled{3}};
+  % 外力 P（上向き）
+  \draw[->,very thick] (0,4.5) -- (0,5.7) node[above]{$P$};
+  % 剛体板ラベル
+  \node[right] at (2.05,4.5) {\footnotesize 剛体板};
+\end{tikzpicture}
+\qquad
+$\left(\begin{array}{llll}
+  \text{丸棒}\,\textcircled{1} & 3A & 2E & L/2\\[2pt]
+  \text{丸棒}\,\textcircled{2} & A & E & L/2\\[2pt]
+  \text{円管}\,\textcircled{3} & 4A & 5E & L
+\end{array}\right)$
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 外力 $P$ を加えた場合に丸棒 1, 丸棒 2, 円管 3 に生じる内力 $N_1$, $N_2$, $N_3$,
+        応力 $\sigma_1$, $\sigma_2$, $\sigma_3$, 変位 $\lambda_1$, $\lambda_2$, $\lambda_3$ を求めよ.
+
+  \item $P=\SI{200}{kN}$, $E=\SI{100}{GPa}$, $L=\SI{1}{m}$, $A=\SI{100}{mm^2}$ のとき,
+        変位 $\lambda_1$, $\lambda_2$, $\lambda_3$ を求めよ.
+
+  \item 丸棒 1 と 2 の接点 X に外力 $F$ を負荷したとき, 丸棒 1 に生じる応力が 0 となった.
+        外力 $F$ を求めよ. このとき, (2) の数値を用いて $N_1\!\sim\!N_3$, $\sigma_1\!\sim\!\sigma_3$,
+        $\lambda_1\!\sim\!\lambda_3$ を求めよ.
+\end{enumerate}

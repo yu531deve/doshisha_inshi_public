@@ -1,0 +1,85 @@
+% AY2015 材料力学 〔III〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2015/2015za.pdf
+% 要約: 組合せ棒。丸棒1（直径d, E）, 丸棒2（直径2d, 3E）, 円管3（内径4d, 外径6d, 2E）。
+%       下面固定, 上面は剛体円板で固定, 2本の丸棒の接合点Bに外力P。剛体板は平行を保つ。
+%       丸棒1は上部(A-B, 長さL/2), 丸棒2は下部(B-C, 長さL/2), 円管3は全長L。
+%       (1) 内力N1,N2,N3, (2) 応力σ1,σ2,σ3, (3) 伸びλ1,λ2,λ3,
+%       (4) Pに加え上部剛体板に中心軸まわりトルクTを負荷時のねじれ角Ψ（横弾性係数は全てG）。
+
+\section*{〔III〕}
+
+図3に示すように, 丸棒 1（直径 $d$, 縦弾性係数 $E$）, 丸棒 2（直径 $2d$, 縦弾性係数 $3E$）
+および円管 3（内径 $4d$, 外径 $6d$, 縦弾性係数 $2E$）からなる組合せ棒に関する
+次の問い (1)\,$\sim$\,(4) に答えよ. 組合せ棒の下面は固定されており, 上面は剛体円板で
+固定され, 2 本の丸棒の接合点 B に外力 $P$ が作用している. 剛体板は平行を保つものとする.
+
+\begin{center}
+% 断面図（同心円）
+\begin{tikzpicture}[>=Latex,scale=0.95]
+  % 円管3（内径4d=半径1.2, 外径6d=半径1.8）
+  \begin{scope}
+    \clip (0,0) circle (1.8); \fill[pattern=north east lines] (-2,-2) rectangle (2,2);
+    \fill[white] (0,0) circle (1.2);
+  \end{scope}
+  \draw (0,0) circle (1.8); \draw (0,0) circle (1.2);
+  % 丸棒2（直径2d=半径0.6）
+  \fill[gray!45] (0,0) circle (0.6); \draw (0,0) circle (0.6);
+  % 丸棒1（直径d=半径0.3）
+  \fill[white] (0,0) circle (0.3); \draw (0,0) circle (0.3);
+  % ラベル
+  \node at (0,0.95) {\footnotesize 丸棒 1};
+  \draw[->] (0,0.82) -- (0,0.16);
+  \node at (1.0,-0.95) {\footnotesize 丸棒 2};
+  \draw[->] (0.7,-0.8) -- (0.32,-0.45);
+  \node[below left] at (-1.5,-1.2) {\footnotesize 円管 3};
+  \draw[->] (-1.25,-1.05) -- (-0.95,-0.85);
+  % トルク T
+  \draw[->,line width=1pt] (1.4,1.6) arc (55:-35:2.1) node[midway,right]{$T$};
+\end{tikzpicture}
+\hspace{8mm}
+% 縦断面図
+\begin{tikzpicture}[>=Latex,scale=0.95]
+  % 地面（下面固定）
+  \draw[thick] (-2.0,0) -- (2.0,0);
+  \foreach \x in {-1.9,-1.6,...,1.95} {\draw (\x,0) -- (\x-0.25,-0.25);}
+  % 剛体円板（上面）
+  \draw[line width=2pt] (-2.0,5.0) -- (2.0,5.0);
+  % 円管3（外側の2壁, 全長L）
+  \fill[gray!20] (-1.5,0) rectangle (-1.2,5.0);
+  \fill[gray!20] (1.2,0) rectangle (1.5,5.0);
+  \draw (-1.5,0) rectangle (-1.2,5.0); \draw (1.2,0) rectangle (1.5,5.0);
+  % 丸棒1（上部 A-B, 直径d, x:-0.3..0.3, y:2.5..5.0）
+  \draw (-0.3,2.5) rectangle (0.3,5.0);
+  % 丸棒2（下部 B-C, 直径2d, x:-0.6..0.6, y:0..2.5）
+  \fill[gray!45] (-0.6,0) rectangle (0.6,2.5); \draw (-0.6,0) rectangle (0.6,2.5);
+  % 節点
+  \node[left] at (-0.3,4.6) {A};
+  \node[left] at (-0.3,2.6) {B};
+  \node[right] at (0.6,0.3) {C};
+  % 外力 P（B点 下向き）
+  \fill (0,2.5) circle (1.6pt);
+  \draw[->,very thick] (0,2.5) -- (0,1.4) node[midway,right]{$P$};
+  % ラベル
+  \node[right] at (0.35,3.9) {\footnotesize 丸棒 1};
+  \node[right] at (0.65,1.5) {\footnotesize 丸棒 2};
+  \node[right] at (1.55,4.3) {\footnotesize 円管 3};
+  % 寸法 L, L/2
+  \draw[<->] (-1.85,0) -- (-1.85,5.0) node[midway,fill=white]{$L$};
+  \draw[<->] (-0.8,0) -- (-0.8,2.5) node[midway,fill=white,font=\scriptsize]{$L/2$};
+\end{tikzpicture}
+
+\vspace{1mm}
+図3
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 丸棒および円管に生じる内力 $N_1$, $N_2$, $N_3$ を求めよ.
+
+  \item 丸棒および円管に生じる応力 $\sigma_1$, $\sigma_2$, $\sigma_3$ を求めよ.
+
+  \item 丸棒と円管の伸び $\lambda_1$, $\lambda_2$, $\lambda_3$ を求めよ.
+
+  \item 外力 $P$ に加え, 図に示すように上部の剛体板に中心軸周りにトルク（ねじりモーメント）
+        $T$ を負荷した時のねじれ角 $\Psi$ を求めよ. なお, 丸棒 1, 丸棒 2 および円管 3 の
+        横弾性係数を全て $G$ とせよ.
+\end{enumerate}

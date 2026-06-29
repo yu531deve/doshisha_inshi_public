@@ -1,0 +1,152 @@
+% AY2015 力学 解答例
+% 体裁・粒度は 参考/ のPDFに揃える（行間を埋め、最終解答は \ans{} で boxed）。
+% 解答・数値・問題は本年度過去問から自力で導いた（東大版は体裁の手本のみ）。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\title{力学 AY2015 解答例（専門基礎科目）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+半径 $a$，質量 $M$，慣性モーメント $I=\dfrac{2}{5}Ma^2$ の一様な剛体球が，
+傾斜角 $\theta$ の斜面をすべることなく転がり落ちる。$x$ 軸を斜面下り方向，
+$y$ 軸を斜面法線方向にとる。重心 $G$ の $x$ 方向速度を $V$，角速度を $\omega(t)$，
+接地点の摩擦力を $f$，重力加速度を $g$ とする。すべりがないので転がり条件
+$V=a\omega$（よって $\dot V=a\dot\omega$）が成り立つ。
+
+\subsection*{(1) 剛体球に働く $x$ 方向の力}
+球に働く力は重力 $Mg$，斜面からの垂直抗力 $N$（$y$ 方向），摩擦力 $f$ である。
+重力の斜面下り（$+x$）成分は $Mg\sin\theta$，垂直抗力は $y$ 方向で $x$ 成分をもたない。
+摩擦力 $f$ は転がり落ちを妨げる向き，すなわち斜面を上る $-x$ 方向に働く。
+ゆえに $x$ 方向の合力は
+\[
+  \ans{\;F_x = Mg\sin\theta - f\;}
+\]
+
+\subsection*{(2) 重心 $G$ の並進運動方程式（$x$ 方向）}
+ニュートンの運動方程式 $M\dot V = F_x$ に (1) を代入して
+\[
+  \ans{\;M\dfrac{dV}{dt} = Mg\sin\theta - f\;}
+\]
+
+\subsection*{(3) 摩擦力によるトルクの大きさ}
+摩擦力 $f$ は接地点に作用し，重心 $G$ から接地点までの距離（腕の長さ）は半径 $a$
+である。$f$ は接地点で斜面に沿う向きにはたらくので，$G$ まわりのトルクの大きさは
+\[
+  \ans{\;\tau = f\,a\;}
+\]
+（このトルクは球を転がり落ちる向きに回転させる。）
+
+\subsection*{(4) 回転運動方程式}
+$G$ まわりの回転の運動方程式は $I\dot\omega = \tau$。$I=\dfrac{2}{5}Ma^2$，$\tau=fa$ より
+\[
+  \ans{\;\dfrac{2}{5}Ma^2\dfrac{d\omega}{dt} = f\,a\;}
+\]
+
+\subsection*{(5) 重心の $x$ 方向加速度}
+(4) を整理すると，転がり条件 $a\dot\omega=\dot V$ を用いて摩擦力が求まる。
+\begin{align*}
+  \frac{2}{5}Ma^2\dot\omega = fa
+  \;\Longrightarrow\;
+  f = \frac{2}{5}Ma\,\dot\omega = \frac{2}{5}M\,(a\dot\omega) = \frac{2}{5}M\dot V.
+\end{align*}
+これを (2) の並進方程式 $M\dot V = Mg\sin\theta - f$ に代入して
+\begin{align*}
+  M\dot V &= Mg\sin\theta - \frac{2}{5}M\dot V
+  \;\Longrightarrow\;
+  \left(1+\frac{2}{5}\right)M\dot V = Mg\sin\theta\\
+  &\Longrightarrow\;
+  \frac{7}{5}\dot V = g\sin\theta.
+\end{align*}
+したがって加速度 $\dot V$ は
+\[
+  \ans{\;\dfrac{dV}{dt} = \dfrac{5}{7}\,g\sin\theta\;}
+\]
+
+\subsection*{(6) 加速度の比 $A_1/A_2$}
+剛体球の加速度は (5) より $A_1=\dfrac{5}{7}g\sin\theta$。
+一方，摩擦のない斜面上を滑り落ちる質点は $x$ 方向に重力成分 $Mg\sin\theta$ のみを
+受けるので，その加速度は $A_2=g\sin\theta$。よって
+\[
+  \ans{\;\dfrac{A_1}{A_2} = \dfrac{5}{7}\;}
+\]
+
+\medskip
+検算: $A_1/A_2=5/7<1$ で，転がる球は滑る質点より遅い。これは並進の運動エネルギー
+だけでなく回転の運動エネルギーにも重力の仕事が分配されるためで，物理的に妥当。
+また極限 $I\to0$（質量が中心に集中）とすると分母の係数は $1+0=1$ となり
+$\dot V=g\sin\theta$，すなわち質点と一致する。✓
+
+% ==================================================================
+\clearpage
+\section*{第2問〔II〕}
+
+質量 $m$ の質点をばね定数 $k$（$k>0$）のばねにつなぎ，他端を壁に固定する。
+自然長の位置を $x=0$ とし，$x_0$ だけ引っ張って静かに手を離す。
+質点には速度に比例する抵抗力（抵抗係数 $b>0$）が働く。
+
+\subsection*{(1) 運動方程式}
+質点に働く力は，ばねの復元力 $-kx$ と，速度に比例し運動を妨げる抵抗力 $-b\dot x$
+である。ニュートンの運動方程式 $m\ddot x = -kx - b\dot x$ より
+\[
+  \ans{\;m\dfrac{d^2x}{dt^2} + b\dfrac{dx}{dt} + kx = 0\;}
+\]
+
+\subsection*{(2) 過減衰の条件}
+特性方程式は $m\lambda^2 + b\lambda + k = 0$ で，根は
+\[
+  \lambda = \frac{-b \pm \sqrt{b^2 - 4mk}}{2m}.
+\]
+過減衰は，根が相異なる 2 実根となり振動せず単調に減衰する場合であるから，
+判別式が正であればよい。すなわち
+\[
+  \ans{\;b^2 > 4mk\;}
+\]
+
+\subsection*{(3) $m=1,\,b=1,\,k=1,\,x_0=1$ のときの運動}
+運動方程式は $\ddot x + \dot x + x = 0$。特性方程式 $\lambda^2+\lambda+1=0$ の根は
+\[
+  \lambda = \frac{-1\pm\sqrt{1-4}}{2} = -\frac{1}{2}\pm\frac{\sqrt3}{2}\,i
+\]
+で，$b^2=1<4=4mk$ より不足減衰（減衰振動）である。一般解は
+\[
+  x(t) = e^{-t/2}\!\left(A\cos\frac{\sqrt3}{2}t + B\sin\frac{\sqrt3}{2}t\right).
+\]
+初期条件は手を離した瞬間 $x(0)=x_0=1$，$\dot x(0)=0$。まず $x(0)=A=1$。
+速度は
+\begin{align*}
+  \dot x &= e^{-t/2}\!\Big[-\tfrac{1}{2}\!\left(A\cos\tfrac{\sqrt3}{2}t+B\sin\tfrac{\sqrt3}{2}t\right)
+            +\tfrac{\sqrt3}{2}\!\left(-A\sin\tfrac{\sqrt3}{2}t+B\cos\tfrac{\sqrt3}{2}t\right)\Big].
+\end{align*}
+$t=0$ で $\dot x(0)=-\tfrac{1}{2}A+\tfrac{\sqrt3}{2}B=0$ より $B=\dfrac{A}{\sqrt3}=\dfrac{1}{\sqrt3}$。
+よって
+\[
+  \ans{\;x(t) = e^{-t/2}\!\left(\cos\dfrac{\sqrt3}{2}t + \dfrac{1}{\sqrt3}\sin\dfrac{\sqrt3}{2}t\right)\;}
+\]
+
+\subsection*{(4) 抵抗係数 $b=0$ の場合}
+$b=0$ のとき運動方程式は $m\ddot x + kx = 0$，すなわち $\ddot x = -\dfrac{k}{m}x$ となる。
+これは角振動数 $\omega_0=\sqrt{k/m}$ の単振動である。初期条件 $x(0)=x_0$，$\dot x(0)=0$
+より
+\[
+  \ans{\;x(t) = x_0\cos\!\left(\sqrt{\tfrac{k}{m}}\;t\right)\;}
+\]
+すなわち減衰がないため振幅 $x_0$ は減衰せず，質点は周期
+$T=2\pi\sqrt{m/k}$ で永久に単振動を続ける。
+
+\medskip
+検算: (3) の解は $x(0)=1$，$\dot x(0)=-\tfrac12+\tfrac{\sqrt3}{2}\cdot\tfrac{1}{\sqrt3}
+=-\tfrac12+\tfrac12=0$ で初期条件を満たす。包絡線 $e^{-t/2}$ で減衰し
+$t\to\infty$ で $x\to0$（平衡へ収束）となり，不足減衰の挙動と整合する。
+また (3) で形式的に $b\to0$ とすると減衰因子が消え (4) の純粋な単振動に移行し，
+両者は連続的につながる。✓
+
+\end{document}

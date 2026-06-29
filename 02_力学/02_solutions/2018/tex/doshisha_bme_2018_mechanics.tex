@@ -1,0 +1,180 @@
+% AY2018 力学 解答例
+% 体裁・粒度は 参考/ のPDFに揃える（行間を埋め、最終解答は \ans{} で boxed）。
+% 解答・数値・問題は本年度過去問から自力で導いた（東大版は体裁の手本のみ）。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\title{力学 AY2018 解答例（専門基礎科目）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+なめらかな水平面上を，質量 $m$ の質点 A が速さ $V$（$x$ 軸正向き）で運動し，
+静止していた質量 $M$ の質点 B と衝突する。衝突後の速度は A が $V_A$，B が $V_B$
+であり，衝突の前後で運動量保存則とエネルギー保存則（弾性衝突）が成り立つ。
+
+\subsection*{(1) 衝突前の系の重心速度}
+重心速度 $V_G$ は系の全運動量を全質量で割ったものである。衝突前は A だけが
+速さ $V$ で動き，B は静止しているから，全運動量は $mV$，全質量は $m+M$。
+\begin{align*}
+  V_G=\frac{mV+M\cdot 0}{m+M}=\frac{mV}{m+M}.
+\end{align*}
+向きは A の進行方向（$x$ 軸正向き）である。
+\[
+  \ans{\;V_G=\dfrac{mV}{m+M}\quad(\text{$x$ 軸正向き})\;}
+\]
+
+\subsection*{(2) 重心から見た衝突前の A，B の速度}
+重心系での速度は，実験室系の速度から重心速度 $V_G$ を引いたものである。
+衝突前，A の速度は $V$，B の速度は $0$ だから
+\begin{align*}
+  V_A'&=V-V_G=V-\frac{mV}{m+M}=\frac{(m+M)V-mV}{m+M}=\frac{MV}{m+M},\\
+  V_B'&=0-V_G=-\frac{mV}{m+M}.
+\end{align*}
+$V_A'>0$，$V_B'<0$ であり，重心系では A と B が互いに逆向きに近づく。
+\[
+  \ans{\;V_A'=\dfrac{MV}{m+M}\ (\text{$+x$ 向き}),\qquad
+        V_B'=-\dfrac{mV}{m+M}\ (\text{$-x$ 向き})\;}
+\]
+このとき重心系での全運動量は
+$mV_A'+MV_B'=\dfrac{mMV-Mm V}{m+M}=0$ となり，重心系の定義（全運動量 $0$）と整合する。
+
+\subsection*{(3) 重心から見た衝突前後の軌跡の概形}
+重心系では系の全運動量は常に $0$ なので，A と B の運動量は大きさが等しく向きが反対，
+すなわち両者は常に重心（原点）を挟んで一直線上の反対側に位置する。
+さらに弾性衝突では運動エネルギーが保存し，重心系の全運動量が $0$ という条件と合わせると，
+各質点の\textbf{速さは衝突の前後で変化せず}，運動方向だけが散乱角 $\chi$ だけ回転する
+（実際 $\tfrac12 m V_A'^2+\tfrac12 M V_B'^2$ が保存し，$mV_A'+MV_B'=0$ を保つ解は
+速さ一定・向き回転のみ）。
+
+したがって軌跡は次のようになる。衝突前は A が $+x$ 向き，B が $-x$ 向きに，
+それぞれ一定の速さ $\dfrac{MV}{m+M}$，$\dfrac{mV}{m+M}$ で原点に向かう直線。
+衝突後は両者とも同じ速さのまま，原点を挟んで反対向きに，$x$ 軸から角 $\chi$ だけ
+傾いた一直線上を遠ざかる。A と B は常に原点に関して点対称の位置にある。
+\begin{center}
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  % 軸
+  \draw[->] (-3.2,0) -- (3.4,0) node[right] {$x$};
+  \draw[->] (0,-2.2) -- (0,2.4) node[above] {$y$};
+  \fill (0,0) circle (1.4pt); \node[below left] at (0,0) {重心};
+  % 衝突前：x軸上で接近
+  \draw[->,thick] (-3.0,0) -- (-0.5,0);
+  \node[above] at (-1.8,0) {A（前）};
+  \draw[->,thick,gray] (3.0,0) -- (0.5,0);
+  \node[below] at (1.9,0) {B（前）};
+  % 衝突後：角χで離れる（A: 右上, B: 左下）
+  \draw[->,thick] (0.5,0.42) -- (2.7,2.27);
+  \node[right] at (2.5,2.0) {A（後）};
+  \draw[->,thick,gray] (-0.5,-0.42) -- (-2.7,-2.27);
+  \node[left] at (-2.5,-2.0) {B（後）};
+  % 散乱角
+  \draw (0.9,0) arc (0:40:0.9);
+  \node at (1.25,0.35) {$\chi$};
+\end{tikzpicture}
+\end{center}
+すなわち重心系では，A・B の軌跡はいずれも原点を通る 2 本の直線（入射方向と散乱方向）
+からなり，両質点は常に原点について対称に位置する。
+\[
+  \ans{\;\begin{array}{c}
+       \text{重心系では A，B は速さ一定のまま，}\\[2pt]
+       \text{常に原点に関して対称な 2 直線（入射・散乱）上を運動する}
+       \end{array}\;}
+\]
+
+\medskip
+検算: (2) の重心系速度で全運動量 $mV_A'+MV_B'=0$，
+かつ重心系の全運動エネルギー
+$\tfrac12 m V_A'^2+\tfrac12 M V_B'^2
+=\tfrac12\dfrac{mM^2+Mm^2}{(m+M)^2}V^2
+=\tfrac12\dfrac{mM}{m+M}V^2$
+は換算質量 $\mu=\dfrac{mM}{m+M}$ を用いた $\tfrac12\mu V^2$ に等しく，
+2 体問題の標準形と一致する。衝突後も速さ不変なのでこの値は保存し，(3) の
+「速さ一定・向き回転」と無矛盾。✓
+
+% ==================================================================
+\clearpage
+\section*{第2問〔II〕}
+
+なめらかな床の上に，質量 $M$，重心まわりの慣性モーメント $I$，半径 $a$ の一様な球 S が
+置かれている。重心 G から高さ $h$ の点を棒で水平に突き，その瞬間の力積を $P$ とする。
+突いた直後の重心の速度を $v_0$，球の角速度を $\omega_0$ とする。
+
+\subsection*{(1) 重心の運動量と重心まわりの角運動量}
+床はなめらかなので突いた瞬間に働く水平方向の外力は棒の力積 $P$ のみである。
+力積は運動量の変化に等しく，球は静止状態から動き出すから，重心の運動量 $p$ は
+\begin{align*}
+  p = M v_0 = P.
+\end{align*}
+角運動量は，力積 $P$ が重心 G から距離 $h$ だけ離れた作用線上に働くことによる
+力積のモーメント（角力積）に等しい。静止状態から始まるので，重心まわりの
+角運動量 $L$ は
+\begin{align*}
+  L = I\omega_0 = P\,h.
+\end{align*}
+\[
+  \ans{\;p = M v_0 = P,\qquad L = I\omega_0 = P\,h\;}
+\]
+
+\subsection*{(2) 角速度 $\omega_0$}
+(1) の 2 式から力積 $P$ を消去する。$p=Mv_0=P$ より $P=Mv_0$，
+これを $I\omega_0=Ph$ に代入して
+\begin{align*}
+  I\omega_0 = M v_0\,h
+  \quad\therefore\quad
+  \omega_0 = \frac{M v_0 h}{I}.
+\end{align*}
+\[
+  \ans{\;\omega_0=\dfrac{M v_0 h}{I}\;}
+\]
+
+\subsection*{(3) $I=\dfrac{2}{5}Ma^2$ の証明}
+密度が一様な球（半径 $a$，質量 $M$）の密度は
+\begin{align*}
+  \rho=\frac{M}{\frac{4}{3}\pi a^3}=\frac{3M}{4\pi a^3}.
+\end{align*}
+球を，重心を通る軸（$z$ 軸とする）に垂直な薄い円板に分割する。
+$z$ の位置にある円板は半径 $R=\sqrt{a^2-z^2}$，厚さ $dz$，質量
+$dm=\rho\,\pi R^2\,dz$ をもつ。半径 $R$ の円板の中心軸（$z$ 軸）まわりの
+慣性モーメントは $\tfrac12 dm\,R^2$ だから，球全体では
+\begin{align*}
+  I &= \int_{-a}^{a}\frac12\,(\rho\,\pi R^2\,dz)\,R^2
+     = \frac{\rho\pi}{2}\int_{-a}^{a}R^4\,dz
+     = \frac{\rho\pi}{2}\int_{-a}^{a}(a^2-z^2)^2\,dz.
+\end{align*}
+被積分関数は偶関数なので
+\begin{align*}
+  \int_{-a}^{a}(a^2-z^2)^2\,dz
+  &= 2\int_{0}^{a}\!\bigl(a^4-2a^2z^2+z^4\bigr)\,dz
+   = 2\!\left[a^4 z-\frac{2}{3}a^2 z^3+\frac{z^5}{5}\right]_{0}^{a}\\
+  &= 2a^5\!\left(1-\frac{2}{3}+\frac{1}{5}\right)
+   = 2a^5\cdot\frac{15-10+3}{15}
+   = \frac{16}{15}a^5.
+\end{align*}
+よって
+\begin{align*}
+  I = \frac{\rho\pi}{2}\cdot\frac{16}{15}a^5
+    = \frac{8\pi\rho}{15}a^5
+    = \frac{8\pi}{15}a^5\cdot\frac{3M}{4\pi a^3}
+    = \frac{8\cdot 3}{15\cdot 4}M a^2
+    = \frac{2}{5}M a^2.
+\end{align*}
+\[
+  \ans{\;I=\dfrac{2}{5}M a^2\;}
+\]
+
+\medskip
+検算: 求めた $I=\tfrac{2}{5}Ma^2$ を (2) に代入すると
+$\omega_0=\dfrac{Mv_0h}{\frac{2}{5}Ma^2}=\dfrac{5v_0h}{2a^2}$ となり，
+$h$（突く高さ）に比例し，$h\to 0$（重心を突く）で $\omega_0\to 0$（純粋な並進）
+となって物理的に妥当。また $I$ の次元は $[\text{質量}][\text{長さ}]^2$ で
+$\tfrac{2}{5}Ma^2$ と一致し，$0<\tfrac25<1$ なので質量が中心寄りに分布する
+中実球として妥当（薄い球殻 $\tfrac23 Ma^2$ より小さい）。✓
+
+\end{document}

@@ -1,0 +1,166 @@
+% AY2025 制御工学 解答例
+% 回答の流れ・言葉遣いは 03_制御工学/参考/「制御工学Ⅱ（完成版）」に寄せる。
+% デザイン（囲み枠等）は真似しない。解答・数値は本年度過去問から自力で導いた。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{positioning,arrows.meta,calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\title{制御工学 AY2025 解答例（専門応用科目I）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+壁 $-$（$k_2$ ∥ $d_2$）$-$ 質量 $m$ $-$（$k_1$ ∥ $d_1$）$-$ 入力端 A（変位 $x_1$）の系。
+運動方程式は、質量が壁側で $k_2,d_2$、入力側で $k_1,d_1$ を受けるので
+\[
+  m\ddot{x}_2+(d_1+d_2)\dot{x}_2+(k_1+k_2)x_2=d_1\dot{x}_1+k_1 x_1,
+\]
+すなわち $G(s)=\dfrac{d_1 s+k_1}{ms^2+(d_1+d_2)s+(k_1+k_2)}$。
+
+\subsection*{(1) ステップ入力に対する定常値}
+最終値の定理より $x_2(\infty)=G(0)$。
+\[
+  \therefore\quad \ans{\;x_2(\infty)=\dfrac{k_1}{k_1+k_2}\;}
+\]
+
+\subsection*{(2) ステップ応答（$m=1,d_1=1,d_2=1,k_1=1,k_2=2$）}
+$G(s)=\dfrac{s+1}{s^2+2s+3}$、極は $s=-1\pm\sqrt2\,j$。$X_1=\dfrac1s$ より
+\begin{align*}
+  &\qquad X_2(s)=\frac{s+1}{s(s^2+2s+3)}=\frac{1/3}{s}+\frac13\cdot\frac{-(s+1)+2}{(s+1)^2+2}\\
+  &\therefore\quad x_2(t)=\frac13+\frac13\e^{-t}\!\left(\sqrt2\,\sin\sqrt2\,t-\cos\sqrt2\,t\right).
+\end{align*}
+$G(0)=\dfrac13$ より定常値は $\dfrac13$。
+\[
+  \therefore\quad \ans{\;x_2(t)=\frac13+\frac13\e^{-t}\!\left(\sqrt2\sin\sqrt2 t-\cos\sqrt2 t\right),\qquad x_2(\infty)=\frac13\;}
+\]
+
+\subsection*{(3) 最大値と発生時間}
+微分すると $\dot{x}_2(t)=\e^{-t}\cos\sqrt2\,t$。最初のピークは $\sqrt2\,t=\dfrac{\pi}{2}$、
+すなわち $t=\dfrac{\pi}{2\sqrt2}$。このとき $\cos\sqrt2t=0,\ \sin\sqrt2t=1$ なので
+\[
+  \therefore\quad \ans{\;x_{2\max}=\frac13\Bigl(1+\sqrt2\,\e^{-\pi/(2\sqrt2)}\Bigr)\approx0.49\ \ \Bigl(t=\tfrac{\pi}{2\sqrt2}\approx1.11\Bigr)\;}
+\]
+
+\subsection*{(4) ステップ応答（$m=1,d_1=3,d_2=0,k_1=1,k_2=1$）}
+\begin{rem}
+原文では「入力として $x_2(t)$ にステップ入力を与えた」とあるが、$x_2(t)$ は系の出力（質量変位）
+であり入力ではない。本系で入力たり得るのは入力端 A の変位 $x_1(t)$ のみであるから、以下では
+入力を $x_1(t)$ と解して主解とする（$x_2$ を入力とみなすと出力 $x_2$ と矛盾し、入力 $x_1$ を
+未知の出力とする逆問題は伝達関数が非プロパー、または点 A 自由端で $x_1\equiv x_2$ に退化して
+題意の「最大値とその発生時間」を成さない）。
+\end{rem}
+$G(s)=\dfrac{X_2(s)}{X_1(s)}=\dfrac{3s+1}{s^2+3s+2}=\dfrac{3s+1}{(s+1)(s+2)}$。$X_1=\dfrac1s$ より
+\begin{align*}
+  &\qquad X_2(s)=\frac{3s+1}{s(s+1)(s+2)}=\frac{1/2}{s}+\frac{2}{s+1}-\frac{5/2}{s+2}\\
+  &\therefore\quad x_2(t)=\frac12+2\e^{-t}-\frac52\e^{-2t}.
+\end{align*}
+最大値は $\dot{x}_2=-2\e^{-t}+5\e^{-2t}=0$ より $\e^{t}=\dfrac52$、$t=\ln\dfrac52$。そのとき
+$x_2=\dfrac12+2\cdot\dfrac25-\dfrac52\cdot\dfrac{4}{25}=\dfrac{9}{10}$。
+\[
+  \therefore\quad \ans{\;x_2(t)=\frac12+2\e^{-t}-\frac52\e^{-2t},\qquad x_{2\max}=\frac{9}{10}\ (t=\ln\tfrac52\approx0.92)\;}
+\]
+
+\subsection*{(5) A を固定端、質量にステップ外力（$m=1,d_1=1,d_2=1,k_1=1,k_2=1$）}
+A を固定すると両側のばね・ダンパが壁につながり、合成は $k_1+k_2=2$、$d_1+d_2=2$。
+\[
+  \ddot{x}_2+2\dot{x}_2+2x_2=f(t)=\frac1s\ \Longrightarrow\
+  X_2(s)=\frac{1}{s(s^2+2s+2)}.
+\]
+極 $s=-1\pm j$ より
+\[
+  \therefore\quad \ans{\;x_2(t)=\frac12-\frac12\e^{-t}(\cos t+\sin t)\;}\qquad(\text{定常値}\ \tfrac12)
+\]
+
+\bigskip
+\noindent 検算: (1) 定常 $\tfrac{k_1}{k_1+k_2}$、(2) 定常 $\tfrac13$・極 $-1\pm\sqrt2 j$、
+(3) $t=\tfrac{\pi}{2\sqrt2}$ で $x_{2\max}=\tfrac13(1+\sqrt2\e^{-\pi/(2\sqrt2)})$、
+(4) $t=\ln\tfrac52$ で $x_{2\max}=\tfrac{9}{10}$、(5) 定常 $\tfrac12$ を SymPy で確認✓。
+
+\newpage
+% ==================================================================
+\section*{第2問〔II〕}
+
+図2 は単位帰還系（前向き $G_cG_p$、$G_p=\dfrac{1}{s+1}$）。
+
+\subsection*{(1) $G_c(s)=\dfrac{2}{s+3}$ のとき}
+閉ループは
+\begin{align*}
+  &\qquad T(s)=\frac{G_cG_p}{1+G_cG_p}
+   =\frac{2}{(s+3)(s+1)+2}=\frac{2}{s^2+4s+5}.
+\end{align*}
+極は $s=-2\pm j$、$T(0)=\dfrac25$。$X(s)=\dfrac{T(s)}{s}$ を逆変換して
+\[
+  \therefore\quad \ans{\;y(t)=\frac25-\frac25\e^{-2t}\bigl(\cos t+2\sin t\bigr)\;}\qquad(\text{定常値}\ \tfrac25)
+\]
+一巡伝達関数 $L(s)=G_cG_p=\dfrac{2}{(s+3)(s+1)}$、$|L(0)|=\dfrac23$、
+$20\log_{10}\dfrac23=-3.52\,\mathrm{dB}$。折れ点 $\omega=1,\ 3$。
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.86\linewidth, height=4.8cm,
+  xmin=1e-1, xmax=1e2, ymin=-70, ymax=40, xmode=log,
+  xlabel={$\omega\,[\mathrm{rad/s}]$}, ylabel={ゲイン [dB]},
+  ytick={-60,-40,-20,0,20,40},
+  xmajorgrids=true, ymajorgrids=true, xminorgrids=true,
+  grid style={line width=0.3pt, draw=gray!60},
+  extra y ticks={0}, extra y tick style={grid=major, grid style={line width=1pt, draw=black}},
+  legend pos=south west, clip=true, enlargelimits=false,
+]
+% (1): DC -3.52dB, 折れ点 1,3
+\addplot[thick] coordinates {(0.1,-3.52) (1,-3.52) (3,-13.06) (100,-83.06)};
+\addlegendentry{(1) $G_c=\frac{2}{s+3}$}
+% (2): 積分器, 低周波 10/ω(0dB@10), 折れ点 1(極),10(零)
+\addplot[thick,dashed] coordinates {(0.1,40) (1,20) (10,-20) (100,-40)};
+\addlegendentry{(2) $G_c=\frac{s+10}{s}$}
+\node[anchor=north] at (axis cs:1,-3.52) {\scriptsize $1$};
+\node[anchor=north east] at (axis cs:3,-13.06) {\scriptsize $3$};
+\node[anchor=south west] at (axis cs:10,-20) {\scriptsize $10$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsection*{(2) $G_c(s)=\dfrac{s+10}{s}$ のとき}
+\begin{align*}
+  &\qquad T(s)=\frac{G_cG_p}{1+G_cG_p}
+   =\frac{s+10}{s(s+1)+(s+10)}=\frac{s+10}{s^2+2s+10}.
+\end{align*}
+$G_c$ が積分器 $\dfrac1s$ を含むため開ループは 1 型となり、ステップ定常偏差は $0$（$T(0)=1$）。
+極は $s=-1\pm3j$。逆変換して
+\[
+  \therefore\quad \ans{\;y(t)=1-\e^{-t}\cos3t\;}\qquad(\text{定常値}\ 1)
+\]
+一巡 $L(s)=\dfrac{s+10}{s(s+1)}$ は積分器により低周波 $-20\,\mathrm{dB/dec}$（$|L|\approx\frac{10}{\omega}$、
+$\omega=10$ で $0\,\mathrm{dB}$）。折れ点 $\omega=1$（極、$-40$ へ）、$\omega=10$（零点、$-20$ へ）。
+（上図に破線で併記。）
+
+\subsection*{(3) $G_c$ の働きの違い（数値比較）}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item \textbf{定常特性}：(1) は $y(\infty)=\dfrac25=0.4$ で定常偏差 $1-\dfrac25=\dfrac35$ が残る。
+        (2) は $y(\infty)=1$ で定常偏差 $0$。これは一巡の直流ゲインの違いに対応し、(1) は
+        $|L(0)|=\dfrac23$（$-3.52\,\mathrm{dB}$）と有限、(2) は積分器ゆえ $\omega\to0$ で $\infty$ に発散する。
+  \item \textbf{Gc の役割}：(1) の $G_c=\dfrac{2}{s+3}$ は積分動作をもたない比例＋一次遅れ的な
+        補償で、ループゲインを有限に与えるだけなので偏差が残る。(2) の $G_c=\dfrac{s+10}{s}$ は
+        積分器（$\dfrac1s$）と零点 $s=-10$ をもつ\textbf{PI 型補償器}で、積分動作により系の型を
+        1 上げて定常偏差を $0$ にし、零点が位相を進めて安定性を確保する。
+  \item \textbf{ゲイン線図}：(1) は低周波で平坦（$-3.52\,\mathrm{dB}$）だが、(2) は低周波で
+        $-20\,\mathrm{dB/dec}$ で立ち上がり、低周波ゲインが格段に大きい。これが定常偏差を $0$ に
+        できる理由である。
+\end{itemize}
+\[
+  \therefore\quad \ans{\;(1)\ \text{比例的補償：偏差 }\tfrac35\ \text{残存}\quad/\quad(2)\ \text{PI(積分)補償：偏差 }0\;}
+\]
+
+\bigskip
+\noindent 検算: (1) $T=2/(s^2+4s+5)$ 定常 $\tfrac25$・$|L(0)|=\tfrac23(-3.52\,$dB$)$、
+(2) $T=(s+10)/(s^2+2s+10)$ 定常 $1$・$y=1-\e^{-t}\cos3t$ を SymPy で確認✓。
+
+\end{document}

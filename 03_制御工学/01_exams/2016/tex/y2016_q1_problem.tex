@@ -1,0 +1,48 @@
+% AY2016 制御工学 第1問〔I〕（転記）
+% 出典: 03_制御工学/original/03_制御工学/2016/2016se.pdf
+% 要約: 壁-バネ k-質量 m-ダンパ d-自由端 の振動系。x1 は自由端（入力点）の変位,
+%       x2 は質量の変位。伝達関数、ステップ応答 x2 と定常値、最大値・発生時間。
+
+\section*{第1問〔I〕}
+
+下図の振動系について次の問い (1)〜(4) に答えよ. $x_1$ は自由端（入力点）の変位,
+$x_2$ は質量 $m$ の変位を表す.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  % 壁
+  \draw[thick] (0,0.3) -- (0,1.7);
+  \foreach \y in {0.4,0.55,...,1.65} \draw[thick] (0,\y) -- (-0.22,\y-0.22);
+  % バネ k
+  \draw[thick,decorate,decoration={zigzag,segment length=7,amplitude=4}] (0,1) -- (1.5,1);
+  \node at (0.75,1.5) {$k$};
+  % 質量 m
+  \draw[thick,fill=gray!12] (1.5,0.45) rectangle (2.25,1.55);
+  \node at (1.875,1.95) {$m$};
+  % x2（質量変位）
+  \draw[->,thick] (1.875,0.2) -- (2.5,0.2);
+  \node at (2.6,0.0) {$x_2$};
+  % ダンパ d
+  \draw[thick] (2.25,1) -- (2.6,1);
+  \draw[thick] (2.6,0.78) rectangle (3.05,1.22);
+  \draw[thick] (2.85,1) -- (3.6,1);
+  \node at (2.83,1.95) {$d$};
+  % 右端（入力点）x1
+  \draw[thick] (3.6,1) -- (4.1,1);
+  \draw[thick,fill=white] (4.1,1) circle (0.06);
+  \draw[->,thick] (4.1,1) -- (4.85,1);
+  \node at (4.7,0.7) {$x_1$};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 伝達関数を求めよ.
+
+  \item $m=1$, $d=3$, $k=2$, 初期値が全て $0$ のとき, $x_1$ に単位ステップ入力したときの
+        応答 $x_2$ と定常値を求めよ.
+
+  \item (2) で求めた $x_2$ の最大値 $x_{2\max}$ と発生時間を求めよ.
+
+  \item $m=1$, $d=3$, $k=0$, 初期値が全て $0$ のとき, $x_1$ に単位ステップ入力したときの
+        応答 $x_2$ と定常値を求めよ.
+\end{enumerate}

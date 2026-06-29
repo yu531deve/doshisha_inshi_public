@@ -1,0 +1,45 @@
+% AY2019 材料力学 〔I〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2019/2019za.pdf
+% 要約: a, c で固定された棒\textcircled{1}(A,E,α)・棒\textcircled{2}(A,2E,2α)。接合点bに外力P(右向き)が作用。
+%       この状態からさらに温度がΔT上昇。各棒の初期長さL, 断面積A。
+%       (1) 応力σ1,σ2, (2) 変位λ1,λ2。
+
+\section*{〔I〕}
+
+図1に示すように a および c で固定された棒\textcircled{1}, 棒\textcircled{2}の接合点 b に外力 $P$ が作用している.
+この状態からさらに温度が $\Delta T$ 上昇した場合を考える. 各棒の初期長さを $L$, 断面積を $A$ とし,
+$E$, $2E$ を縦弾性係数, $\alpha$, $2\alpha$ を線膨張係数とする. 次の問い (1) および (2) に答えよ.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  % 左壁
+  \fill[pattern=north east lines] (-0.5,-0.2) rectangle (0,2.2);
+  \draw (0,-0.2) -- (0,2.2);
+  % 右壁
+  \fill[pattern=north east lines] (9,-0.2) rectangle (9.5,2.2);
+  \draw (9,-0.2) -- (9,2.2);
+  % 棒\textcircled{1}（a-b）と棒\textcircled{2}（b-c）: 上下2本線で棒を表現
+  \draw (0,0.4) -- (9,0.4);
+  \draw (0,1.4) -- (9,1.4);
+  \draw (4.5,0.4) -- (4.5,1.4); % 接合点b
+  % 外力 P（b点 右向き）
+  \draw[->,very thick] (4.5,0.9) -- (5.6,0.9) node[right]{$P$};
+  % 節点
+  \node[below] at (0,0.35) {a}; \node[below] at (4.5,0.35) {b}; \node[below] at (9,0.35) {c};
+  % ラベル
+  \node at (2.2,0.95) {棒\textcircled{1}}; \node at (2.2,0.6) {\footnotesize $A,\,E,\,\alpha$};
+  \node at (6.8,0.95) {棒\textcircled{2}}; \node at (6.8,0.6) {\footnotesize $A,\,2E,\,2\alpha$};
+  % 寸法 L, L
+  \draw[<->] (0,1.75) -- (4.5,1.75) node[midway,fill=white]{$L$};
+  \draw[<->] (4.5,1.75) -- (9,1.75) node[midway,fill=white]{$L$};
+\end{tikzpicture}
+
+\vspace{1mm}
+図1
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 棒\textcircled{1}と棒\textcircled{2}に生じる応力 $\sigma_1$, $\sigma_2$ を求めよ.
+
+  \item 棒\textcircled{1}と棒\textcircled{2}の変位 $\lambda_1$, $\lambda_2$ を求めよ.
+\end{enumerate}

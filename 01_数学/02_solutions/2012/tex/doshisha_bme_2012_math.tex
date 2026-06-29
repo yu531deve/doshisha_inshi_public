@@ -1,0 +1,240 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\title{2012年度 (AY2012) 同志社大学大学院 生命医科学研究科\\
+医工学コース 入学試験問題「数学」解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+%======================================================================
+\section*{第1問}
+
+\subsection*{前提整理}
+
+$f(x,y)=\log(x^2+y^2)$ について,ラプラシアン
+$\Delta f=\dfrac{\partial^2 f}{\partial x^2}+\dfrac{\partial^2 f}{\partial y^2}$
+を求める.$x^2+y^2>0$（原点を除く）で $f$ は $C^\infty$ 級である.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 1階偏導関数を求める.}
+$r^2=x^2+y^2$ とおくと
+\[
+\frac{\partial f}{\partial x}=\frac{2x}{x^2+y^2},\qquad
+\frac{\partial f}{\partial y}=\frac{2y}{x^2+y^2}.
+\]
+
+\paragraph{Step 2: 2階偏導関数を求める.}
+商の微分法により
+\[
+\frac{\partial^2 f}{\partial x^2}
+=\frac{2(x^2+y^2)-2x\cdot 2x}{(x^2+y^2)^2}
+=\frac{2(y^2-x^2)}{(x^2+y^2)^2}.
+\]
+$x,y$ の対称性から
+\[
+\frac{\partial^2 f}{\partial y^2}
+=\frac{2(x^2-y^2)}{(x^2+y^2)^2}.
+\]
+
+\paragraph{Step 3: 加える.}
+\[
+\frac{\partial^2 f}{\partial x^2}+\frac{\partial^2 f}{\partial y^2}
+=\frac{2(y^2-x^2)+2(x^2-y^2)}{(x^2+y^2)^2}=0.
+\]
+すなわち $f$ は（原点を除く領域で）調和関数である.
+\[
+\ans{\
+\displaystyle\frac{\partial^2 f}{\partial x^2}+\frac{\partial^2 f}{\partial y^2}=0
+\quad\bigl((x,y)\neq(0,0)\bigr)\ }
+\]
+
+検算:$(x,y)=(1,2)$ で $f_{xx}=\frac{2(4-1)}{25}=\frac{6}{25}$,
+$f_{yy}=\frac{2(1-4)}{25}=-\frac{6}{25}$ となり和は $0$.$\checkmark$
+
+%======================================================================
+\section*{第2問}
+
+\subsection*{前提整理}
+
+長方形領域 $D=\{(x,y):-1\le x\le1,\ 0\le y\le1\}$ 上の重積分
+$\displaystyle\iint_D (x^2+2xy-4y^3)\,dx\,dy$ を求める.
+$D$ は変数分離可能な長方形なので,$x$ について先に積分する累次積分で計算する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: $x$ について積分する.}
+$y$ を定数とみて $-1\le x\le1$ で積分する.被積分関数の各項について,
+$x^2$ は偶関数,$2xy$ は奇関数なので
+\[
+\int_{-1}^{1}x^2\,dx=\frac23,\qquad
+\int_{-1}^{1}2xy\,dx=0,\qquad
+\int_{-1}^{1}(-4y^3)\,dx=-8y^3.
+\]
+よって
+\[
+\int_{-1}^{1}(x^2+2xy-4y^3)\,dx=\frac23-8y^3.
+\]
+
+\paragraph{Step 2: $y$ について積分する.}
+\[
+\iint_D(\cdots)\,dxdy=\int_0^1\Bigl(\frac23-8y^3\Bigr)dy
+=\Bigl[\frac23 y-2y^4\Bigr]_0^1=\frac23-2=-\frac43.
+\]
+\[
+\ans{\
+\displaystyle\iint_D (x^2+2xy-4y^3)\,dx\,dy=-\frac{4}{3}\ }
+\]
+
+検算:$2xy$ の項は $x$ について奇関数ゆえ寄与 $0$,残りは
+$\frac23\cdot1+(-4)\cdot\frac14\cdot2=\frac23-2=-\frac43$ で一致.$\checkmark$
+
+%======================================================================
+\section*{第3問}
+
+\subsection*{前提整理}
+
+ガウス積分 $\displaystyle\int_{-\infty}^{\infty}e^{-x^2/2}\,dx$ を求める.
+$I=\int_{-\infty}^{\infty}e^{-x^2/2}dx$ とおき,$I^2$ を極座標で評価する常套手段を用いる.
+
+\subsection*{計算}
+
+\paragraph{Step 1: $I^2$ を二重積分にする.}
+\[
+I^2=\int_{-\infty}^{\infty}e^{-x^2/2}dx\int_{-\infty}^{\infty}e^{-y^2/2}dy
+=\iint_{\R^2}e^{-(x^2+y^2)/2}\,dx\,dy.
+\]
+
+\paragraph{Step 2: 極座標へ変換する.}
+$x=r\cos\theta,\ y=r\sin\theta$,$dxdy=r\,dr\,d\theta$ より
+\[
+I^2=\int_0^{2\pi}\!\!\int_0^{\infty}e^{-r^2/2}r\,dr\,d\theta
+=2\pi\Bigl[-e^{-r^2/2}\Bigr]_0^{\infty}=2\pi(0-(-1))=2\pi.
+\]
+
+\paragraph{Step 3: 平方根をとる.}
+被積分関数は正なので $I>0$,ゆえに $I=\sqrt{2\pi}$.
+\[
+\ans{\
+\displaystyle\int_{-\infty}^{\infty}e^{-x^2/2}\,dx=\sqrt{2\pi}\ }
+\]
+
+検算:標準形 $\int_{-\infty}^\infty e^{-ax^2}dx=\sqrt{\pi/a}$ に $a=\tfrac12$ を代入すると
+$\sqrt{\pi/(1/2)}=\sqrt{2\pi}$ で一致.数値では $\sqrt{2\pi}=2.5066\ldots$.$\checkmark$
+
+%======================================================================
+\section*{第4問}
+
+\subsection*{計算}
+
+第2行に $0,1,1$ が並ぶので,第1列に沿った展開より第2行展開が簡便だが,
+ここでは行基本変形（第1行を第3行から引く）で下三角に近づける.
+\[
+\begin{vmatrix}1&3&1\\0&1&1\\1&3&2\end{vmatrix}
+\xrightarrow{R_3\to R_3-R_1}
+\begin{vmatrix}1&3&1\\0&1&1\\0&0&1\end{vmatrix}
+=1\cdot1\cdot1=1.
+\]
+（行に他行の定数倍を加える操作は行列式を変えない.）
+\[
+\ans{\
+\begin{vmatrix}1&3&1\\0&1&1\\1&3&2\end{vmatrix}=1\ }
+\]
+
+検算:第1列で余因子展開すると
+$1\cdot(1\cdot2-1\cdot3)-0+1\cdot(3\cdot1-1\cdot1)=(-1)+2=1$ で一致.$\checkmark$
+
+%======================================================================
+\section*{第5問}
+
+\subsection*{前提整理}
+
+\[
+M=\begin{pmatrix}1&3&1\\0&1&1\\1&3&2\end{pmatrix}
+\]
+の逆行列を求める.第4問より $\det M=1\neq0$ なので $M$ は正則.掃き出し法を用いる.
+
+\subsection*{計算}
+
+\paragraph{Step 1: $[\,M\mid I\,]$ を行基本変形する.}
+\[
+\left[\begin{array}{ccc|ccc}
+1&3&1&1&0&0\\0&1&1&0&1&0\\1&3&2&0&0&1
+\end{array}\right]
+\xrightarrow{R_3\to R_3-R_1}
+\left[\begin{array}{ccc|ccc}
+1&3&1&1&0&0\\0&1&1&0&1&0\\0&0&1&-1&0&1
+\end{array}\right]
+\]
+第3行が $(0,0,1)$ になったので,これを使って第1・2行の第3列を消去する.
+\[
+\xrightarrow[R_2\to R_2-R_3]{R_1\to R_1-R_3}
+\left[\begin{array}{ccc|ccc}
+1&3&0&2&0&-1\\0&1&0&1&1&-1\\0&0&1&-1&0&1
+\end{array}\right]
+\xrightarrow{R_1\to R_1-3R_2}
+\left[\begin{array}{ccc|ccc}
+1&0&0&-1&-3&2\\0&1&0&1&1&-1\\0&0&1&-1&0&1
+\end{array}\right]
+\]
+左半が単位行列となったので,右半が逆行列である.
+\[
+\ans{\
+M^{-1}=\begin{pmatrix}-1&-3&2\\1&1&-1\\-1&0&1\end{pmatrix}\ }
+\]
+
+検算:
+\[
+M M^{-1}=\begin{pmatrix}1&3&1\\0&1&1\\1&3&2\end{pmatrix}
+\begin{pmatrix}-1&-3&2\\1&1&-1\\-1&0&1\end{pmatrix}=I.
+\]
+たとえば $(1,1)$ 成分は $1\cdot(-1)+3\cdot1+1\cdot(-1)=1$,
+$(3,1)$ 成分は $1\cdot(-1)+3\cdot1+2\cdot(-1)=0$ となり単位行列.$\checkmark$
+
+%======================================================================
+\section*{第6問}
+
+\subsection*{前提整理}
+
+\[
+N=\begin{pmatrix}-1&-1&-4\\-8&0&-10\\4&1&7\end{pmatrix}
+\]
+の固有値を求める.特性方程式 $\det(N-\lambda I)=0$ を解く.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 特性多項式を作る.}
+トレース $\operatorname{tr}N=-1+0+7=6$,主小行列式の和は
+\[
+\det\!\begin{pmatrix}0&-10\\1&7\end{pmatrix}
++\det\!\begin{pmatrix}-1&-4\\4&7\end{pmatrix}
++\det\!\begin{pmatrix}-1&-1\\-8&0\end{pmatrix}
+=10+9-8=11,
+\]
+行列式は
+\[
+\det N=-1(0+10)+1(-56+40)-4(-8-0)=-10-16+32=6.
+\]
+よって特性多項式は
+\[
+\det(N-\lambda I)=-\bigl(\lambda^3-6\lambda^2+11\lambda-6\bigr).
+\]
+
+\paragraph{Step 2: 因数分解する.}
+$\lambda=1$ を代入すると $1-6+11-6=0$ なので $(\lambda-1)$ で割り切れる:
+\[
+\lambda^3-6\lambda^2+11\lambda-6=(\lambda-1)(\lambda-2)(\lambda-3)=0.
+\]
+\[
+\ans{\
+\lambda=1,\ 2,\ 3\ }
+\]
+
+検算:固有値の和 $1+2+3=6=\operatorname{tr}N$,積 $1\cdot2\cdot3=6=\det N$ がともに成り立つ.$\checkmark$
+
+\end{document}

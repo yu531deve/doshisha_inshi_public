@@ -1,0 +1,146 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\title{2019年度 (AY2019) 同志社大学大学院 生命医科学研究科\\
+医工学コース 入学試験問題「数学」解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+%======================================================================
+\section*{第1問}
+
+\subsection*{前提整理}
+
+不定積分 $\displaystyle\int e^x\sin x\,dx$ を求める.部分積分を $2$ 回行うと
+元の積分が再び現れるので,それを移項して解く.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 部分積分を $2$ 回行う.}
+$I=\displaystyle\int e^x\sin x\,dx$ とおく.$\int e^x\sin x\,dx$ で $e^x$ を積分,$\sin x$ を微分すると
+\[
+I=e^x\sin x-\int e^x\cos x\,dx
+=e^x\sin x-\Bigl(e^x\cos x+\int e^x\sin x\,dx\Bigr)
+=e^x(\sin x-\cos x)-I.
+\]
+
+\paragraph{Step 2: $I$ について解く.}
+$2I=e^x(\sin x-\cos x)$ より
+\[
+\ans{\
+\int e^x\sin x\,dx=\frac{e^x}{2}\bigl(\sin x-\cos x\bigr)+C\ }
+\]
+
+検算:右辺を微分すると
+$\frac12\bigl[e^x(\sin x-\cos x)+e^x(\cos x+\sin x)\bigr]=\frac12\cdot2e^x\sin x=e^x\sin x$
+で被積分関数に戻る.$\checkmark$
+
+%======================================================================
+\section*{第2問}
+
+\subsection*{前提整理}
+
+$\displaystyle\iiint_{\R^3}e^{-(x^2+y^2+z^2)}\,dx\,dy\,dz$ を求める.
+被積分関数は各変数に分離するので,$1$ 次元 Gauss 積分の積に帰着する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 変数分離する.}
+$e^{-(x^2+y^2+z^2)}=e^{-x^2}e^{-y^2}e^{-z^2}$ より
+\[
+\iiint_{\R^3}e^{-(x^2+y^2+z^2)}\,dV
+=\Bigl(\int_{-\infty}^{\infty}e^{-x^2}dx\Bigr)
+\Bigl(\int_{-\infty}^{\infty}e^{-y^2}dy\Bigr)
+\Bigl(\int_{-\infty}^{\infty}e^{-z^2}dz\Bigr).
+\]
+
+\paragraph{Step 2: Gauss 積分を代入する.}
+$\displaystyle\int_{-\infty}^{\infty}e^{-x^2}dx=\sqrt\pi$（極座標による標準的評価）なので
+\[
+\ans{\
+\iiint_{\R^3}e^{-(x^2+y^2+z^2)}\,dx\,dy\,dz=(\sqrt\pi)^3=\pi^{3/2}\ }
+\]
+
+検算:$\pi^{3/2}=5.568\ldots$.球座標 $\int_0^\infty e^{-r^2}\cdot4\pi r^2\,dr
+=4\pi\cdot\frac{\sqrt\pi}{4}=\pi^{3/2}$ とも一致する.$\checkmark$
+
+%======================================================================
+\section*{第3問}
+
+\subsection*{前提整理}
+
+$n$ 次正方行列 $A=(a_{ij})$ に対し $|A|=|{}^tA|$ を示す.行列式の定義
+（Leibniz の公式）
+\[
+|A|=\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)\prod_{i=1}^{n}a_{i\,\sigma(i)}
+\]
+を用いる.${}^tA$ の $(i,j)$ 成分は $a_{ji}$ である.
+
+\subsection*{証明}
+
+\paragraph{Step 1: ${}^tA$ の行列式を書く.}
+\[
+|{}^tA|=\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)\prod_{i=1}^{n}a_{\sigma(i)\,i}.
+\]
+
+\paragraph{Step 2: 添字を置換の逆で並べ替える.}
+各項 $\prod_i a_{\sigma(i)\,i}$ で $j=\sigma(i)$ とおくと $i=\sigma^{-1}(j)$ であり,
+積は順序によらないから
+\[
+\prod_{i=1}^{n}a_{\sigma(i)\,i}=\prod_{j=1}^{n}a_{j\,\sigma^{-1}(j)}.
+\]
+また $\operatorname{sgn}(\sigma)=\operatorname{sgn}(\sigma^{-1})$.
+
+\paragraph{Step 3: 和を取り直す.}
+$\sigma$ が $S_n$ を一巡するとき $\tau=\sigma^{-1}$ も $S_n$ を一巡するので
+\[
+|{}^tA|=\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma^{-1})\prod_{j=1}^{n}a_{j\,\sigma^{-1}(j)}
+=\sum_{\tau\in S_n}\operatorname{sgn}(\tau)\prod_{j=1}^{n}a_{j\,\tau(j)}=|A|.
+\]
+よって $|A|=|{}^tA|$.$\qquad\blacksquare$
+
+検算:$n=2,3,4$ の記号行列で $|A|-|{}^tA|=0$ を計算機代数でも確認した.
+例えば $2$ 次では $a_{11}a_{22}-a_{12}a_{21}$ が転置でも不変.$\checkmark$
+
+%======================================================================
+\section*{第4問}
+
+\subsection*{前提整理}
+
+$\R^3$ の点 $P=(x,y,z)^\top$ を,$x$ 軸を回転軸として正の向きに角 $\theta$ 回転した
+点 $Q$ に移す行列 $R$ を求め,$R$ が等長変換（直交行列）であることを示す.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 回転行列を作る.}
+$x$ 軸まわりの回転では $x$ 座標は不変で,$(y,z)$ 平面が角 $\theta$ 回転する:
+\[
+y'=y\cos\theta-z\sin\theta,\qquad z'=y\sin\theta+z\cos\theta.
+\]
+よって
+\[
+\ans{\
+R=\begin{pmatrix}1&0&0\\0&\cos\theta&-\sin\theta\\0&\sin\theta&\cos\theta\end{pmatrix}\ }
+\]
+
+\paragraph{Step 2: 等長変換であることを示す.}
+等長変換であることは,任意の $\vv$ に対し $\|R\vv\|=\|\vv\|$,すなわち
+${}^tR\,R=I$（直交行列）であることと同値.実際
+\[
+{}^tR\,R=
+\begin{pmatrix}1&0&0\\0&\cos\theta&\sin\theta\\0&-\sin\theta&\cos\theta\end{pmatrix}
+\begin{pmatrix}1&0&0\\0&\cos\theta&-\sin\theta\\0&\sin\theta&\cos\theta\end{pmatrix}
+=\begin{pmatrix}1&0&0\\0&\cos^2\theta+\sin^2\theta&0\\0&0&\sin^2\theta+\cos^2\theta\end{pmatrix}=I.
+\]
+ゆえに $\|R\vv\|^2={}^t(R\vv)(R\vv)={}^t\vv\,{}^tR R\,\vv={}^t\vv\,\vv=\|\vv\|^2$ となり,
+$R$ は等長変換である（さらに $\det R=\cos^2\theta+\sin^2\theta=1$ なので回転=向きを保つ等長変換）.$\qquad\blacksquare$
+
+検算:$\theta=\frac\pi2$ で $R=\begin{psmallmatrix}1&0&0\\0&0&-1\\0&1&0\end{psmallmatrix}$,
+点 $(0,1,0)^\top$ は $(0,0,1)^\top$ に移り,長さ $1$ が保たれる.$\checkmark$
+
+\end{document}

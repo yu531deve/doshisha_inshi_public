@@ -1,0 +1,60 @@
+% AY2018 制御工学 第2問〔II〕（転記）
+% 出典: 03_制御工学/original/03_制御工学/2018/2018se.pdf
+% 要約: 1/M, 1/s, 1/s, α の直列に D（速度帰還）・K（位置帰還）を持つフィードバック系。
+%       伝達関数・ゲイン位相・ボード線図・位相進み補償後の安定判別。構造は AY2014 第2問と同型。
+
+\section*{第2問〔II〕}
+
+下図のシステムについて, 次の問い (1)〜(4) に答えよ. なお, 入力を $U(s)$, 出力を $Y(s)$
+とする. $M$, $D$, $K$, $\alpha$ は係数である.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  \node (in)   at (0,0)   {$U(s)$};
+  \node (sum1) [sum] at (1.3,0) {};
+  \node (sum2) [sum] at (2.7,0) {};
+  \node (Minv) [block] at (4.2,0) {$\dfrac{1}{M}$};
+  \node (int1) [block] at (5.9,0) {$\dfrac{1}{s}$};
+  \coordinate (nodeA) at (7.0,0);
+  \node (int2) [block] at (8.1,0) {$\dfrac{1}{s}$};
+  \coordinate (nodeB) at (9.2,0);
+  \node (al)   [block] at (10.2,0) {$\alpha$};
+  \node (out)  at (11.6,0) {$Y(s)$};
+  \node (D)    [block] at (5.2,-1.5) {$D$};
+  \node (K)    [block] at (5.2,-3.0) {$K$};
+
+  \draw[->] (in)   -- (sum1);
+  \draw[->] (sum1) -- (sum2);
+  \draw[->] (sum2) -- (Minv);
+  \draw[->] (Minv) -- (int1);
+  \draw[->] (int1) -- (int2);
+  \draw[->] (int2) -- (al);
+  \draw[->] (al)   -- (out);
+  \fill (nodeA) circle (1.4pt);
+  \fill (nodeB) circle (1.4pt);
+
+  \draw (nodeA) -- (7.0,-1.5) -- (D.east);
+  \draw[->] (D.west) -| (sum2);
+  \draw (nodeB) -- (9.2,-3.0) -- (K.east);
+  \draw[->] (K.west) -| (sum1);
+
+  \node at ($(sum1.north west)+(0.02,0.10)$) {\scriptsize $+$};
+  \node at ($(sum1.south west)+(0.02,-0.10)$) {\scriptsize $-$};
+  \node at ($(sum2.north west)+(0.02,0.10)$) {\scriptsize $+$};
+  \node at ($(sum2.south west)+(0.02,-0.10)$) {\scriptsize $-$};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 図で表されるシステムの伝達関数 $G(s)$ を求めよ.
+
+  \item 各係数を $M=5$, $D=5.5$, $K=0.5$, $\alpha=5$ とするとき,
+        $G(s)$ のゲインならびに位相を求めよ.
+
+  \item 問い (2) のシステムのボード線図のうち, ゲイン線図を漸近線によって描け.
+        折れ点等の特徴点を明示し, ゲイン線図の縦軸・横軸には適宜数値を記入すること.
+
+  \item 問い (2) で求めた伝達関数 $G(s)$ に, 位相進み補償要素
+        $G_c(s)=\dfrac{1+0.25s}{1+0.025s}$ を直列結合した伝達関数 $G(s)G_c(s)$ の極を
+        求めたうえで, 得られた極からシステムの安定判別を行え.
+\end{enumerate}

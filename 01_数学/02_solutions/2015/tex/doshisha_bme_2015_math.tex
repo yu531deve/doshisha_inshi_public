@@ -1,0 +1,292 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\title{2015年度 (AY2015) 同志社大学大学院 生命医科学研究科\\
+医工学コース 入学試験問題「数学」解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+%======================================================================
+\section*{第1問}
+
+\subsection*{前提整理}
+
+\[
+A=\begin{pmatrix}3&5&-2&2\\0&-1&0&0\\0&0&1&0\\0&0&0&2\end{pmatrix}
+\]
+は上三角行列で,対角成分 $3,-1,1,2$ がすべて非零なので正則.掃き出し法で
+$A^{-1}$ を求める.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 対角成分を $1$ にする.}
+第1行を $\tfrac13$,第2行を $-1$,第4行を $\tfrac12$ 倍すると
+$[\,A\mid I\,]$ は
+\[
+\left[\begin{array}{cccc|cccc}
+1&\frac53&-\frac23&\frac23&\frac13&0&0&0\\
+0&1&0&0&0&-1&0&0\\
+0&0&1&0&0&0&1&0\\
+0&0&0&1&0&0&0&\frac12
+\end{array}\right].
+\]
+
+\paragraph{Step 2: 第1行の非対角成分を消去する.}
+$R_1\to R_1-\tfrac53R_2+\tfrac23R_3-\tfrac23R_4$ とすると第1行左半は $(1,0,0,0)$,
+右半は
+\[
+\Bigl(\tfrac13,\ -\tfrac53(-1),\ \tfrac23(1),\ -\tfrac23\cdot\tfrac12\Bigr)
+=\Bigl(\tfrac13,\ \tfrac53,\ \tfrac23,\ -\tfrac13\Bigr).
+\]
+\[
+\ans{\
+A^{-1}=\begin{pmatrix}
+\frac13&\frac53&\frac23&-\frac13\\[2pt]
+0&-1&0&0\\[2pt]
+0&0&1&0\\[2pt]
+0&0&0&\frac12
+\end{pmatrix}\ }
+\]
+
+検算:$AA^{-1}$ の第1行は
+$3\cdot\frac13=1$,$3\cdot\frac53+5\cdot(-1)=0$,$3\cdot\frac23+(-2)\cdot1=0$,
+$3\cdot(-\frac13)+2\cdot\frac12=0$ となり単位行列の第1行に一致.$\checkmark$
+
+%======================================================================
+\section*{第2問}
+
+\subsection*{前提整理}
+
+同じ $A$ の固有値と固有ベクトルを求める.上三角行列なので固有値は対角成分
+$3,-1,1,2$（相異なる4個）.各 $(A-\lambda I)\vv=\vzero$ を解く.
+
+\subsection*{計算}
+
+\paragraph{$\lambda=3$:}
+$-4v_2=0,\ -2v_3=0,\ -v_4=0$ より $v_2=v_3=v_4=0$,$v_1$ 自由.
+$\vv=(1,0,0,0)^\top$.
+
+\paragraph{$\lambda=-1$:}
+$2v_3=0,\ 3v_4=0$,第1行 $4v_1+5v_2=0$.$v_3=v_4=0,\ v_1=-\tfrac54v_2$,
+$v_2=4$ ととって $\vv=(-5,4,0,0)^\top$.
+
+\paragraph{$\lambda=1$:}
+$-2v_2=0,\ v_4=0$,第1行 $2v_1-2v_3=0$.$v_2=v_4=0,\ v_1=v_3$,
+$\vv=(1,0,1,0)^\top$.
+
+\paragraph{$\lambda=2$:}
+$-3v_2=0,\ -v_3=0$,第1行 $v_1+2v_4=0$.$v_2=v_3=0,\ v_1=-2v_4$,
+$\vv=(-2,0,0,1)^\top$.
+\[
+\ans{\
+\begin{array}{llll}
+\lambda=3:\ (1,0,0,0)^\top, & \lambda=-1:\ (-5,4,0,0)^\top,\\[2pt]
+\lambda=1:\ (1,0,1,0)^\top, & \lambda=2:\ (-2,0,0,1)^\top
+\end{array}\ (\text{各定数倍})\ }
+\]
+
+検算:$\lambda=-1$ で $A(-5,4,0,0)^\top=(-15-20+0+0,\,-4,\,0,\,0)^\top=(-5\cdot(-1)\cdots)$
+を成分で見ると $A$ の第1行 $3(-5)+5\cdot4=-15+20=5=(-1)\cdot(-5)$,第2行 $-1\cdot4=-4=(-1)\cdot4$
+で固有値 $-1$ 倍に一致.$\checkmark$
+
+%======================================================================
+\section*{第3問}
+
+\subsection*{前提整理}
+
+$\va_1=(2,2,0)^\top,\ \va_2=(3,0,3)^\top,\ \va_3=(0,1,1)^\top$ に
+Gram--Schmidt 直交化を施し正規化する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: $\bm{e}_1$.}
+$\vu_1=\va_1$,$\|\vu_1\|^2=8$.よって $\bm{e}_1=\dfrac{1}{\sqrt2}(1,1,0)^\top$.
+
+\paragraph{Step 2: $\bm{e}_2$.}
+$\va_2\cdot\vu_1=6$ ゆえ
+$\vu_2=\va_2-\tfrac68\vu_1=(3,0,3)^\top-\tfrac34(2,2,0)^\top=\bigl(\tfrac32,-\tfrac32,3\bigr)^\top$.
+$\|\vu_2\|^2=\tfrac{27}{2}$,正規化して $\bm{e}_2=\dfrac{1}{\sqrt6}(1,-1,2)^\top$.
+
+\paragraph{Step 3: $\bm{e}_3$.}
+$\va_3\cdot\vu_1=2,\ \va_3\cdot\vu_2=\tfrac32$ より
+\[
+\vu_3=\va_3-\tfrac28\vu_1-\frac{3/2}{27/2}\vu_2
+=(0,1,1)^\top-\tfrac14(2,2,0)^\top-\tfrac19\bigl(\tfrac32,-\tfrac32,3\bigr)^\top
+=\bigl(-\tfrac23,\tfrac23,\tfrac23\bigr)^\top.
+\]
+$\|\vu_3\|^2=\tfrac43$ なので $\bm{e}_3=\dfrac{1}{\sqrt3}(-1,1,1)^\top$.
+\[
+\ans{\
+\bm{e}_1=\frac{1}{\sqrt2}\!\begin{pmatrix}1\\1\\0\end{pmatrix},\quad
+\bm{e}_2=\frac{1}{\sqrt6}\!\begin{pmatrix}1\\-1\\2\end{pmatrix},\quad
+\bm{e}_3=\frac{1}{\sqrt3}\!\begin{pmatrix}-1\\1\\1\end{pmatrix}\ }
+\]
+
+検算:$\bm{e}_1\cdot\bm{e}_2=\frac{1}{\sqrt{12}}(1-1+0)=0$,
+$\bm{e}_2\cdot\bm{e}_3=\frac{1}{\sqrt{18}}(-1-1+2)=0$,
+$\bm{e}_1\cdot\bm{e}_3=\frac{1}{\sqrt6}(-1+1+0)=0$,各 $\|\bm{e}_i\|=1$.$\checkmark$
+
+%======================================================================
+\section*{第4問}
+
+\subsection*{前提整理}
+
+$D:\ \dfrac{x^4}{a^4}+\dfrac{y^4}{b^4}\le1,\ x>0,\ y>0$ 上で
+$\displaystyle\iint_D x\,dx\,dy$ を求める.変数変換で単位領域に直し,Beta 関数で表す.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 単位領域へ変換する.}
+$x=as,\ y=bt$ とすると $dxdy=ab\,ds\,dt$,領域は $s^4+t^4\le1,\ s,t>0$.
+$x=as$ より
+\[
+\iint_D x\,dxdy=a^2b\iint_{s^4+t^4\le1,\ s,t>0} s\,ds\,dt.
+\]
+
+\paragraph{Step 2: $t$ を先に積分する.}
+$s$ を固定すると $0<t\le(1-s^4)^{1/4}$ だから
+\[
+\iint s\,ds\,dt=\int_0^1 s\,(1-s^4)^{1/4}\,ds.
+\]
+$u=s^4$（$du=4s^3ds$,$s\,ds=\tfrac14 u^{-1/2}du$）と置換すると
+\[
+\int_0^1 s(1-s^4)^{1/4}ds
+=\frac14\int_0^1 u^{-1/2}(1-u)^{1/4}\,du
+=\frac14 B\!\Bigl(\tfrac12,\tfrac54\Bigr).
+\]
+
+\paragraph{Step 3: まとめる.}
+\[
+\ans{\
+\iint_D x\,dx\,dy=\frac{a^2b}{4}\,B\!\Bigl(\tfrac12,\tfrac54\Bigr)
+=\frac{a^2b\,\sqrt\pi\,\Gamma(5/4)}{4\,\Gamma(7/4)}\approx0.4370\,a^2b\ }
+\]
+
+検算:$a=b=1$ で数値積分 $\displaystyle\int_0^1 s(1-s^4)^{1/4}ds=0.43701\ldots$,
+$\tfrac14B(\tfrac12,\tfrac54)=0.43701\ldots$ と一致.$\checkmark$
+
+%======================================================================
+\section*{第5問}
+
+\subsection*{前提整理}
+
+$z=f(x,y)$（$C^2$ 級）に $x=r\cos\theta,\ y=r\sin\theta$ を代入したとき
+\[
+\frac{\partial^2z}{\partial x^2}+\frac{\partial^2z}{\partial y^2}
+=\frac{\partial^2z}{\partial r^2}+\frac1r\frac{\partial z}{\partial r}
++\frac1{r^2}\frac{\partial^2z}{\partial\theta^2}
+\]
+を示す.連鎖律を用いて右辺を $x,y$ の微分で書き直す.
+
+\subsection*{証明}
+
+\paragraph{Step 1: 1階の連鎖律.}
+$\dfrac{\partial r}{\partial x}=\cos\theta,\ \dfrac{\partial r}{\partial y}=\sin\theta$,
+$\dfrac{\partial\theta}{\partial x}=-\dfrac{\sin\theta}{r},\ \dfrac{\partial\theta}{\partial y}=\dfrac{\cos\theta}{r}$
+より
+\[
+z_r=z_x\cos\theta+z_y\sin\theta,\qquad
+z_\theta=-z_x\,r\sin\theta+z_y\,r\cos\theta.
+\]
+
+\paragraph{Step 2: 2階を計算する.}
+$z_{rr}$ は $z_r$ をさらに $r$ で微分して
+\[
+z_{rr}=z_{xx}\cos^2\theta+2z_{xy}\cos\theta\sin\theta+z_{yy}\sin^2\theta.
+\]
+$z_{\theta\theta}$ は $z_\theta$ を $\theta$ で微分して
+\[
+z_{\theta\theta}=r^2\bigl(z_{xx}\sin^2\theta-2z_{xy}\cos\theta\sin\theta+z_{yy}\cos^2\theta\bigr)
+-r\bigl(z_x\cos\theta+z_y\sin\theta\bigr).
+\]
+（最後の項は $\dfrac{\partial}{\partial\theta}(r\cos\theta),\ (r\sin\theta)$ から生じる $-rz_r$ である.）
+
+\paragraph{Step 3: 右辺を組み立てる.}
+\[
+z_{rr}+\frac1r z_r+\frac1{r^2}z_{\theta\theta}
+=z_{rr}+\frac1r z_r+\bigl(z_{xx}\sin^2\theta-2z_{xy}\cos\theta\sin\theta+z_{yy}\cos^2\theta\bigr)
+-\frac1r z_r.
+\]
+$\pm\frac1r z_r$ が相殺し,$z_{rr}$ と残りを加えると
+$\cos^2\theta+\sin^2\theta=1$ により交差項が消えて
+\[
+z_{rr}+\frac1r z_r+\frac1{r^2}z_{\theta\theta}
+=z_{xx}(\cos^2\theta+\sin^2\theta)+z_{yy}(\sin^2\theta+\cos^2\theta)
+=z_{xx}+z_{yy}.
+\]
+よって等式が成り立つ.$\qquad\blacksquare$
+
+検算:$z=x^2+y^2=r^2$ では左辺 $z_{xx}+z_{yy}=4$,
+右辺 $z_{rr}+\frac1rz_r=2+\frac1r\cdot2r=4$ で一致.
+$z=xy=r^2\cos\theta\sin\theta$ でも両辺 $0$ となり整合.$\checkmark$
+
+%======================================================================
+\section*{第6問}
+
+\subsection*{前提整理}
+
+$f(x,y)=\log(1+x+y^2)$ の Maclaurin 展開を全次数 $3$ 次まで求める.
+$u=x+y^2$ とおき $\log(1+u)$ を展開する（$y^2$ は $2$ 次に数える）.
+
+\subsection*{計算}
+
+\paragraph{Step 1: $\log(1+u)$ を代入.}
+\[
+\log(1+u)=u-\frac{u^2}{2}+\frac{u^3}{3}-\cdots,\qquad u=x+y^2.
+\]
+
+\paragraph{Step 2: 全次数 $\le3$ の項を残す.}
+$u^2=x^2+2xy^2+y^4$ のうち $\le3$ 次は $x^2+2xy^2$,$u^3$ は $x^3$ のみ.よって
+\[
+f=(x+y^2)-\frac{x^2+2xy^2}{2}+\frac{x^3}{3}+\cdots
+\]
+\[
+\ans{\
+\log(1+x+y^2)=x+y^2-\frac{x^2}{2}-xy^2+\frac{x^3}{3}+(\text{4次以上})\ }
+\]
+
+検算:$y=0$ で $\log(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots$ に一致.
+$x=0$ で $\log(1+y^2)=y^2-\cdots$ の $y^2$ 係数 $1$ も一致.$\checkmark$
+
+%======================================================================
+\section*{第7問}
+
+\subsection*{前提整理}
+
+制約 $x^2+y^2+z^2=2$（$x,y,z>0$）の下で $g(x,y,z)=xyz$ の極値を Lagrange
+の未定乗数法で求める.
+
+\subsection*{計算}
+
+\paragraph{Step 1: Lagrange の条件.}
+$L=xyz-\lambda(x^2+y^2+z^2-2)$ の停留条件は
+\[
+yz=2\lambda x,\quad zx=2\lambda y,\quad xy=2\lambda z.
+\]
+各式に $x,y,z$ を掛けると $xyz=2\lambda x^2=2\lambda y^2=2\lambda z^2$.
+$x,y,z>0$ より $x^2=y^2=z^2$,すなわち $x=y=z$.
+
+\paragraph{Step 2: 制約に代入.}
+$3x^2=2\Rightarrow x=\sqrt{\tfrac23}=\dfrac{\sqrt6}{3}$.このとき
+\[
+xyz=x^3=\Bigl(\tfrac23\Bigr)^{3/2}=\frac{2\sqrt6}{9}.
+\]
+
+\paragraph{Step 3: 極大であることの確認.}
+領域 $\{x,y,z>0\}\cap\{x^2+y^2+z^2=2\}$ は有界閉集合の内部に相当し,
+境界（いずれかの座標 $\to0$）では $xyz\to0$.内部の唯一の停留点で $xyz>0$ なので,
+そこが最大（極大）.
+\[
+\ans{\
+(x,y,z)=\Bigl(\tfrac{\sqrt6}{3},\tfrac{\sqrt6}{3},\tfrac{\sqrt6}{3}\Bigr)\ \text{で極大値}\ xyz=\frac{2\sqrt6}{9}\ }
+\]
+
+検算:$x=\sqrt{2/3}=0.8165$,$x^3=0.5443$.一方 $\frac{2\sqrt6}{9}=\frac{4.899}{9}=0.5443$ で一致.
+制約も $3\cdot\frac23=2$ を満たす.$\checkmark$
+
+\end{document}

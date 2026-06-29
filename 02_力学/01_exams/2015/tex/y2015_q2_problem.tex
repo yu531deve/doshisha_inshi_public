@@ -1,0 +1,39 @@
+% AY2015 力学 第2問 転記（問題のみ）
+\section*{第2問〔II〕}
+
+図2に示すように，質量 $m$ の質点をばね定数 $k$（$k>0$）のばねにつなぎ，
+もう一方のばねの端を壁に固定し，$x_0$ だけ手で引っ張ったあと手を離した。
+質点には，質点の速度に比例する抵抗力が働くものとし，その抵抗係数は $b$（$b>0$）
+とする。また，ばねが自然長のときの質点の位置を $x=0$ とする。
+このとき，次の問い (1)〜(4) に答えよ。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 質点に関する運動方程式を求めよ。
+  \item この振動系が過減衰になる条件を $m$，$b$，$k$ を用いて求めよ。
+  \item $m=1$，$b=1$，$k=1$，$x_0=1$ のとき，質点の運動 $x$ を求めよ。
+  \item 抵抗係数 $b$ が 0 の場合の質点の運動について簡潔に説明せよ。
+\end{enumerate}
+
+\begin{center}
+% 図2：壁に固定したばねにつないだ質量m。x=0が自然長、x=x0が初期引張位置（破線）
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  % 壁
+  \fill[pattern=north east lines] (-0.3,-0.05) rectangle (0,1.4);
+  \draw (0,-0.05) -- (0,1.4);
+  % ばね
+  \draw[decorate,decoration={zigzag,segment length=6pt,amplitude=4pt}]
+        (0,0.65) -- (2.0,0.65);
+  % 質点（箱）
+  \draw (2.0,0.25) rectangle (2.9,1.05); \node[above] at (2.45,1.05) {$m$};
+  % 初期位置（破線箱）
+  \draw[dashed] (3.7,0.25) rectangle (4.6,1.05);
+  % x軸
+  \draw[->] (0,-0.4) -- (5.2,-0.4) node[right] {$x$};
+  \draw[dashed] (2.45,0.25) -- (2.45,-0.4);
+  \draw[dashed] (4.15,0.25) -- (4.15,-0.4);
+  \node[below] at (2.45,-0.4) {$x=0$};
+  \node[below] at (4.15,-0.4) {$x=x_0$};
+\end{tikzpicture}
+
+{\small 図 2\quad 質点の運動}
+\end{center}

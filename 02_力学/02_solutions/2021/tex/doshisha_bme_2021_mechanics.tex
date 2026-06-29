@@ -1,0 +1,184 @@
+% AY2021 力学 解答例
+% 体裁・粒度は 参考/ のPDFに揃える（行間を埋め、最終解答は \ans{} で boxed）。
+% 解答・数値・問題は本年度過去問から自力で導いた（東大版は体裁の手本のみ）。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\title{力学 AY2021 解答例（専門基礎科目）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+$x$ 軸上を運動する質量 $m$ の質点に，復元力 $-m\omega^2 x$ と抵抗力 $-2m\gamma\dot{x}$ が
+働く。$\omega,\gamma$ は正の定数。初期条件は $t=0$ で $x=L$，$\dot{x}=0$。
+
+\subsection*{(1) 運動方程式}
+ニュートンの運動方程式 $m\ddot{x}=(\text{合力})$ に，復元力 $-m\omega^2 x$ と
+抵抗力 $-2m\gamma\dot{x}$ を代入すると
+\begin{align*}
+  m\ddot{x} = -m\omega^2 x - 2m\gamma\dot{x}.
+\end{align*}
+両辺を $m$ で割って整理すると
+\[
+  \ans{\;\ddot{x}+2\gamma\dot{x}+\omega^2 x = 0\;}
+\]
+
+\subsection*{(2) $\omega=\gamma$ の場合の運動の概形}
+特性方程式は $\lambda^2+2\gamma\lambda+\omega^2=0$。$\omega=\gamma$ のとき
+\begin{align*}
+  \lambda^2+2\gamma\lambda+\gamma^2=(\lambda+\gamma)^2=0
+  \quad\therefore\quad \lambda=-\gamma\ (\text{重根}).
+\end{align*}
+これは\textbf{臨界減衰}であり，一般解は
+\[
+  x(t)=(C_1+C_2 t)\,e^{-\gamma t}.
+\]
+初期条件を課す。$x(0)=L$ より $C_1=L$。また
+\[
+  \dot{x}(t)=\bigl[C_2-\gamma(C_1+C_2 t)\bigr]e^{-\gamma t},
+\]
+$\dot{x}(0)=C_2-\gamma C_1=0$ より $C_2=\gamma L$。よって
+\[
+  \ans{\;x(t)=L\,(1+\gamma t)\,e^{-\gamma t}\;}
+\]
+$x(t)>0$ で振動せず単調に $0$ へ近づく（$t\to\infty$ で $x\to0$）。概形は下図のとおり。
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,scale=1.0]
+  \draw[->] (-0.2,0) -- (6.2,0) node[right] {$t$};
+  \draw[->] (0,-0.3) -- (0,3.0) node[above] {$x$};
+  \node[below left] at (0,0) {$O$};
+  \draw[dashed] (0,2.5) node[left]{$L$} -- (0.0,2.5);
+  % x=L(1+t)e^{-t} を γ=1 規格化（縦は L=2.5 に合わせ係数）
+  \draw[thick,domain=0:6,samples=120,smooth]
+    plot (\x, {2.5*(1+\x)*exp(-\x)});
+  \fill (0,2.5) circle (1.2pt);
+\end{tikzpicture}\\
+{\small 図1: $\omega=\gamma$（臨界減衰）。振動せず単調減衰。}
+\end{center}
+
+\subsection*{(3) $\omega>\gamma$ の場合の運動の概形}
+特性根は
+\[
+  \lambda=-\gamma\pm\sqrt{\gamma^2-\omega^2}
+        =-\gamma\pm i\,\omega_d,\qquad
+  \omega_d\equiv\sqrt{\omega^2-\gamma^2}\ (>0).
+\]
+これは\textbf{減衰振動}であり，一般解は
+\[
+  x(t)=e^{-\gamma t}\bigl(C_1\cos\omega_d t+C_2\sin\omega_d t\bigr).
+\]
+$x(0)=L$ より $C_1=L$。また
+\[
+  \dot{x}(t)=e^{-\gamma t}\bigl[(-\gamma C_1+\omega_d C_2)\cos\omega_d t
+            +(-\gamma C_2-\omega_d C_1)\sin\omega_d t\bigr],
+\]
+$\dot{x}(0)=-\gamma C_1+\omega_d C_2=0$ より $C_2=\dfrac{\gamma L}{\omega_d}$。よって
+\[
+  \ans{\;x(t)=L\,e^{-\gamma t}\!\left(\cos\omega_d t+\dfrac{\gamma}{\omega_d}\sin\omega_d t\right),\quad
+  \omega_d=\sqrt{\omega^2-\gamma^2}\;}
+\]
+角振動数 $\omega_d$ で振動しつつ振幅が $e^{-\gamma t}$ で減衰する。概形は下図のとおり。
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,scale=1.0]
+  \draw[->] (-0.2,0) -- (6.2,0) node[right] {$t$};
+  \draw[->] (0,-2.0) -- (0,2.6) node[above] {$x$};
+  \node[above left] at (0,0) {$O$};
+  \draw[dashed] (0,2.2) node[left]{$L$} -- (0.0,2.2);
+  % γ=0.5, ω_d=3 規格化。x=L e^{-0.5t}(cos3t + (0.5/3)sin3t)
+  \draw[thick,domain=0:6,samples=200,smooth]
+    plot (\x, {2.2*exp(-0.5*\x)*(cos(deg(3*\x))+(0.5/3)*sin(deg(3*\x)))});
+  % 包絡線
+  \draw[dotted,domain=0:6,samples=80] plot (\x,{2.2*exp(-0.5*\x)*1.014});
+  \draw[dotted,domain=0:6,samples=80] plot (\x,{-2.2*exp(-0.5*\x)*1.014});
+  \fill (0,2.2) circle (1.2pt);
+\end{tikzpicture}\\
+{\small 図2: $\omega>\gamma$（減衰振動）。角振動数 $\omega_d$ で振動し，振幅は $e^{-\gamma t}$ で減衰。}
+\end{center}
+
+\medskip
+検算: (2) と (3) はともに $t=0$ で $x=L$，$\dot{x}=0$ を満たす。
+(3) で形式的に $\gamma\to\omega$ とすると $\omega_d\to0$ となり，
+$\cos\omega_d t\to1$，$\dfrac{\sin\omega_d t}{\omega_d}\to t$ なので
+$x\to L e^{-\gamma t}(1+\gamma t)$ となって (2) の臨界減衰解に連続的に一致する。✓
+
+% ==================================================================
+\clearpage
+\section*{第2問〔II〕}
+
+極座標で $r=Ae^{\theta(t)}$ と表される軌道（対数らせん）上を，
+角速度 $\dot{\theta}$ 一定で運動する質点がある。$A>0$，$\theta$ は $x$ 軸から
+反時計まわりに測った角。
+
+\subsection*{(1) $0\le\theta\le2\pi$ における運動の概形}
+$r=Ae^{\theta}$ は $\theta$ の増加とともに $r$ が指数関数的に増える対数らせんである。
+\begin{align*}
+  \theta=0:\ r=A,\qquad
+  \theta=\tfrac{\pi}{2}:\ r=Ae^{\pi/2}\approx4.81A,\qquad
+  \theta=\pi:\ r=Ae^{\pi}\approx23.1A,\\
+  \theta=\tfrac{3\pi}{2}:\ r=Ae^{3\pi/2}\approx111A,\qquad
+  \theta=2\pi:\ r=Ae^{2\pi}\approx535A.
+\end{align*}
+反時計まわりに一周する間に動径が急激に増大する右回りに開いていくらせんを描く
+（下図，破線は半径 $A,\,Ae^{\pi/2}$ 等の目安）。
+\[
+  \ans{\;r=Ae^{\theta}\ \text{の対数らせん。}\ \theta=0\ \text{で}\ r=A,\
+  \theta=2\pi\ \text{で}\ r=Ae^{2\pi}\ (\approx535A)\;}
+\]
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,scale=1.0]
+  \draw[->] (-3.6,0) -- (3.6,0) node[right] {$x$};
+  \draw[->] (0,-3.6) -- (0,3.6) node[above] {$y$};
+  \node[below left] at (0,0) {$O$};
+  % 対数らせん r=Ae^theta を縮尺。表示用に A'e^{0.42 theta} とし最大半径を約3.2に収める
+  % 角は度で与える: x=k e^{0.42*(t in rad)} cos(t), パラメタtを度で回す
+  \draw[thick,domain=0:360,samples=300,smooth]
+    plot ({0.22*exp(0.0073*\x)*cos(\x)}, {0.22*exp(0.0073*\x)*sin(\x)});
+  \fill (0.22,0) circle (1.2pt);
+  \node[below right] at (0.22,0) {\scriptsize $\theta=0,\ r=A$};
+\end{tikzpicture}\\
+{\small 図3: $r=Ae^{\theta}$（対数らせん）。$\theta$ 増加とともに動径が指数的に拡大する。
+半径方向の縮尺は模式的。}
+\end{center}
+
+\subsection*{(2) 速度の大きさ}
+平面極座標における速度ベクトルは
+\[
+  \vec{v}=\dot{r}\,\hat{e}_r+r\dot{\theta}\,\hat{e}_\theta,
+\]
+であり，動径成分 $\dot{r}$ と方位成分 $r\dot{\theta}$ は直交するから
+\[
+  |\vec{v}|=\sqrt{\dot{r}^2+(r\dot{\theta})^2}.
+\]
+$r=Ae^{\theta}$ を時間微分すると（合成関数の微分）
+\[
+  \dot{r}=Ae^{\theta}\,\dot{\theta}=r\dot{\theta}.
+\]
+よって $\dot{r}^2=(r\dot{\theta})^2$ となり
+\begin{align*}
+  |\vec{v}|=\sqrt{(r\dot{\theta})^2+(r\dot{\theta})^2}
+          =\sqrt{2}\,r\dot{\theta}
+          =\sqrt{2}\,A\dot{\theta}\,e^{\theta}.
+\end{align*}
+（$\dot{\theta}>0$ とした。$\dot{\theta}<0$ なら $|\dot{\theta}|$ で置き換える。）
+\[
+  \ans{\;|\vec{v}|=\sqrt{2}\,r\dot{\theta}=\sqrt{2}\,A\dot{\theta}\,e^{\theta}\;}
+\]
+
+\medskip
+検算: $\dot{r}=r\dot{\theta}$ より，速度ベクトルが動径方向となす角 $\alpha$ は
+$\tan\alpha=\dfrac{r\dot{\theta}}{\dot{r}}=1$ すなわち $\alpha=45^\circ$ で一定。
+これは対数らせんが「動径と一定角で交わるらせん（等角らせん）」である性質と一致する。
+このとき速さは動径成分と方位成分が等しい直角二等辺の合成となり，
+$|\vec v|=\sqrt2\,r\dot\theta$ は幾何的にも整合する。✓
+
+\end{document}

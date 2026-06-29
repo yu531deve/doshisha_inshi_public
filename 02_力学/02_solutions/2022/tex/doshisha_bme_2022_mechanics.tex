@@ -1,0 +1,175 @@
+% AY2022 力学 解答例
+% 体裁・粒度は 参考/ のPDFに揃える（行間を埋め、最終解答は \ans{} で boxed）。
+% 解答・数値・問題は本年度過去問から自力で導いた（東大版は体裁の手本のみ）。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\title{力学 AY2022 解答例（専門基礎科目）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+ばね定数 $k\,(k>0)$ のばねの一端を壁に固定し，他端に質量 $m$ の物体を取り付け，
+なめらかな水平床に置く。自然長のときの物体の重心位置を原点 $x=0$ とする。
+時刻 $t=0$ にばねを自然長から $+x$ 方向へ $A\,(A>0)$ だけ伸ばし，静かに手を離す。
+摩擦・空気抵抗は無視する。
+
+\subsection*{(1) 運動方程式とその特解}
+物体に働く水平方向の力はばねの弾性力のみである。ばねの伸びが $x$ のとき，
+弾性力は変位と逆向き（復元力）で大きさ $kx$ だから，運動方程式は
+\[
+  m\ddot{x}=-k\,x
+  \qquad\Longleftrightarrow\qquad
+  \ddot{x}+\omega^2 x=0,\quad
+  \omega\equiv\sqrt{\dfrac{k}{m}}.
+\]
+これは単振動の方程式で，一般解は
+$x(t)=C_1\cos\omega t+C_2\sin\omega t$ である。
+初期条件は「自然長から $A$ だけ伸ばして静かに手を離す」ことから
+\[
+  x(0)=A,\qquad \dot{x}(0)=0.
+\]
+$x(0)=C_1=A$。また $\dot{x}(t)=-C_1\omega\sin\omega t+C_2\omega\cos\omega t$ より
+$\dot{x}(0)=C_2\omega=0$ ゆえ $C_2=0$。よって与えられた初期条件を満たす特解は
+\[
+  \ans{\;x(t)=A\cos\!\left(\sqrt{\dfrac{k}{m}}\;t\right)\;}
+\]
+物体は振幅 $A$，角振動数 $\omega=\sqrt{k/m}$（周期 $T=2\pi\sqrt{m/k}$）の単振動を行う。
+
+\subsection*{(2) 弾性ポテンシャルエネルギーのグラフ}
+ばねの変位（伸び・縮み）を $x$ とすると，弾性力 $F=-kx$ に対するポテンシャル
+エネルギーは $U(x)=-\displaystyle\int_0^x F\,dx'=\int_0^x kx'\,dx'$ より
+\[
+  U(x)=\frac{1}{2}k\,x^{2}.
+\]
+これは原点を頂点とし下に凸な放物線で，$x$ について偶関数（左右対称），
+$x=\pm A$ で $U=\frac12 kA^2$（全エネルギーに等しい）となる。概形は次の通り。
+\[
+  \ans{\;U(x)=\dfrac{1}{2}k\,x^{2}\quad(\text{原点を頂点とする下に凸な放物線})\;}
+\]
+\begin{center}
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  % 軸
+  \draw[->] (-3.2,0) -- (3.4,0) node[right] {ばねの変位 $x$};
+  \draw[->] (0,-0.3) -- (0,3.2) node[above] {$U=\tfrac12 kx^2$};
+  % 放物線 U = 0.35 x^2 （表示用スケール）
+  \draw[thick,domain=-2.85:2.85,samples=100,smooth] plot (\x,{0.35*\x*\x});
+  % x = ±A の目盛
+  \draw[dashed] (2.6,0) -- (2.6,{0.35*2.6*2.6});
+  \draw[dashed] (-2.6,0) -- (-2.6,{0.35*2.6*2.6});
+  \draw[dashed] (-2.6,{0.35*2.6*2.6}) -- (2.6,{0.35*2.6*2.6})
+        node[right] {$\tfrac12 kA^2$};
+  \node[below] at (2.6,0) {$A$};
+  \node[below] at (-2.6,0) {$-A$};
+  \node[below left] at (0,0) {$O$};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{(3) 弾性力とポテンシャルの関係による運動の説明}
+弾性力とポテンシャルエネルギーの間には
+\[
+  F(x)=-\frac{dU}{dx}=-\frac{d}{dx}\!\left(\frac{1}{2}kx^2\right)=-k\,x
+\]
+の関係がある。すなわち力はポテンシャル曲線の傾きの逆符号で与えられ，
+つねに $U$ が小さくなる向き（谷底 $x=0$ に向かう向き）にはたらく\textbf{復元力}である。
+\begin{itemize}
+  \item $x>0$（伸び）では $F=-kx<0$ で $-x$ 方向，$x<0$（縮み）では $F>0$ で $+x$ 方向。
+        いずれも物体を原点 $x=0$（$U$ の最小点・平衡点）へ引き戻す。
+  \item 摩擦がないので力学的エネルギー $E=\tfrac12 m\dot{x}^2+\tfrac12 kx^2$ は一定で，
+        初期条件より $E=\tfrac12 kA^2$。運動は $U(x)\le E$ すなわち
+        $-A\le x\le A$ の範囲に限られる。
+  \item 折り返し点 $x=\pm A$ では $U=E$ より $\dot{x}=0$（速さ0）となり，原点 $x=0$ では
+        $U=0$ より運動エネルギーが最大，すなわち速さが最大となる。
+\end{itemize}
+したがって物体は平衡点 $x=0$ を中心に $x=+A$ と $x=-A$ の間を往復する単振動を続ける。
+\[
+  \ans{\;F=-\dfrac{dU}{dx}=-kx\ \text{(復元力)。物体は}\ x=\pm A\ \text{間を平衡点}\ x=0\ \text{中心に単振動する}\;}
+\]
+
+\medskip
+検算: (1) の特解は $x(0)=A\cos0=A$，$\dot{x}(0)=-A\omega\sin0=0$ で初期条件を満たす。
+エネルギーは $E=\tfrac12 m\dot{x}^2+\tfrac12 kx^2
+=\tfrac12 m A^2\omega^2\sin^2\omega t+\tfrac12 kA^2\cos^2\omega t$，
+$m\omega^2=k$ より $E=\tfrac12 kA^2(\sin^2\omega t+\cos^2\omega t)=\tfrac12 kA^2$（一定）。
+(3) のエネルギー保存・可動範囲と整合する。✓
+
+% ==================================================================
+\clearpage
+\section*{第2問〔II〕}
+
+半径 $a$，重心まわりの慣性モーメント $I$，質量 $M$ の一様な円板の外周に
+軽い糸を巻き付け，糸の一端を天井に固定して静止させたのち静かに手を離す。
+円板は重心 G を通る水平軸まわりに回転しながら鉛直下向きに落下する
+（ヨーヨー型）。重力加速度の大きさを $g$ とする。
+
+円板の重心の鉛直下向き加速度を $a_{G}$，糸の張力の大きさを $T$，
+角速度を $\omega$，角加速度の大きさを $\alpha\equiv\left|\dfrac{d\omega}{dt}\right|$ とする。
+
+\subsection*{(0) 基礎方程式の準備}
+\textbf{重心の並進}（下向きを正）:
+\[
+  M a_{G}=Mg-T. \tag{i}
+\]
+\textbf{重心まわりの回転}: 張力 $T$ は外周（腕の長さ $a$）に接線方向にはたらき，
+重力は重心に作用してモーメントを生まないから
+\[
+  I\,\alpha=T\,a. \tag{ii}
+\]
+\textbf{糸がほどける拘束条件}: 糸は伸びず天井で固定されているので，
+円板の外周の接線速度が重心の落下速度に等しく $a_{G}=a\,\alpha$ が成り立つ。
+\[
+  a_{G}=a\,\alpha. \tag{iii}
+\]
+
+\subsection*{(1) 角加速度 $\left|d\omega/dt\right|$}
+(ii) より $T=\dfrac{I\alpha}{a}$，(iii) より $a_{G}=a\alpha$ を (i) に代入すると
+\begin{align*}
+  M(a\alpha)&=Mg-\frac{I\alpha}{a}
+  \;\;\Longrightarrow\;\;
+  \left(Ma+\frac{I}{a}\right)\alpha=Mg\\
+  \therefore\quad
+  \alpha&=\frac{Mg}{\,Ma+\dfrac{I}{a}\,}=\frac{Mga}{Ma^{2}+I}.
+\end{align*}
+\[
+  \ans{\;\left|\dfrac{d\omega}{dt}\right|=\alpha=\dfrac{Mga}{\,Ma^{2}+I\,}\;}
+\]
+
+\subsection*{(2) 円板（重心）の加速度の大きさ}
+(iii) より $a_{G}=a\alpha$ だから，(1) の結果を代入して
+\[
+  a_{G}=a\cdot\frac{Mga}{Ma^{2}+I}.
+\]
+\[
+  \ans{\;a_{G}=\dfrac{Mga^{2}}{\,Ma^{2}+I\,}\;}
+\]
+
+\subsection*{(3) 糸の張力の大きさ}
+(ii) $T=\dfrac{I\alpha}{a}$ に (1) を代入すると
+\[
+  T=\frac{I}{a}\cdot\frac{Mga}{Ma^{2}+I}=\frac{IMg}{Ma^{2}+I}.
+\]
+\[
+  \ans{\;T=\dfrac{IMg}{\,Ma^{2}+I\,}\;}
+\]
+
+\medskip
+検算: (i) を用いて独立に張力を求めると
+\[
+  T=Mg-Ma_{G}=Mg-M\cdot\frac{Mga^{2}}{Ma^{2}+I}
+   =Mg\cdot\frac{(Ma^{2}+I)-Ma^{2}}{Ma^{2}+I}
+   =\frac{IMg}{Ma^{2}+I},
+\]
+これは (3) と一致する。また極限の妥当性として，$I\to0$（質量が中心に集中）では
+$a_{G}\to g$，$T\to0$（自由落下），$I\to\infty$ では $a_{G}\to0$，$T\to Mg$
+（落下せず糸で支えられる）となり，物理的に妥当である。
+一様円板 $I=\tfrac12 Ma^{2}$ なら $a_{G}=\tfrac{2}{3}g$，$T=\tfrac13 Mg$ という
+よく知られた値を再現する。✓
+
+\end{document}

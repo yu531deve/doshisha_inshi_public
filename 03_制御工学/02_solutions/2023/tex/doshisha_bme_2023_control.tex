@@ -1,0 +1,159 @@
+% AY2023 制御工学 解答例
+% 回答の流れ・言葉遣いは 03_制御工学/参考/「制御工学Ⅱ（完成版）」に寄せる。
+% デザイン（囲み枠等）は真似しない。解答・数値は本年度過去問から自力で導いた。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{positioning,arrows.meta,calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\title{制御工学 AY2023 解答例（専門応用科目I）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+質量 $m$ にバネ $k$ とダンパ $d$ を並列に介して入力端 A（変位 $x_1$）を与える系。$x_2$ は質量の変位。
+
+\subsection*{(1) 運動方程式と伝達関数}
+バネ・ダンパは質量と入力端 $x_1$ を結ぶので
+\begin{align*}
+  &\qquad m\ddot{x}_2=k(x_1-x_2)+d(\dot{x}_1-\dot{x}_2)
+   \quad\therefore\quad (ms^2+ds+k)X_2=(ds+k)X_1.
+\end{align*}
+\[
+  \therefore\quad \ans{\;G(s)=\dfrac{X_2(s)}{X_1(s)}=\dfrac{ds+k}{ms^2+ds+k}\;}
+\]
+
+\subsection*{(2) ステップ応答（$m=1,d=3,k=2$）}
+$G(s)=\dfrac{3s+2}{(s+1)(s+2)}$、$X_1=\dfrac1s$ より
+\begin{align*}
+  &\qquad X_2(s)=\frac{3s+2}{s(s+1)(s+2)}=\frac{1}{s}+\frac{1}{s+1}-\frac{2}{s+2}\\
+  &\therefore\quad x_2(t)=1+\e^{-t}-2\e^{-2t}.
+\end{align*}
+$G(0)=\dfrac22=1$ より定常値は $1$。
+\[
+  \therefore\quad \ans{\;x_2(t)=1+\e^{-t}-2\e^{-2t},\qquad x_2(\infty)=1\;}
+\]
+
+\subsection*{(3) 最大値と発生時間}
+\begin{align*}
+  &\qquad \dot{x}_2=-\e^{-t}+4\e^{-2t}=0
+   \quad\therefore\quad \e^{t}=4,\ t=\ln4.
+\end{align*}
+$x_2=1+\tfrac14-2\cdot\tfrac{1}{16}=\tfrac98$。零点によりオーバーシュートを生じる。
+\[
+  \therefore\quad \ans{\;x_{2\max}=\dfrac98\ \ (t=\ln4\approx1.39)\;}
+\]
+
+\subsection*{(4) $k=0$ の場合（$m=1,d=1,k=0$）}
+\begin{align*}
+  &\qquad G(s)=\frac{s}{s^2+s}=\frac{1}{s+1}
+   \quad\therefore\quad X_2(s)=\frac{1}{s(s+1)}=\frac1s-\frac{1}{s+1}\\
+  &\therefore\quad x_2(t)=1-\e^{-t}.
+\end{align*}
+$G(0)=1$ より定常値は $1$。
+\[
+  \therefore\quad \ans{\;x_2(t)=1-\e^{-t},\qquad x_2(\infty)=1\;}
+\]
+
+\subsection*{(5) A を固定端、質量に外力 $f(t)=\e^{-t}$（$m=1,d=0,k=1$、$x_2(0)=1,\dot x_2(0)=0$）}
+A を固定すると $x_1=0$ となり、質量はバネ $k$・ダンパ $d$ で壁につながる。運動方程式は
+\[
+  m\ddot{x}_2+d\dot{x}_2+kx_2=f(t)\ \Longrightarrow\ \ddot{x}_2+x_2=\e^{-t}.
+\]
+特解 $x_p=C\e^{-t}$ より $2C\e^{-t}=\e^{-t}$、$C=\tfrac12$。$x_2=\tfrac12\e^{-t}+A\cos t+B\sin t$ に
+初期条件を入れて
+\begin{align*}
+  &\qquad x_2(0)=\tfrac12+A=1,\qquad \dot{x}_2(0)=-\tfrac12+B=0
+   \quad\therefore\quad A=B=\tfrac12.
+\end{align*}
+\[
+  \therefore\quad \ans{\;x_2(t)=\tfrac12\e^{-t}+\tfrac12\cos t+\tfrac12\sin t\;}
+\]
+充分時間後は $\e^{-t}\to0$ で定常項 $\tfrac12(\cos t+\sin t)=\dfrac{\sqrt2}{2}\sin\!\bigl(t+\tfrac{\pi}{4}\bigr)$ が残るので
+\[
+  \therefore\quad \ans{\;|x_2(t)|_{\max}=\dfrac{\sqrt2}{2}\approx0.71\;}
+\]
+
+\bigskip
+\noindent 検算: (2) 定常 $1$、(3) $t=\ln4$ で $x_{2\max}=\tfrac98$、(4) $G=1/(s+1)$ 定常 $1$、
+(5) $x_2$ が $\ddot x_2+x_2=\e^{-t}$ と初期条件を満たし定常振幅 $\tfrac{\sqrt2}{2}$ を SymPy で確認✓。
+
+\newpage
+% ==================================================================
+\section*{第2問〔II〕}
+
+$\frac1M\to\frac1s\to\frac1s\to\alpha$ の直列に、速度帰還 $D$・位置帰還 $K$ をもつフィードバック系。
+
+\subsection*{(1) 伝達関数}
+加速度を $A$、速度 $V=\frac1s A$、変位 $P=\frac{A}{s^2}$、出力 $Y=\alpha P$ とすると
+\begin{align*}
+  &\qquad A=\frac1M\Bigl[U-KP-DV\Bigr]
+   \quad\therefore\quad A\Bigl(M+\frac{D}{s}+\frac{K}{s^2}\Bigr)=U
+   \quad\therefore\quad Y=\frac{\alpha}{s^2}A.
+\end{align*}
+\[
+  \therefore\quad \ans{\;G(s)=\dfrac{\alpha}{Ms^2+Ds+K}\;}
+\]
+
+\subsection*{(2) ゲインと位相（$M=5,D=5.5,K=0.5,\alpha=5$）}
+\begin{align*}
+  &\qquad G(s)=\frac{5}{5s^2+5.5s+0.5}=\frac{10}{(10s+1)(s+1)}.
+\end{align*}
+直流ゲイン $|G(0)|=10$（$20\,\mathrm{dB}$）。
+\[
+  \therefore\quad \ans{\;|G(j\omega)|=\dfrac{10}{\sqrt{1+(10\omega)^2}\,\sqrt{1+\omega^2}},\quad
+  \angle G(j\omega)=-\tan^{-1}10\omega-\tan^{-1}\omega\;}
+\]
+
+\subsection*{(3) ゲイン線図（漸近線）}
+$|G(0)|=20\,\mathrm{dB}$、折れ点 $\omega=0.1,\ 1$。傾きは $\omega<0.1$ で $0$、$0.1<\omega<1$ で
+$-20$、$\omega>1$ で $-40\,[\mathrm{dB/dec}]$。（(4) の $\alpha=0.5$ を破線で併記。）
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.86\linewidth, height=5.2cm,
+  xmin=1e-2, xmax=1e2, ymin=-80, ymax=40, xmode=log,
+  xlabel={$\omega\,[\mathrm{rad/s}]$}, ylabel={ゲイン [dB]},
+  ytick={-80,-60,-40,-20,0,20,40},
+  xmajorgrids=true, ymajorgrids=true, xminorgrids=true,
+  grid style={line width=0.3pt, draw=gray!60},
+  extra y ticks={0}, extra y tick style={grid=major, grid style={line width=1pt, draw=black}},
+  legend pos=south west, clip=true, enlargelimits=false,
+]
+% α=5: DC 20dB
+\addplot[thick] coordinates {(0.01,20) (0.1,20) (1,0) (100,-80)};
+\addlegendentry{$\alpha=5$ (20\,dB)}
+% α=0.5: DC 0dB（20dB 下げ、形状同一）
+\addplot[thick,dashed] coordinates {(0.01,0) (0.1,0) (1,-20) (100,-100)};
+\addlegendentry{$\alpha=0.5$ (0\,dB)}
+\node[anchor=south] at (axis cs:0.1,20) {\scriptsize $\omega=0.1$};
+\node[anchor=north east] at (axis cs:1,0) {\scriptsize $\omega=1$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsection*{(4) $\alpha=0.5$ の場合との比較}
+$\alpha=0.5$ のとき $G(s)=\dfrac{0.5}{5s^2+5.5s+0.5}=\dfrac{1}{(10s+1)(s+1)}$、$|G(0)|=1=0\,\mathrm{dB}$。
+単位ステップ入力の定常値は最終値の定理より $G(0)=\dfrac{\alpha}{K}$ なので
+\[
+  \therefore\quad \ans{\;\alpha=5:\ y(\infty)=\dfrac{5}{0.5}=10,\qquad \alpha=0.5:\ y(\infty)=\dfrac{0.5}{0.5}=1\;}
+\]
+\textbf{考察}：$\alpha$ は分母（$Ms^2+Ds+K$）に現れないため、\textbf{極（時定数・折れ点・位相）は両系で
+全く同じ}であり、応答の立ち上がりの速さや過渡の形状は変わらない。$\alpha$ は出力を一律に
+スケールするだけで、ゲイン線図は形状を保ったまま $20\log_{10}\dfrac{5}{0.5}=20\,\mathrm{dB}$ だけ
+上下に平行移動し、ステップ定常値が $10:1$ で異なる。すなわち両系の差異は
+\textbf{ゲイン（定常値）の大小のみ}で、応答の速応性・安定性は同一である。
+
+\bigskip
+\noindent 検算: (2) $G=10/((10s+1)(s+1))$・$|G(0)|=10$、(4) $\alpha=0.5$ で $G(0)=1$、
+両系の極が一致（動特性不変）、定常値 $10$ と $1$（$20\,$dB 差）を SymPy で確認✓。
+
+\end{document}

@@ -1,0 +1,39 @@
+% AY2017 力学 第1問 転記（問題のみ）
+\section*{第1問〔I〕}
+
+次の問い〔I〕および〔II〕に答えよ。なお，〔I〕の解答は解答用紙 (1) に，
+〔II〕の解答は解答用紙 (2) に記入せよ。
+
+\medskip
+図1のように，なめらかな床の上に，質量 $m$ の物体が，ばね定数 $k$ のばねに繋がれて
+単振動している。この物体の時刻 $t$ における変位 $x$ と速度 $v$ は，次式で与えられる。
+\[
+  x=A\sin(\omega t+\alpha),\qquad v=A\omega\cos(\omega t+\alpha)
+\]
+ここで，$A$ は単振動の振幅，$\omega$ は角速度，$\alpha$ は初期位相であり，
+$\omega^2=k/m$ の関係がある。また，ばねが自然の長さのときの物体の重心の位置を
+$x=0$ とする。このとき，次の問い (1)〜(3) に答えよ。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 変位を $x$ としたときの単振動をする物体の全力学的エネルギー $E$ を
+        $m$，$v$，$k$，$x$ を用いて表せ。
+  \item 振幅 $A$ を，$E$ および $k$ を用いて表せ。
+  \item 横軸を変位 $x$，縦軸を運動量 $p$ としたときの物体の運動の概形を描け。
+        ただし，縦軸および横軸の切片の値を明記せよ。
+\end{enumerate}
+
+\begin{center}
+% 図1：なめらかな床の上、ばねにつながれた質量m。x=0が自然長
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \draw (-0.2,0) -- (5.2,0);                      % 床
+  \fill[pattern=north east lines] (-0.45,0) rectangle (0,1.4);
+  \draw (0,0) -- (0,1.4);                          % 壁
+  \draw[decorate,decoration={coil,segment length=5pt,amplitude=4pt}]
+        (0,0.55) -- (2.0,0.55);                     % ばね
+  \draw (2.0,0.1) rectangle (3.2,1.0);             % 物体
+  \node at (2.6,0.55) {$m$};
+  \draw[dashed] (2.6,0.1) -- (2.6,-0.45);
+  \node[below] at (2.6,-0.45) {$x=0$};
+  \node at (4.6,-0.3) {図 1};
+\end{tikzpicture}
+\end{center}

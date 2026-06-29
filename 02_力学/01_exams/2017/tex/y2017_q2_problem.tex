@@ -1,0 +1,35 @@
+% AY2017 力学 第2問 転記（問題のみ）
+\section*{第2問〔II〕}
+
+図2のように，質量 $M$，長さ $L$ の一定線密度の剛体棒を，剛体棒の一端から
+$a\,(<L/2)$ の位置にある点 O を回転中心として，剛体棒が $xy$ 平面上を振り子運動
+している。このとき，次の問い (1)〜(3) に答えよ。ここで，剛体棒と $x$ 軸のなす角を
+$\theta$，重力加速度の大きさを $g$ とする。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 点 O まわりの慣性モーメントを求めよ。
+  \item 点 O まわりの力のモーメントの大きさを求めよ。
+  \item 点 O まわりの振り子の運動方程式を求めよ。
+\end{enumerate}
+
+\begin{center}
+% 図2：点O（棒の一端からa）を回転中心とする剛体棒。x軸は下向き、y軸は右向き、棒はx軸とθ
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \coordinate (O) at (0,0);
+  \draw[->] (O) -- (3.6,0) node[right] {$y$};
+  \draw[->] (O) -- (0,-4.0) node[below] {$x$};
+  \fill (O) circle (1.3pt); \node[above left] at (O) {$O$};
+  % 棒方向（x軸=下向きから角θ）：dir=(sinθ,-cosθ), θ=33°
+  \def\dx{0.545}\def\dy{-0.839}
+  \coordinate (top) at (-0.6*\dx,-0.6*\dy);   % 近い端（Oからa上側）
+  \coordinate (bot) at (3.2*\dx,3.2*\dy);     % 遠い端
+  \draw[line width=2pt] (top) -- (bot);
+  \node[below right] at (bot) {剛体棒};
+  % a（端からOまで）
+  \draw[<->] (-0.6*\dx-0.28,-0.6*\dy) -- (-0.28,0);
+  \node[above left] at (-0.45*\dx-0.2,-0.45*\dy) {$a$};
+  % θ（x軸下向きと棒の間）
+  \draw[->] (0,-1.1) arc (-90:-57:1.1); \node at (0.45,-1.0) {$\theta$};
+  \node at (3.0,-3.6) {図 2};
+\end{tikzpicture}
+\end{center}

@@ -1,0 +1,194 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\title{2017年度 (AY2017) 同志社大学大学院 生命医科学研究科\\
+医工学コース 入学試験問題「数学」解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+%======================================================================
+\section*{第1問}
+
+\subsection*{前提整理}
+
+\[
+A=\begin{pmatrix}2&1&0&0\\0&2&1&0\\0&1&2&0\\0&0&1&2\end{pmatrix}
+\]
+の固有値を求める.特性方程式 $\det(A-\lambda I)=0$ を計算する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: $\mu=2-\lambda$ とおいて展開する.}
+\[
+\det(A-\lambda I)=
+\begin{vmatrix}\mu&1&0&0\\0&\mu&1&0\\0&1&\mu&0\\0&0&1&\mu\end{vmatrix}.
+\]
+第1列で展開すると（非零は $(1,1)=\mu$ のみ）
+\[
+=\mu\begin{vmatrix}\mu&1&0\\1&\mu&0\\0&1&\mu\end{vmatrix}
+=\mu\cdot\mu\begin{vmatrix}\mu&1\\1&\mu\end{vmatrix}
+=\mu^2(\mu^2-1).
+\]
+
+\paragraph{Step 2: $\lambda$ に戻す.}
+$\mu^2(\mu-1)(\mu+1)=0$,すなわち $\mu=0$（重解),$\mu=\pm1$.
+$\lambda=2-\mu$ より
+\[
+\ans{\ \lambda=2\ (\text{重複度}2),\ \lambda=1,\ \lambda=3\ }
+\]
+
+検算:固有値の和 $2+2+1+3=8=\operatorname{tr}A$,
+積 $2\cdot2\cdot1\cdot3=12=\det A$（$\det A=\mu^2(\mu^2-1)$ に $\lambda=0$ すなわち $\mu=2$ を
+代入した $4\cdot3=12$）と一致.$\checkmark$
+
+%======================================================================
+\section*{第2問}
+
+\subsection*{前提整理}
+
+第1問の各固有値に対する固有ベクトル $\bm{p}_1,\dots,\bm{p}_4$ の空欄
+\fbox{ア},\fbox{イ},\fbox{ウ},\fbox{エ} を定める.
+各 $\bm{p}_i$ がどの固有値に属するかを判定し,固有方程式から第3成分を決める.
+
+\subsection*{計算}
+
+\paragraph{$\lambda=2$ の固有空間.}
+$(A-2I)\vv=\vzero$ は $v_2=0,\ v_3=0$（$v_1,v_4$ 自由）を与える.
+よって $\bm{p}_1=(0,0,\fbox{ア},1)^\top$,$\bm{p}_2=(1,0,\fbox{イ},0)^\top$ がこの空間に入るには
+$\fbox{ア}=0,\ \fbox{イ}=0$.
+
+\paragraph{$\lambda=1$ の固有ベクトル.}
+$(A-I)\vv=\vzero$ は $v_1+v_2=0,\ v_2+v_3=0,\ v_3+v_4=0$ を与え,
+$\vv\propto(-1,1,-1,1)^\top$.$\bm{p}_3=(-1,1,\fbox{ウ},1)^\top$ と比べて $\fbox{ウ}=-1$.
+
+\paragraph{$\lambda=3$ の固有ベクトル.}
+$(A-3I)\vv=\vzero$ は $v_1=v_2=v_3=v_4$ を与え,$\vv\propto(1,1,1,1)^\top$.
+$\bm{p}_4=(1,1,\fbox{エ},1)^\top$ と比べて $\fbox{エ}=1$.
+\[
+\ans{\ \text{ア}=0,\quad \text{イ}=0,\quad \text{ウ}=-1,\quad \text{エ}=1\ }
+\]
+
+検算:$\bm{p}_3=(-1,1,-1,1)^\top$ に $A$ を作用させると
+$A\bm{p}_3=(-1,1,-1,1)^\top=1\cdot\bm{p}_3$,$\bm{p}_4=(1,1,1,1)^\top$ では
+$A\bm{p}_4=(3,3,3,3)^\top=3\bm{p}_4$ となり各固有値に整合.$\checkmark$
+
+%======================================================================
+\section*{第3問}
+
+\subsection*{前提整理}
+
+$\va_1=(1,1,0)^\top,\ \va_2=(1,1,1)^\top,\ \va_3=(1,0,1)^\top$ の正規直交化結果
+$\vu_1,\vu_2,\vu_3$ の空欄 \fbox{オ},\fbox{カ},\fbox{キ} を求める.
+
+\subsection*{計算}
+
+\paragraph{$\vu_1$.}
+$\vu_1=\dfrac{\va_1}{\|\va_1\|}=\dfrac{1}{\sqrt2}(1,1,0)^\top$.第1・2成分が
+$\fbox{オ}=\dfrac{\sqrt2}{2}$.
+
+\paragraph{$\vu_2$.}
+$\va_2$ から $\vu_1$ 方向成分を除くと
+$\va_2-(\va_2\cdot\vu_1)\vu_1=(1,1,1)^\top-\sqrt2\cdot\tfrac{1}{\sqrt2}(1,1,0)^\top=(0,0,1)^\top$.
+正規化して $\vu_2=(0,0,1)^\top$,よって $\fbox{カ}=0$.
+
+\paragraph{$\vu_3$.}
+$\va_3-(\va_3\cdot\vu_1)\vu_1-(\va_3\cdot\vu_2)\vu_2
+=(1,0,1)^\top-\tfrac12(1,1,0)^\top-(0,0,1)^\top=\bigl(\tfrac12,-\tfrac12,0\bigr)^\top$.
+正規化して $\vu_3=\dfrac{\sqrt2}{2}(1,-1,0)^\top$,第3成分は $\fbox{キ}=0$.
+\[
+\ans{\ \text{オ}=\frac{\sqrt2}{2},\quad \text{カ}=0,\quad \text{キ}=0\ }
+\]
+
+検算:$\vu_1\cdot\vu_2=0,\ \vu_2\cdot\vu_3=0,\ \vu_1\cdot\vu_3=\tfrac{\sqrt2}{2}\cdot\tfrac{\sqrt2}{2}(1-1)=0$,
+各 $\|\vu_i\|=1$ で正規直交系をなす.$\checkmark$
+
+%======================================================================
+\section*{第4問}
+
+\subsection*{前提整理}
+
+$D:\ \dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}\le1,\ x>0,\ y>0$（第1象限の四分楕円）上で
+$\displaystyle\iint_D y\,dx\,dy$ を求める.楕円を単位円に直す.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 単位円へ変換する.}
+$x=au,\ y=bv$ とすると $dxdy=ab\,dudv$,領域は $u^2+v^2\le1,\ u,v>0$.
+$y=bv$ より
+\[
+\iint_D y\,dxdy=ab^2\iint_{u^2+v^2\le1,\,u,v>0}v\,du\,dv.
+\]
+
+\paragraph{Step 2: 極座標で積分する.}
+$u=\rho\cos\phi,\ v=\rho\sin\phi$（$0\le\rho\le1,\ 0\le\phi\le\frac\pi2$）で
+\[
+\iint v\,dudv=\int_0^{\pi/2}\!\!\sin\phi\,d\phi\int_0^1\!\rho^2 d\rho
+=[-\cos\phi]_0^{\pi/2}\cdot\frac13=1\cdot\frac13=\frac13.
+\]
+
+\paragraph{Step 3: まとめる.}
+\[
+\ans{\ \iint_D y\,dx\,dy=\frac{ab^2}{3}\ }
+\]
+
+検算:$a=b=1$ なら第1象限の四分円上で $\iint v=\frac13$ に帰着し,一致する.$\checkmark$
+
+%======================================================================
+\section*{第5問}
+
+\subsection*{前提整理}
+
+$z=e^x\bigl(x\cos y-y\sin y\bigr)$ のラプラシアン $z_{xx}+z_{yy}$ を求める.
+
+\subsection*{計算}
+
+\paragraph{Step 1: $x$ に関する2階.}
+\[
+z_x=e^x\bigl((x+1)\cos y-y\sin y\bigr),\qquad
+z_{xx}=e^x\bigl((x+2)\cos y-y\sin y\bigr).
+\]
+
+\paragraph{Step 2: $y$ に関する2階.}
+\[
+z_y=e^x\bigl(-(x+1)\sin y-y\cos y\bigr),\qquad
+z_{yy}=e^x\bigl(-(x+2)\cos y+y\sin y\bigr).
+\]
+
+\paragraph{Step 3: 加える.}
+\[
+z_{xx}+z_{yy}
+=e^x\bigl[(x+2)\cos y-y\sin y-(x+2)\cos y+y\sin y\bigr]=0.
+\]
+\[
+\ans{\ \frac{\partial^2z}{\partial x^2}+\frac{\partial^2z}{\partial y^2}=0\ }
+\]
+
+検算:$z$ は正則関数 $(z_1+1)e^{z_1}$（$z_1=x+iy$）の実部に対応し,調和関数である.
+実際 $(x,y)=(0,0)$ で $z_{xx}=2,\ z_{yy}=-2$ となり和は $0$.$\checkmark$
+
+%======================================================================
+\section*{第6問}
+
+\subsection*{前提整理}
+
+$f(x,y)=\sin(x+y^2)$ の Maclaurin 展開を全次数 $3$ 次まで求める.
+$u=x+y^2$ とおき $\sin u=u-\dfrac{u^3}{6}+\cdots$ を用いる（$y^2$ は $2$ 次）.
+
+\subsection*{計算}
+
+$\sin u=u-\dfrac{u^3}{6}+\cdots$ に $u=x+y^2$ を代入.$u=x+y^2$ の $\le3$ 次はそのまま,
+$u^3=(x+y^2)^3$ の $\le3$ 次は $x^3$ のみ（$3x^2y^2$ 以降は $4$ 次以上）.よって
+\[
+\ans{\
+\sin(x+y^2)=x+y^2-\frac{x^3}{6}+(\text{4次以上})\ }
+\]
+
+検算:$y=0$ で $\sin x=x-\frac{x^3}{6}+\cdots$ に一致.
+$x=0$ で $\sin(y^2)=y^2-\cdots$ の $y^2$ 係数 $1$ も一致.$\checkmark$
+
+\end{document}

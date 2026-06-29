@@ -1,0 +1,53 @@
+% AY2022 材料力学 〔I〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2022/2022za.pdf
+% 要約: 下側を床に固定した2本の棒\textcircled{1}と1本の棒\textcircled{2}, 上側を剛体板に接合。
+%       棒\textcircled{2}の中央(点a)に外力P(下向き), 棒\textcircled{2}の温度のみΔT上昇。床・剛体板は断熱で
+%       棒\textcircled{1}の温度は変化しない。初期長さL, 断面積A, 縦弾性係数 E(棒1)・2E(棒2),
+%       線膨張係数ともにα。剛体板は床と平行を保ちながら変位。
+%       (1) σ1,σ2, (2) 点aの変位λa, (3) 剛体板の変位λ=0となるP。
+
+\section*{〔I〕}
+
+図1に示すように, 下側を床に固定した 2 本の棒\textcircled{1}および 1 本の棒\textcircled{2}があり, 上側を剛体板に
+接合した. 棒\textcircled{2}の中央（点 a）に外力 $P$ が下向きに作用しており, 棒\textcircled{2}の温度のみ $\Delta T$
+上昇させた場合を考える. なお, 床と剛体板には断熱材が使用されており, 棒\textcircled{1}の温度は変化しない.
+棒\textcircled{1}, 棒\textcircled{2}の初期長さを $L$, 断面積を $A$, 縦弾性係数をそれぞれ $E$, $2E$, 線膨張係数を
+ともに $\alpha$ とし, 剛体板は床と平行を保ちながら変位するものとする.
+次の問い (1)\,$\sim$\,(3) に答えよ.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=1.0]
+  % 床（下, 固定）
+  \fill[pattern=north east lines] (-0.2,-1.0) rectangle (6.2,0); \draw (-0.2,0) -- (6.2,0);
+  % 剛体板（上, 黒）
+  \fill[gray!70] (0.2,4.0) rectangle (6.4,4.5);
+  \node[right] at (6.45,4.25) {剛体板};
+  % 棒\textcircled{1}（左, x:0.7..1.2）, 棒\textcircled{2}（中央, 灰, x:2.7..3.3）, 棒\textcircled{1}（右, x:5.0..5.5）
+  \draw (0.7,0) rectangle (1.2,4.0);
+  \fill[gray!30] (2.7,0) rectangle (3.3,4.0); \draw (2.7,0) rectangle (3.3,4.0);
+  \draw (5.0,0) rectangle (5.5,4.0);
+  % ラベル
+  \node[above] at (0.95,4.0) {棒\textcircled{1}}; \node[above] at (3.0,4.0) {棒\textcircled{2}}; \node[above] at (5.25,4.0) {棒\textcircled{1}};
+  % 点a と 外力P（棒\textcircled{2}中央, 下向き）
+  \draw[->,very thick] (3.0,2.0) -- (3.0,0.6) node[midway,left]{$P$};
+  \node[right] at (3.35,2.0) {a};
+  % x軸（右）
+  \draw[->] (6.0,0) -- (6.0,1.5) node[left]{$x$};
+  % 床ラベル
+  \node[right] at (6.45,-0.5) {床};
+  % 寸法 L（左, 縦）, L/2（中央, 縦）
+  \draw[<->] (0.35,0) -- (0.35,4.0) node[midway,fill=white]{$L$};
+  \draw[<->] (2.4,0) -- (2.4,2.0) node[midway,fill=white,font=\scriptsize]{$L/2$};
+\end{tikzpicture}
+
+\vspace{1mm}
+図1
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 棒\textcircled{1}と棒\textcircled{2}に生じる応力 $\sigma_1$ と $\sigma_2$ を求めよ.
+
+  \item 棒\textcircled{2}における点 a の変位 $\lambda_a$ を求めよ.
+
+  \item 剛体板の変位 $\lambda$ が $\lambda=0$ となる $P$ を求めよ.
+\end{enumerate}

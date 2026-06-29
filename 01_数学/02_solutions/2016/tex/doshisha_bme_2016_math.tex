@@ -1,0 +1,222 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\title{2016年度 (AY2016) 同志社大学大学院 生命医科学研究科\\
+医工学コース 入学試験問題「数学」解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+\begin{rem}
+第1$\sim$第3問は同一の行列
+$A=\begin{psmallmatrix}a&0&b&0\\0&1&0&0\\0&0&1&0\\c&0&0&d\end{psmallmatrix}$
+に関する設問である.第2問以降では $A$ が正則であること,すなわち
+$\det A=ad\neq0$（$a,d\neq0$）を仮定する.
+\end{rem}
+
+%======================================================================
+\section*{第1問}
+
+\subsection*{計算}
+
+\[
+A=\begin{pmatrix}a&0&b&0\\0&1&0&0\\0&0&1&0\\c&0&0&d\end{pmatrix}.
+\]
+第2列は $(0,1,0,0)^\top$ なので第2列で展開し,続けて現れる $3$ 次行列式を
+第2行で展開すると
+\[
+|A|=1\cdot\begin{vmatrix}a&b&0\\0&1&0\\c&0&d\end{vmatrix}
+=1\cdot\begin{vmatrix}a&0\\c&d\end{vmatrix}=ad.
+\]
+（$b,c$ を含む項は,行・列の重複により置換が成立せず寄与しない.）
+\[
+\ans{\ |A|=ad\ }
+\]
+
+検算:$a=d=1,\ b=c=0$ なら $A=I$ で $|A|=1=ad$.
+また $b,c$ をどう変えても上の展開に現れないことが,$|A|=ad$ を裏づける.$\checkmark$
+
+%======================================================================
+\section*{第2問}
+
+\subsection*{前提整理}
+
+$\det A=ad\neq0$ より $A$ は正則（$a,d\neq0$）.掃き出し法で $A^{-1}$ を求める.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 第2・3行はそのまま.}
+第2行 $(0,1,0,0)$,第3行 $(0,0,1,0)$ は単位行ベクトルなので,対応する
+$A^{-1}$ の行も $(0,1,0,0),(0,0,1,0)$ である.
+
+\paragraph{Step 2: 第1・4行を処理する.}
+未知列 $\vx=(p,q,r,s)^\top$ に対し
+$A\vx=(ap+br,\ q,\ r,\ cp+ds)^\top$.右辺を $\bm{e}_j$ に等しいとおくと
+\[
+r=(\text{第3成分}),\quad p=\frac{(\text{第1成分})-br}{a},\quad
+s=\frac{(\text{第4成分})-cp}{d}.
+\]
+これを各 $\bm{e}_j$ について解くと
+\[
+\ans{\
+A^{-1}=\begin{pmatrix}
+\dfrac1a&0&-\dfrac{b}{a}&0\\[4pt]
+0&1&0&0\\[4pt]
+0&0&1&0\\[4pt]
+-\dfrac{c}{ad}&0&\dfrac{bc}{ad}&\dfrac1d
+\end{pmatrix}\ }
+\]
+
+検算:$AA^{-1}$ の第4行第1列は $c\cdot\frac1a+d\cdot(-\frac{c}{ad})=\frac ca-\frac ca=0$,
+第4行第4列は $d\cdot\frac1d=1$ となり単位行列に一致.$\checkmark$
+
+%======================================================================
+\section*{第3問}
+
+\subsection*{計算}
+
+特性方程式 $\det(A-\lambda I)=0$ を求める.第2列で展開し,残りを整理すると
+\[
+\det(A-\lambda I)
+=(1-\lambda)\begin{vmatrix}a-\lambda&b&0\\0&1-\lambda&0\\c&0&d-\lambda\end{vmatrix}
+=(1-\lambda)^2(a-\lambda)(d-\lambda).
+\]
+よって固有値は
+\[
+\ans{\ \lambda=1\ (\text{重複度}2),\ \lambda=a,\ \lambda=d\ }
+\]
+（$a,d$ が $1$ や互いに等しい場合は,その分だけ重複度が上がる.）
+
+検算:固有値の和 $1+1+a+d=2+a+d=\operatorname{tr}A$,
+積 $1\cdot1\cdot a\cdot d=ad=\det A$ がともに成り立つ.$\checkmark$
+
+%======================================================================
+\section*{第4問}
+
+\subsection*{前提整理}
+
+線型写像 $f:\R^3\to\R^2$,
+$f(\vx)=\begin{pmatrix}x_1-3x_2\\x_2-x_3\end{pmatrix}$
+の表現行列は
+$F=\begin{pmatrix}1&-3&0\\0&1&-1\end{pmatrix}$.
+階数・退化次数を求める.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 階数.}
+$F$ の $2$ 行は1次独立（第1行は第2列に $-3$,第2行は第3列に $-1$ をもち,
+互いに定数倍でない）ので $\operatorname{rank}f=2$.像は $\R^2$ 全体（全射）.
+
+\paragraph{Step 2: 退化次数.}
+次元定理 $\dim(\ker f)=\dim\R^3-\operatorname{rank}f=3-2=1$.
+実際 $F\vx=\vzero$ は $x_1=3x_2,\ x_3=x_2$ で,$\ker f=\operatorname{Span}\{(3,1,1)^\top\}$.
+\[
+\ans{\ \operatorname{rank}(f)=2,\qquad \dim(\ker f)=1\ }
+\]
+
+検算:$(3,1,1)^\top$ を代入すると $f=(3-3,\ 1-1)^\top=(0,0)^\top$ で核に属し,
+$\operatorname{rank}+\dim\ker=2+1=3=\dim\R^3$ が成り立つ.$\checkmark$
+
+%======================================================================
+\section*{第5問}
+
+\subsection*{前提整理}
+
+$\displaystyle\iint_D\frac{dx\,dy}{(1+x^2+y^2)^2}$,
+$D:\ (x^2+y^2)^2\le x^2-y^2,\ x>0$ を求める.
+極座標 $x=r\cos\theta,\ y=r\sin\theta$ に移す.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 領域を極座標で書く.}
+$(x^2+y^2)^2=r^4$,$x^2-y^2=r^2\cos2\theta$ なので条件は
+$r^4\le r^2\cos2\theta$,すなわち $r^2\le\cos2\theta$.
+これには $\cos2\theta\ge0$ が必要で,$x>0$ と合わせ $-\tfrac\pi4\le\theta\le\tfrac\pi4$.
+よって $0\le r\le\sqrt{\cos2\theta}$.
+
+\paragraph{Step 2: 動径方向を積分する.}
+$dxdy=r\,drd\theta$ より
+\[
+\int_0^{\sqrt{\cos2\theta}}\frac{r}{(1+r^2)^2}\,dr
+=\Bigl[-\frac{1}{2(1+r^2)}\Bigr]_0^{\sqrt{\cos2\theta}}
+=\frac12\Bigl(1-\frac{1}{1+\cos2\theta}\Bigr)
+=\frac12\cdot\frac{\cos2\theta}{1+\cos2\theta}.
+\]
+
+\paragraph{Step 3: 角度方向を積分する.}
+$1+\cos2\theta=2\cos^2\theta$,$\cos2\theta=2\cos^2\theta-1$ を使うと
+\[
+\frac12\cdot\frac{\cos2\theta}{1+\cos2\theta}
+=\frac12\Bigl(1-\frac{1}{2\cos^2\theta}\Bigr).
+\]
+偶関数なので $\theta\in[0,\tfrac\pi4]$ の $2$ 倍として
+\[
+\iint_D(\cdots)
+=\int_0^{\pi/4}\Bigl(1-\frac{1}{2\cos^2\theta}\Bigr)d\theta
+=\Bigl[\theta-\frac12\tan\theta\Bigr]_0^{\pi/4}
+=\frac\pi4-\frac12.
+\]
+\[
+\ans{\
+\iint_D\frac{dx\,dy}{(1+x^2+y^2)^2}=\frac{\pi}{4}-\frac12\ }
+\]
+
+検算:数値積分でも $\frac\pi4-\frac12=0.28540\ldots$ が得られ,一致する.$\checkmark$
+
+%======================================================================
+\section*{第6問}
+
+\subsection*{前提整理}
+
+球座標 $x=r\sin\theta\cos\phi,\ y=r\sin\theta\sin\phi,\ z=r\cos\theta$ の
+ヤコビアン $J=\dfrac{\partial(x,y,z)}{\partial(r,\theta,\phi)}$ を求める.
+
+\subsection*{計算}
+
+\[
+J=\begin{vmatrix}
+\sin\theta\cos\phi & r\cos\theta\cos\phi & -r\sin\theta\sin\phi\\
+\sin\theta\sin\phi & r\cos\theta\sin\phi & r\sin\theta\cos\phi\\
+\cos\theta & -r\sin\theta & 0
+\end{vmatrix}.
+\]
+第3行で余因子展開すると
+\[
+J=\cos\theta\cdot r^2\sin\theta\cos\theta
++r\sin\theta\cdot r\sin^2\theta
+=r^2\sin\theta(\cos^2\theta+\sin^2\theta)=r^2\sin\theta.
+\]
+\[
+\ans{\ J=\dfrac{\partial(x,y,z)}{\partial(r,\theta,\phi)}=r^2\sin\theta\ }
+\]
+
+検算:体積要素 $dV=r^2\sin\theta\,drd\theta d\phi$ を単位球
+（$0\le r\le1,0\le\theta\le\pi,0\le\phi\le2\pi$）で積分すると
+$\frac13\cdot2\cdot2\pi=\frac{4\pi}{3}$ となり球の体積に一致.$\checkmark$
+
+%======================================================================
+\section*{第7問}
+
+\subsection*{前提整理}
+
+$z=\sinh(x+y)$ の Maclaurin 展開を全次数 $3$ 次まで求める.
+$u=x+y$ とおき $\sinh u=u+\dfrac{u^3}{6}+\cdots$ を用いる.
+
+\subsection*{計算}
+
+$u=x+y$ は $1$ 次なので,$\sinh u$ の $3$ 次までは $u+\dfrac{u^3}{6}$.展開して
+\[
+\ans{\
+\sinh(x+y)=(x+y)+\frac{(x+y)^3}{6}
+=x+y+\frac{x^3+3x^2y+3xy^2+y^3}{6}+(\text{4次以上})\ }
+\]
+
+検算:$y=0$ で $\sinh x=x+\frac{x^3}{6}+\cdots$ に一致.
+また $x=y$ とおくと $\sinh2x=2x+\frac{(2x)^3}{6}+\cdots=2x+\frac{4x^3}{3}+\cdots$ で,
+公式の右辺 $2x+\frac{8x^3}{6}=2x+\frac{4x^3}{3}$ とも一致.$\checkmark$
+
+\end{document}

@@ -1,0 +1,155 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\title{2023年度 (AY2023) 同志社大学大学院 生命医科学研究科\\
+医工学コース 入学試験問題「数学」解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+%======================================================================
+\section*{第1問}
+
+\subsection*{前提整理}
+
+$e^{ix}=\cos x+i\sin x$（Euler の公式）を Maclaurin 展開で示す.
+$e^{t}=\sum_{n=0}^\infty\dfrac{t^n}{n!}$ に $t=ix$ を代入し,実部・虚部に分ける.
+
+\subsection*{証明}
+
+\paragraph{Step 1: 級数に代入する.}
+$i^2=-1$ より $i^n$ は $1,i,-1,-i$ を周期 $4$ で繰り返す.
+\[
+e^{ix}=\sum_{n=0}^{\infty}\frac{(ix)^n}{n!}
+=\sum_{n=0}^{\infty}\frac{i^n x^n}{n!}.
+\]
+
+\paragraph{Step 2: 偶数次・奇数次に分ける.}
+$n=2k$ では $i^{2k}=(-1)^k$,$n=2k+1$ では $i^{2k+1}=(-1)^k i$ だから
+\[
+e^{ix}=\sum_{k=0}^{\infty}\frac{(-1)^k x^{2k}}{(2k)!}
++i\sum_{k=0}^{\infty}\frac{(-1)^k x^{2k+1}}{(2k+1)!}.
+\]
+
+\paragraph{Step 3: 各級数を同定する.}
+右辺の第1の級数は $\cos x$,第2の級数は $\sin x$ の Maclaurin 展開そのものである
+（いずれも収束半径 $\infty$ で絶対収束するため項別に扱える）.よって
+\[
+e^{ix}=\cos x+i\sin x.\qquad\blacksquare
+\]
+
+検算:$x=\pi$ で $e^{i\pi}=\cos\pi+i\sin\pi=-1$（Euler の等式）.
+また両辺の $x=0$ 近傍の展開は $1+ix-\frac{x^2}{2}-\frac{ix^3}{6}+\cdots$ で一致する.$\checkmark$
+
+%======================================================================
+\section*{第2問}
+
+\subsection*{前提整理}
+
+$D:\ x^2+y^2\le2,\ x>0,\ y\ge0$（第1象限の四分円,半径 $\sqrt2$）上で
+$\displaystyle\iint_D\tan^{-1}\frac{y}{x}\,dx\,dy$ を求める.
+極座標では $\tan^{-1}(y/x)=\theta$ となり積分が分離する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 極座標へ変換する.}
+$x=r\cos\theta,\ y=r\sin\theta$ では $\tan^{-1}\dfrac{y}{x}=\theta$（$0\le\theta\le\frac\pi2$）,
+$dxdy=r\,drd\theta$,$0\le r\le\sqrt2$.よって
+\[
+\iint_D\tan^{-1}\frac{y}{x}\,dxdy
+=\int_0^{\pi/2}\!\!\int_0^{\sqrt2}\theta\,r\,dr\,d\theta.
+\]
+
+\paragraph{Step 2: 分離して積分する.}
+\[
+=\Bigl(\int_0^{\pi/2}\theta\,d\theta\Bigr)\Bigl(\int_0^{\sqrt2}r\,dr\Bigr)
+=\Bigl[\frac{\theta^2}{2}\Bigr]_0^{\pi/2}\Bigl[\frac{r^2}{2}\Bigr]_0^{\sqrt2}
+=\frac{\pi^2}{8}\cdot1.
+\]
+\[
+\ans{\ \iint_D\tan^{-1}\frac{y}{x}\,dx\,dy=\frac{\pi^2}{8}\ }
+\]
+
+検算:被積分関数は $D$ 上で $0\le\theta\le\frac\pi2$ ゆえ非負,積分値 $\frac{\pi^2}{8}=1.2337>0$
+と符号が整合.$\checkmark$
+
+%======================================================================
+\section*{第3問}
+
+\subsection*{前提整理}
+
+\[
+A=\begin{pmatrix}a&0&0&0\\0&1&2&0\\0&0&2&0\\1&0&0&3\end{pmatrix}\qquad(a\neq3)
+\]
+の対角化可能性を調べる.行・列の構造から $2$ つの独立なブロックに分かれる.
+
+\subsection*{計算}
+
+\paragraph{Step 1: ブロック分解と固有値.}
+変数 $x_2,x_3$ は中央の $2\times2$ ブロック $\begin{psmallmatrix}1&2\\0&2\end{psmallmatrix}$ のみに,
+$x_1,x_4$ は $\begin{psmallmatrix}a&0\\1&3\end{psmallmatrix}$ のみに関係する.
+それぞれの固有値は $1,2$ および $a,3$ だから,$A$ の固有値は
+\[
+\det(A-\lambda I)=(a-\lambda)(1-\lambda)(2-\lambda)(3-\lambda),\qquad
+\lambda=a,\ 1,\ 2,\ 3.
+\]
+
+\paragraph{Step 2: 各ブロックの対角化可能性.}
+中央ブロックは固有値 $1\neq2$ で対角化可能.
+$\begin{psmallmatrix}a&0\\1&3\end{psmallmatrix}$ は固有値 $a,3$ をもち,$a\neq3$ より相異なるので
+対角化可能.独立な $2$ ブロックがともに対角化可能だから $A$ も対角化可能である
+（固有値が重複する $a\in\{1,2\}$ の場合も,各ブロックが別々に固有ベクトルを与えるため
+幾何的重複度が代数的重複度に一致する）.
+\[
+\ans{\
+A\ \text{は対角化}\textbf{可能},\quad
+\text{対角化後}\ D=\begin{pmatrix}a&0&0&0\\0&1&0&0\\0&0&2&0\\0&0&0&3\end{pmatrix}\ }
+\]
+
+検算:$a=5$ とすると固有値 $5,1,2,3$ は相異なり,$4$ 個の1次独立な固有ベクトルが
+存在するので確かに対角化可能.$\det A=a\cdot1\cdot2\cdot3=6a$ も $D$ の対角積と一致.$\checkmark$
+
+%======================================================================
+\section*{第4問}
+
+\subsection*{前提整理}
+
+同次系
+\[
+\begin{cases}(\lambda+1)x+y+4z=0\\8x+\lambda y+10z=0\\-4x-y+(\lambda-7)z=0\end{cases}
+\]
+が自明でない解をもつ条件は,係数行列の行列式が $0$ になることである.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 行列式 $=0$ を解く.}
+\[
+\det\begin{pmatrix}\lambda+1&1&4\\8&\lambda&10\\-4&-1&\lambda-7\end{pmatrix}
+=\lambda^3-6\lambda^2+11\lambda-6=(\lambda-1)(\lambda-2)(\lambda-3)=0.
+\]
+よって自明でない解をもつのは
+\[
+\ans{\ \lambda=1,\ 2,\ 3\ }
+\]
+
+\paragraph{Step 2: 最小の $\lambda=1$ における解.}
+$\lambda=1$ を代入すると
+\[
+\begin{cases}2x+y+4z=0\\8x+y+10z=0\\-4x-y-6z=0.\end{cases}
+\]
+第2式$-$第1式より $6x+6z=0$,すなわち $x=-z$.第1式に代入して $y=-2z$
+（第3式も自動的に満たされる）.$z=t$ とおいて
+\[
+\ans{\
+\begin{pmatrix}x\\y\\z\end{pmatrix}=t\begin{pmatrix}-1\\-2\\1\end{pmatrix}\quad(t\ \text{は任意定数})\ }
+\]
+
+検算:$(x,y,z)=(-1,-2,1)$ を各式へ:
+第1式 $2(-1)+(-2)+4=0$,第2式 $8(-1)+(-2)+10=0$,
+第3式 $-4(-1)-(-2)-6=4+2-6=0$ ですべて成立.$\checkmark$
+
+\end{document}

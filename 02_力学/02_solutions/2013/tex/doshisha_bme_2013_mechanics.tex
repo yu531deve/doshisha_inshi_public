@@ -1,0 +1,225 @@
+% AY2013 力学 解答例
+% 体裁・粒度は 参考/ のPDFに揃える（行間を埋め、最終解答は \ans{} で boxed）。
+% 解答・数値・問題は本年度過去問から自力で導いた（東大版は体裁の手本のみ）。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\title{力学 AY2013 解答例（専門基礎科目）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+$x$ 軸上を運動する質量 $m$ の質点に，復元力 $-m\omega^2 x$ と抵抗力 $-2m\gamma\dot{x}$
+が働く。$\omega,\gamma$ は正の定数で，初期条件は $t=0$ で $x=L,\ \dot{x}=0$ である。
+運動方程式は
+\[
+  m\ddot{x}=-m\omega^2 x-2m\gamma\dot{x}
+  \quad\Longleftrightarrow\quad
+  \ddot{x}+2\gamma\dot{x}+\omega^2 x=0 .
+\]
+
+\subsection*{(1) 一般解}
+$x=e^{\lambda t}$ を代入すると特性方程式
+\[
+  \lambda^2+2\gamma\lambda+\omega^2=0
+  \quad\therefore\quad
+  \lambda=-\gamma\pm\sqrt{\gamma^2-\omega^2}.
+\]
+判別式の符号で 3 通りに分かれる。$C_1,C_2$ は任意定数とする。
+
+\medskip
+(i) $\omega>\gamma$（不足減衰）：$\sqrt{\gamma^2-\omega^2}=i\sqrt{\omega^2-\gamma^2}$。
+$\omega'\equiv\sqrt{\omega^2-\gamma^2}$ とおくと
+\[
+  x=e^{-\gamma t}\bigl(C_1\cos\omega' t+C_2\sin\omega' t\bigr).
+\]
+
+(ii) $\omega<\gamma$（過減衰）：$\beta\equiv\sqrt{\gamma^2-\omega^2}$ とおくと
+\[
+  x=e^{-\gamma t}\bigl(C_1 e^{\beta t}+C_2 e^{-\beta t}\bigr).
+\]
+
+(iii) $\omega=\gamma$（臨界減衰）：重解 $\lambda=-\gamma$ より
+\[
+  x=e^{-\gamma t}\bigl(C_1+C_2 t\bigr).
+\]
+\[
+  \ans{\;
+  \begin{aligned}
+    &\omega>\gamma:\ x=e^{-\gamma t}(C_1\cos\omega' t+C_2\sin\omega' t),\ \omega'=\sqrt{\omega^2-\gamma^2}\\
+    &\omega<\gamma:\ x=e^{-\gamma t}(C_1 e^{\beta t}+C_2 e^{-\beta t}),\ \beta=\sqrt{\gamma^2-\omega^2}\\
+    &\omega=\gamma:\ x=e^{-\gamma t}(C_1+C_2 t)
+  \end{aligned}\;}
+\]
+
+\subsection*{(2) $\omega>\gamma$ の場合の運動の概形}
+初期条件を (i) に課す。$x(0)=C_1=L$。
+$\dot{x}=e^{-\gamma t}\{(-\gamma C_1+\omega' C_2)\cos\omega' t+(-\gamma C_2-\omega' C_1)\sin\omega' t\}$
+より $\dot{x}(0)=-\gamma C_1+\omega' C_2=0$，すなわち $C_2=\dfrac{\gamma}{\omega'}L$。よって
+\[
+  x(t)=L\,e^{-\gamma t}\!\left(\cos\omega' t+\frac{\gamma}{\omega'}\sin\omega' t\right),
+  \qquad \omega'=\sqrt{\omega^2-\gamma^2}.
+\]
+これは角振動数 $\omega'$ で振動しつつ振幅が $e^{-\gamma t}$ で減衰する
+\textbf{減衰振動}である。包絡線を
+$\pm L\sqrt{1+\gamma^2/\omega'^2}\,e^{-\gamma t}$ とし，
+その内側で $0$ を何度も横切りながら振幅を減じる。
+\[
+  \ans{\;x(t)=L\,e^{-\gamma t}\!\left(\cos\omega' t+\dfrac{\gamma}{\omega'}\sin\omega' t\right)\ \text{の減衰振動}\;}
+\]
+\begin{center}
+\begin{tikzpicture}[>=stealth,scale=1.0]
+  \draw[->] (-0.2,0)--(7.2,0) node[right]{$t$};
+  \draw[->] (0,-1.5)--(0,2.2) node[above]{$x$};
+  \node[left] at (0,1.6){$L$};
+  \draw[dotted] (0,1.6)--(0.0,1.6);
+  % envelope
+  \draw[densely dashed,domain=0:7,smooth,samples=80] plot (\x,{1.6*exp(-0.45*\x)});
+  \draw[densely dashed,domain=0:7,smooth,samples=80] plot (\x,{-1.6*exp(-0.45*\x)});
+  % damped oscillation x(0)=L, slope 0
+  \draw[thick,domain=0:7,smooth,samples=160]
+    plot (\x,{1.6*exp(-0.45*\x)*cos(deg(2.2*\x))});
+\end{tikzpicture}
+\end{center}
+
+\subsection*{(3) $\omega<\gamma$ の場合の運動の概形}
+初期条件を (ii) に課す。$x(0)=C_1+C_2=L$，
+$\dot{x}(0)=(-\gamma+\beta)C_1+(-\gamma-\beta)C_2=0$。後者より
+$(\beta-\gamma)C_1=(\gamma+\beta)C_2$。これらを解くと
+\[
+  C_1=\frac{\gamma+\beta}{2\beta}L,\qquad C_2=\frac{\beta-\gamma}{2\beta}L,
+\]
+\[
+  x(t)=\frac{L}{2\beta}\,e^{-\gamma t}\Bigl[(\gamma+\beta)e^{\beta t}+(\beta-\gamma)e^{-\beta t}\Bigr]
+       =L\,e^{-\gamma t}\!\left(\cosh\beta t+\frac{\gamma}{\beta}\sinh\beta t\right).
+\]
+$\beta<\gamma$ なので $x(t)>0$ を保ったまま単調に減衰し，振動せずに
+$x=0$ へ漸近する\textbf{過減衰}である。
+\[
+  \ans{\;x(t)=L\,e^{-\gamma t}\!\left(\cosh\beta t+\dfrac{\gamma}{\beta}\sinh\beta t\right),\ \beta=\sqrt{\gamma^2-\omega^2}\ \text{の単調減衰}\;}
+\]
+\begin{center}
+\begin{tikzpicture}[>=stealth,scale=1.0]
+  \draw[->] (-0.2,0)--(7.2,0) node[right]{$t$};
+  \draw[->] (0,-0.4)--(0,2.2) node[above]{$x$};
+  \node[left] at (0,1.6){$L$};
+  % overdamped: gamma=1.0, beta=0.6
+  \draw[thick,domain=0:7,smooth,samples=120]
+    plot (\x,{1.6*exp(-1.0*\x)*(cosh(0.6*\x)+(1.0/0.6)*sinh(0.6*\x))});
+\end{tikzpicture}
+\end{center}
+
+\subsection*{(4) $\omega>\gamma$ で外力 $mF_0\cos\omega_0 t$ が加わるとき}
+運動方程式は
+\[
+  \ddot{x}+2\gamma\dot{x}+\omega^2 x=F_0\cos\omega_0 t .
+\]
+一般解は「同次解（過渡項）＋特解（定常項）」である。同次解は (2) の
+$e^{-\gamma t}(\cdots)$ で，$\gamma>0$ より $t\to\infty$ で $0$ に減衰し消える。
+よって十分時間が経つと特解（定常応答）だけが残る。
+特解を $x_p=R\cos(\omega_0 t-\delta)$ とおき複素表示 $x_p=\mathrm{Re}\,(Xe^{i\omega_0 t})$
+で代入すると
+\[
+  (-\omega_0^2+2i\gamma\omega_0+\omega^2)X=F_0
+  \quad\therefore\quad
+  X=\frac{F_0}{(\omega^2-\omega_0^2)+2i\gamma\omega_0}.
+\]
+振幅と位相遅れは
+\[
+  R=\frac{F_0}{\sqrt{(\omega^2-\omega_0^2)^2+(2\gamma\omega_0)^2}},\qquad
+  \tan\delta=\frac{2\gamma\omega_0}{\omega^2-\omega_0^2}.
+\]
+すなわち，十分時間が経つと質点は外力と\textbf{同じ角振動数 $\omega_0$} で，
+振幅 $R$，位相遅れ $\delta$ の\textbf{定常強制振動}を行う。
+\[
+  \ans{\;
+  x(t)\to R\cos(\omega_0 t-\delta),\quad
+  R=\dfrac{F_0}{\sqrt{(\omega^2-\omega_0^2)^2+(2\gamma\omega_0)^2}},\
+  \tan\delta=\dfrac{2\gamma\omega_0}{\omega^2-\omega_0^2}\;}
+\]
+
+\medskip
+検算: (4) で減衰・外力を消す極限 $\gamma\to0,\ \omega_0\to0$ では
+$R\to F_0/\omega^2$ となり，定常方程式 $\omega^2 x=F_0$ の解 $x=F_0/\omega^2$ に一致。
+また共振 $\omega_0=\omega$ では $\tan\delta\to\infty$（$\delta=\pi/2$），
+$R=F_0/(2\gamma\omega)$ が有限にとどまり，減衰がある系の妥当な挙動である。✓
+
+% ==================================================================
+\clearpage
+\section*{第2問〔II〕}
+
+極座標で軌道が $r=Ae^{k\theta(t)}$（$A,k>0$）と表され，角速度 $\dot\theta=\omega$
+（一定）で運動する質点を考える。$\theta$ は位置ベクトルが $x$ 軸となす角である。
+$\theta(0)=0$ ととれば $\theta(t)=\omega t$，$r(t)=Ae^{k\omega t}$ である。
+
+\subsection*{(1) $0\le\theta\le2\pi$ での運動の概形}
+$r=Ae^{k\theta}$ は $\theta$ の増加とともに $r$ が指数的に増える
+\textbf{対数（等角）らせん}である。$\theta=0$ で $r=A$，
+$\theta=2\pi$ で $r=Ae^{2\pi k}$ となり，原点から外向きに巻きながら拡大する。
+\[
+  \ans{\;原点を中心に外へ広がる対数らせん\ r=Ae^{k\theta}\;（\theta=0\text{で}r=A）\;}
+\]
+\begin{center}
+\begin{tikzpicture}[>=stealth,scale=0.9]
+  \draw[->] (-3.0,0)--(3.4,0) node[right]{$x$};
+  \draw[->] (0,-2.6)--(0,3.0) node[above]{$y$};
+  \node[below left] at (0,0){$O$};
+  % logarithmic spiral A=0.5, k=0.18, theta 0..2pi (deg domain)
+  \draw[thick,domain=0:360,smooth,samples=200,variable=\t]
+    plot ({0.5*exp(0.18*\t*pi/180)*cos(\t)},{0.5*exp(0.18*\t*pi/180)*sin(\t)});
+  \filldraw (0.5,0) circle (1.2pt) node[below right]{\small$\theta=0,\ r=A$};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{(2) 速度成分 $v_r,\ v_\theta$}
+極座標の速度は $v_r=\dot r,\ v_\theta=r\dot\theta$ である。
+$r=Ae^{k\theta}$ より
+\[
+  \dot r=\frac{d}{dt}\!\left(Ae^{k\theta}\right)=Ak\,e^{k\theta}\,\dot\theta=k\omega\,Ae^{k\theta}=k\omega\,r .
+\]
+$\dot\theta=\omega$ だから
+\[
+  v_r=\dot r=k\omega\,Ae^{k\theta}=k\omega r,\qquad
+  v_\theta=r\dot\theta=\omega\,Ae^{k\theta}=\omega r .
+\]
+\[
+  \ans{\;v_r=k\omega A e^{k\theta}=k\omega r,\qquad v_\theta=\omega A e^{k\theta}=\omega r\;}
+\]
+（速さは $v=\sqrt{v_r^2+v_\theta^2}=\omega r\sqrt{1+k^2}$。）
+
+\subsection*{(3) 加速度成分 $a_r,\ a_\theta$}
+極座標の加速度は
+\[
+  a_r=\ddot r-r\dot\theta^2,\qquad
+  a_\theta=r\ddot\theta+2\dot r\dot\theta .
+\]
+$\dot\theta=\omega$（一定）より $\ddot\theta=0$。また
+\[
+  \ddot r=\frac{d}{dt}(k\omega r)=k\omega\,\dot r=k\omega\cdot k\omega r=k^2\omega^2 r .
+\]
+したがって
+\begin{align*}
+  a_r&=\ddot r-r\dot\theta^2=k^2\omega^2 r-\omega^2 r=(k^2-1)\omega^2 r,\\
+  a_\theta&=r\cdot0+2(k\omega r)\omega=2k\omega^2 r .
+\end{align*}
+\[
+  \ans{\;a_r=(k^2-1)\omega^2 Ae^{k\theta}=(k^2-1)\omega^2 r,\qquad
+  a_\theta=2k\omega^2 Ae^{k\theta}=2k\omega^2 r\;}
+\]
+
+\medskip
+検算: 加速度を直交成分から確かめる。$x=r\cos\theta,\ y=r\sin\theta$，
+$r=Ae^{k\omega t},\ \theta=\omega t$ とすると $\dot r=k\omega r$ より
+$\ddot{\vec r}$ の動径方向射影は $\ddot r-r\omega^2=(k^2-1)\omega^2 r$，
+方位方向射影は $2\dot r\omega=2k\omega^2 r$ となり上式と一致。
+また $k\to0$（円運動 $r=A$ 一定）では $a_r=-\omega^2 r$（向心加速度），
+$a_\theta=0$ となり，等速円運動の結果に帰着する。✓
+
+\end{document}

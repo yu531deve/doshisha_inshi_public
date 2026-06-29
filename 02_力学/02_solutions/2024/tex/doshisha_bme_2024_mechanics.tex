@@ -1,0 +1,152 @@
+% AY2024 力学 解答例
+% 体裁・粒度は 参考/ のPDFに揃える（行間を埋め、最終解答は \ans{} で boxed）。
+% 解答・数値・問題は本年度過去問から自力で導いた（東大版は体裁の手本のみ）。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\title{力学 AY2024 解答例（専門基礎科目）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+ばね定数 $k\,(k>0)$ のばねの一端を壁に固定し，他端に質量 $m$ の物体を取り付け，
+なめらかな水平床上に置く。ばね自然長のときの物体重心位置を $x=0$ とする。
+自然長から $x$ 正向きに $L\,(L>0)$ だけ伸ばして静かに手を離すと，物体は速度に
+比例する空気抵抗（比例定数 $B>0$）を受けて $x$ 軸上を運動する。
+
+\subsection*{(1) 運動方程式}
+物体には次の二つの水平力がはたらく。
+\begin{itemize}
+  \item ばねの復元力：伸び $x$ に比例し，変位と逆向きなので $-kx$。
+  \item 空気抵抗：速度 $\dot{x}$ に比例し，運動を妨げる向きなので $-B\dot{x}$。
+\end{itemize}
+床はなめらかなので摩擦はない。ニュートンの運動方程式 $m\ddot{x}=\sum F$ より
+\[
+  m\ddot{x} = -kx - B\dot{x}.
+\]
+\[
+  \ans{\; m\ddot{x} + B\dot{x} + kx = 0 \;}
+\]
+初期条件は $x(0)=L,\ \dot{x}(0)=0$ である。
+
+\subsection*{(2) 往復運動せず原点に近づく条件}
+(1) は定数係数の 2 階線形同次微分方程式である。解を $x=e^{\lambda t}$ と仮定して
+代入すると，特性方程式
+\begin{align*}
+  m\lambda^2 + B\lambda + k = 0
+  \quad\therefore\quad
+  \lambda = \frac{-B \pm \sqrt{B^2 - 4mk}}{2m}
+\end{align*}
+を得る。物体が「往復運動せず（振動せず）時間と共に原点に近づく」ためには，
+解が三角関数（振動）を含まず，かつ $t\to\infty$ で $x\to0$ となればよい。
+
+\medskip
+\noindent\textbf{(i) 振動しない条件}：判別式が負だと
+$\lambda$ は虚部をもち $e^{\lambda t}$ に $\cos,\sin$ が現れて往復運動する。
+したがって振動しないためには根が実数，すなわち
+\[
+  B^2 - 4mk \ge 0.
+\]
+
+\noindent\textbf{(ii) 原点に近づく条件}：このとき二根 $\lambda_1,\lambda_2$ はともに実数で，
+\[
+  \lambda_1\lambda_2 = \frac{k}{m}>0,\qquad
+  \lambda_1+\lambda_2 = -\frac{B}{m}<0
+\]
+より両根とも負である（$B>0,k>0$）。ゆえに $x(t)$ は単調に減衰し，
+$t\to\infty$ で $x\to0$ となる。したがって条件は (i) だけでよい。
+
+\medskip
+$B,m,k>0$ より $B^2\ge 4mk \iff B \ge 2\sqrt{mk}$。
+\[
+  \ans{\; B^2 \ge 4mk \quad\Bigl(\text{すなわち } B \ge 2\sqrt{mk}\Bigr) \;}
+\]
+（等号 $B=2\sqrt{mk}$ が臨界減衰，$B>2\sqrt{mk}$ が過減衰である。）
+
+\medskip
+検算: 無次元の減衰比 $\zeta=\dfrac{B}{2\sqrt{mk}}$ を用いると，振動しない条件は
+$\zeta\ge1$ と書ける。これは $B\ge2\sqrt{mk}$ と一致する。
+また次元を確認すると，$[m k]=\mathrm{kg}\cdot(\mathrm{kg/s^2})=\mathrm{kg^2/s^2}$，
+$\sqrt{mk}$ は $\mathrm{kg/s}$ で抵抗係数 $B$（$\mathrm{N\cdot s/m=kg/s}$）と同次元であり整合する。✓
+
+% ==================================================================
+\clearpage
+\section*{第2問〔II〕}
+
+半径 $r$，慣性モーメント $I$ の滑車を天井に固定し，糸を巻き付けて一端に質量 $m$ の
+物体を取り付ける。静止状態から静かに手を離すと，物体は鉛直下向きに落下する。
+重力加速度の大きさを $g$，糸の質量・太さは無視する。糸は滑車上で滑らないとする。
+
+\subsection*{(1) 物体の加速度}
+鉛直下向きを正にとり，物体の加速度を $a$，糸の張力を $T$，滑車の角加速度を
+$\alpha$ とする。糸が滑らないので拘束条件は
+\[
+  a = r\alpha .
+\]
+物体の並進の運動方程式（下向き正）：
+\[
+  m a = mg - T. \tag{1}
+\]
+滑車の回転の運動方程式（張力 $T$ が腕 $r$ で滑車を回す）：
+\[
+  I\alpha = T r
+  \quad\therefore\quad
+  T = \frac{I\alpha}{r} = \frac{I a}{r^2}. \tag{2}
+\]
+(2) を (1) に代入して
+\begin{align*}
+  m a = mg - \frac{I a}{r^2}
+  \;\Longrightarrow\;
+  \left(m + \frac{I}{r^2}\right) a = mg
+  \;\Longrightarrow\;
+  a = \frac{mg}{\,m + I/r^2\,}.
+\end{align*}
+\[
+  \ans{\; a = \dfrac{m g r^2}{\,m r^2 + I\,} \;}
+\]
+
+\subsection*{(2) 糸の張力}
+(2) より $T=\dfrac{I a}{r^2}$ に (1) で求めた $a$ を代入すると
+\begin{align*}
+  T = \frac{I}{r^2}\cdot\frac{m g r^2}{m r^2 + I}
+    = \frac{m g I}{\,m r^2 + I\,}.
+\end{align*}
+\[
+  \ans{\; T = \dfrac{m g I}{\,m r^2 + I\,} \;}
+\]
+
+\subsection*{(3) 落下距離 $h$ での滑車の角速度}
+物体は等加速度 $a$ で落下するので，初速 $0$，落下距離 $h$ のとき速さ $v$ は
+\[
+  v^2 = 2 a h.
+\]
+糸が滑らないので物体の速さと滑車外周の速さは等しく $v=r\omega$，すなわち
+$\omega=v/r$。よって
+\begin{align*}
+  \omega^2 = \frac{v^2}{r^2} = \frac{2 a h}{r^2}
+           = \frac{2h}{r^2}\cdot\frac{m g r^2}{m r^2 + I}
+           = \frac{2 m g h}{\,m r^2 + I\,}.
+\end{align*}
+\[
+  \ans{\; \omega = \sqrt{\dfrac{2 m g h}{\,m r^2 + I\,}} \;}
+\]
+
+\medskip
+検算: エネルギー保存で確認する。物体が $h$ 落下したとき
+\begin{align*}
+  m g h = \tfrac{1}{2}m v^2 + \tfrac{1}{2}I\omega^2
+        = \tfrac{1}{2}m (r\omega)^2 + \tfrac{1}{2}I\omega^2
+        = \tfrac{1}{2}(m r^2 + I)\omega^2 .
+\end{align*}
+これを解くと $\omega^2=\dfrac{2mgh}{mr^2+I}$ となり，(3) の結果と一致する。✓
+また $I\to0$（質量・慣性のない滑車）の極限では $a\to g$，$T\to0$，
+$\omega\to\sqrt{2gh}/r$（自由落下 $v=\sqrt{2gh}$）となり物理的に妥当。✓
+
+\end{document}

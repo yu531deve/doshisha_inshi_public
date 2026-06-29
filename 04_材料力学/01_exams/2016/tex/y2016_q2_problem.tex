@@ -1,0 +1,30 @@
+% AY2016 材料力学 〔2〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2016/2016za.pdf
+% 要約: 薄肉円筒（肉厚t, 円筒外径d, t<<d）に内圧pが負荷。円筒殻に生じる
+%       軸方向引張り応力σx と 円周方向応力σθ を求める。
+
+\section*{〔2〕}
+
+薄肉円筒（肉厚 $t$, 円筒外径 $d$: $t\ll d$）に内圧 $p$ が負荷されている.
+円筒殻に生じる軸方向引張り方向応力 $\sigma_x$ と円周方向応力 $\sigma_\theta$ を求めよ.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  % 縦断面（薄肉円筒）
+  \draw (0,0) rectangle (5,1.6);
+  \draw (0.18,0.18) rectangle (4.82,1.42);
+  % 肉厚 t
+  \draw[->] (0.55,2.0) -- (0.09,1.45);
+  \node at (0.55,2.2) {$t$};
+  \draw[->] (0.09,1.9) -- (0.09,1.62);
+  % 外径 d
+  \draw[<->] (5.45,0) -- (5.45,1.6) node[midway,fill=white]{$d$};
+  % 長さ L
+  \draw[<->] (0,-0.35) -- (5,-0.35) node[midway,fill=white]{$L$};
+  % 断面（円環）
+  \begin{scope}[shift={(8.0,0.8)}]
+    \draw (0,0) circle (0.85);
+    \draw (0,0) circle (0.62);
+  \end{scope}
+\end{tikzpicture}
+\end{center}

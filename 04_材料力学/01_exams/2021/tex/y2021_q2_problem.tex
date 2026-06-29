@@ -1,0 +1,66 @@
+% AY2021 材料力学 〔II〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2021/2021za.pdf
+% 要約: 直径d, 長さLの円形断面はり。固定端A, 先端Bに長さLの剛体棒, その先端に外力F。
+%       縦弾性係数E, 横弾性係数G。点Q: x=L-a, y=0, z=d/2。
+%       (1) 固定端A支持力・支持モーメント・支持トルク, (2) SFD/BMD,
+%       (3) Q点のσx, 円周方向σy, せん断応力τxy, (4) Q点モール円・最大主応力。
+% rem: 原本は3次元俯瞰図。軸構成（x:軸方向, y, z:上）を保った簡略立体図で再現する。
+
+\section*{〔II〕}
+
+図2に示すような, 直径 $d$, 長さ $L$ の円形断面はりの先端 B に長さ $L$ の剛体棒が取り付けられ,
+剛体棒の先端に外力 $F$ が負荷された場合の問題について問い (1)\,$\sim$\,(4) に答えよ.
+はりの材料の縦弾性係数を $E$, 横弾性係数を $G$ とする.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  % 点Qにおける微小要素（インセット, 上部中央）
+  \begin{scope}[shift={(4.6,3.1)}]
+    \node at (0,1.35) {\footnotesize 点 Q における微小要素};
+    \draw (-0.35,-0.35) rectangle (0.35,0.35);
+    \draw[->] (0.35,0) -- (0.95,0) node[right]{\scriptsize $\sigma_x$};
+    \draw[->] (-0.35,0) -- (-0.95,0);
+    \draw[->] (0,0.35) -- (0,0.7) node[right]{\scriptsize $\sigma_y$};
+    \draw[->] (0,-0.35) -- (0,-0.7);
+    \draw[->] (0.55,0.55) -- (-0.05,0.55); \node[left] at (-0.05,0.55) {\scriptsize $\tau_{xy}$};
+  \end{scope}
+  % 固定端A（斜めスラブ）
+  \fill[pattern=north east lines] (0.0,-0.6) -- (0.0,1.4) -- (0.9,1.8) -- (0.9,-0.2) -- cycle;
+  \draw (0.0,-0.6) -- (0.0,1.4) -- (0.9,1.8) -- (0.9,-0.2) -- cycle;
+  % はり（円柱）A → B
+  \draw[line width=14pt,gray!25,line cap=round] (0.6,0.55) -- (6.0,0.55);
+  \draw[fill=gray!25] (6.0,0.55) ellipse (0.12 and 0.34);
+  % 剛体棒（Bから右下へ, 長さL）と荷重F
+  \draw[line width=2pt] (6.0,0.4) -- (8.6,1.2);
+  \draw[->,very thick] (8.6,2.4) -- (8.6,1.25) node[above]{$F$};
+  % 軸（A点）
+  \draw[->] (0.6,0.55) -- (0.6,2.0) node[left]{$z$};
+  \draw[->] (0.6,0.55) -- (1.5,1.15) node[above]{$y$};
+  \draw[->] (0.6,0.55) -- (2.0,0.55) node[below]{$x$};
+  % 節点
+  \node at (0.45,0.55) {A}; \node[below] at (6.0,0.25) {B};
+  % 点 Q（上面, x=L-a）と断面C（破線）
+  \draw[dashed] (3.3,0.55) ellipse (0.12 and 0.34);
+  \node at (3.3,-0.05) {C};
+  \fill (4.0,0.88) circle (1.8pt); \node[above] at (4.0,0.92) {Q};
+  \node[right] at (4.1,0.7) {\scriptsize $\sigma_x$};
+  % 寸法 L（A-B）, a（C-B付近）, L（剛体棒）
+  \draw[<->] (0.6,-0.4) -- (6.0,-0.4) node[midway,fill=white]{$L$};
+  \draw[<->] (3.3,0.15) -- (6.0,0.15) node[midway,fill=white,font=\scriptsize]{$a$};
+  \draw[<->] (6.2,0.7) -- (8.6,1.45) node[midway,above,font=\scriptsize]{$L$};
+\end{tikzpicture}
+
+\vspace{1mm}
+図2
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 固定端 A の支持力, 支持モーメント, 支持トルクを図に示したうえで求めよ.
+
+  \item せん断力図（SFD）および曲げモーメント図（BMD）を求めよ.
+
+  \item 図中の点 Q $(x=L-a,\ y=0,\ z=d/2)$ の $x$ 方向の応力 $\sigma_x$,
+        円周方向の応力 $\sigma_y$, せん断応力 $\tau_{xy}$ を求めよ.
+
+  \item 点 Q におけるモールの応力円を描け. また, 最大主応力を求めよ.
+\end{enumerate}

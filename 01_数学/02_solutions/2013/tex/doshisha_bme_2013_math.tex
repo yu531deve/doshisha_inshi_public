@@ -1,0 +1,242 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\title{2013年度 (AY2013) 同志社大学大学院 生命医科学研究科\\
+医工学コース 入学試験問題「数学」解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+%======================================================================
+\section*{第1問}
+
+\subsection*{前提整理}
+
+\[
+A=\begin{pmatrix}a&b&c&d\\0&1&0&0\\e&f&g&h\\0&0&1&1\end{pmatrix}
+\]
+の行列式を求める.第2行は $(0,1,0,0)$ と零成分が多いので,第2行に沿って
+余因子展開すると計算が簡単になる.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 第2行で余因子展開する.}
+第2行の非零成分は $a_{22}=1$ のみ.符号は $(-1)^{2+2}=+1$ だから,
+第2行・第2列を除いた小行列式 $M_{22}$ を用いて
+\[
+|A|=1\cdot M_{22}
+=\begin{vmatrix}a&c&d\\e&g&h\\0&1&1\end{vmatrix}.
+\]
+
+\paragraph{Step 2: 残った3次行列式を第3行で展開する.}
+第3行は $(0,1,1)$.符号を付けて
+\[
+\begin{vmatrix}a&c&d\\e&g&h\\0&1&1\end{vmatrix}
+=-1\cdot\begin{vmatrix}a&d\\e&h\end{vmatrix}
++1\cdot\begin{vmatrix}a&c\\e&g\end{vmatrix}
+=-(ah-de)+(ag-ce).
+\]
+（$(3,2)$ 成分の符号は $(-1)^{3+2}=-1$,$(3,3)$ 成分は $(-1)^{3+3}=+1$.）
+整理して
+\[
+\ans{\
+|A|=ag-ah-ce+de=a(g-h)-e(c-d)\ }
+\]
+
+検算:$a=g=1$,他をすべて $0$ とおくと $|A|=1$.実際この行列は
+$\operatorname{diag}$ 的に第1・3行が単位的になり,行列式 $1$ と一致する.$\checkmark$
+
+%======================================================================
+\section*{第2問}
+
+\subsection*{前提整理}
+
+\[
+B=\begin{pmatrix}1&0&1\\-1&2&1\\0&0&2\end{pmatrix}
+\]
+の固有値と固有ベクトルを求める.特性方程式 $\det(B-\lambda I)=0$ を解く.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 固有値を求める.}
+第3行が $(0,0,2-\lambda)$ なので第3行で展開して
+\[
+\det(B-\lambda I)
+=(2-\lambda)\begin{vmatrix}1-\lambda&0\\-1&2-\lambda\end{vmatrix}
+=(2-\lambda)\,(1-\lambda)(2-\lambda)=(1-\lambda)(2-\lambda)^2.
+\]
+よって固有値は $\lambda=1$（単根）と $\lambda=2$（重複度2）.
+
+\paragraph{Step 2: $\lambda=1$ の固有ベクトル.}
+\[
+B-I=\begin{pmatrix}0&0&1\\-1&1&1\\0&0&1\end{pmatrix},\quad
+\begin{cases}v_3=0\\ -v_1+v_2+v_3=0\end{cases}
+\ \Rightarrow\ v_1=v_2,\ v_3=0.
+\]
+よって固有ベクトルは $\vv_1=\begin{pmatrix}1\\1\\0\end{pmatrix}$（の定数倍）.
+
+\paragraph{Step 3: $\lambda=2$ の固有ベクトル.}
+\[
+B-2I=\begin{pmatrix}-1&0&1\\-1&0&1\\0&0&0\end{pmatrix},\quad
+-v_1+v_3=0\ \Rightarrow\ v_3=v_1,\ v_2\ \text{は自由}.
+\]
+独立な解が2つとれ,$\lambda=2$ の固有空間は2次元:
+\[
+\vv_2=\begin{pmatrix}1\\0\\1\end{pmatrix},\qquad
+\vv_3=\begin{pmatrix}0\\1\\0\end{pmatrix}.
+\]
+\[
+\ans{\
+\begin{aligned}
+&\lambda=1:\ \ \vv=t\begin{pmatrix}1\\1\\0\end{pmatrix}\ (t\neq0),\\
+&\lambda=2:\ \ \vv=s\begin{pmatrix}1\\0\\1\end{pmatrix}+u\begin{pmatrix}0\\1\\0\end{pmatrix}\ ((s,u)\neq(0,0)).
+\end{aligned}\ }
+\]
+
+検算:$B\vv_1=(1,1,0)^\top=1\cdot\vv_1$,
+$B\vv_2=(2,0,2)^\top=2\vv_2$,$B\vv_3=(0,2,0)^\top=2\vv_3$ で各固有値倍に一致.
+$\lambda=2$ の幾何的重複度が $2$ なので $B$ は対角化可能でもある.$\checkmark$
+
+%======================================================================
+\section*{第3問}
+
+\subsection*{前提整理}
+
+1次独立な
+$\va_1=\begin{pmatrix}1\\0\\1\end{pmatrix},\
+\va_2=\begin{pmatrix}1\\1\\0\end{pmatrix},\
+\va_3=\begin{pmatrix}0\\1\\1\end{pmatrix}$
+に Gram--Schmidt の直交化を施し,正規化する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: $\bm{e}_1$.}
+$\vu_1=\va_1=(1,0,1)^\top$,$\|\vu_1\|^2=2$.よって
+$\bm{e}_1=\dfrac{1}{\sqrt2}(1,0,1)^\top$.
+
+\paragraph{Step 2: $\bm{e}_2$.}
+$\va_2\cdot\vu_1=1$ ゆえ
+\[
+\vu_2=\va_2-\frac{\va_2\cdot\vu_1}{\|\vu_1\|^2}\vu_1
+=(1,1,0)^\top-\frac12(1,0,1)^\top=\Bigl(\tfrac12,1,-\tfrac12\Bigr)^\top.
+\]
+$\|\vu_2\|^2=\tfrac14+1+\tfrac14=\tfrac32$ なので
+$\bm{e}_2=\dfrac{1}{\sqrt6}(1,2,-1)^\top$.
+
+\paragraph{Step 3: $\bm{e}_3$.}
+$\va_3\cdot\vu_1=1$,$\va_3\cdot\vu_2=0+1-\tfrac12=\tfrac12$ より
+\[
+\vu_3=\va_3-\frac{1}{2}\vu_1-\frac{1/2}{3/2}\vu_2
+=(0,1,1)^\top-\tfrac12(1,0,1)^\top-\tfrac13\Bigl(\tfrac12,1,-\tfrac12\Bigr)^\top
+=\Bigl(-\tfrac23,\tfrac23,\tfrac23\Bigr)^\top.
+\]
+$\|\vu_3\|^2=\tfrac43$ なので $\bm{e}_3=\dfrac{1}{\sqrt3}(-1,1,1)^\top$.
+\[
+\ans{\
+\bm{e}_1=\frac{1}{\sqrt2}\!\begin{pmatrix}1\\0\\1\end{pmatrix},\quad
+\bm{e}_2=\frac{1}{\sqrt6}\!\begin{pmatrix}1\\2\\-1\end{pmatrix},\quad
+\bm{e}_3=\frac{1}{\sqrt3}\!\begin{pmatrix}-1\\1\\1\end{pmatrix}\ }
+\]
+
+検算:$\bm{e}_1\cdot\bm{e}_2=\frac{1}{\sqrt{12}}(1+0-1)=0$,
+$\bm{e}_2\cdot\bm{e}_3=\frac{1}{\sqrt{18}}(-1+2-1)=0$,
+$\bm{e}_1\cdot\bm{e}_3=\frac{1}{\sqrt6}(-1+0+1)=0$,各 $\|\bm{e}_i\|=1$ で正規直交.$\checkmark$
+
+%======================================================================
+\section*{第4問}
+
+\subsection*{計算}
+
+確率密度の規格化条件と同型である.第3問とは独立に,ガウス積分
+$\displaystyle\int_{-\infty}^{\infty}e^{-x^2/2}\,dx=\sqrt{2\pi}$
+（極座標による標準的評価）を用いる.条件は
+\[
+k\int_{-\infty}^{\infty}e^{-x^2/2}\,dx=k\sqrt{2\pi}=1
+\ \Longrightarrow\
+\ans{\ k=\dfrac{1}{\sqrt{2\pi}}\ }
+\]
+
+検算:この $k$ は標準正規分布 $\frac{1}{\sqrt{2\pi}}e^{-x^2/2}$ の規格化定数に等しく,
+全確率が $1$ になることと整合する.$\checkmark$
+
+%======================================================================
+\section*{第5問}
+
+\subsection*{前提整理}
+
+$a=\dfrac{\pi}{2}$ とおき,単体領域
+$D=\{(x,y,z):x+y+z\le a,\ x,y,z\ge0\}$ 上で
+$\displaystyle\iiint_D(x+y+z)\,dx\,dy\,dz$ を求める.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 対称性を使う.}
+$D$ は $x,y,z$ について対称なので
+\[
+\iiint_D(x+y+z)\,dV=3\iiint_D x\,dV.
+\]
+
+\paragraph{Step 2: $\iiint_D x\,dV$ を計算する.}
+$x$ を固定すると $(y,z)$ は $y+z\le a-x,\ y,z\ge0$ の三角形（面積 $\tfrac12(a-x)^2$）を動くから
+\[
+\iiint_D x\,dV=\int_0^a x\cdot\frac{(a-x)^2}{2}\,dx
+=\frac12\int_0^a x(a-x)^2\,dx.
+\]
+$\displaystyle\int_0^a x(a-x)^2dx=\frac{a^2\cdot a^2}{2}-\frac{2a\cdot a^3}{3}+\frac{a^4}{4}=\frac{a^4}{12}$
+なので $\iiint_D x\,dV=\dfrac{a^4}{24}$.
+
+\paragraph{Step 3: 合算して $a=\pi/2$ を代入する.}
+\[
+\iiint_D(x+y+z)\,dV=3\cdot\frac{a^4}{24}=\frac{a^4}{8}
+=\frac{1}{8}\Bigl(\frac{\pi}{2}\Bigr)^4=\frac{\pi^4}{128}.
+\]
+\[
+\ans{\
+\displaystyle\iiint_D(x+y+z)\,dx\,dy\,dz=\frac{\pi^4}{128}\ }
+\]
+
+検算:$\frac{\pi^4}{128}=0.7609\ldots$.数値的に $a=\pi/2$ の単体上で
+$(x+y+z)$ の体積分を直接評価しても同じ値が得られる.$\checkmark$
+
+%======================================================================
+\section*{第6問}
+
+\subsection*{前提整理}
+
+$y=f(x)$,$z=g(y)$ がともに3回微分可能のとき,合成 $z=g(f(x))$ の
+$\dfrac{d^3z}{dx^3}$ を求める.連鎖律を繰り返し適用する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 1階・2階.}
+\[
+\frac{dz}{dx}=\frac{dz}{dy}\frac{dy}{dx},\qquad
+\frac{d^2z}{dx^2}=\frac{d^2z}{dy^2}\Bigl(\frac{dy}{dx}\Bigr)^2
++\frac{dz}{dy}\frac{d^2y}{dx^2}.
+\]
+（積の微分で $\frac{d}{dx}\frac{dz}{dy}=\frac{d^2z}{dy^2}\frac{dy}{dx}$ を用いた.）
+
+\paragraph{Step 2: もう一度 $x$ で微分する.}
+第1項 $\dfrac{d^2z}{dy^2}\bigl(\frac{dy}{dx}\bigr)^2$ の微分は
+$\dfrac{d^3z}{dy^3}\bigl(\frac{dy}{dx}\bigr)^3+\dfrac{d^2z}{dy^2}\cdot2\frac{dy}{dx}\frac{d^2y}{dx^2}$,
+第2項 $\dfrac{dz}{dy}\dfrac{d^2y}{dx^2}$ の微分は
+$\dfrac{d^2z}{dy^2}\frac{dy}{dx}\frac{d^2y}{dx^2}+\dfrac{dz}{dy}\frac{d^3y}{dx^3}$.
+両者を加えて
+\[
+\ans{\
+\frac{d^3z}{dx^3}
+=\frac{d^3z}{dy^3}\Bigl(\frac{dy}{dx}\Bigr)^3
++3\frac{d^2z}{dy^2}\frac{dy}{dx}\frac{d^2y}{dx^2}
++\frac{dz}{dy}\frac{d^3y}{dx^3}\ }
+\]
+
+検算:$f(x)=x^2,\ g(y)=y^2$ とすると $z=x^4$,$\frac{d^3z}{dx^3}=24x$.
+一方,$\frac{dy}{dx}=2x,\frac{d^2y}{dx^2}=2,\frac{d^3y}{dx^3}=0$,
+$\frac{dz}{dy}=2y=2x^2,\frac{d^2z}{dy^2}=2,\frac{d^3z}{dy^3}=0$ を公式へ代入すると
+$0+3\cdot2\cdot2x\cdot2+0=24x$ で一致.$\checkmark$
+
+\end{document}

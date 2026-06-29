@@ -1,0 +1,58 @@
+% AY2023 材料力学 〔I〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2023/2023za.pdf
+% 要約: 剛体でできた断熱板に接合された長さ2Lの棒\textcircled{1}, 長さLの棒\textcircled{2}が壁に固定。
+%       断熱板の中央(点B)に外力Pを負荷。棒\textcircled{1}:断面積2S,E,α; 棒\textcircled{2}:断面積S,3E,4α。
+%       (1) σ1,σ2, (2) λ1,λ2,
+%       (3) Pを負荷したまま棒\textcircled{2}のみΔT上昇で各棒が初期長さに戻る → ΔTをPで表す,
+%       (4) このときの応力σ'1,σ'2。
+%       (温度上昇前のλ1,λ2はLに対し十分小, 棒\textcircled{1}の温度は変化しない)
+
+\section*{〔I〕}
+
+図1のように, 剛体でできた断熱板に接合された長さ $2L$ の棒\textcircled{1}および長さ $L$ の棒\textcircled{2}が
+壁に固定されており, 断熱板の中央（点 B）に外力 $P$ を負荷する場合を考える.
+棒\textcircled{1}, 棒\textcircled{2}それぞれの断面積を $2S$, $S$, 縦弾性係数を $E$, $3E$, 線膨張係数を
+$\alpha$, $4\alpha$ とするとき, 次の問い (1)\,$\sim$\,(4) に答えよ.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  % 左壁, 右壁
+  \fill[pattern=north east lines] (-0.5,-1.4) rectangle (0,1.4); \draw (0,-1.4) -- (0,1.4);
+  \fill[pattern=north east lines] (10,-1.4) rectangle (10.5,1.4); \draw (10,-1.4) -- (10,1.4);
+  % 棒\textcircled{1}（A-板, 太, 2S, 半高0.7）
+  \draw (0,0.7) -- (6,0.7); \draw (0,-0.7) -- (6,-0.7);
+  % 断熱板（B, 縦長方形）
+  \fill[gray!20] (6,-1.0) rectangle (6.4,1.0); \draw (6,-1.0) rectangle (6.4,1.0);
+  % 棒\textcircled{2}（板-C, 細, S, 半高0.35）
+  \draw (6.4,0.35) -- (10,0.35); \draw (6.4,-0.35) -- (10,-0.35);
+  % B点 と 外力P（右向き）
+  \fill (6.2,0) circle (1.8pt); \node[below] at (6.2,-0.05) {B};
+  \draw[->,very thick] (6.4,0.0) -- (7.6,0.0) node[right]{$P$};
+  % 節点
+  \node[above right] at (0,-0.7) {A}; \node[below left] at (10,-0.35) {C};
+  % ラベル
+  \node[above] at (3.0,0.7) {棒\textcircled{1}}; \node[above] at (8.2,0.35) {棒\textcircled{2}}; \node[below] at (6.2,-1.0) {断熱板};
+  % 寸法 2L, L
+  \draw[<->] (0,1.15) -- (6,1.15) node[midway,fill=white]{$2L$};
+  \draw[<->] (6.4,1.15) -- (10,1.15) node[midway,fill=white]{$L$};
+  % x軸
+  \draw[->] (0,-1.05) -- (1.3,-1.05) node[right]{$x$};
+\end{tikzpicture}
+
+\vspace{1mm}
+図1
+\end{center}
+
+棒\textcircled{1}, 棒\textcircled{2}に生じる応力, 変位を求めた後, 次に, 外力 $P$ を負荷したまま棒\textcircled{2}のみ温度を
+$\Delta T$ 上昇させると, 各棒は初期長さに戻った. 温度上昇前における棒\textcircled{1}の変位 $\lambda_1$ と
+棒\textcircled{2}の変位 $\lambda_2$ は $L$ に対して十分小さく, 棒\textcircled{1}の温度は変化しないものとする.
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 棒\textcircled{1}と棒\textcircled{2}に生じる応力 $\sigma_1$ と $\sigma_2$ を求めよ.
+
+  \item 棒\textcircled{1}と棒\textcircled{2}の変位 $\lambda_1$ と $\lambda_2$ を求めよ.
+
+  \item $\Delta T$ を外力 $P$ を用いて答えよ.
+
+  \item 棒\textcircled{1}と棒\textcircled{2}に生じる応力 $\sigma'_1$ と $\sigma'_2$ を求めよ.
+\end{enumerate}

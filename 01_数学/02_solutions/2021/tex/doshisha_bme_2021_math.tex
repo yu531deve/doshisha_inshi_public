@@ -1,0 +1,170 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\title{2021年度 (AY2021) 同志社大学大学院 生命医科学研究科\\
+医工学コース 入学試験問題「数学」解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+%======================================================================
+\section*{第1問}
+
+\subsection*{前提整理}
+
+陰関数 $x-y+\log(xy)=0$（$x,y>0$）の $\dfrac{d^2y}{dx^2}$ を求める.
+$\log(xy)=\log x+\log y$ と分け,両辺を $x$ で微分する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 1階導関数.}
+$x-y+\log x+\log y=0$ を $x$ で微分すると($y=y(x)$)
+\[
+1-y'+\frac1x+\frac{y'}{y}=0
+\ \Longrightarrow\
+\frac{x+1}{x}+y'\,\frac{1-y}{y}=0.
+\]
+よって
+\[
+y'=-\frac{x+1}{x}\cdot\frac{y}{1-y}=\frac{(x+1)\,y}{x\,(y-1)}.
+\]
+
+\paragraph{Step 2: 2階導関数.}
+$y'=\dfrac{(x+1)y}{x(y-1)}$ を商の微分法で $x$ について微分し,現れる $y'$ に
+上式を代入して整理する.分子・分母を通分すると
+\[
+\frac{d^2y}{dx^2}
+=-\frac{y\bigl[(x+1)^2+(y-1)^2\bigr]}{x^2\,(y-1)^3}.
+\]
+\[
+\ans{\
+\frac{d^2y}{dx^2}=-\frac{y\bigl[(x+1)^2+(y-1)^2\bigr]}{x^2\,(y-1)^3}\ }
+\]
+
+検算:曲線上の点 $(x,y)=(2,\ 4.1055\ldots)$ で,有限差分による $y''$ は
+$-0.63894\ldots$,上式の値も $-0.63894\ldots$ で一致する.$\checkmark$
+
+%======================================================================
+\section*{第2問}
+
+\subsection*{前提整理}
+
+単体 $D:\ x+y+z\le\dfrac\pi2,\ x,y,z\ge0$ 上で
+$\displaystyle\iiint_D\cos(x+y+z)\,dV$ を求める.
+被積分関数が $s=x+y+z$ のみの関数なので,$s$ 一定の断面積を用いて $1$ 変数積分に直す.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 断面で積分する.}
+平面 $x+y+z=s$（$0\le s\le\frac\pi2$）と第1象限の交わりは直角二等辺三角形で,
+その面積は $\dfrac{s^2}{2}$.よって
+\[
+\iiint_D\cos(x+y+z)\,dV=\int_0^{\pi/2}\cos s\cdot\frac{s^2}{2}\,ds.
+\]
+
+\paragraph{Step 2: 部分積分する.}
+$\displaystyle\int s^2\cos s\,ds=s^2\sin s+2s\cos s-2\sin s$ なので
+\[
+\int_0^{\pi/2}s^2\cos s\,ds
+=\Bigl[s^2\sin s+2s\cos s-2\sin s\Bigr]_0^{\pi/2}
+=\frac{\pi^2}{4}-2.
+\]
+したがって
+\[
+\ans{\
+\iiint_D\cos(x+y+z)\,dx\,dy\,dz=\frac12\Bigl(\frac{\pi^2}{4}-2\Bigr)=\frac{\pi^2}{8}-1\ }
+\]
+
+検算:$\dfrac{\pi^2}{8}-1=0.2337\ldots>0$.被積分関数は $D$ 上で
+$0\le x+y+z\le\frac\pi2$ ゆえ $\cos\ge0$ で正,符号と整合する.$\checkmark$
+
+%======================================================================
+\section*{第3問}
+
+\subsection*{前提整理}
+
+\[
+A=\begin{pmatrix}a&1&0&0\\0&1&0&0\\b&0&b&0\\0&0&1&c\end{pmatrix}
+\qquad(a,b,c\neq0)
+\]
+の行列式・固有値・固有ベクトルを求める.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 行列式.}
+第4列 $(0,0,0,c)^\top$ で展開し,続く $3$ 次行列式を第3列で展開すると
+\[
+|A|=c\begin{vmatrix}a&1&0\\0&1&0\\b&0&b\end{vmatrix}
+=c\cdot b\begin{vmatrix}a&1\\0&1\end{vmatrix}=abc.
+\]
+よって $\ans{|A|=abc}$.
+
+\paragraph{Step 2: 固有値.}
+同じ展開を $A-\lambda I$ に施すと
+\[
+\det(A-\lambda I)=(c-\lambda)(b-\lambda)(a-\lambda)(1-\lambda),
+\]
+したがって固有値は $\lambda=a,\ 1,\ b,\ c$.（以下 $a,b,c,1$ は相異なるとする.）
+
+\paragraph{Step 3: 固有ベクトル.}
+各 $(A-\lambda I)\vv=\vzero$ を解くと
+\[
+\ans{\
+\begin{aligned}
+&\lambda=c:\ \vv=\begin{psmallmatrix}0\\0\\0\\1\end{psmallmatrix},\quad
+\lambda=b:\ \vv=\begin{psmallmatrix}0\\0\\b-c\\1\end{psmallmatrix},\\[4pt]
+&\lambda=a:\ \vv=\begin{psmallmatrix}(a-b)(c-a)\\0\\b(c-a)\\-b\end{psmallmatrix},\quad
+\lambda=1:\ \vv=\begin{psmallmatrix}(b-1)(c-1)\\-(a-1)(b-1)(c-1)\\-b(c-1)\\b\end{psmallmatrix}
+\end{aligned}\ (\text{各定数倍})\ }
+\]
+
+検算:固有値の積 $a\cdot1\cdot b\cdot c=abc=|A|$,和 $a+1+b+c=\operatorname{tr}A$ と一致.
+また $\lambda=b$ では $A\vv$ の第3成分 $b\cdot0+b(b-c)+0=b(b-c)=b\cdot(b-c)$,
+$\vv$ の第3成分 $b-c$ の $b$ 倍に等しく整合.$\checkmark$
+
+%======================================================================
+\section*{第4問}
+
+\subsection*{前提整理}
+
+\[
+W_1:\ \begin{cases}x-2y+w=0\\y+z+w=0\end{cases}\qquad
+W_2:\ x-y-z=0
+\]
+（いずれも $\R^4$ の部分空間）について,$W_1$ の基底・次元と $\dim(W_1+W_2)$ を求める.
+
+\subsection*{計算}
+
+\paragraph{Step 1: $W_1$ の基底と次元.}
+$2$ 本の方程式は1次独立なので $\dim W_1=4-2=2$.
+$x=2y-w,\ z=-y-w$ と表し,$(y,w)=(1,0),(0,1)$ をとると基底
+\[
+\ans{\
+\dim W_1=2,\quad
+\text{基底}\ \Bigl\{(2,1,-1,0)^\top,\ (-1,0,-1,1)^\top\Bigr\}\ }
+\]
+
+\paragraph{Step 2: $\dim(W_1+W_2)$.}
+$W_2$ は $1$ 本の方程式なので $\dim W_2=3$.
+$W_1\cap W_2$ は $3$ 本の方程式
+\[
+\begin{pmatrix}1&-2&0&1\\0&1&1&1\\1&-1&-1&0\end{pmatrix}
+\]
+で定まり,この係数行列の階数は $3$（行簡約で確認）だから $\dim(W_1\cap W_2)=4-3=1$.
+次元公式より
+\[
+\dim(W_1+W_2)=\dim W_1+\dim W_2-\dim(W_1\cap W_2)=2+3-1=4.
+\]
+\[
+\ans{\ \dim(W_1+W_2)=4\ (\text{すなわち}\ W_1+W_2=\R^4)\ }
+\]
+
+検算:基底ベクトル $(2,1,-1,0)^\top$ は $x-2y+w=2-2+0=0$,$y+z+w=1-1+0=0$ を
+満たし $W_1$ に属する.$\dim(W_1+W_2)=4$ は $\R^4$ 全体と一致し,
+$2+3=5>4$ から共通部分が $1$ 次元であることとも整合.$\checkmark$
+
+\end{document}

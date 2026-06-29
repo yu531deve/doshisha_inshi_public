@@ -1,0 +1,34 @@
+% AY2020 力学 第2問 転記（問題のみ）
+\section*{第2問〔II〕}
+
+図2のように質量 $M$，半径 $a$ の円盤の重心 G から距離 $h$ だけ離れた点に軸 S を
+取り付け，振り子運動させた。ここで，円盤の振り子運動の角度 $\theta$ は小さく
+$\sin\theta\fallingdotseq\theta$ の関係が成り立つ。ここで，重心 G のまわりの円盤の
+慣性モーメントを $Ma^2/2$，重力加速度の大きさを $g$，軸 S に働く摩擦は無視できる
+ものとする。このとき，次の問い (1) および (2) に答えよ。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 軸 S のまわりの円盤の慣性モーメントを求めよ。
+  \item 円盤の振り子運動の周期を求めよ。
+\end{enumerate}
+
+\begin{center}
+% 図2：重心Gからh離れた点Sを軸とする円盤の物理振り子。鉛直（破線）からθ傾く
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \coordinate (S) at (0,1.3);
+  % 鉛直破線
+  \draw[dashed] (S) -- (0,-1.9);
+  % 釣合い位置の円盤（破線、中心は鉛直線上）
+  \draw[dashed] (0,0) circle (1.3);
+  % 傾いた円盤（実線）。θ=18°、G = S + h(sinθ,-cosθ), h=1.3
+  \coordinate (G) at (0.402,0.064);
+  \draw (G) circle (1.3);
+  \draw (S) -- (G);
+  \fill (S) circle (1.6pt); \node[above right] at (S) {$S$};
+  \fill (G) circle (1.3pt); \node[right] at (G) {$G$};
+  \node at (0.42,0.66) {$h$};
+  % θ（鉛直線と SG の間）
+  \draw (0,0.75) arc (-90:-72:0.55); \node at (0.18,0.7) {$\theta$};
+  \node at (1.5,-1.6) {図 2};
+\end{tikzpicture}
+\end{center}

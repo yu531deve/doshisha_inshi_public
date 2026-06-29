@@ -1,0 +1,163 @@
+% AY2025 力学 解答例
+% 体裁・粒度は 参考/ のPDFに揃える（行間を埋め、最終解答は \ans{} で boxed）。
+% 解答・数値・問題は本年度過去問から自力で導いた（東大版は体裁の手本のみ）。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\title{力学 AY2025 解答例（専門基礎科目）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+質量 $m_1$ の質点 1，質量 $m_2$ の質点 2 の間に，作用反作用の力のみが働く。
+原点 O から測った各質点の位置ベクトルを $\bm{r}_1$，$\bm{r}_2$ とする。
+質点 1 が質点 2 から受ける力を $\bm{F}_{12}$，質点 2 が質点 1 から受ける力を
+$\bm{F}_{21}$ とすると，作用反作用の法則により
+\[
+  \bm{F}_{12}=-\bm{F}_{21},\qquad |\bm{F}_{12}|=|\bm{F}_{21}|=F.
+\]
+外力は働かないので，各質点の運動方程式は
+\[
+  m_1\ddot{\bm{r}}_1=\bm{F}_{12},\qquad
+  m_2\ddot{\bm{r}}_2=\bm{F}_{21}=-\bm{F}_{12}.
+\]
+
+\subsection*{(1) 運動量保存則}
+系の全運動量を $\bm{P}=m_1\dot{\bm{r}}_1+m_2\dot{\bm{r}}_2$ とおく。
+これを時刻 $t$ で微分し，上の二つの運動方程式を代入すると
+\begin{align*}
+  \frac{d\bm{P}}{dt}
+  &=m_1\ddot{\bm{r}}_1+m_2\ddot{\bm{r}}_2
+   =\bm{F}_{12}+\bm{F}_{21}
+   =\bm{F}_{12}+(-\bm{F}_{12})
+   =\bm{0}.
+\end{align*}
+よって全運動量の時間変化は零であり，$\bm{P}$ は時間によらず一定に保たれる。
+\[
+  \ans{\;\bm{P}=m_1\dot{\bm{r}}_1+m_2\dot{\bm{r}}_2=\text{一定}
+  \quad\Bigl(\because\ \frac{d\bm{P}}{dt}=\bm{0}\Bigr)\;}
+\]
+すなわち，内力（作用反作用の対）は系の全運動量を変化させず，運動量保存則が成り立つ。
+
+\subsection*{(2) 一方の質点から見た他方の運動方程式}
+質点 1 の上に立つ観測者が質点 2 の運動を観測する場合を考える
+（質点 1 と 2 を入れ替えても同形になる）。観測される相対位置ベクトルを
+\[
+  \bm{r}\equiv\bm{r}_2-\bm{r}_1
+\]
+とおく。二つの運動方程式をそれぞれの質量で割って差をとると
+\begin{align*}
+  \ddot{\bm{r}}=\ddot{\bm{r}}_2-\ddot{\bm{r}}_1
+  &=\frac{\bm{F}_{21}}{m_2}-\frac{\bm{F}_{12}}{m_1}
+   =\frac{\bm{F}_{21}}{m_2}-\frac{-\bm{F}_{21}}{m_1}
+   =\left(\frac{1}{m_1}+\frac{1}{m_2}\right)\bm{F}_{21}.
+\end{align*}
+ここで換算質量 $\mu$ を $\dfrac{1}{\mu}=\dfrac{1}{m_1}+\dfrac{1}{m_2}$，
+すなわち $\mu=\dfrac{m_1 m_2}{m_1+m_2}$ で定めると，
+\[
+  \ans{\;\mu\,\ddot{\bm{r}}=\bm{F}_{21},\qquad
+  \mu=\dfrac{m_1 m_2}{m_1+m_2}\;}
+\]
+となる。質点 1 上の（一般には非慣性系の）観測者から見ると，質点 2 はあたかも
+質量が換算質量 $\mu$ の 1 質点であるかのように，相手から受ける力 $\bm{F}_{21}$
+のもとで運動する。観測者が質点 2 の側に立つ場合も，相対座標を
+$\bm{r}_1-\bm{r}_2$ として同様に $\mu(\ddot{\bm{r}}_1-\ddot{\bm{r}}_2)=\bm{F}_{12}$
+が得られる。
+
+\medskip
+検算: (2) で $m_2\to\infty$（相手が無限に重い）とすると
+$\mu\to m_1$ かつ $\bm{r}\to-\bm{r}_1$ となり，$m_1\ddot{\bm{r}}_1=\bm{F}_{12}$
+という質点 1 単体の運動方程式に帰着する。固定された重い質点を基準にした観測と
+一致し，妥当。また (1) の運動量保存と (2) は両立する（重心は等速直線運動，
+相対運動は $\mu$ で記述される）。✓
+
+% ==================================================================
+\clearpage
+\section*{第2問〔II〕}
+
+半径 $a$，質量 $M$，重心まわりの慣性モーメント $I=\dfrac{1}{2}Ma^2$ の均一円盤を，
+水平とのなす角 $\theta$ の粗い斜面上に静かに置くと，滑らずに回転しながら斜面を
+下る。重力加速度の大きさを $g$，静止摩擦係数を $\mu$ とする。
+
+斜面下向きを正にとり，重心の加速度の大きさを $\alpha_G$，角加速度の大きさを
+$\dot\omega$ とする。円盤に働く力は，斜面に沿う重力成分 $Mg\sin\theta$（下向き），
+斜面に垂直な抗力 $N$，および接点に働く摩擦力 $f$（滑り出しを妨げる向き，
+すなわち斜面上向き）である。
+
+\subsection*{(1) 摩擦力の大きさ}
+斜面に垂直な方向のつり合いより
+\[
+  N=Mg\cos\theta.
+\]
+斜面に沿う方向の重心の並進運動方程式と，重心まわりの回転の運動方程式は
+\begin{align*}
+  &\text{並進}:\quad M\alpha_G = Mg\sin\theta - f,\\
+  &\text{回転}:\quad I\dot\omega = f\,a
+    \quad\Longrightarrow\quad \frac{1}{2}Ma^2\,\dot\omega=f\,a.
+\end{align*}
+滑らずに転がる（転がり条件）から，接点速度が零で $\alpha_G=a\,\dot\omega$，
+すなわち $\dot\omega=\dfrac{\alpha_G}{a}$。これを回転の式へ代入すると
+\[
+  \frac{1}{2}Ma^2\cdot\frac{\alpha_G}{a}=f\,a
+  \quad\Longrightarrow\quad
+  f=\frac{1}{2}M\alpha_G.
+\]
+これと並進の式 $M\alpha_G=Mg\sin\theta-f$（すなわち $M\alpha_G=2f$）から
+$\alpha_G$ を消去すると
+\[
+  2f=Mg\sin\theta-f
+  \quad\Longrightarrow\quad
+  3f=Mg\sin\theta.
+\]
+\[
+  \ans{\;f=\dfrac{1}{3}Mg\sin\theta\;}
+\]
+
+\subsection*{(2) 滑らずに転がる条件}
+摩擦力は静止摩擦の範囲になければならない。すなわち
+\[
+  f\le \mu N=\mu Mg\cos\theta.
+\]
+(1) の $f=\dfrac{1}{3}Mg\sin\theta$ を代入して
+\[
+  \frac{1}{3}Mg\sin\theta\le \mu Mg\cos\theta
+  \quad\Longrightarrow\quad
+  \tan\theta\le 3\mu.
+\]
+\[
+  \ans{\;\tan\theta\le 3\mu
+  \quad\Bigl(\text{すなわち}\ \mu\ge\dfrac{\tan\theta}{3}\Bigr)\;}
+\]
+
+\subsection*{(3) 重心の加速度の大きさ}
+並進の式 $M\alpha_G=2f$ に (1) の $f=\dfrac{1}{3}Mg\sin\theta$ を代入すると
+\[
+  M\alpha_G=2\cdot\frac{1}{3}Mg\sin\theta
+  \quad\Longrightarrow\quad
+  \alpha_G=\frac{2}{3}g\sin\theta.
+\]
+\[
+  \ans{\;\alpha_G=\dfrac{2}{3}g\sin\theta\;}
+\]
+
+\medskip
+検算: エネルギーから確認する。斜面に沿って重心が距離 $\ell$ だけ下ると，
+転がり条件 $v_G=a\omega$ のもとでエネルギー保存は
+\[
+  Mg\ell\sin\theta=\frac{1}{2}Mv_G^2+\frac{1}{2}I\omega^2
+  =\frac{1}{2}Mv_G^2+\frac{1}{2}\cdot\frac{1}{2}Ma^2\cdot\frac{v_G^2}{a^2}
+  =\frac{3}{4}Mv_G^2.
+\]
+ゆえに $v_G^2=\dfrac{4}{3}g\ell\sin\theta$。等加速度運動 $v_G^2=2\alpha_G\ell$ と
+比べると $\alpha_G=\dfrac{2}{3}g\sin\theta$ となり，(3) と一致する。
+また摩擦が無い場合（$f=0$）の純粋な滑り落ち $g\sin\theta$ より小さく，
+回転にエネルギーが配分される分だけ加速度が減ることとも整合する。✓
+
+\end{document}

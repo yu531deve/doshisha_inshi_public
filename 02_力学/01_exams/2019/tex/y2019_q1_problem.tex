@@ -1,0 +1,36 @@
+% AY2019 力学 第1問 転記（問題のみ）
+\section*{第1問〔I〕}
+
+質量 $M$ の太陽の周りを質量 $m$ の地球が公転する運動を考える。なお，地球は，
+図1で示される長径 $2a$，短径 $2b$ の楕円軌道上を反時計回りに公転するものとする。
+太陽の位置は，楕円の焦点 $O_1\,(x>0)$ にあり，太陽と地球の間の距離を $r$，$x$ 軸から
+測った角度を $\theta$ とする。ここで，太陽と地球には，万有引力のみが働くものとし，
+万有引力定数を $G$ とする。このとき，次の問い (1) および (2) に答えよ。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 点 $O_1$ まわりの地球の角運動量が保存されることを示せ。
+  \item 地球に関する動径方向（$r$ 方向）の運動方程式を求めよ。
+\end{enumerate}
+
+\begin{center}
+% 図1：中心O・長径2a短径2bの楕円。焦点O1(x>0)に太陽M、地球mは距離r・角θ
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \draw[->] (-3.6,0) -- (3.8,0) node[right] {$x$};
+  \draw[->] (0,-2.6) -- (0,2.8) node[above] {$y$};
+  \draw (0,0) ellipse (3 and 2);
+  \node[below left] at (0,0) {$O$};
+  \node[above left] at (0,2) {$b$};
+  \node[below] at (3,0) {$a$};
+  % 焦点 O1（c=sqrt(a^2-b^2)=2.236）
+  \coordinate (F) at (2.236,0);
+  \fill (F) circle (2.2pt);
+  \node[below] at (2.236,-0.05) {$O_1\ M$};
+  % 地球 m（φ=20°の楕円上の点）
+  \coordinate (P) at (2.819,0.684);
+  \fill (P) circle (1.3pt); \node[above right] at (P) {$m$};
+  \draw (F) -- (P); \node at (2.42,0.5) {$r$};
+  \draw (2.236+0.55,0) arc (0:49.6:0.55); \node at (2.95,0.27) {$\theta$};
+\end{tikzpicture}
+
+{\small 図 1}
+\end{center}

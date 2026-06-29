@@ -1,0 +1,69 @@
+% AY2014 材料力学 〔I〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2014/2014za.pdf
+% 要約: A, C点で支持されたはり（A-B-C-D, 各区間 L）。B点に剛体アームが固定され,
+%       アームは高さa上がって長さb右へ伸び, 先端E点に集中荷重P。
+%       縦弾性係数E, 断面二次モーメント Iz。断面は幅w・高さhの長方形。
+%       支持力, AD間のSFD/BMD, 最大曲げ応力と発生位置, B点・D点のたわみを問う。
+
+\section*{〔I〕}
+
+図1に示すように, A, C 点で支持されたはりの B 点に剛体アームが固定されている.
+剛体アームの先端 E 点に集中荷重 $P$ が負荷される場合, 次の問い (1)\,$\sim$\,(4) に答えよ.
+はりの縦弾性係数を $E$, 断面二次モーメントは $I_z$ とする.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  % はり本体（A=0, B=3, C=6, D=9）
+  \draw[line width=1.2pt] (0,0.12) -- (9,0.12);
+  \draw[line width=1.2pt] (0,-0.12) -- (9,-0.12);
+  % 座標軸
+  \draw[->] (0,0) -- (0,1.4) node[left]{$y$};
+  \draw[->] (0,0) -- (9.6,0) node[right]{$x$};
+  % ピン支持 A（ヒンジ円付き）
+  \draw[fill=white] (0,0) circle (3pt);
+  \draw (0,-0.12) -- (-0.45,-0.8) -- (0.45,-0.8) -- cycle;
+  % ピン支持 C
+  \draw (6,-0.12) -- (5.55,-0.8) -- (6.45,-0.8) -- cycle;
+  % 剛体アーム（B から上に a, 右に b, 先端 E）
+  \draw[line width=1.6pt] (3,0.12) -- (3,1.5) -- (4.6,1.5);
+  \node at (2.75,0.9) {$a$};
+  \node at (3.8,1.72) {$b$};
+  \node at (4.85,1.5) {$E$};
+  % 集中荷重 P（E点 下向き）
+  \draw[->,very thick] (4.6,2.6) -- (4.6,1.55) node[above]{$P$};
+  % 節点
+  \node at (0,-1.05) {A};
+  \node at (3,-0.45) {B};
+  \node at (6,-1.05) {C};
+  \node at (9,-0.45) {D};
+  % 寸法 L, L, L
+  \draw[<->] (0,-0.95) -- (3,-0.95) node[midway,fill=white]{$L$};
+  \draw[<->] (3,-0.6) -- (6,-0.6) node[midway,fill=white]{$L$};
+  \draw[<->] (6,-0.95) -- (9,-0.95) node[midway,fill=white]{$L$};
+\end{tikzpicture}
+
+\vspace{2mm}
+\begin{tikzpicture}[>=Latex,scale=0.9]
+  % 断面（幅w 高さh の長方形）
+  \draw[fill=gray!15] (-0.5,-0.8) rectangle (0.5,0.8);
+  \draw[->] (0,-0.8) -- (0,1.2) node[left]{$y$};
+  \draw[->] (0,0) -- (-1.4,0) node[above]{$z$};
+  \draw[<->] (-0.5,-1.05) -- (0.5,-1.05) node[midway,fill=white]{$w$};
+  \draw[<->] (0.7,-0.8) -- (0.7,0.8) node[midway,fill=white]{$h$};
+  \node at (0,-1.5) {断面};
+\end{tikzpicture}
+
+図1
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 支持点 A, C における支持力を求めよ.
+
+  \item はり AD 間のせん断力 $Q(x)$ と曲げモーメント $M(x)$ を求め,
+        せん断力図（SFD）と曲げモーメント図（BMD）を示せ.
+
+  \item はりの断面を, 幅 $w$, 高さ $h$ の長方形断面とした場合,
+        最大曲げ応力およびその発生位置の座標を求めよ.
+
+  \item はりの B 点および D 点におけるたわみを求めよ.
+\end{enumerate}

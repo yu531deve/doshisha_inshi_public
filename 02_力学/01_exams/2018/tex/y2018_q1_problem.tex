@@ -1,0 +1,42 @@
+% AY2018 力学 第1問 転記（問題のみ）
+\section*{第1問〔I〕}
+
+次の問い〔I〕および〔II〕に答えよ。なお，〔I〕の解答は解答用紙 (1) に，
+〔II〕の解答は解答用紙 (2) に記入せよ。
+
+\medskip
+図1のように，なめらかな水平面上を，質量 $m$ の質点 A が速さ $V$ で運動した後，
+ある地点で静止していた質量 $M$ の質点 B と衝突した。衝突後の質点 A の速度は
+$V_A$，質点 B の速度は $V_B$ であった。このとき，次の問い (1)〜(3) に答えよ。
+ここで衝突の前後で，運動量保存則，エネルギー保存則が成り立っているものとする。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 衝突前の系（A と B）の重心の速度を求めよ。
+  \item 系の重心からみた質点 A と質点 B の衝突前の速度を求めよ。
+  \item 系の重心からみた質点 A と質点 B の衝突前後の運動の軌跡の概形を描け。
+\end{enumerate}
+
+\begin{center}
+% 図1：衝突前（Aが速さVで右進）と衝突後（AはV_Aで上右、BはV_Bで下右）
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  % --- 衝突前 ---
+  \node at (0.4,1.6) {衝突前};
+  \draw (0.4,0.6) circle (0.26); \node[above] at (0.4,0.86) {$m$};
+  \node[below] at (0.4,0.34) {A};
+  \draw[->,thick] (0.8,0.6) -- (1.9,0.6) node[midway,above] {$V$};
+  % --- 衝突後 ---
+  \node at (6.0,1.9) {衝突後};
+  % A：上右へ
+  \draw (5.1,0.6) circle (0.26); \node[left] at (4.84,0.6) {A};
+  \draw[dashed] (5.3,0.78) -- (6.0,1.3);
+  \draw (6.2,1.45) circle (0.26);
+  \draw[->,thick] (6.4,1.62) -- (7.1,2.1) node[right] {$V_A$};
+  % B：下右へ（網掛け M）
+  \fill[gray!45] (5.35,0.2) circle (0.26); \node[below] at (5.35,-0.06) {B};
+  \node[right] at (5.65,0.45) {$M$};
+  \draw[dashed] (5.55,0.02) -- (6.3,-0.5);
+  \fill[gray!45] (6.5,-0.66) circle (0.26);
+  \draw[->,thick] (6.7,-0.84) -- (7.4,-1.32) node[right] {$V_B$};
+  \node at (4.0,-1.1) {図 1};
+\end{tikzpicture}
+\end{center}

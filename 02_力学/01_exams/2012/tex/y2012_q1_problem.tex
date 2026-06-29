@@ -1,0 +1,53 @@
+% AY2012 力学 第1問 転記（問題のみ・解答は置かない）
+\section*{第1問〔I〕}
+
+図1のように，質量がそれぞれ $m_A$，$m_B$ の質点 A，B をばねの両端に取り付け，
+滑らかな平面上に静かにおく。ばねの自然長は $L$，ばね定数は $k$ である。
+ばねと質点は $x$ 軸方向のみに運動し，ばねは曲がらないものとする。
+
+図2のように左から質点 A に速さ $v$ の小球が衝突したとき，質点 A に速さ $v_0$ の
+初速度が $x$ 軸正の向きに与えられた。小球が衝突した時刻を $t=0$ として，
+質点 A，B の運動について，以下の問いに答えよ。
+ただし，質点 A と B の $x$ 座標をそれぞれ $x_A$，$x_B$ とする。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 質点 A と B の運動方程式を立てよ。
+  \item $(x_B-x_A)$ が満足する時間発展方程式を導け。
+  \item $t$ 秒後の $(x_B-x_A)$ を求めよ。
+  \item $t$ 秒後の $x_A$ と $x_B$ を求めよ。
+\end{enumerate}
+
+\begin{center}
+% 図1：自然長で静止、左から速さ v の小球が接近
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \draw[->] (-3.6,0) -- (3.6,0) node[right] {$x$};
+  \foreach \x/\lab in {-1.5/{-\tfrac{L}{2}}, 0/O, 1.5/{\tfrac{L}{2}}}
+    \draw (\x,-0.08) -- (\x,0.08) node[below=3pt] {$\lab$};
+  % 入射小球と速さ v
+  \fill (-2.9,0.55) circle (3pt);
+  \draw[->,thick] (-2.6,0.55) -- (-1.9,0.55) node[midway,above] {$v$};
+  % ばねでつないだ A, B（開円）
+  \draw (-1.5,0.55) circle (2.7pt) node[above=3pt] {$m_A$};
+  \draw (1.5,0.55) circle (2.7pt) node[above=3pt] {$m_B$};
+  \draw[decorate,decoration={coil,segment length=4.5pt,amplitude=3.5pt}]
+        (-1.32,0.55) -- (1.32,0.55);
+  \node at (0,-0.85) {図1};
+\end{tikzpicture}
+
+\vspace{4mm}
+% 図2：t=0、小球が A に衝突し A に速さ v0（+x向き）が与えられた瞬間
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \draw[->] (-3.6,0) -- (3.6,0) node[right] {$x$};
+  \foreach \x/\lab in {-1.5/{-\tfrac{L}{2}}, 0/O, 1.5/{\tfrac{L}{2}}}
+    \draw (\x,-0.08) -- (\x,0.08) node[below=3pt] {$\lab$};
+  % 小球が A に接触
+  \fill (-1.72,0.55) circle (3pt);
+  \draw (-1.5,0.55) circle (2.7pt) node[above=3pt] {$m_A$};
+  \draw (1.5,0.55) circle (2.7pt) node[above=3pt] {$m_B$};
+  \draw[decorate,decoration={coil,segment length=4.5pt,amplitude=3.5pt}]
+        (-1.32,0.55) -- (1.32,0.55);
+  % A に与えられた速さ v0
+  \draw[->,thick] (-1.2,0.95) -- (-0.5,0.95) node[midway,above] {$v_0$};
+  \node at (0,-0.85) {図2};
+\end{tikzpicture}
+\end{center}

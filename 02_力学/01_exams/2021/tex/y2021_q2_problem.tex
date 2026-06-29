@@ -1,0 +1,24 @@
+% AY2021 力学 第2問 転記（問題のみ）
+\section*{第2問〔II〕}
+
+極座標表示で $r=Ae^{\theta(t)}$ と表される軌道上を，角速度 $\dot{\theta}$ 一定で運動する
+質点がある。以下の問い (1) および (2) に答えよ。ただし，$\dot{\theta}$ は $d\theta/dt$ を
+表し，$A$ は正の定数，$\theta(t)$ は図に示すように $x$ 軸から反時計まわりに測った角度
+とする。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item $0\le\theta\le2\pi$ の範囲で，$xy$ 平面上にこの質点の運動の概形を描け。
+  \item この質点の速度の大きさを求めよ。
+\end{enumerate}
+
+\begin{center}
+% 図：xy平面で x軸から反時計まわりに測った角 θ(t)（動径は破線）
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \draw[->] (-0.4,0) -- (3.6,0) node[right] {$x$};
+  \draw[->] (0,-0.4) -- (0,2.6) node[above] {$y$};
+  \draw[dashed] (0,0) -- (3.1,1.55);
+  \draw (1.0,0) arc (0:26.6:1.0); \node at (1.35,0.3) {$\theta(t)$};
+  \node[below left] at (0,0) {$O$};
+  \node at (2.0,-0.55) {図};
+\end{tikzpicture}
+\end{center}

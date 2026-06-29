@@ -1,0 +1,60 @@
+% AY2018 材料力学 〔I〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2018/2018za.pdf
+% 要約: 並列配置された棒\textcircled{1}(A1,E1)と棒\textcircled{2}(A2,E2)。固体壁Aでピン支持された剛体棒の右端Dに
+%       外力P(上向き)。剛体棒と棒\textcircled{1},\textcircled{2}はピン支持で連結, 棒\textcircled{1}\textcircled{2}は下端でもピン支持で伸縮のみ。
+%       棒\textcircled{1}\textcircled{2}の長さは共に4L。剛体棒上の位置: A-B=L, B-C=2L, C-D=4L（A-D=7L）。
+%       棒\textcircled{1}はB点, 棒\textcircled{2}はC点で剛体棒に連結。
+%       (1) 内力N1,N2, (2) 変位λ1,λ2。
+
+\section*{〔I〕}
+
+図1に示すように並列配置された棒\textcircled{1}と棒\textcircled{2}に固体壁 A でピン支持された剛体棒の右端 D に
+外力 $P$ を負荷する. 棒の断面積および縦弾性係数（ヤング率）は図中に示す.
+剛体棒と棒\textcircled{1}, 棒\textcircled{2}はピン支持で連結されている. 棒\textcircled{1}, 棒\textcircled{2}は下端においてもピン支持され,
+伸縮のみが生じるものとする. 棒\textcircled{1}, \textcircled{2}の長さは共に $4L$ とする.
+次の問い (1) および (2) に答えよ.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=0.95]
+  % 左壁
+  \draw[thick] (0,-0.2) -- (0,4.6);
+  \foreach \y in {-0.1,0.2,...,4.55} {\draw (0,\y) -- (-0.26,\y+0.26);}
+  % 地面
+  \draw[thick] (-0.2,0) -- (7.6,0);
+  \foreach \x in {0.0,0.3,...,7.5} {\draw (\x,0) -- (\x-0.22,-0.22);}
+  % 剛体棒（A-D, 上部 y=4）
+  \draw[line width=1.6pt] (0,4) -- (7,4);
+  % 縦棒\textcircled{1}（B=1, 4L）, 棒\textcircled{2}（C=3, 4L）
+  \draw (0.85,0) rectangle (1.15,4);
+  \foreach \y in {0.2,0.5,...,3.8} {\draw (0.85,\y) -- (1.15,\y+0.15);}
+  \draw (2.85,0) rectangle (3.15,4);
+  \foreach \y in {0.2,0.5,...,3.8} {\draw (2.85,\y) -- (3.15,\y+0.15);}
+  % ピン（A, B, C 上部, および 棒下端）
+  \foreach \p in {(0,4),(1,4),(3,4),(1,0),(3,0)} {\draw[fill=white] \p circle (2.6pt);}
+  % 節点ラベル
+  \node[below] at (0,3.85) {A}; \node[below] at (1,3.85) {B};
+  \node[below] at (3,3.85) {C}; \node[below right] at (7,3.95) {D};
+  % 外力 P（D点 上向き）
+  \draw[->,very thick] (7,4) -- (7,5.3) node[above]{$P$};
+  % 寸法 4L（左, 縦）
+  \draw[<->] (0.45,0) -- (0.45,4) node[midway,fill=white]{$4L$};
+  % 上部寸法 L, 2L, 4L, 7L
+  \draw[<->] (0,4.45) -- (1,4.45) node[midway,fill=white,font=\scriptsize]{$L$};
+  \draw[<->] (1,4.45) -- (3,4.45) node[midway,fill=white,font=\scriptsize]{$2L$};
+  \draw[<->] (3,4.45) -- (7,4.45) node[midway,fill=white,font=\scriptsize]{$4L$};
+  \draw[<->] (0,5.05) -- (7,5.05) node[midway,fill=white]{$7L$};
+  % ラベル
+  \node[right,font=\footnotesize] at (1.2,2.6) {棒\textcircled{1}\,$(A_1,E_1)$};
+  \node[right,font=\footnotesize] at (3.2,1.4) {棒\textcircled{2}\,$(A_2,E_2)$};
+  \node[right] at (4.6,3.7) {\footnotesize 剛体棒};
+\end{tikzpicture}
+
+\vspace{1mm}
+図1
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 棒\textcircled{1}と棒\textcircled{2}に生じる内力 $N_1$, $N_2$ を求めよ.
+
+  \item 棒\textcircled{1}と棒\textcircled{2}の変位 $\lambda_1$, $\lambda_2$ を求めよ.
+\end{enumerate}

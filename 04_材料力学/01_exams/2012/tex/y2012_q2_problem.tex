@@ -1,0 +1,47 @@
+% AY2012 材料力学 〔II〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2012/2012za.pdf
+% 要約: 上端を固定された板厚 t 一定の台形板（上端幅 b2, 下端幅 b1）の
+%       引張り変形。座標 x の原点は棒の下端 B 点。自重は無視。
+%       下端 B に引張荷重 P。A(x), N(x)/σ(x), 全体の伸び λ を問う。
+
+\section*{〔II〕}
+
+図に示す上端を固定された板厚一定の台形板（上端と下端の幅 $b_2$, $b_1$）の
+引張り変形に関する問いに答えよ. 自重は無視せよ. 座標 $x$ の原点を棒の下端 B 点にとるものとする.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  % 台形板（上が広い b2, 下が狭い b1）。原点 B は下端。
+  \def\Hh{5}      % 長さ L
+  \def\Wt{2.4}    % 上端半幅
+  \def\Wb{0.5}    % 下端半幅
+  \draw[thick] (-\Wt,\Hh) -- (\Wt,\Hh) -- (\Wb,0) -- (-\Wb,0) -- cycle;
+  % 上端固定（ハッチング）
+  \draw[pattern=north east lines] (-\Wt-0.2,\Hh) rectangle (\Wt+0.2,\Hh+0.25);
+  % 上端幅 b2
+  \draw[<->] (-\Wt,\Hh+0.55) -- (\Wt,\Hh+0.55) node[midway,fill=white]{幅 $b_2$};
+  % 下端幅 b1
+  \draw[<->] (-\Wb,-0.5) -- (\Wb,-0.5) node[midway,fill=white,font=\scriptsize]{幅 $b_1$};
+  % 板厚 t
+  \node at (0,\Hh*0.62) {板厚 $t$};
+  % 座標 x における幅 b(x)
+  \draw[<->] (-1.25,1.8) -- (1.25,1.8) node[midway,fill=white,font=\scriptsize]{幅 $b(x)$};
+  % 長さ L 寸法
+  \draw[<->] (-\Wt-0.9,0) -- (-\Wt-0.9,\Hh) node[midway,fill=white]{$L$};
+  % 座標 x（下端 B から上向き）
+  \draw[->] (\Wt+0.6,0) -- (\Wt+0.6,2.2) node[above]{$x$};
+  % 節点ラベル
+  \node at (\Wt+0.35,\Hh) {A};
+  \node at (-0.7,-0.15) {B};
+  % 荷重 P
+  \draw[->,very thick] (0,-0.55) -- (0,-1.8) node[midway,right]{$P$};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 座標 $x$ における断面積 $A(x)$ を求めよ.
+
+  \item 荷重 $P$ により座標 $x$ に生じる内力 $N(x)$ および応力 $\sigma(x)$ を求めよ.
+
+  \item 棒全体の変位（伸び）$\lambda$ を求めよ.
+\end{enumerate}

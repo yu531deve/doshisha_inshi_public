@@ -1,0 +1,32 @@
+% AY2019 力学 第2問 転記（問題のみ）
+\section*{第2問〔II〕}
+
+図2のように質量 $M$，慣性モーメント $Ma^2/2$，半径 $a$ の円板の周りに糸を巻きつけ，
+糸の一端を固定して円板を落下させると，円板は反時計回りに回転し始めた。円板の重心 P は
+$x$ 軸上に沿うものとする。ここで，鉛直下向きを $x$ 軸の正の向きとし，糸の張力を $T$，
+重力加速度の大きさを $g$ とする。このとき，次の問い (1)〜(3) に答えよ。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 円板の重心 P の運動方程式を求めよ。
+  \item 円板の角運動量の単位時間あたりの変化量の大きさを求めよ。
+  \item 円板の重心 P の加速度の大きさを求めよ。
+\end{enumerate}
+
+\begin{center}
+% 図2：天井に固定した糸を巻いた円板が落下。x軸=鉛直下向き正、重心P、半径a
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  % 天井
+  \fill[pattern=north east lines] (-0.4,3.0) rectangle (3.4,3.18);
+  \draw (-0.4,3.0) -- (3.4,3.0);
+  % 糸（右端で円板に接し鉛直に垂れる）
+  \draw (2.0,3.0) -- (2.0,0);
+  % 円板
+  \draw (1.0,0) circle (1.0);
+  \fill (1.0,0) circle (1.3pt); \node[left] at (0.9,0) {P};
+  \draw[dashed] (1.0,0) -- (2.0,0); \node[above] at (1.5,0.0) {$a$};
+  % x軸（鉛直下向き正）
+  \draw[->] (1.0,1.7) -- (1.0,-2.2) node[below] {$x$};
+\end{tikzpicture}
+
+{\small 図 2}
+\end{center}

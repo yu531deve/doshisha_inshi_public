@@ -1,0 +1,30 @@
+% AY2024 力学 第1問 転記（問題のみ）
+\section*{第1問〔I〕}
+
+図1のように，ばね定数 $k\,(k>0)$ のばねの一端を壁に固定し，他端に質量 $m$ の物体を
+取り付け，なめらかで水平な床の上においた。ばねが自然長のときの物体の重心位置を
+$x$ 軸の原点（$x=0$）とする。ばねを自然長から $x$ 方向正の向きに $L\,(L>0)$ だけ
+伸ばし静かに手を離したところ，物体は $x$ 軸上を速度に比例する空気抵抗を受けながら
+運動を始めた。このとき，次の問い (1) および (2) に答えよ。ここで，空気抵抗の比例
+定数を $B\,(B>0)$ とする。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 物体に関する運動方程式を求めよ。
+  \item 物体が往復運動せず，時間と共に原点に近づく条件を求めよ。
+\end{enumerate}
+
+\begin{center}
+% 図1：壁に固定したばねにつないだ質量m（なめらかな床）。x=0が自然長
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \draw (-0.2,0) -- (5.2,0);                      % 床
+  \fill[pattern=north east lines] (-0.45,0) rectangle (0,1.3);
+  \draw (0,0) -- (0,1.3);                          % 壁
+  \draw[decorate,decoration={coil,segment length=5pt,amplitude=4pt}]
+        (0,0.55) -- (2.0,0.55);                     % ばね
+  \draw (2.0,0.1) rectangle (3.0,1.0);             % 物体
+  \draw[->] (0,-0.45) -- (5.2,-0.45) node[right] {$x$};
+  \draw[dashed] (2.5,0.1) -- (2.5,-0.45);
+  \node[below] at (2.5,-0.45) {$x=0$};
+  \node at (4.6,0.55) {図 1};
+\end{tikzpicture}
+\end{center}

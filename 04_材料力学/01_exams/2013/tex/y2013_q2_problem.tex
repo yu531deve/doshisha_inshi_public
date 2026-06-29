@@ -1,0 +1,57 @@
+% AY2013 材料力学 〔II〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2013/2013za.pdf
+% 要約: 円管（外径8d, 内径6d, 縦弾性係数E, 熱膨張係数2α）と
+%       テーパ棒（壁面側直径2d, 剛体板側直径d, 縦弾性係数2E, 熱膨張係数α）
+%       からなる組合せ棒。壁と剛体板に固定（長さL）。添字1=円管, 2=テーパ棒。
+%       (1) 右端剛体板に外力P → N1,N2, σ1(x),σ2(x), σ2max, 変位λ。
+%       (2) Pを除き温度ΔT上昇 → 熱応力 NT1,NT2, σT1(x),σT2(x), σT2max, 変位λT。
+
+\section*{〔II〕}
+
+図に示すように円管（外径 $8d$, 内径 $6d$, 縦弾性係数 $E$）と
+テーパ棒（壁面直径 $2d$, 剛体板側直径 $d$, 縦弾性係数 $2E$）からなる
+組合せ棒が壁と剛体板に固定されているとき, 次の問い (1) および (2) に答えよ.
+ただし, 組合せ棒の自重は無視する. 自由体を図示し, 力のつり合い式を示すこと.
+添字 1 は円管, 添字 2 はテーパ棒を示す.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  % 壁（左端）
+  \draw[thick] (0,-2.2) -- (0,2.2);
+  \foreach \y in {-2.1,-1.8,...,2.15} {\draw (0,\y) -- (-0.28,\y+0.28);}
+  % 剛体板（右端）
+  \draw[line width=2pt] (6,-2.2) -- (6,2.2);
+  % 円管（外径8d/内径6d, 一定）: 上下の帯
+  \fill[pattern=north east lines] (0,1.5) rectangle (6,2.0);
+  \fill[pattern=north east lines] (0,-2.0) rectangle (6,-1.5);
+  \draw (0,1.5) -- (6,1.5); \draw (0,2.0) -- (6,2.0);
+  \draw (0,-1.5) -- (6,-1.5); \draw (0,-2.0) -- (6,-2.0);
+  % テーパ棒（直径 2d → d, 中心軸対称）
+  \draw[thick] (0,0.5) -- (6,0.25) -- (6,-0.25) -- (0,-0.5) -- cycle;
+  % 外力 P（剛体板を右へ）
+  \draw[->,very thick] (6,0) -- (7.4,0) node[right]{$P$};
+  % 長さ L
+  \draw[<->] (0,2.35) -- (6,2.35) node[midway,fill=white]{$L$};
+  % 直径 2d（壁面側）
+  \draw[<->] (0.7,-0.5) -- (0.7,0.5) node[midway,fill=white,font=\scriptsize]{直径 $2d$};
+  % 直径 d（剛体板側）
+  \draw[<->] (5.3,-0.25) -- (5.3,0.25) node[midway,fill=white,font=\scriptsize]{直径 $d$};
+  % 座標 x
+  \draw[->] (0,-2.45) -- (1.3,-2.45) node[right]{$x$};
+  % ラベル
+  \node[align=left] at (1.3,1.2) {\footnotesize テーパ棒\\ \footnotesize $2E,\ \alpha$};
+  \node[align=left,anchor=west] at (4.0,2.75) {\footnotesize 円管\\ \footnotesize 外径 $8d$, 内径 $6d$, $E,\ 2\alpha$};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 右端の剛体板に外力 $P$ を加えた場合, 円管とテーパ棒に生じる内力
+        $N_1$ と $N_2$, 応力 $\sigma_1(x)$ と $\sigma_2(x)$, $\sigma_2(x)$ の
+        最大値 $\sigma_{2\max}$, 組合せ棒の変位 $\lambda$ を求めよ.
+
+  \item 外力 $P$ を除き, 温度を $\Delta T$ だけ上昇させた. このとき円管と
+        テーパ棒に生じる内力 $N_{T1}$ と $N_{T2}$, 熱応力 $\sigma_{T1}(x)$ と
+        $\sigma_{T2}(x)$, $\sigma_{T2}(x)$ の最大値 $\sigma_{T2\max}$,
+        組合せ棒の変位 $\lambda_T$ を求めよ. ただし, 円管とテーパ棒の
+        熱膨張係数は, それぞれ $2\alpha$ と $\alpha$ とする.
+\end{enumerate}

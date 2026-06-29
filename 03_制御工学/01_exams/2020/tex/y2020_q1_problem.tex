@@ -1,0 +1,60 @@
+% AY2020 制御工学 第1問〔I〕（転記）
+% 出典: 03_制御工学/original/03_制御工学/2020/2020se.pdf
+% 要約: 台車質量 m（x2）と入力端 x1 の間に, 直列バネ k1-k2 と並列ダンパ d。
+%       運動方程式・伝達関数、ステップ応答・最大値、合成入力応答。
+
+\section*{第1問〔I〕}
+
+図1の系に関する次の問い (1)〜(4) に答えよ. なお, 質量 $m$, 粘性係数 $d$, バネ定数 $k_1$,
+$k_2$ とし, $x_1(t)$ は系への入力となる位置変位, $x_2(t)$ は質量の位置変位を表す.
+また, 初期状態において系は静止しており, ダッシュポットの動作速度に比例した粘性抵抗が
+生じるものとする.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  % 質量 m（台車, 変位 x2）
+  \draw[thick,fill=gray!12] (0,0.6) rectangle (1.2,2.2);
+  \node at (0.6,1.4) {$m$};
+  \draw[thick,fill=white] (0.3,0.45) circle (0.15);
+  \draw[thick,fill=white] (0.9,0.45) circle (0.15);
+  % 地面
+  \draw[thick] (-0.2,0.3) -- (1.6,0.3);
+  \foreach \x in {-0.1,0.1,...,1.5} \draw[thick] (\x,0.3) -- (\x-0.2,0.1);
+  % x2(t)
+  \draw[->,thick] (0.3,2.45) -- (1.0,2.45);
+  \node at (0.55,2.75) {$x_2(t)$};
+  % 直列バネ k1, k2（上段 y=1.6）
+  \draw[thick,decorate,decoration={zigzag,segment length=7,amplitude=4}] (1.2,1.6) -- (2.6,1.6);
+  \node at (1.9,2.0) {$k_1$};
+  \fill (2.6,1.6) circle (1.6pt);
+  \draw[thick,decorate,decoration={zigzag,segment length=7,amplitude=4}] (2.6,1.6) -- (4.0,1.6);
+  \node at (3.3,2.0) {$k_2$};
+  % ダンパ d（下段 y=0.95）
+  \draw[thick] (1.2,0.95) -- (1.55,0.95);
+  \draw[thick] (1.55,0.73) rectangle (2.0,1.17);
+  \draw[thick] (1.8,0.95) -- (4.3,0.95);
+  \node at (1.95,0.5) {$d$};
+  % 入力端（連結棒）
+  \draw[thick] (4.0,1.6) -- (4.3,1.6) -- (4.3,0.95);
+  \draw[thick] (4.3,1.6) -- (4.3,2.2);
+  \draw[thick,fill=white] (4.3,0.95) circle (0.06);
+  % x1(t)
+  \draw[->,thick] (4.3,2.2) -- (5.0,2.2);
+  \node at (4.55,2.5) {$x_1(t)$};
+  \node at (2.6,-0.05) {\small 図1};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 系の運動方程式を求めたうえで, 入力を $x_1(t)$, 出力を $x_2(t)$ として伝達関数を求めよ.
+
+  \item 各パラメータを $m=1$, $d=2$, $k_1=2$, $k_2=2$, 入力として $x_1(t)$ にステップ入力を
+        与えたときの応答 $x_2(t)$ を求めよ. また, $x_2(t)$ の最大値とその発生時間を求めよ.
+
+  \item 各パラメータを $m=1$, $d=2$, $k_1=2$, $k_2=4$, 入力 $x_1(t)=1(t)+e^{-t}$ を与えた
+        （ただし, $t<0$ のとき $x_1(t)=0$）. このときの $x_2(t)$ を求めたうえで,
+        充分な時間が経過した後の値を答えよ.
+
+  \item 各パラメータを $m=2$, $d=0$, $k_1=1$, $k_2=2$, 入力として $x_1(t)$ にステップ入力を
+        与えたときの応答 $x_2(t)$ を求めよ.
+\end{enumerate}

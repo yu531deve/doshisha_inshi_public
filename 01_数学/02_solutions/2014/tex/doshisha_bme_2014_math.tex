@@ -1,0 +1,331 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\title{2014年度 (AY2014) 同志社大学大学院 生命医科学研究科\\
+医工学コース 入学試験問題「数学」解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+%======================================================================
+\section*{第1問}
+
+\subsection*{前提整理}
+
+\[
+A=\begin{pmatrix}a&b&c&0\\0&1&0&0\\0&f&g&h\\0&0&1&0\end{pmatrix}
+\qquad(a,b,c,f,g,h\neq0)
+\]
+の逆行列を求める.まず正則性を確認し,掃き出し法で $A^{-1}$ を構成する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 行列式（正則性）.}
+第1列が $(a,0,0,0)^\top$ なので第1列で展開し,続けて小行列式を展開すると
+\[
+\det A=a\begin{vmatrix}1&0&0\\f&g&h\\0&1&0\end{vmatrix}
+=a\cdot\Bigl(1\cdot\begin{vmatrix}g&h\\1&0\end{vmatrix}\Bigr)
+=a(0-h)=-ah\neq0.
+\]
+よって $A$ は正則.
+
+\paragraph{Step 2: 各列の像から $A^{-1}$ を読む.}
+$A^{-1}=(\vx_1\ \vx_2\ \vx_3\ \vx_4)$ を $A\vx_j=\bm{e}_j$ で定める.
+$A$ の作用は
+\[
+A\begin{pmatrix}p\\q\\r\\s\end{pmatrix}
+=\begin{pmatrix}ap+bq+cr\\ q\\ fq+gr+hs\\ r\end{pmatrix}
+\]
+なので,右辺を $\bm{e}_j$ に等しいとおいて順に解くと
+\[
+q=(\text{第2成分}),\quad r=(\text{第4成分}),\quad
+s=\frac{(\text{第3成分})-fq-gr}{h},\quad
+p=\frac{(\text{第1成分})-bq-cr}{a}.
+\]
+これを 4 本の $\bm{e}_j$ について実行すれば各列が定まる.
+\[
+\ans{\
+A^{-1}=\begin{pmatrix}
+\dfrac{1}{a}&-\dfrac{b}{a}&0&-\dfrac{c}{a}\\[4pt]
+0&1&0&0\\[4pt]
+0&-\dfrac{f}{h}&\dfrac{1}{h}&-\dfrac{g}{h}\\[4pt]
+0&0&1&0
+\end{pmatrix}\ }
+\]
+
+検算:$A A^{-1}=I$.例えば第1行第1列は $a\cdot\frac1a=1$,
+第3行第2列は $f\cdot1+g\cdot0+h\cdot(-\frac fh)=f-f=0$ となり単位行列に一致.$\checkmark$
+
+%======================================================================
+\section*{第2問}
+
+\subsection*{前提整理}
+
+\[
+\Delta=\begin{vmatrix}x&a&1&b\\a&x&1&b\\a&b&1&x\\a&b&1&c\end{vmatrix}
+=(a-x)(b-x)(c-x)
+\]
+を示す.行列式は「ある行を他の行から引いても値が変わらない」性質を使い,
+隣り合う行の差をとって零成分を作る.
+
+\subsection*{証明}
+
+\paragraph{Step 1: 行の差をとる.}
+上から $R_1\to R_1-R_2$,$R_2\to R_2-R_3$,$R_3\to R_3-R_4$ とすると
+\[
+\Delta=\begin{vmatrix}
+x-a&a-x&0&0\\
+0&x-b&0&b-x\\
+0&0&0&x-c\\
+a&b&1&c
+\end{vmatrix}.
+\]
+（各差で第3列の $1$ は消え,第1・2・4列に因子が現れる.）
+
+\paragraph{Step 2: 共通因子をくくり出す.}
+第1行は $(x-a)(1,-1,0,0)$,第2行は $(x-b)(0,1,0,-1)$,第3行は $(x-c)(0,0,0,1)$
+と書けるので,各行から共通因子をくくり出して
+\[
+\Delta=(x-a)(x-b)(x-c)\,
+\begin{vmatrix}
+1&-1&0&0\\
+0&1&0&-1\\
+0&0&0&1\\
+a&b&1&c
+\end{vmatrix}.
+\]
+
+\paragraph{Step 3: 残りの行列式を計算する.}
+第3行は $(0,0,0,1)$.第 $(3,4)$ 成分で展開すると符号は $(-1)^{3+4}=-1$ で
+\[
+\begin{vmatrix}1&-1&0&0\\0&1&0&-1\\0&0&0&1\\a&b&1&c\end{vmatrix}
+=-1\cdot\begin{vmatrix}1&-1&0\\0&1&0\\a&b&1\end{vmatrix}
+=-1\cdot 1=-1.
+\]
+（$3$ 次の行列式は第3列で展開すれば $1\cdot\begin{vmatrix}1&-1\\0&1\end{vmatrix}=1$.）
+したがって
+\[
+\Delta=(x-a)(x-b)(x-c)\cdot(-1)=-(x-a)(x-b)(x-c)=(a-x)(b-x)(c-x).
+\]
+よって与式は成り立つ.$\qquad\blacksquare$
+
+検算:$x=a$ とおくと第1行と第2行が等しくなり $\Delta=0$,右辺も $(a-x)=0$ で $0$.
+同様に $x=b,\ x=c$ でも両辺 $0$.また $a=0,b=0,c=0$ の数値代入で両辺一致する.$\checkmark$
+
+%======================================================================
+\section*{第3問}
+
+\subsection*{前提整理}
+
+\[
+B=\begin{pmatrix}1&0&1\\-2&2&2\\0&2&4\end{pmatrix}
+\]
+の固有値と固有ベクトルを求める.特性方程式を解く.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 固有値.}
+第1行で展開すると
+\[
+\det(B-\lambda I)
+=(1-\lambda)\bigl[(2-\lambda)(4-\lambda)-4\bigr]+\bigl[(-2)(2)-0\bigr]
+=-\lambda(\lambda-2)(\lambda-5).
+\]
+よって $\lambda=0,\ 2,\ 5$.
+
+\paragraph{Step 2: 固有ベクトル.}
+各 $(B-\lambda I)\vv=\vzero$ を解く.
+
+\smallskip
+\noindent$\lambda=0$:\ $v_1+v_3=0,\ 2v_2+4v_3=0$ より
+$\vv=\begin{pmatrix}-1\\-2\\1\end{pmatrix}$.
+
+\noindent$\lambda=2$:\ $-v_1+v_3=0,\ 2v_2+2v_3=0$ より
+$\vv=\begin{pmatrix}1\\-1\\1\end{pmatrix}$.
+
+\noindent$\lambda=5$:\ $-4v_1+v_3=0,\ 2v_2-v_3=0$ より
+$\vv=\begin{pmatrix}1\\2\\4\end{pmatrix}$.
+\[
+\ans{\
+(\lambda,\vv)=\Bigl(0,\ \begin{psmallmatrix}-1\\-2\\1\end{psmallmatrix}\Bigr),\
+\Bigl(2,\ \begin{psmallmatrix}1\\-1\\1\end{psmallmatrix}\Bigr),\
+\Bigl(5,\ \begin{psmallmatrix}1\\2\\4\end{psmallmatrix}\Bigr)\ (\text{各定数倍})\ }
+\]
+
+検算:$\lambda=5$ で
+$B\begin{psmallmatrix}1\\2\\4\end{psmallmatrix}
+=\begin{psmallmatrix}5\\10\\20\end{psmallmatrix}=5\begin{psmallmatrix}1\\2\\4\end{psmallmatrix}$.
+また固有値の和 $0+2+5=7=\operatorname{tr}B$.$\checkmark$
+
+%======================================================================
+\section*{第4問}
+
+\subsection*{前提整理}
+
+$\displaystyle\int_0^1 x^{-a}\,dx$ を $a$ で場合分けする.$x=0$ で被積分関数が
+発散しうるので,広義積分として $\varepsilon\to+0$ の極限で扱う.
+
+\subsection*{計算}
+
+\paragraph{$a\neq1$ のとき.}
+\[
+\int_\varepsilon^1 x^{-a}\,dx=\Bigl[\frac{x^{1-a}}{1-a}\Bigr]_\varepsilon^1
+=\frac{1-\varepsilon^{1-a}}{1-a}.
+\]
+$a<1$ なら $1-a>0$ で $\varepsilon^{1-a}\to0$,収束して $\dfrac{1}{1-a}$.
+$a>1$ なら $1-a<0$ で $\varepsilon^{1-a}\to+\infty$,発散する.
+
+\paragraph{$a=1$ のとき.}
+$\displaystyle\int_\varepsilon^1\frac{dx}{x}=-\log\varepsilon\to+\infty$ で発散.
+\[
+\ans{\
+\int_0^1 x^{-a}\,dx=
+\begin{cases}
+\dfrac{1}{1-a} & (a<1),\\[6pt]
++\infty\ (\text{発散}) & (a\ge1).
+\end{cases}\ }
+\]
+
+検算:$a=\frac12$ なら $\dfrac{1}{1-1/2}=2$,実際
+$\int_0^1 x^{-1/2}dx=[2\sqrt x]_0^1=2$ と一致.$\checkmark$
+
+%======================================================================
+\section*{第5問}
+
+\subsection*{前提整理}
+
+$x=ar\sin\theta\cos\phi,\ y=br\sin\theta\sin\phi,\ z=cr\cos\theta$ の
+ヤコビアン $J=\dfrac{\partial(x,y,z)}{\partial(r,\theta,\phi)}$ を求める.
+これは標準球座標を各軸方向に $a,b,c$ 倍したものである.
+
+\subsection*{計算}
+
+\paragraph{Step 1: ヤコビ行列を書く.}
+\[
+\frac{\partial(x,y,z)}{\partial(r,\theta,\phi)}
+=\begin{pmatrix}
+a\sin\theta\cos\phi & ar\cos\theta\cos\phi & -ar\sin\theta\sin\phi\\
+b\sin\theta\sin\phi & br\cos\theta\sin\phi & br\sin\theta\cos\phi\\
+c\cos\theta & -cr\sin\theta & 0
+\end{pmatrix}.
+\]
+
+\paragraph{Step 2: 因子をくくり行列式を計算する.}
+各行から $a,b,c$ を,各列から $1,r,r$ をくくり出すと係数 $abc\cdot r^2$ が出て,
+残りは標準球座標のヤコビ行列式 $\sin\theta$ になる:
+\[
+J=abc\,r^2\,
+\det\!\begin{pmatrix}
+\sin\theta\cos\phi & \cos\theta\cos\phi & -\sin\theta\sin\phi\\
+\sin\theta\sin\phi & \cos\theta\sin\phi & \sin\theta\cos\phi\\
+\cos\theta & -\sin\theta & 0
+\end{pmatrix}
+=abc\,r^2\sin\theta.
+\]
+\[
+\ans{\ J=\dfrac{\partial(x,y,z)}{\partial(r,\theta,\phi)}=abc\,r^2\sin\theta\ }
+\]
+
+検算:$a=b=c=1$ とおくと通常の球座標のヤコビアン $r^2\sin\theta$ に一致する.$\checkmark$
+
+%======================================================================
+\section*{第6問}
+
+\subsection*{前提整理}
+
+上半楕円体 $D:\ \dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}+\dfrac{z^2}{c^2}\le1,\ z\ge0$ 上で
+$\displaystyle\iiint_D z\,dx\,dy\,dz$ を求める.第5問の変数変換を利用する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 単位球へ変換する.}
+$x=a\xi,\ y=b\eta,\ z=c\zeta$ とすると $dxdydz=abc\,d\xi d\eta d\zeta$,
+領域は上半単位球 $\xi^2+\eta^2+\zeta^2\le1,\ \zeta\ge0$.被積分は $z=c\zeta$ ゆえ
+\[
+\iiint_D z\,dV=abc\cdot c\iiint_{\zeta\ge0,\,|\cdot|\le1}\zeta\,d\xi d\eta d\zeta
+=abc^2\iiint_{\text{上半単位球}}\zeta\,dV.
+\]
+
+\paragraph{Step 2: 上半単位球で積分する.}
+球座標 $\zeta=\rho\cos\psi$,$dV=\rho^2\sin\psi\,d\rho d\psi d\phi$
+（$0\le\rho\le1,\ 0\le\psi\le\frac\pi2,\ 0\le\phi\le2\pi$）で
+\[
+\iiint\zeta\,dV
+=\int_0^{2\pi}\!\!d\phi\int_0^{\pi/2}\!\!\cos\psi\sin\psi\,d\psi\int_0^1\!\rho^3 d\rho
+=2\pi\cdot\frac12\cdot\frac14=\frac{\pi}{4}.
+\]
+
+\paragraph{Step 3: まとめる.}
+\[
+\ans{\ \iiint_D z\,dx\,dy\,dz=\frac{\pi}{4}\,abc^2\ }
+\]
+
+検算:$a=b=c=1$ なら上半単位球での $\iiint z\,dV=\frac{\pi}{4}$ に帰着し,上の値と一致.$\checkmark$
+
+%======================================================================
+\section*{第7問}
+
+\subsection*{前提整理}
+
+$f(x,y)=x^3-3xy+y^3$ の極値を調べる.停留点を求め,Hesse 行列で判定する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 停留点.}
+\[
+f_x=3x^2-3y=0,\quad f_y=-3x+3y^2=0
+\ \Rightarrow\ y=x^2,\ x=y^2.
+\]
+代入して $x=x^4$,すなわち $x(x^3-1)=0$ より $x=0$ または $x=1$.
+停留点は $(0,0)$ と $(1,1)$.
+
+\paragraph{Step 2: Hesse 行列で判定.}
+$f_{xx}=6x,\ f_{yy}=6y,\ f_{xy}=-3$,判別式 $D=f_{xx}f_{yy}-f_{xy}^2=36xy-9$.
+\[
+(0,0):\ D=-9<0\ \Rightarrow\ \text{鞍点(極値でない)},
+\]
+\[
+(1,1):\ D=27>0,\ f_{xx}=6>0\ \Rightarrow\ \text{極小}.
+\]
+極小値は $f(1,1)=1-3+1=-1$.
+\[
+\ans{\ (x,y)=(1,1)\ \text{で極小値}\ f=-1\ (\text{点}(0,0)\text{は鞍点で極値なし})\ }
+\]
+
+検算:$(1,1)$ 近傍で $f(1+s,1+t)=-1+3(s^2-st+t^2)+\cdots$,
+$3(s^2-st+t^2)=3\bigl((s-\tfrac t2)^2+\tfrac34 t^2\bigr)\ge0$ より確かに極小.$\checkmark$
+
+%======================================================================
+\section*{第8問}
+
+\subsection*{前提整理}
+
+$f(x,y)=e^{x+y^2}$ の原点まわりの Maclaurin 展開を,全次数 $3$ 次の項まで求める.
+$y^2$ は $2$ 次なので,次数勘定に注意して $e^u$（$u=x+y^2$）を展開する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: $e^u$ を展開し $u=x+y^2$ を代入.}
+\[
+e^{x+y^2}=1+(x+y^2)+\frac{(x+y^2)^2}{2}+\frac{(x+y^2)^3}{6}+\cdots.
+\]
+
+\paragraph{Step 2: 全次数 $\le3$ の項だけ残す.}
+$x$ は $1$ 次,$y^2$ は $2$ 次として勘定する.
+\[
+(x+y^2)^2=x^2+2xy^2+y^4,\quad (x+y^2)^3=x^3+\cdots
+\]
+のうち $\le3$ 次は $x^2,\ 2xy^2$（$y^4$ は $4$ 次で除外）,$x^3$ のみ.よって
+\[
+\ans{\
+e^{x+y^2}=1+x+y^2+\frac{x^2}{2}+xy^2+\frac{x^3}{6}+(\text{4次以上})\ }
+\]
+
+検算:$y=0$ とおくと $e^x=1+x+\frac{x^2}{2}+\frac{x^3}{6}+\cdots$ に一致.
+また $x=0$ とおくと $e^{y^2}=1+y^2+\cdots$ で $y^2$ の係数 $1$ も一致.$\checkmark$
+
+\end{document}

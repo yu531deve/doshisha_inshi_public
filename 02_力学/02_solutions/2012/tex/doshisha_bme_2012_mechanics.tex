@@ -1,0 +1,183 @@
+% AY2012 力学 解答例
+% 体裁・粒度は 参考/ のPDFに揃える（行間を埋め、最終解答は \ans{} で boxed）。
+% 解答・数値・問題は本年度過去問から自力で導いた（東大版は体裁の手本のみ）。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\title{力学 AY2012 解答例（専門基礎科目）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+質量 $m_A$，$m_B$ の質点 A，B を自然長 $L$・ばね定数 $k$ のばねでつなぎ，
+滑らかな水平面上で $x$ 軸方向のみに運動させる。$t=0$ で質点 A に $x$ 軸正向きの
+初速 $v_0$ を与える。初期に系は静止しており，平衡位置は
+$x_A(0)=-\tfrac{L}{2}$，$x_B(0)=+\tfrac{L}{2}$（ばねは自然長）である。
+
+\subsection*{(1) 運動方程式}
+ばねの現在の長さは $x_B-x_A$ であり，自然長からの伸びは $(x_B-x_A)-L$ である。
+伸びているとき（$x_B-x_A>L$）ばねは A を $+x$ 方向へ，B を $-x$ 方向へ引く。
+復元力の符号に注意して
+\begin{align*}
+  &\therefore\quad m_A\ddot{x}_A = +k\bigl[(x_B-x_A)-L\bigr],\\
+  &\therefore\quad m_B\ddot{x}_B = -k\bigl[(x_B-x_A)-L\bigr].
+\end{align*}
+\[
+  \ans{\;
+    m_A\ddot{x}_A = k\bigl[(x_B-x_A)-L\bigr],\quad
+    m_B\ddot{x}_B = -k\bigl[(x_B-x_A)-L\bigr]\;}
+\]
+
+\subsection*{(2) $(x_B-x_A)$ の時間発展方程式}
+$s\equiv x_B-x_A$ とおく。(1) の両式をそれぞれ $m_A$，$m_B$ で割って差をとると
+\begin{align*}
+  \ddot{s}=\ddot{x}_B-\ddot{x}_A
+  &= -\frac{k(s-L)}{m_B}-\frac{k(s-L)}{m_A}
+   = -k\!\left(\frac{1}{m_A}+\frac{1}{m_B}\right)(s-L).
+\end{align*}
+換算質量 $\mu$ を $\dfrac{1}{\mu}=\dfrac{1}{m_A}+\dfrac{1}{m_B}$，
+固有角振動数を $\omega\equiv\sqrt{\dfrac{k}{\mu}}
+=\sqrt{k\!\left(\dfrac{1}{m_A}+\dfrac{1}{m_B}\right)}
+=\sqrt{\dfrac{k(m_A+m_B)}{m_A m_B}}$ で定めると，
+$r\equiv s-L$ について
+\[
+  \ans{\;\ddot{r}=-\omega^2 r,\qquad
+  \omega=\sqrt{\dfrac{k(m_A+m_B)}{m_A m_B}}\;}
+\]
+すなわち相対座標は角振動数 $\omega$ の単振動に従う。
+
+\subsection*{(3) $t$ 秒後の $(x_B-x_A)$}
+初期条件は，$t=0$ でばねが自然長だから $s(0)=L$，
+よって $r(0)=0$。また $\dot{s}(0)=\dot{x}_B(0)-\dot{x}_A(0)=0-v_0=-v_0$。
+$r=A\sin\omega t+B\cos\omega t$ に代入すると $B=0$，$A\omega=-v_0$ より $A=-v_0/\omega$。
+\begin{align*}
+  r(t)=-\frac{v_0}{\omega}\sin\omega t
+  \quad\therefore\quad
+  x_B-x_A = L+r = L-\frac{v_0}{\omega}\sin\omega t.
+\end{align*}
+\[
+  \ans{\;x_B-x_A = L-\dfrac{v_0}{\omega}\sin\omega t,\qquad
+  \omega=\sqrt{\dfrac{k(m_A+m_B)}{m_A m_B}}\;}
+\]
+
+\subsection*{(4) $t$ 秒後の $x_A$ と $x_B$}
+外力がないので全運動量は保存し，重心は等速で動く。全質量 $M=m_A+m_B$，
+重心速度と初期重心位置は
+\begin{align*}
+  V_G=\frac{m_A v_0}{M},\qquad
+  X_G(0)=\frac{m_A(-\frac{L}{2})+m_B(\frac{L}{2})}{M}
+        =\frac{(m_B-m_A)L}{2M},
+\end{align*}
+ゆえに $X_G(t)=X_G(0)+V_G t$。重心と相対座標 $s=x_B-x_A$ から各座標を復元すると
+\begin{align*}
+  x_A &= X_G-\frac{m_B}{M}\,s,\qquad
+  x_B  = X_G+\frac{m_A}{M}\,s.
+\end{align*}
+$s=L-\dfrac{v_0}{\omega}\sin\omega t$ を代入して定数項を整理すると
+（$X_G(0)-\frac{m_B}{M}L=-\frac{L}{2}$，$X_G(0)+\frac{m_A}{M}L=+\frac{L}{2}$）
+\begin{align*}
+  x_A(t) &= -\frac{L}{2}+\frac{m_A v_0}{M}\,t
+            +\frac{m_B v_0}{M\omega}\sin\omega t,\\
+  x_B(t) &= +\frac{L}{2}+\frac{m_A v_0}{M}\,t
+            -\frac{m_A v_0}{M\omega}\sin\omega t.
+\end{align*}
+\[
+  \ans{\;
+  x_A=-\dfrac{L}{2}+\dfrac{m_A v_0}{M}t+\dfrac{m_B v_0}{M\omega}\sin\omega t,\quad
+  x_B=+\dfrac{L}{2}+\dfrac{m_A v_0}{M}t-\dfrac{m_A v_0}{M\omega}\sin\omega t\;}
+\]
+（$M=m_A+m_B$，$\omega=\sqrt{k(m_A+m_B)/(m_A m_B)}$。）
+
+\medskip
+検算: $t=0$ で $x_A=-\frac{L}{2}$，$x_B=+\frac{L}{2}$，
+$\dot{x}_A(0)=\frac{m_A v_0}{M}+\frac{m_B v_0}{M}=v_0$，$\dot{x}_B(0)=0$ となり，
+初期条件と一致。また $m_A\dot{x}_A+m_B\dot{x}_B=m_A v_0$（一定）で運動量保存も成立。✓
+
+% ==================================================================
+\clearpage
+\section*{第2問〔II〕}
+
+質量 $m$ の放射線粒子が速さ $V$ で，原点に静止する質量 $M$ の原子核に入射する。
+衝突後，粒子は $x$ 軸と $\theta$ をなす向きに速さ $v$，原子核は $x$ 軸と $\phi$ を
+なす向きに速さ $u$ で進む。衝突は弾性的（運動エネルギー保存）とする。
+
+\subsection*{(1) 保存則}
+運動量の $x$，$y$ 成分とエネルギーの保存より
+\begin{align*}
+  &\text{運動量 }x:\quad mV = m v\cos\theta + M u\cos\phi,\\
+  &\text{運動量 }y:\quad 0 = m v\sin\theta - M u\sin\phi,\\
+  &\text{エネルギー}:\quad \tfrac{1}{2}mV^2 = \tfrac{1}{2}m v^2 + \tfrac{1}{2}M u^2.
+\end{align*}
+\[
+  \ans{\;
+  \begin{aligned}
+    &mV = m v\cos\theta + M u\cos\phi,\quad
+     0 = m v\sin\theta - M u\sin\phi,\\
+    &\tfrac{1}{2}mV^2 = \tfrac{1}{2}m v^2 + \tfrac{1}{2}M u^2
+  \end{aligned}\;}
+\]
+
+\subsection*{(2) 正面衝突 $(\phi=0)$ のときの $u$}
+$\phi=0$ では散乱も一直線上（$\theta=0$）となり，$x$ 軸上の 1 次元弾性衝突になる。
+運動量とエネルギーの保存は，散乱後の粒子速度を $v'$ として
+\begin{align*}
+  mV = m v' + M u,\qquad
+  mV^2 = m v'^2 + M u^2.
+\end{align*}
+第1式より $v'=V-\dfrac{M}{m}u$。第2式へ代入すると
+\begin{align*}
+  mV^2 &= m\!\left(V-\frac{M}{m}u\right)^{\!2}+M u^2
+   = mV^2-2MVu+\frac{M^2}{m}u^2+M u^2\\
+  &\therefore\quad 0=-2MVu+M u^2\!\left(\frac{M}{m}+1\right)
+   = Mu\!\left[-2V+\frac{M+m}{m}u\right].
+\end{align*}
+$u\neq0$ より
+\[
+  \ans{\;u=\dfrac{2m}{M+m}\,V\;}
+\]
+
+\subsection*{(3) $M=m$ のとき：$u$ と最大エネルギー}
+$M=m$ とすると (1) の三式は質量が約せて
+\begin{align*}
+  V = v\cos\theta + u\cos\phi,\qquad
+  0 = v\sin\theta - u\sin\phi,\qquad
+  V^2 = v^2 + u^2.
+\end{align*}
+$\theta$ を消去するため，第1式を $v\cos\theta=V-u\cos\phi$，
+第2式を $v\sin\theta=u\sin\phi$ として両辺を二乗して加えると
+\begin{align*}
+  v^2 &= (V-u\cos\phi)^2+(u\sin\phi)^2
+       = V^2-2Vu\cos\phi+u^2.
+\end{align*}
+これをエネルギー保存 $v^2=V^2-u^2$ と等置して $v$ を消去すると
+\begin{align*}
+  V^2-u^2 &= V^2-2Vu\cos\phi+u^2
+  \;\therefore\; 2u^2=2Vu\cos\phi
+  \;\therefore\; u=V\cos\phi\quad(u\neq0).
+\end{align*}
+\[
+  \ans{\;u=V\cos\phi\;}
+\]
+中性子から陽子（質量 $m$）に与えられるエネルギーは
+$E=\tfrac{1}{2}m u^2=\tfrac{1}{2}mV^2\cos^2\phi$ であり，
+$\phi=0$（正面衝突）で最大となる。
+\[
+  \ans{\;E_{\max}=\tfrac{1}{2}mV^2\;}
+\]
+これは入射運動エネルギーそのもので，等質量の正面弾性衝突では中性子が静止し，
+全エネルギーが陽子へ移る（だから水素を多く含む物質は中性子の減速材として有効）。
+
+\medskip
+検算: (2) で $M=m$ とすると $u=\frac{2m}{2m}V=V$，
+これは (3) で $\phi=0$ とした $u=V\cos0=V$ と一致。
+また (3) のエネルギー $E=\frac12 mV^2\cos^2\phi$ は $\phi=0$ で $\frac12 mV^2$，
+$\phi=\frac{\pi}{2}$ で $0$ となり，物理的に妥当。✓
+
+\end{document}

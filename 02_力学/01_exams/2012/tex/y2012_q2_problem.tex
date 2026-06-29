@@ -1,0 +1,60 @@
+% AY2012 力学 第2問 転記（問題のみ・解答は置かない）
+\section*{第2問〔II〕}
+
+ガンマ線などの放射線は，生体内部の原子に束縛された電子や原子核を跳ね飛ばし，
+分子構造を変化させて細胞等に損傷を与える。放射線が質量 $m$ の粒子であり，
+速さ $V$ で入射してきたとして，次の問いに答えよ。
+
+図3のように放射線粒子が入射する向きに $x$ 軸，それと直角に $y$ 軸をとり，
+質量 $M$ の原子核を原点に置く。衝突後，入射放射線粒子は $x$ 軸と $\theta$ の角を
+なす向きに速さ $v$ で進み，跳ね飛ばされた原子核は，$x$ 軸と $\phi$ の角をなす向きに
+速さ $u$ で進む。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 衝突前後の運動量の保存を表す式と，エネルギーの保存を表す式を記せ。
+  \item 図4のように放射線粒子と原子核が正面衝突（$\phi=0$）するとき，
+        原子核が跳ね飛ばされた後の速さ $u$ を $m$，$M$ と $V$ で表す式を導け。
+  \item 放射線粒子として中性子が生体内分子中の陽子と衝突する場合，$M=m$ としてよい。
+        (1) で導いた三つの式に現れる全ての質量が同じであるとして，$\theta$ と $v$ を
+        消去して $u$ を $\phi$ と $V$ で表す式を導け。
+        中性子から陽子に与えられる最大のエネルギーはいくらか。
+\end{enumerate}
+
+\begin{center}
+% 図3：2次元散乱（入射 m,V → 散乱 m,v(角θ) と 反跳 M,u(角φ)）
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \draw[->] (-3.4,0) -- (3.2,0) node[right] {$x$};
+  \draw[->] (0,-2.1) -- (0,2.3) node[above] {$y$};
+  % 原点の原子核
+  \draw (0,0) circle (2.7pt);
+  \node at (-0.28,-0.28) {$M$};
+  % 入射粒子 m, V
+  \draw (-2.9,0) circle (2.7pt) node[above=2pt] {$m$};
+  \draw[->,thick] (-2.6,0) -- (-1.2,0) node[midway,above] {$V$};
+  % 散乱粒子 m, v（角θ）
+  \draw[->,thick] (0.18,0.12) -- (2.45,1.55);
+  \draw (2.45,1.55) circle (2.7pt) node[above=1pt] {$m$};
+  \node at (2.75,1.35) {$v$};
+  % 反跳原子核 M, u（角φ）
+  \draw[->,thick] (0.18,-0.12) -- (2.05,-1.4);
+  \draw (2.05,-1.4) circle (2.7pt) node[above right=-2pt] {$M$};
+  \node at (1.95,-1.75) {$u$};
+  \draw (0.62,0) arc (0:32:0.62) ; \node at (0.95,0.27) {$\theta$};
+  \draw (0.78,0) arc (0:-34:0.78); \node at (1.12,-0.34) {$\phi$};
+  \node at (0,-2.55) {図3};
+\end{tikzpicture}
+
+\vspace{3mm}
+% 図4：正面衝突（φ=0）。入射 m,V → 反跳 M,u（同一直線上）
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \draw (-2.6,0) circle (2.7pt) node[above=2pt] {$m$};
+  \draw[->,thick] (-2.3,0) -- (-1.05,0) node[midway,above] {$V$};
+  % 衝突点（m が M に接触）
+  \draw (-0.55,0) circle (2.7pt);
+  \draw[fill=white] (-0.78,0) circle (2.7pt);
+  % 反跳原子核 M, u
+  \draw (1.9,0) circle (2.7pt) node[above=2pt] {$M$};
+  \draw[->,thick] (2.2,0) -- (3.4,0) node[midway,above] {$u$};
+  \node at (0.4,-0.55) {図4};
+\end{tikzpicture}
+\end{center}

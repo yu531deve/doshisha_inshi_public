@@ -1,0 +1,29 @@
+% AY2018 力学 第2問 転記（問題のみ）
+\section*{第2問〔II〕}
+
+図2のように，質量 $M$，慣性モーメント $I$，半径 $a$ の球 S がなめらかな床の上に
+おいてあり，球の重心 G から高さ $h$ の場所を棒で突いた。棒で突いた瞬間に働く力積を
+$P$ とし，球の重心の速度は $v_0$，球の角速度は $\omega_0$ であった。このとき，次の
+問い (1)〜(3) に答えよ。ここで，球の密度は一様であり，球と棒は剛体である。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 球 S の重心の運動量と重心のまわりの角運動量を，力積 $P$ を用いて表せ。
+  \item 角速度 $\omega_0$ を，$M$，$v_0$，$h$，$I$ を用いて表せ。
+  \item 球 S の慣性モーメントが $\dfrac{2}{5}Ma^2$ となることを示せ。
+\end{enumerate}
+
+\begin{center}
+% 図2：床上の球S（半径a,重心G）を、Gから高さhの位置で棒が水平に突く
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \draw (-1.6,-1.2) -- (3.0,-1.2);                 % 床
+  \draw (0,0) circle (1.2);                          % 球
+  \fill (0,0) circle (1.3pt); \node[below right] at (0,0) {$G$};
+  \node at (-0.95,0.85) {S};
+  % 棒（水平、高さhで接触）
+  \draw[line width=1.4pt] (-0.5,0.7) -- (2.6,0.7); \node[above] at (2.3,0.7) {棒};
+  % G を通る水平破線と高さ h
+  \draw[dashed] (0,0) -- (2.3,0);
+  \draw[<->] (2.3,0) -- (2.3,0.7); \node[right] at (2.3,0.35) {$h$};
+  \node at (2.6,-1.0) {図 2};
+\end{tikzpicture}
+\end{center}

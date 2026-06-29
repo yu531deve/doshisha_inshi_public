@@ -1,0 +1,135 @@
+% AY2023 力学 解答例
+% 体裁・粒度は 参考/ のPDFに揃える（行間を埋め、最終解答は \ans{} で boxed）。
+% 解答・数値・問題は本年度過去問から自力で導いた（東大版は体裁の手本のみ）。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\title{力学 AY2023 解答例（専門基礎科目）}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ==================================================================
+\section*{第1問〔I〕}
+
+中心力 $F$ のみを受けて運動する質量 $m$ の質点を考える。中心力とは，常に
+原点（力の中心）を向く（または原点から外向きの）力であり，動径 $\bm{r}$ に
+平行な力である。平面極座標 $(r,\theta)$ を用い，動径方向の単位ベクトルを
+$\bm{e}_r$，周方向の単位ベクトルを $\bm{e}_\theta$ とする。中心力は
+$\bm{F}=F\,\bm{e}_r$ と書ける（$F$ は外向きを正とするスカラー）。
+
+\subsection*{(1) 角運動量の保存}
+原点まわりの角運動量を $\bm{L}=\bm{r}\times m\dot{\bm{r}}$ と定義する。
+時間微分すると，
+\begin{align*}
+  \frac{d\bm{L}}{dt}
+   = \frac{d}{dt}\bigl(\bm{r}\times m\dot{\bm{r}}\bigr)
+   = \dot{\bm{r}}\times m\dot{\bm{r}}
+     + \bm{r}\times m\ddot{\bm{r}}.
+\end{align*}
+第1項は同じベクトル同士の外積だから $\dot{\bm{r}}\times m\dot{\bm{r}}=\bm{0}$。
+また運動方程式 $m\ddot{\bm{r}}=\bm{F}$ を用い，さらに中心力は
+$\bm{F}=F\bm{e}_r$ で $\bm{r}=r\bm{e}_r$ に平行だから，
+\begin{align*}
+  \frac{d\bm{L}}{dt}
+   = \bm{r}\times\bm{F}
+   = (r\bm{e}_r)\times(F\bm{e}_r)
+   = rF\,(\bm{e}_r\times\bm{e}_r)
+   = \bm{0}.
+\end{align*}
+これは原点まわりの力のモーメント（トルク）が $0$ であることを意味する。
+ゆえに
+\[
+  \ans{\;\frac{d\bm{L}}{dt}=\bm{r}\times\bm{F}=\bm{0}
+  \quad\Longrightarrow\quad \bm{L}=\text{一定（角運動量は保存）}\;}
+\]
+すなわち中心力のみが働くとき，質点の角運動量は保存される。
+
+\subsection*{(2) $r$ 方向の運動方程式}
+平面極座標における位置ベクトルは $\bm{r}=r\,\bm{e}_r$。単位ベクトルの
+時間微分は $\dot{\bm{e}}_r=\dot\theta\,\bm{e}_\theta$，
+$\dot{\bm{e}}_\theta=-\dot\theta\,\bm{e}_r$ である。これより速度と加速度は
+\begin{align*}
+  \dot{\bm{r}} &= \dot r\,\bm{e}_r + r\dot{\bm{e}}_r
+              = \dot r\,\bm{e}_r + r\dot\theta\,\bm{e}_\theta,\\
+  \ddot{\bm{r}} &= \ddot r\,\bm{e}_r + \dot r\dot{\bm{e}}_r
+              + (\dot r\dot\theta + r\ddot\theta)\bm{e}_\theta
+              + r\dot\theta\,\dot{\bm{e}}_\theta\\
+  &= (\ddot r - r\dot\theta^2)\,\bm{e}_r
+   + (r\ddot\theta + 2\dot r\dot\theta)\,\bm{e}_\theta.
+\end{align*}
+運動方程式 $m\ddot{\bm{r}}=F\bm{e}_r$ の $\bm{e}_r$ 成分をとると，
+\[
+  \ans{\;m\bigl(\ddot r - r\dot\theta^2\bigr)=F\;}
+\]
+左辺の $-mr\dot\theta^2$ は遠心力に対応する項である。
+
+\subsection*{(3) $\theta$ 方向の運動方程式}
+同じ運動方程式 $m\ddot{\bm{r}}=F\bm{e}_r$ の $\bm{e}_\theta$ 成分をとる。
+中心力には周方向成分がないから右辺は $0$ であり，
+\[
+  \ans{\;m\bigl(r\ddot\theta + 2\dot r\dot\theta\bigr)=0\;}
+\]
+
+\medskip
+検算: (3) の左辺に $r$ を掛けると
+$m(r^2\ddot\theta+2r\dot r\dot\theta)=\dfrac{d}{dt}\bigl(mr^2\dot\theta\bigr)$
+となり，これが $0$ である。$mr^2\dot\theta$ は角運動量の大きさ $L$ に等しいから，
+$\dfrac{dL}{dt}=0$ すなわち (1) の角運動量保存と一致する。✓
+
+% ==================================================================
+\clearpage
+\section*{第2問〔II〕}
+
+長さ $2a$，質量 $M$ の一様な棒の下端を粗い面上の点 A に置き，鉛直となす角を
+$\theta$ にして静止させたのち静かに手を離す。棒は下端 A を支点として倒れこむ
+回転運動を始める。重心 G は棒の中点にあり，A から距離 $a$ の位置にある。
+重力加速度の大きさを $g$，時計回りのトルクを正とする。
+
+\subsection*{(1) 点 A まわりのトルク}
+棒に働く外力のうち回転に寄与するのは重心 G に作用する重力 $Mg$（鉛直下向き）
+である（支点 A での抗力・摩擦力は A まわりのモーメントが $0$）。
+重心 G は A から棒に沿って距離 $a$ にあり，棒は鉛直から角 $\theta$ 傾いている
+ので，G の A に対する水平方向の距離（重力の作用線と A の距離，すなわち
+腕の長さ）は $a\sin\theta$ である。重力は棒を倒す向き（時計回り）に働くから，
+A まわりのトルク $N$ は正で
+\[
+  \ans{\;N = Mga\sin\theta\;}
+\]
+
+\subsection*{(2) 面に接する直前の角速度}
+棒が倒れて面に接する直前には棒は水平になっている。エネルギー保存則を用いる
+（支点 A はすべらず動かないので，抗力・摩擦力は仕事をしない）。
+
+重心 G の高さは，傾き角が $\theta$ のとき $h_1=a\cos\theta$（A を高さの基準に
+とる），水平に倒れた直前には $h_2=0$ である。したがって重心の下降量は
+$\Delta h = h_1-h_2 = a\cos\theta$ である。
+
+最初は静止（角速度 $0$），面に接する直前の角速度を $\omega$ とする。点 A
+まわりの慣性モーメントが $I$ のとき，回転の運動エネルギーは $\frac12 I\omega^2$
+である。重力による位置エネルギーの減少が回転の運動エネルギーに変わるから，
+\begin{align*}
+  \frac{1}{2}I\omega^2 &= Mg\,\Delta h = Mga\cos\theta.
+\end{align*}
+これを $\omega$ について解くと（$\omega>0$ をとる）
+\[
+  \ans{\;\omega = \sqrt{\dfrac{2Mga\cos\theta}{I}}\;}
+\]
+
+\medskip
+検算: 一様な棒の端 A まわりの慣性モーメントは
+$I=\dfrac{1}{3}M(2a)^2=\dfrac{4}{3}Ma^2$ である。これを代入すると
+\[
+  \omega=\sqrt{\frac{2Mga\cos\theta}{\frac{4}{3}Ma^2}}
+        =\sqrt{\frac{3g\cos\theta}{2a}}
+\]
+となり，質量 $M$ によらず棒の長さと角度のみで決まる。$\theta\to 0$（はじめ
+ほぼ鉛直）では $\omega\to\sqrt{3g/2a}$ と最大に近づき，$\theta\to\pi/2$
+（はじめほぼ水平）では落差 $a\cos\theta\to0$ より $\omega\to0$ となって，
+いずれも物理的に妥当である。✓
+
+\end{document}

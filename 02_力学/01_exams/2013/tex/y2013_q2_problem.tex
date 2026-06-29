@@ -1,0 +1,24 @@
+% AY2013 力学 第2問 転記（問題のみ）
+\section*{第2問〔II〕}
+
+極座標表示で $r=Ae^{k\theta(t)}$ と表される軌道上を，角速度 $\omega$ 一定で運動する
+質点がある。(1)〜(3) に答えよ。ただし $A$，$k$ は正の定数とし，$\theta$ は図に示す
+角度である。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item $0\le\theta\le2\pi$ の範囲で，$x$-$y$ 平面上にこの質点の運動の概形を描け。
+  \item この質点の $r$ 方向，$\theta$ 方向の速度成分 $v_r$，$v_\theta$ を求めよ。
+  \item この質点の $r$ 方向，$\theta$ 方向の加速度成分 $a_r$，$a_\theta$ を求めよ。
+\end{enumerate}
+
+\begin{center}
+% 図：xy平面における位置ベクトル r と x軸となす角 θ
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \draw[->] (-0.4,0) -- (3.6,0) node[right] {$x$};
+  \draw[->] (0,-0.4) -- (0,3.0) node[above] {$y$};
+  \draw[->,thick] (0,0) -- (3.1,1.75) node[above right] {$r$};
+  \draw (0.95,0) arc (0:29.4:0.95);
+  \node at (1.25,0.27) {$\theta$};
+  \node[below left] at (0,0) {$O$};
+\end{tikzpicture}
+\end{center}

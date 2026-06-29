@@ -1,0 +1,27 @@
+% AY2023 力学 第2問 転記（問題のみ）
+\section*{第2問〔II〕}
+
+図2のように，長さ $2a$，質量 $M$ の一様な棒の一端を粗い面上の点 A につけ，鉛直と
+$\theta$ の角をなすように立て静止させたのち，静かに手を離したところ，棒は点 A を中心に
+回転しはじめた。このとき，次の問い (1) および (2) に答えよ。ここで，重力加速度の
+大きさを $g$ とし，棒の下端はすべらないとする。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 点 A のまわりのトルクを求めよ。ここで，時計回りのトルクの向きを正とする。
+  \item 点 A のまわりの棒の慣性モーメントを $I$ とすると，棒が倒れて面に接する直前の
+        角速度を求めよ。
+\end{enumerate}
+
+\begin{center}
+% 図2：粗い面上の点Aに下端を置いた棒。鉛直（破線）とθの角で立つ
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \draw (-1.6,0) -- (2.6,0);                       % 面
+  \fill[pattern=north east lines] (-1.6,-0.22) rectangle (2.6,0);
+  \coordinate (A) at (0,0);
+  \fill (A) circle (1.3pt); \node[above left] at (A) {A};
+  \draw[dashed] (A) -- (0,2.5);                    % 鉛直
+  \draw[line width=2pt] (A) -- (1.45,2.23);        % 棒（鉛直からθ）
+  \draw (0,1.4) arc (90:57:1.4); \node at (0.42,1.5) {$\theta$};
+  \node at (1.9,-0.55) {図 2};
+\end{tikzpicture}
+\end{center}

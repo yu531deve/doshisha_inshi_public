@@ -1,0 +1,139 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\title{2022年度 (AY2022) 同志社大学大学院 生命医科学研究科\\
+医工学コース 入学試験問題「数学」解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+%======================================================================
+\section*{第1問}
+
+\subsection*{前提整理}
+
+$\sinh(x^2+y)$ の Maclaurin 展開を全次数 $3$ 次まで求める.
+$u=x^2+y$ とおき $\sinh u=u+\dfrac{u^3}{6}+\cdots$ を用いる（$x^2$ は $2$ 次,$y$ は $1$ 次）.
+
+\subsection*{計算}
+
+$\sinh u=u+\dfrac{u^3}{6}+\cdots$ に $u=x^2+y$ を代入する.
+$u=x^2+y$ はそのまま($\le3$ 次),$u^3=(x^2+y)^3$ の $\le3$ 次は $y^3$ のみ
+（$3x^2y^2$ 以降は $4$ 次以上）.よって
+\[
+\ans{\
+\sinh(x^2+y)=y+x^2+\frac{y^3}{6}+(\text{4次以上})\ }
+\]
+
+検算:$x=0$ で $\sinh y=y+\dfrac{y^3}{6}+\cdots$ に一致.
+$y=0$ で $\sinh(x^2)=x^2+\cdots$ の $x^2$ 係数 $1$ も一致.$\checkmark$
+
+%======================================================================
+\section*{第2問}
+
+\subsection*{前提整理}
+
+球 $D:\ x^2+y^2+z^2\le a^2$ 上で $\displaystyle\iiint_D y^2\,dV$ を求める.
+対称性を使い,球座標で計算する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 対称性で簡約する.}
+$x,y,z$ の対称性から $\iiint_D x^2=\iiint_D y^2=\iiint_D z^2$ なので
+\[
+\iiint_D y^2\,dV=\frac13\iiint_D(x^2+y^2+z^2)\,dV=\frac13\iiint_D r^2\,dV.
+\]
+
+\paragraph{Step 2: 球座標で積分する.}
+$dV=r^2\sin\theta\,drd\theta d\phi$ より
+\[
+\iiint_D r^2\,dV
+=\int_0^{2\pi}\!\!d\phi\int_0^{\pi}\!\!\sin\theta\,d\theta\int_0^{a}r^4\,dr
+=2\pi\cdot2\cdot\frac{a^5}{5}=\frac{4\pi a^5}{5}.
+\]
+したがって
+\[
+\ans{\ \iiint_D y^2\,dx\,dy\,dz=\frac13\cdot\frac{4\pi a^5}{5}=\frac{4\pi a^5}{15}\ }
+\]
+
+検算:$3$ 成分の和 $\iiint(x^2+y^2+z^2)=3\cdot\frac{4\pi a^5}{15}=\frac{4\pi a^5}{5}$ が
+$\iiint r^2$ と一致する.$\checkmark$
+
+%======================================================================
+\section*{第3問}
+
+\subsection*{前提整理}
+
+$\vv_1=(1,0,1,0)^\top,\ \vv_2=(0,1,1,0)^\top,\ \vv_3=(2,0,0,1)^\top,\ \vv_4=(1,1,1,1)^\top$
+の1次独立性を判定し,独立なら Gram--Schmidt で正規直交化する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 1次独立の判定.}
+$4$ ベクトルを列にもつ行列の行列式は
+\[
+\det\begin{pmatrix}1&0&2&1\\0&1&0&1\\1&1&0&1\\0&0&1&1\end{pmatrix}=-3\neq0.
+\]
+よって $4$ ベクトルは\textbf{1次独立}（$\R^4$ の基底）である.
+
+\paragraph{Step 2: Gram--Schmidt.}
+直交化を順に行う:
+\[
+\begin{aligned}
+\vu_1&=\vv_1,&\|\vu_1\|^2&=2,\\
+\vu_2&=\vv_2-\frac{\vv_2\cdot\vu_1}{2}\vu_1=\bigl(-\tfrac12,1,\tfrac12,0\bigr)^\top,&\|\vu_2\|^2&=\tfrac32,\\
+\vu_3&=\vv_3-\vu_1+\tfrac23\vu_2=\bigl(\tfrac23,\tfrac23,-\tfrac23,1\bigr)^\top,&\|\vu_3\|^2&=\tfrac73,\\
+\vu_4&=\vv_4-\vu_1-\tfrac23\vu_2-\tfrac57\vu_3=\bigl(-\tfrac17,-\tfrac17,\tfrac17,\tfrac27\bigr)^\top,&\|\vu_4\|^2&=\tfrac17.
+\end{aligned}
+\]
+正規化して
+\[
+\ans{\
+\bm{e}_1=\frac{(1,0,1,0)^\top}{\sqrt2},\
+\bm{e}_2=\frac{(-1,2,1,0)^\top}{\sqrt6},\
+\bm{e}_3=\frac{(2,2,-2,3)^\top}{\sqrt{21}},\
+\bm{e}_4=\frac{(-1,-1,1,2)^\top}{\sqrt7}\ }
+\]
+
+検算:各 $\|\bm{e}_i\|=1$,かつ任意の $i\neq j$ で $\bm{e}_i\cdot\bm{e}_j=0$
+（例:$\bm{e}_3\cdot\bm{e}_4=\frac{1}{\sqrt{147}}(-2-2-2+6)=0$）.正規直交系をなす.$\checkmark$
+
+%======================================================================
+\section*{第4問}
+
+\subsection*{前提整理}
+
+\[
+A=\begin{pmatrix}a&1&0\\0&a&0\\0&0&b\end{pmatrix}
+\]
+の対角化可能性を判定する.固有値ごとに固有空間の次元を調べる.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 固有値.}
+上三角なので固有値は対角成分 $a$（重複度 $2$）と $b$.
+
+\paragraph{Step 2: $\lambda=a$ の固有空間.}
+\[
+A-aI=\begin{pmatrix}0&1&0\\0&0&0\\0&0&b-a\end{pmatrix}.
+\]
+$b\neq a$ のとき $\operatorname{rank}(A-aI)=2$ なので幾何的重複度は $3-2=1$,
+代数的重複度 $2$ に満たない.
+$b=a$ のときも $A-aI=\begin{psmallmatrix}0&1&0\\0&0&0\\0&0&0\end{psmallmatrix}$ で
+$\operatorname{rank}=1$,幾何的重複度 $2<3$.
+
+\paragraph{Step 3: 判定.}
+いずれの場合も $\lambda=a$ に対する1次独立な固有ベクトルが重複度ぶん取れない
+（左上に Jordan 細胞 $\begin{psmallmatrix}a&1\\0&a\end{psmallmatrix}$ を含む）ので
+\[
+\ans{\ A\ \text{は対角化}\textbf{不可能}\ }
+\]
+
+検算:$a=2,b=5$ とすると $A-2I$ の核は $\operatorname{Span}\{(1,0,0)^\top\}$ の $1$ 次元のみで,
+固有値 $2$ の固有ベクトルが $1$ 本しか取れず,対角化に必要な $3$ 本に満たない.$\checkmark$
+
+\end{document}

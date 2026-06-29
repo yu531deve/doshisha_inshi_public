@@ -1,0 +1,23 @@
+# LaTeX 中間物
+build/
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+# Python
+__pycache__/
+*.pyc
+# OS
+.DS_Store
+# 参考/（東大版の手本データは重いので追跡しない。README のみ残す）
+**/参考/*
+!**/参考/README.md
+# original/（原本スキャンPDF等は重いので追跡しない。.gitkeep のみ残す）
+**/original/*
+!**/original/.gitkeep
+temp/
+temp2/
+*.zip

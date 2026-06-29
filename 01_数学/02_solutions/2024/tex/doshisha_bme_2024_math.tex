@@ -1,0 +1,150 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../../00_common/preamble}
+
+\title{2024年度 (AY2024) 同志社大学大学院 生命医科学研究科\\
+医工学コース 入学試験問題「数学」解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+%======================================================================
+\section*{第1問}
+
+\subsection*{前提整理}
+
+$\log(1+x)$ の $x=0$ 近傍の Taylor（Maclaurin）展開を求める.
+$\dfrac{d}{dx}\log(1+x)=\dfrac{1}{1+x}$ の等比級数展開を項別積分する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 導関数を等比級数にする.}
+$|x|<1$ で
+\[
+\frac{1}{1+x}=\sum_{n=0}^{\infty}(-1)^n x^n=1-x+x^2-x^3+\cdots.
+\]
+
+\paragraph{Step 2: 項別積分する.}
+$\log(1+0)=0$ を初期条件として $0$ から $x$ まで積分すると
+\[
+\log(1+x)=\sum_{n=0}^{\infty}(-1)^n\frac{x^{n+1}}{n+1}
+=\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}x^{n}.
+\]
+\[
+\ans{\
+\log(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots
+=\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}x^{n}\quad(-1<x\le1)\ }
+\]
+（収束域の端 $x=1$ では交代級数として収束し,$\log2$ を与える.）
+
+検算:$x=1$ で右辺 $=1-\frac12+\frac13-\cdots=\log2=0.6931\ldots$ となり
+$\log(1+1)=\log2$ に一致.$\checkmark$
+
+%======================================================================
+\section*{第2問}
+
+\subsection*{前提整理}
+
+$C^2$ 関数 $z=f(x,y)$ のラプラシアン $\Delta z=z_{xx}+z_{yy}$ を,
+$x=r\cos\theta,\ y=r\sin\theta$ により極座標で表す.連鎖律を用いる.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 1階の連鎖律.}
+$z_r=z_x\cos\theta+z_y\sin\theta$,$z_\theta=-z_x\,r\sin\theta+z_y\,r\cos\theta$.
+
+\paragraph{Step 2: 2階を計算する.}
+$z_r$ をさらに $r$ で微分すると
+\[
+z_{rr}=z_{xx}\cos^2\theta+2z_{xy}\cos\theta\sin\theta+z_{yy}\sin^2\theta.
+\]
+$z_\theta$ を $\theta$ で微分すると
+\[
+z_{\theta\theta}=r^2\bigl(z_{xx}\sin^2\theta-2z_{xy}\cos\theta\sin\theta+z_{yy}\cos^2\theta\bigr)
+-r\bigl(z_x\cos\theta+z_y\sin\theta\bigr).
+\]
+最後の項は $-r\,z_r$ である.
+
+\paragraph{Step 3: 組み立てる.}
+$z_{rr}+\dfrac1r z_r+\dfrac1{r^2}z_{\theta\theta}$ を作ると,$\pm\frac1r z_r$ が相殺し,
+交差項も消えて $\cos^2\theta+\sin^2\theta=1$ により $z_{xx}+z_{yy}$ に等しい.したがって
+\[
+\ans{\
+\Delta z=\frac{\partial^2 z}{\partial r^2}+\frac1r\frac{\partial z}{\partial r}
++\frac1{r^2}\frac{\partial^2 z}{\partial\theta^2}\ }
+\]
+
+検算:$z=x^2+y^2=r^2$ で左辺 $\Delta z=4$,
+右辺 $z_{rr}+\frac1r z_r=2+\frac1r\cdot2r=4$ で一致.$\checkmark$
+
+%======================================================================
+\section*{第3問}
+
+\subsection*{前提整理}
+
+$\displaystyle\int_{-\infty}^{\infty}e^{-(x-a)^2/b}\,dx$（$b>0$）を求める.
+平行移動とスケール変換で標準 Gauss 積分に帰着する.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 変数変換する.}
+$u=\dfrac{x-a}{\sqrt b}$ とおくと $dx=\sqrt b\,du$,$\dfrac{(x-a)^2}{b}=u^2$ で,
+積分範囲は $-\infty<u<\infty$ のまま.よって
+\[
+\int_{-\infty}^{\infty}e^{-(x-a)^2/b}\,dx=\sqrt b\int_{-\infty}^{\infty}e^{-u^2}\,du.
+\]
+
+\paragraph{Step 2: 標準 Gauss 積分を代入する.}
+$\displaystyle\int_{-\infty}^{\infty}e^{-u^2}\,du=\sqrt\pi$ より
+\[
+\ans{\ \int_{-\infty}^{\infty}e^{-(x-a)^2/b}\,dx=\sqrt{\pi b}\ }
+\]
+
+検算:結果は平行移動 $a$ に依らず,$b$ について $\sqrt b$ に比例する.
+$a=0,b=1$ で $\sqrt\pi$ となり標準形に一致.$\checkmark$
+
+%======================================================================
+\section*{第4問}
+
+\subsection*{前提整理}
+
+\[
+A=\begin{pmatrix}a&b&0&0\\c&d&0&0\\0&0&p&q\\0&0&r&s\end{pmatrix}
+\]
+はブロック対角行列 $A=\operatorname{diag}(P,Q)$,
+$P=\begin{psmallmatrix}a&b\\c&d\end{psmallmatrix}$,
+$Q=\begin{psmallmatrix}p&q\\r&s\end{psmallmatrix}$ である.
+正則条件と逆行列を求める.
+
+\subsection*{計算}
+
+\paragraph{Step 1: 正則条件.}
+$\det A=\det P\cdot\det Q=(ad-bc)(ps-qr)$.$A$ が正則であるためには
+$\det A\neq0$,すなわち
+\[
+\ans{\ ad-bc\neq0\quad\text{かつ}\quad ps-qr\neq0\ }
+\]
+
+\paragraph{Step 2: 逆行列.}
+ブロック対角行列の逆行列は各ブロックの逆行列を並べたもの.
+$2\times2$ の公式 $\begin{psmallmatrix}a&b\\c&d\end{psmallmatrix}^{-1}
+=\dfrac{1}{ad-bc}\begin{psmallmatrix}d&-b\\-c&a\end{psmallmatrix}$ を用いて
+\[
+\ans{\
+A^{-1}=\begin{pmatrix}
+\dfrac{d}{ad-bc}&\dfrac{-b}{ad-bc}&0&0\\[6pt]
+\dfrac{-c}{ad-bc}&\dfrac{a}{ad-bc}&0&0\\[6pt]
+0&0&\dfrac{s}{ps-qr}&\dfrac{-q}{ps-qr}\\[6pt]
+0&0&\dfrac{-r}{ps-qr}&\dfrac{p}{ps-qr}
+\end{pmatrix}\ }
+\]
+
+検算:左上ブロックで
+$\dfrac{1}{ad-bc}\begin{psmallmatrix}a&b\\c&d\end{psmallmatrix}\begin{psmallmatrix}d&-b\\-c&a\end{psmallmatrix}
+=\dfrac{1}{ad-bc}\begin{psmallmatrix}ad-bc&0\\0&ad-bc\end{psmallmatrix}=I_2$.
+右下ブロックも同様で,$AA^{-1}=I_4$.$\checkmark$
+
+\end{document}

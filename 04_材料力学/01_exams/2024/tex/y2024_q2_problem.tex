@@ -1,0 +1,64 @@
+% AY2024 材料力学 〔II〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2024/2024za.pdf
+% 要約: 点Aで固定された長さ2Lの丸棒(直径d)。中央点Cに曲げモーメントMc, 端点Bに集中荷重Pと
+%       トルクTB。縦弾性係数E, 横弾性係数G。D は AからL/2の点。C は中点(AからL)。
+%       (1) 固定端A支持力RA・支持モーメントMA・支持トルクTA(二重矢印), (2) AからxのM,T,
+%       (3) AからL/2の点D, z=d/2 の σx,σy,τxy, (4) 自由端BたわみδB・ねじれ角ψB,
+%       (5) δB=0 となる曲げモーメントMc。
+
+\section*{〔II〕}
+
+図2のように, 点 A で固定された長さ $2L$ の丸棒（直径 $d$）の中央点 C に曲げモーメント $M_C$,
+端点 B に集中荷重 $P$ とトルク $T_B$ が作用している. 次の問い (1)\,$\sim$\,(5) に答えよ.
+丸棒の縦弾性係数を $E$, 横弾性係数を $G$ とする.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  % 固定壁（左, A）
+  \fill[pattern=north east lines] (-0.5,-0.7) rectangle (0,0.7); \draw (0,-0.7) -- (0,0.7);
+  % 丸棒（A=0 → B=8, 2L）
+  \draw[line width=1.2pt] (0,0.13) -- (8,0.13);
+  \draw[line width=1.2pt] (0,-0.13) -- (8,-0.13);
+  % 中心線
+  \draw[dash dot] (-0.5,0) -- (8.0,0);
+  % z軸
+  \draw[->] (0,0) -- (0,1.9) node[left]{$z$};
+  % x軸（はり上, 右）
+  \draw[->] (0.2,0) -- (1.5,0); \node[below] at (1.2,0) {$x$};
+  % C点 曲げモーメント Mc（反時計回り）
+  \draw[->,thick] (4.45,0.55) arc (-60:200:0.55);
+  \node[above] at (4.4,0.75) {$M_C$};
+  \fill (4,0) circle (1.4pt);
+  % B点 集中荷重 P（下向き）, トルク TB（二重矢印, 左向き）
+  \draw[->,very thick] (8,1.5) -- (8,0.18); \node[above] at (8,1.5) {$P$};
+  \draw[-{Latex[length=2.2mm]}] (9.2,0.0) -- (8.15,0.0);
+  \draw[-{Latex[length=2.2mm]}] (9.2,-0.16) -- (8.35,-0.16);
+  \node[right] at (9.2,-0.08) {$T_B$};
+  % 節点
+  \node[below] at (0.1,-0.2) {A}; \node[above] at (2,0.16) {D};
+  \node[below] at (4,-0.2) {C}; \node[below] at (8,-0.2) {B};
+  \fill (2,0) circle (1.2pt);
+  % 寸法 L/2 (A-D), L (A-C), L (C-B)
+  \draw[<->] (0,0.95) -- (2,0.95) node[midway,fill=white,font=\scriptsize]{$L/2$};
+  \draw[<->] (0,-0.55) -- (4,-0.55) node[midway,fill=white]{$L$};
+  \draw[<->] (4,-0.55) -- (8,-0.55) node[midway,fill=white]{$L$};
+\end{tikzpicture}
+
+\vspace{1mm}
+図2
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 固定端 A での支持力 $R_A$, 支持モーメント $M_A$, 支持トルク $T_A$ を図示すると共に,
+        それぞれを求めよ. なお, トルク表記については図2のように二重の矢印で示すこと.
+
+  \item 固定端 A から $x$ の位置の曲げモーメント $M$ とトルク $T$ を求めよ.
+
+  \item 固定端 A から $L/2$ の位置にある点 D の $z=d/2$ での垂直応力 $\sigma_x$, $\sigma_y$,
+        およびせん断応力 $\tau_{xy}$ を求めよ.
+
+  \item 自由端 B でのたわみ $\delta_B$ とねじれ角 $\psi_B$ を求めよ.
+        なお, たわみはたわみの基礎式から求めよ.
+
+  \item 自由端 B でのたわみ $\delta_B$ を零にする曲げモーメント $M_C$ を求めよ.
+\end{enumerate}

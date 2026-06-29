@@ -1,0 +1,47 @@
+% AY2012 材料力学 〔I〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2012/2012za.pdf
+% 要約: 単純支持・突き出しはり。支点 A, B 間が L, B から右端 C までが L で,
+%       右端 C に集中荷重 P が作用する。支持力, SFD/BMD, たわみ基礎式と
+%       たわみ角・たわみ曲線・C点たわみ, カスチリアーノの定理によるC点たわみを問う。
+
+\section*{〔I〕}
+
+図に示す単純支持・突き出しはりの右端 C 点に集中荷重 $P$ が負荷される問題に答えよ.
+ヤング率（縦弾性係数）を $E$, はりの断面二次モーメントを $I$ とせよ.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  % はり本体
+  \draw[thick] (0,0) -- (8,0);
+  % 座標軸
+  \draw[->] (0,0) -- (0,1.4) node[left]{$y$};
+  \draw[->] (0,0) -- (1.6,0) node[above]{$x$};
+  % 支点 A（ピン）
+  \draw (0,0) -- (-0.3,-0.5) -- (0.3,-0.5) -- cycle;
+  \draw[pattern=north east lines] (-0.45,-0.7) rectangle (0.45,-0.5);
+  \node at (0,-1.0) {A};
+  % 支点 B（ローラー）
+  \draw (4,0) -- (3.7,-0.5) -- (4.3,-0.5) -- cycle;
+  \draw[pattern=north east lines] (3.55,-0.7) rectangle (4.45,-0.5);
+  \node at (4,-1.0) {B};
+  % 右端 C
+  \node at (8,-0.4) {C};
+  % 集中荷重 P
+  \draw[->,very thick] (8,1.6) -- (8,0.1) node[midway,right]{$P$};
+  % 寸法 L, L
+  \draw[<->] (0,0.9) -- (4,0.9) node[midway,fill=white]{$L$};
+  \draw[<->] (4,0.9) -- (8,0.9) node[midway,fill=white]{$L$};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 支持点 A, B に生じる支持力を図示し, つり合い式によりそれらを求めよ.
+
+  \item せん断力 $Q(x)$ と曲げモーメント $M(x)$ を求め,
+        せん断力図（SFD）と曲げモーメント図（BMD）を示せ.
+
+  \item たわみ $v(x)$ に関するはりの基礎式を示し,
+        たわみ角とたわみ曲線を求め, C 点におけるたわみを求めよ.
+
+  \item C 点におけるたわみをカスチリアーノの定理（エネルギー法）を用いて求めよ.
+\end{enumerate}

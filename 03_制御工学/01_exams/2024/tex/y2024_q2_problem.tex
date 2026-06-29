@@ -1,0 +1,89 @@
+% AY2024 制御工学 第2問〔II〕（転記）
+% 出典: 03_制御工学/original/03_制御工学/2024/2024se.pdf
+% 要約: 図2は Gc,Gp 直列の単位帰還系。図3は 1/s・Gc・1/s・Gp に3つの負帰還を持つ系。
+%       ボード線図・ステップ応答・伝達関数・ステップ応答。
+
+\section*{第2問〔II〕}
+
+制御システムに関する次の問い (1)〜(4) に答えよ. なお, 入力を $U(s)$, 出力を $Y(s)$ とし,
+$G_c(s)$, $G_p(s)$ は伝達関数を表す.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  \node (in)  at (0,0) {$U(s)$};
+  \node (sum) [sum] at (1.3,0) {};
+  \node (Gc)  [block] at (2.9,0) {$G_c(s)$};
+  \node (Gp)  [block] at (4.9,0) {$G_p(s)$};
+  \coordinate (nd) at (6.2,0);
+  \node (out) at (7.2,0) {$Y(s)$};
+
+  \draw[->] (in)  -- (sum);
+  \draw[->] (sum) -- (Gc);
+  \draw[->] (Gc)  -- (Gp);
+  \draw[->] (Gp)  -- (out);
+  \fill (nd) circle (1.4pt);
+  \draw[->] (nd) -- (6.2,-1.3) -- (1.3,-1.3) -- (sum.south);
+
+  \node at ($(sum.north west)+(0.02,0.10)$) {\scriptsize $+$};
+  \node at ($(sum.south west)+(0.02,-0.10)$) {\scriptsize $-$};
+  \node at (3.6,-1.7) {\small 図2};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 図2に示す制御システムについて, 各伝達関数を $G_c(s)=\dfrac{1}{s}$,
+        $G_p(s)=\dfrac{s+1}{10s+1}$ に設定する場合の一巡伝達関数に関するボード線図のうち,
+        ゲイン線図を漸近線によって描け.
+
+  \item 問い (1) の制御システムに対するステップ応答 $y(t)$ を求めよ.
+
+  \item 図3に示す制御システムについて, 各伝達関数を $G_c(s)=\dfrac{1}{K_1}$,
+        $G_p(s)=\dfrac{1}{K_2}$ とする場合の入力と出力に関わる伝達関数を求めよ.
+
+  \begin{center}
+  \begin{tikzpicture}[>=Latex]
+    \node (in)   at (0,0) {$U(s)$};
+    \node (sum1) [sum] at (1.1,0) {};
+    \node (int1) [block] at (2.5,0) {$\dfrac{1}{s}$};
+    \node (sum2) [sum] at (3.9,0) {};
+    \node (Gc)   [block] at (5.2,0) {$G_c(s)$};
+    \coordinate (nP) at (6.3,0);
+    \node (sum3) [sum] at (7.0,0) {};
+    \node (int2) [block] at (8.4,0) {$\dfrac{1}{s}$};
+    \coordinate (nQ) at (9.5,0);
+    \node (Gp)   [block] at (10.6,0) {$G_p(s)$};
+    \coordinate (nR) at (11.8,0);
+    \node (out)  at (12.6,0) {$Y(s)$};
+
+    \draw[->] (in)   -- (sum1);
+    \draw[->] (sum1) -- (int1);
+    \draw[->] (int1) -- (sum2);
+    \draw[->] (sum2) -- (Gc);
+    \draw[->] (Gc)   -- (sum3);
+    \draw[->] (sum3) -- (int2);
+    \draw[->] (int2) -- (Gp);
+    \draw[->] (Gp)   -- (out);
+    \fill (nP) circle (1.4pt);
+    \fill (nQ) circle (1.4pt);
+    \fill (nR) circle (1.4pt);
+
+    % sum1 (−) ← nP（Gc 出力）
+    \draw[->] (nP) -- (6.3,-1.3) -- (1.1,-1.3) -- (sum1.south);
+    % sum2 (−) ← nQ（2段目 1/s 出力）
+    \draw[->] (nQ) -- (9.5,1.3) -- (3.9,1.3) -- (sum2.north);
+    % sum3 (−) ← nR（Gp 出力 = Y）
+    \draw[->] (nR) -- (11.8,-1.3) -- (7.0,-1.3) -- (sum3.south);
+
+    \node at ($(sum1.north west)+(0.02,0.10)$) {\scriptsize $+$};
+    \node at ($(sum1.south west)+(0.02,-0.10)$) {\scriptsize $-$};
+    \node at ($(sum2.north east)+(-0.02,0.10)$) {\scriptsize $-$};
+    \node at ($(sum2.south west)+(0.02,-0.10)$) {\scriptsize $+$};
+    \node at ($(sum3.north west)+(0.02,0.10)$) {\scriptsize $+$};
+    \node at ($(sum3.south east)+(-0.02,-0.10)$) {\scriptsize $-$};
+    \node at (6.3,-1.7) {\small 図3};
+  \end{tikzpicture}
+  \end{center}
+
+  \item 問い (3) の制御システムに対するステップ応答 $y(t)$ を求めよ. ただし,
+        $K_1=\dfrac{1}{2}$, $K_2=\dfrac{1}{3}$ とする.
+\end{enumerate}

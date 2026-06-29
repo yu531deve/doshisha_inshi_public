@@ -1,0 +1,47 @@
+% AY2020 材料力学 〔I〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2020/2020za.pdf
+% 要約: 棒\textcircled{1}(A,3E), 棒\textcircled{2}(2A,E) からなる段付き棒。両端固定(a左壁, e右壁)。
+%       棒\textcircled{1}には外力P1(b点, 左向き), 棒\textcircled{2}には外力P2(d点, 右向き)。長さ共にL。
+%       位置: a-c=L(棒1), c-e=L(棒2), b-c=L/2, c-d=L/3。
+%       (1) 変位λ1,λ2, (2) c の変位が0となるP2をP1で表せ。
+
+\section*{〔I〕}
+
+図1に示すように, 棒\textcircled{1}, 棒\textcircled{2}からなる段付き棒の両端を固定し, 棒\textcircled{1}には外力 $P_1$,
+棒\textcircled{2}には外力 $P_2$ を加えた. 棒\textcircled{1}, 棒\textcircled{2}の長さは共に $L$, 断面積はそれぞれ $A$ および $2A$,
+縦弾性係数は $3E$ および $E$ とする. 次の問い (1) および (2) に答えよ.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  % 左壁 a, 右壁 e
+  \fill[pattern=north east lines] (-0.5,-1.3) rectangle (0,1.0); \draw (0,-1.3) -- (0,1.0);
+  \fill[pattern=north east lines] (8,-1.3) rectangle (8.5,1.0); \draw (8,-1.3) -- (8,1.0);
+  % 棒\textcircled{1}（a-c, 細, 半高0.5）, 棒\textcircled{2}（c-e, 太, 半高0.8）
+  \draw (0,0.5) rectangle (4,-0.5);
+  \draw (4,0.8) rectangle (8,-0.8);
+  % 外力 P1（b=2, 左向き）, P2（d=5.33, 右向き）
+  \draw[->,very thick] (2,0) -- (1.1,0); \node[above] at (1.7,0.05) {$P_1$};
+  \draw[->,very thick] (5.33,0) -- (6.3,0); \node[above] at (5.9,0.05) {$P_2$};
+  % ラベル
+  \node at (3.1,0.25) {棒\textcircled{1}}; \node at (3.1,-0.25) {\footnotesize $A,\,3E$};
+  \node at (6.9,0.35) {棒\textcircled{2}}; \node at (6.9,-0.1) {\footnotesize $2A,\,E$};
+  % 節点
+  \node[below] at (0,-1.0) {a}; \node[below] at (2,-1.0) {b}; \node[below] at (4,-1.0) {c};
+  \node[below] at (5.33,-1.0) {d}; \node[below] at (8,-1.0) {e};
+  % 寸法 上: L, L
+  \draw[<->] (0,1.2) -- (4,1.2) node[midway,fill=white]{$L$};
+  \draw[<->] (4,1.2) -- (8,1.2) node[midway,fill=white]{$L$};
+  % 寸法 下: L/2 (b-c), L/3 (c-d)
+  \draw[<->] (2,-0.75) -- (4,-0.75) node[midway,fill=white,font=\scriptsize]{$L/2$};
+  \draw[<->] (4,-1.05) -- (5.33,-1.05) node[midway,fill=white,font=\scriptsize]{$L/3$};
+\end{tikzpicture}
+
+\vspace{1mm}
+図1
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 棒\textcircled{1}および棒\textcircled{2}の変位 $\lambda_1$, $\lambda_2$ を求めよ.
+
+  \item c の変位が 0（ゼロ）となる $P_2$ を $P_1$ を用いて表せ.
+\end{enumerate}

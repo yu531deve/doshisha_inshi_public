@@ -1,0 +1,33 @@
+% AY2016 力学 第1問 転記（問題のみ）
+\section*{第1問〔I〕}
+
+天井に固定された質量 $M$，半径 $r$，慣性モーメント $\dfrac{1}{2}Mr^2$ の滑車に糸を
+巻きつけ，糸の片方の端に質量 $m$ のおもりをつけた。おもりの落下により，滑車は
+反時計回りに回転を始めた。ここで，重力加速度 $g$，糸の張力 $T$，加速度 $a$，
+中心 $O$ とする。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item おもりの並進運動に関する運動方程式を求めよ。
+  \item 滑車の回転運動に関する運動方程式を求めよ。
+  \item おもりの加速度を $m$，$M$，$g$ を用いて表せ。
+  \item 糸の張力 $T$ を $m$，$M$，$g$ を用いて表せ。
+\end{enumerate}
+
+\begin{center}
+% 図：天井に固定した滑車（質量M,半径r,中心O）に糸、端におもり m
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  % 天井
+  \fill[pattern=north east lines] (-1.2,2.6) rectangle (1.2,2.8);
+  \draw (-1.2,2.6) -- (1.2,2.6);
+  % 吊り糸
+  \draw (0,2.6) -- (0,1.1);
+  % 滑車
+  \draw (0,0.3) circle (0.8);
+  \fill (0,0.3) circle (1.3pt); \node[right] at (0.08,0.3) {$O$};
+  \draw[->] (0,0.3) -- (-0.55,0.78) node[midway,above] {$r$};
+  \node at (0.45,0.0) {$M$};
+  % おもりへの糸
+  \draw (-0.8,0.3) -- (-0.8,-0.9);
+  \draw (-1.1,-1.5) rectangle (-0.5,-0.9); \node at (-0.8,-1.2) {$m$};
+\end{tikzpicture}
+\end{center}

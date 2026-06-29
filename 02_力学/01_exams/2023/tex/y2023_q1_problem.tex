@@ -1,0 +1,27 @@
+% AY2023 力学 第1問 転記（問題のみ）
+\section*{第1問〔I〕}
+
+図1のように中心力 $F$ のみを受けて質量 $m$ の質点が運動しているとき，次の問い
+(1)〜(3) に答えよ。
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 中心力のみが働く質点の運動では角運動量が保存されることを示せ。
+  \item 質点の運動に関して極座標の $r$ 方向の運動方程式を求めよ。
+  \item 質点の運動に関して極座標の $\theta$ 方向の運動方程式を求めよ。
+\end{enumerate}
+
+\begin{center}
+% 図1：xy平面、原点からθの動径上にある質点、外向きに中心力F、距離r
+\begin{tikzpicture}[>=stealth, scale=1.0]
+  \draw[->] (-0.3,0) -- (4.0,0) node[right] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.0) node[above] {$y$};
+  \node[below left] at (0,0) {$0$};
+  \draw[dashed] (0,0) -- (3.5,2.27);             % 動径（θ≈33°）
+  \coordinate (P) at (2.7,1.75);
+  \fill (P) circle (3pt);
+  \draw[->,thick] (2.85,1.85) -- (3.6,2.34) node[right] {$F$};
+  \node at (1.25,0.6) {$r$};
+  \draw (0.95,0) arc (0:33:0.95); \node at (1.25,0.27) {$\theta$};
+  \node at (2.7,-0.55) {図 1};
+\end{tikzpicture}
+\end{center}

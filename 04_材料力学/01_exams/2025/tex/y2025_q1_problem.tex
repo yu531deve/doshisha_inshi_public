@@ -1,0 +1,69 @@
+% AY2025 材料力学 〔I〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2025/「2025za - コピー (2).pdf」
+% 要約: 剛体板が2本の棒\textcircled{1}(長さ2L, 断面積A, 縦弾性係数E)を介して天井から吊り下がる。
+%       剛体板中央にある棒\textcircled{2}(長さL, 断面積2A, 縦弾性係数2E)の上面に荷重を負荷したところ,
+%       上面がδだけ下方に移動した。各棒・剛体板の重さは無視。
+%       (1) λ1とλ2が満たす関係式, (2) 棒\textcircled{2}上面に負荷した荷重, (3) σ1,σ2, (4) λ1,λ2。
+
+\section*{〔I〕}
+
+図1のように, 剛体板が 2 本の棒\textcircled{1}（長さ $2L$, 断面積 $A$, 縦弾性係数 $E$）を介して天井から
+釣り下がっており, 剛体板中央にある棒\textcircled{2}（長さ $L$, 断面積 $2A$, 縦弾性係数 $2E$）の上面に
+荷重を負荷したところ, 上面が $\delta$ だけ下方に移動した. 各棒と剛体板の重さは無視できるとき,
+次の問い (1)\,$\sim$\,(4) に答えよ.
+
+\begin{center}
+% 荷重負荷前
+\begin{tikzpicture}[>=Latex,scale=0.85,baseline=(current bounding box.north)]
+  % 天井
+  \fill[pattern=north east lines] (-1.9,6) rectangle (1.9,6.35); \draw (-1.9,6) -- (1.9,6);
+  % 棒\textcircled{1}（2本, 長さ2L: y2..6）
+  \draw (-1.4,2) -- (-1.4,6); \draw (-1.3,2) -- (-1.3,6);
+  \draw (1.3,2) -- (1.3,6); \draw (1.4,2) -- (1.4,6);
+  % 剛体板（下）
+  \fill[gray!80] (-1.7,1.8) rectangle (1.7,2.0);
+  \node[right] at (1.75,1.9) {剛体板};
+  % 棒\textcircled{2}（黒ブロック, 長さL: y2..4）
+  \fill[gray!55] (-0.5,2.0) rectangle (0.5,4.0); \draw (-0.5,2.0) rectangle (0.5,4.0);
+  % 参照線（棒\textcircled{2}上面 y=4）
+  \draw[dashed] (-0.5,4.0) -- (2.8,4.0);
+  % ラベル 棒\textcircled{1}
+  \node at (-0.55,5.2) {棒\textcircled{1}}; \draw[->] (-0.7,5.0) -- (-1.25,4.6);
+  \node at (0.9,5.2) {棒\textcircled{1}}; \draw[->] (1.05,5.0) -- (1.35,4.6);
+  % 寸法 2L, L
+  \draw[<->] (-1.75,2) -- (-1.75,6) node[midway,fill=white]{$2L$};
+  \draw[<->] (-0.85,2) -- (-0.85,4) node[midway,fill=white]{$L$};
+  \node at (0,-0.2) {荷重負荷前};
+\end{tikzpicture}
+\hspace{10mm}
+% 荷重負荷後
+\begin{tikzpicture}[>=Latex,scale=0.85,baseline=(current bounding box.north)]
+  \fill[pattern=north east lines] (-1.9,6) rectangle (1.9,6.35); \draw (-1.9,6) -- (1.9,6);
+  % 棒\textcircled{1}（伸びて剛体板が下がる: y1.5..6）
+  \draw (-1.4,1.5) -- (-1.4,6); \draw (-1.3,1.5) -- (-1.3,6);
+  \draw (1.3,1.5) -- (1.3,6); \draw (1.4,1.5) -- (1.4,6);
+  % 剛体板（下がった）
+  \fill[gray!80] (-1.7,1.3) rectangle (1.7,1.5);
+  \node[right] at (1.75,1.4) {剛体板};
+  % 棒\textcircled{2}（縮んで上面が δ 下方へ: y1.5..3.5）
+  \fill[gray!55] (-0.5,1.5) rectangle (0.5,3.5); \draw (-0.5,1.5) rectangle (0.5,3.5);
+  % 参照線（元の上面 y=4）と δ
+  \draw[dashed] (-2.8,4.0) -- (0.5,4.0);
+  \draw[<->] (0.0,4.0) -- (0.0,3.5) node[midway,right]{$\delta$};
+  \node at (0,-0.2) {荷重負荷後};
+\end{tikzpicture}
+
+\vspace{1mm}
+図1
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 棒\textcircled{1}の変位を $\lambda_1$, 棒\textcircled{2}の変位を $\lambda_2$ とするとき, $\lambda_1$ と $\lambda_2$ が
+        満たす関係式を求めよ.
+
+  \item 棒\textcircled{2}の上面に負荷した荷重を求めよ.
+
+  \item 棒\textcircled{1}および棒\textcircled{2}に生じる応力 $\sigma_1$ と $\sigma_2$ を求めよ.
+
+  \item $\lambda_1$ と $\lambda_2$ を求めよ.
+\end{enumerate}

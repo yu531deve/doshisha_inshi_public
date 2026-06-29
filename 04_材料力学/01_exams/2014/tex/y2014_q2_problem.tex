@@ -1,0 +1,84 @@
+% AY2014 材料力学 〔II〕（転記）
+% 出典: 04_材料力学/original/04_材料力学/2014/2014za.pdf
+% 要約: 段付丸棒。部分AB（長さL1, 断面積A1, 断面二次極モーメントIp1, 直径d1）と
+%       部分BC（長さL2, 断面積A2, Ip2, 直径d2）。両端ACを剛体壁に固定。同一材料,
+%       縦弾性係数E, 横弾性係数G, 熱膨張係数α。
+%       (1) ΔT上昇 → AB,BCの熱応力 σ1,σ2。
+%       (2) 図3: 断面BにトルクT0 → TA,TC, τAB,τBC, B点ねじれ角ΨB。
+%       (3) ΔT+T0時, 点D(L1/2,0,d1/2)のモール円, σmax, τmax。
+
+\section*{〔II〕}
+
+図2に示すように長さ $L_1$, 断面積 $A_1$, 断面二次極モーメント $I_{p1}$ である部分 AB と,
+長さ $L_2$, 断面積 $A_2$, 断面二次極モーメント $I_{p2}$ である部分 BC からなる段付丸棒の
+両端 AC を剛体壁に固定した場合, 次の問い (1)\,$\sim$\,(3) に答えよ.
+なお, 段付丸棒は部分によらず同一材料であり, 縦弾性係数を $E$, 横弾性係数を $G$,
+熱膨張係数を $\alpha$ とする.
+
+\newcommand{\steppedshaft}{%
+  % 左壁
+  \draw[line width=1pt] (0,-1.6) -- (0,1.6);
+  \foreach \y in {-1.5,-1.2,...,1.55} {\draw (0,\y) -- (-0.28,\y+0.28);}
+  % 右壁
+  \draw[line width=1pt] (8.5,-1.6) -- (8.5,1.6);
+  \foreach \y in {-1.5,-1.2,...,1.55} {\draw (8.5,\y) -- (8.78,\y+0.28);}
+  % 部分 AB（細, x:0..4, 半径0.5）
+  \draw[line width=1pt] (0,0.5) rectangle (4,-0.5);
+  % 部分 BC（太, x:4..8.5, 半径1.1）
+  \draw[line width=1pt] (4,1.1) rectangle (8.5,-1.1);
+  % 中心線（一点鎖線）
+  \draw[dash dot] (-0.6,0) -- (9.0,0);
+  % 軸（z上, x右, y⊗）
+  \draw[->] (0.6,0) -- (0.6,1.35) node[left]{$z$};
+  \draw[->] (0.4,0) -- (1.5,0) node[above]{$x$};
+  \draw (0.35,-0.35) circle (3.5pt); \draw (0.21,-0.49)--(0.49,-0.21); \draw (0.21,-0.21)--(0.49,-0.49);
+  \node[below left] at (0.35,-0.5) {$y$};
+  % 節点
+  \node at (0.55,0.75) {A}; \node at (4.0,1.35) {B}; \node at (8.2,1.35) {C};
+  % 断面諸量
+  \node at (2.0,-0.25) {$A_1\ \ I_{p1}$};
+  \node at (6.2,-0.55) {$A_2\ \ I_{p2}$};
+  % 寸法 L1, L2
+  \draw[<->] (0,-1.35) -- (4,-1.35) node[midway,fill=white]{$L_1$};
+  \draw[<->] (4,-1.35) -- (8.5,-1.35) node[midway,fill=white]{$L_2$};
+}
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=0.82]
+  \steppedshaft
+\end{tikzpicture}
+
+図2
+\end{center}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item 段付丸棒の温度を $\Delta T$ 上昇させた時, 部分 AB および部分 BC に生じる
+        熱応力 $\sigma_1$, $\sigma_2$ を求めよ.
+
+  \item 図3に示すように, 断面 B にトルク $T_0$ が作用している時, A および C における
+        支持トルク $T_A$, $T_C$, 部分 AB および部分 BC の最大せん断応力 $\tau_{AB}$, $\tau_{BC}$,
+        断面 B のねじれ角 $\Psi_B$ を求めよ. なお, 部分 AB と部分 BC の直径はそれぞれ
+        $d_1$, $d_2$ とする. 最初に解答用紙の図に, $T_0$ にならって, $T_A$, $T_C$ を記入せよ.
+
+  \item 段付丸棒の温度を $\Delta T$ 上昇させた状態で, 図3に示すように断面 B にトルク $T_0$ が
+        作用している場合, 座標が $(x,y,z)=\left(\dfrac{L_1}{2},0,\dfrac{d_1}{2}\right)$ である
+        点 D におけるモールの応力円を描け. なお, 点 D における微小要素を考えた場合,
+        微小要素のそれぞれの面に生じる応力を求めるとともに, 解答用紙の図に矢印で示すこと.
+        また, モールの応力円を図示し, 最大主応力 $\sigma_{\max}$ および
+        最大せん断応力 $\tau_{\max}$ を求めよ.
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=0.82]
+  \steppedshaft
+  % 点 D（AB上面, x=2=L1/2, z=d1/2=0.5）
+  \fill (2,0.5) circle (2.2pt);
+  \node[above] at (2,0.55) {D};
+  % トルク T0（断面Bに作用）
+  \draw[->,line width=1pt] (3.6,0.2) -- (3.0,0.2);
+  \draw[->,line width=1pt] (3.6,0.0) -- (3.0,0.0);
+  \node at (3.3,0.45) {$T_0$};
+\end{tikzpicture}
+
+図3
+\end{center}

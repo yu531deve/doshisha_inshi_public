@@ -1,0 +1,330 @@
+% !TEX program = xelatex
+% AY2015 材料力学 解答例（同志社 生命医科学 医工学コース 院試）
+% 問題・図は 01_exams/2015/tex を土台に、参考/ の粒度で解答を付した。
+\documentclass[11pt,a4paper]{article}
+\usepackage{../../00_common/preamble}
+\usetikzlibrary{positioning,arrows.meta,calc,patterns,decorations.pathmorphing}
+
+\title{材料力学 AY2015 解答例}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{符号規約}：反力・たわみは上向きを正，集中荷重 $P$・分布荷重 $f_0$ は下向き．
+せん断力 $Q$ は断面左側に働く上向き外力の和，曲げモーメント $M$ は下に凸（さがり）を正とし，
+たわみの基礎式は $EI\,\dfrac{d^2v}{dx^2}=M(x)$ を用いる．応力は引張りを正，トルクは右ねじを正とする．
+
+%====================================================================
+\section*{〔I〕}
+
+図1に示す片持ちはりの自由端 A に, はりの軸線に垂直方向に固定された剛体棒（水平方向，長さ $L/2$）の
+先端に, 鉛直方向下向きに外力 $P$ が加わる場合について答えよ. はりの縦弾性係数を $E$, 横弾性係数を $G$,
+断面形状を直径 $d$ の円形とする.
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  \draw (1.0,0.4) -- (7.0,0.4);
+  \draw (1.0,-0.4) -- (7.0,-0.4);
+  \draw (1.0,0) ellipse (0.22 and 0.4);
+  \fill[pattern=north east lines] (7.0,-1.3) -- (7.0,1.3) -- (8.0,1.7) -- (8.0,-0.9) -- cycle;
+  \draw (7.0,-1.3) -- (7.0,1.3) -- (8.0,1.7) -- (8.0,-0.9) -- cycle;
+  \draw[->] (1.0,0) -- (2.2,0) node[above]{$x$};
+  \draw[->] (1.0,0) -- (1.0,1.3) node[left]{$y$};
+  \draw[->] (1.0,0) -- (0.35,0.55) node[above left]{$z$};
+  \node[below left] at (1.0,-0.2) {A};
+  \node at (6.7,0.75) {B};
+  \draw[line width=1.4pt] (1.0,-0.1) -- (1.55,-1.5);
+  \node at (0.9,-1.0) {$L/2$};
+  \draw[->,very thick] (1.55,-1.5) -- (1.55,-2.6) node[below]{$P$};
+  \draw[<->] (1.0,1.55) -- (7.0,1.55) node[midway,fill=white]{$L$};
+  \begin{scope}[shift={(-1.3,-0.2)}]
+    \draw (0,0) circle (0.5);
+    \draw[->] (0,-0.5) -- (0,0.9) node[left]{$y$};
+    \draw[->] (0,0) -- (-1.0,0) node[above]{$z$};
+    \draw[<->] (-0.5,-0.75) -- (0.5,-0.75) node[midway,fill=white,font=\scriptsize]{$d$};
+  \end{scope}
+  \begin{scope}[shift={(7.3,-2.4)}]
+    \draw (0,0) circle (0.5);
+    \draw[dash dot] (-0.8,0) -- (0.8,0);
+    \draw[dash dot] (0,-0.8) -- (0,0.8);
+    \fill (0,-0.5) circle (1.6pt);
+    \node[right] at (-0.9,0.5) {C};
+    \draw[->] (-0.75,0.45) -- (-0.05,-0.45);
+    \node at (0,-1.1) {B 断面};
+  \end{scope}
+\end{tikzpicture}
+
+\vspace{1mm}
+図1
+\end{center}
+
+\subsection*{解答}
+
+\noindent\textbf{(1)}\quad 荷重 $P$ ははり軸線（$x$ 軸）から水平に $L/2$ 離れた点に下向きに作用する．
+これを自由端 A の軸線上へ移すと，\textbf{下向きの力 $P$} と，剛体棒のうでによる
+\textbf{軸まわりのトルク $T=P\cdot\dfrac{L}{2}$} に等価となる．
+固定端 B でこれらをすべて支える．鉛直力のつり合い，B まわりの曲げモーメントのつり合い，
+および軸まわりのトルクのつり合いより
+\[
+  R_B = P,\qquad M_B = P\cdot L,\qquad T_B = P\cdot \frac{L}{2}.
+\]
+\[
+  \ans{\,R_B = P\ (\text{上向き}),\quad M_B = PL\ (\text{曲げ反モーメント}),\quad T_B = \dfrac{PL}{2}\ (\text{反トルク})\,}
+\]
+検算：自由端 A の力 $P$ が固定端まで距離 $L$ を隔てるから曲げ反モーメントは $P L$，
+うで $L/2$ のトルクは $P L/2$ で，外力系と過不足なくつり合う ✓．
+
+\medskip
+\noindent\textbf{(2)}\quad 座標 $x$ を自由端 A から固定端 B へ向けてとる（$0\le x\le L$）．
+はりにはせん断を伴う曲げと一定トルクが同時に作用する．断面左側のつり合いより
+\[
+  Q(x) = P\ (\text{一定}),\qquad M(x) = P\,x,\qquad T(x) = \frac{PL}{2}\ (\text{一定}).
+\]
+端点の値は $M(0)=0$（自由端），$M(L)=PL$（固定端）である．
+\[
+  \ans{\,Q(x)=P,\qquad M(x)=Px\ \ (0\le x\le L),\qquad T(x)=\dfrac{PL}{2}\,}
+\]
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=1.0]
+  \def\L{2.6}
+  \begin{scope}
+    \draw[->] (-0.3,0) -- (\L+0.6,0) node[right]{$x$};
+    \draw[->] (0,-0.3) -- (0,1.1) node[above]{SFD};
+    \draw[line width=1pt,blue] (0,0.7) -- (\L,0.7);
+    \draw[blue] (0,0)--(0,0.7); \draw[blue] (\L,0)--(\L,0.7);
+    \node[left] at (0,0.7) {$P$};
+    \node[below] at (\L,0) {$L$};
+  \end{scope}
+  \begin{scope}[xshift=6.5cm]
+    \draw[->] (-0.3,0) -- (\L+0.6,0) node[right]{$x$};
+    \draw[->] (0,-0.3) -- (0,1.1) node[above]{BMD};
+    \draw[line width=1pt,red] (0,0) -- (\L,0.9);
+    \draw[red] (\L,0)--(\L,0.9);
+    \node[right] at (\L,0.9) {$PL$};
+    \node[above left] at (0,0) {A}; \node[below] at (\L,0) {B};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\medskip
+\noindent\textbf{(3)}\quad 固定端 B では $M_B=PL$，$T_B=PL/2$．円形断面（直径 $d$）の諸量は
+\[
+  I=\frac{\pi d^4}{64},\qquad I_p=J=\frac{\pi d^4}{32},\qquad c=\frac{d}{2}.
+\]
+点 C は断面の最下縁（曲げの中立軸 $z$ から最も離れた縁）にある．
+曲げによる軸方向応力（大きさ）は
+\[
+  \sigma=\frac{M_B\,c}{I}=\frac{PL\cdot (d/2)}{\pi d^4/64}=\frac{32PL}{\pi d^3}.
+\]
+ねじりによるせん断応力は
+\[
+  \tau=\frac{T_B\,c}{J}=\frac{(PL/2)(d/2)}{\pi d^4/32}=\frac{8PL}{\pi d^3}.
+\]
+なお曲げに伴う横（断面内）せん断応力は中立軸で最大・最外縁で $0$ であるから，
+最外縁の点 C ではねじりせん断のみが残る．
+\[
+  \ans{\,\sigma=\dfrac{32PL}{\pi d^3}\ (\text{軸方向，C は圧縮側}),\qquad \tau=\dfrac{8PL}{\pi d^3}\ (\text{ねじり})\,}
+\]
+検算：$\sigma/\tau = (32PL)/(8PL)=4$．これは $M_B/T_B=PL/(PL/2)=2$ に断面係数比
+$Z/Z_p=(I/c)\big/(J/c)=I/J=1/2$ の逆数 $2$ を掛けた $2\times2=4$ と一致する ✓．
+
+\medskip
+\noindent\textbf{(4)}\quad 点 C の応力状態は，軸方向応力 $\sigma_x=\sigma$，円周方向応力 $\sigma_y=0$，
+せん断応力 $\tau_{xy}=\tau$ の平面応力である（大きさで表す）．
+モールの応力円の中心と半径は
+\[
+  \sigma_{\text{c}}=\frac{\sigma_x+\sigma_y}{2}=\frac{\sigma}{2}=\frac{16PL}{\pi d^3},\qquad
+  R=\sqrt{\Big(\frac{\sigma}{2}\Big)^2+\tau^2}
+   =\sqrt{16^2+8^2}\,\frac{PL}{\pi d^3}=\frac{8\sqrt{5}\,PL}{\pi d^3}.
+\]
+主応力と最大せん断応力は
+\[
+  \sigma_{1,2}=\sigma_{\text{c}}\pm R,\qquad \tau_{\max}=R.
+\]
+\[
+  \ans{\;\sigma_1=\dfrac{(16+8\sqrt5)PL}{\pi d^3},\quad
+        \sigma_2=\dfrac{(16-8\sqrt5)PL}{\pi d^3},\quad
+        \tau_{\max}=\dfrac{8\sqrt5\,PL}{\pi d^3}\;}
+\]
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=0.85]
+  \def\u{0.2}      % 1単位 = PL/(pi d^3) を 0.2cm に
+  \def\cx{16}      % 中心
+  \def\R{17.889}   % 8 sqrt5
+  \draw[->] (-2*\u,0) -- ({(\cx+\R+5)*\u},0) node[right]{$\sigma$};
+  \draw[->] (0,{-(\R+4)*\u}) -- (0,{(\R+4)*\u}) node[above]{$\tau$};
+  \draw[line width=1pt,blue] ({\cx*\u},0) circle ({\R*\u});
+  \fill ({\cx*\u},0) circle (1.2pt);
+  % 応力点 (sigma_x, +tau) と (0, -tau)
+  \fill ({32*\u},{8*\u}) circle (1.2pt) node[right]{\scriptsize $(\sigma,\,\tau)$};
+  \fill (0,{-8*\u}) circle (1.2pt) node[left]{\scriptsize $(0,\,-\tau)$};
+  \draw[dashed] ({32*\u},{8*\u}) -- (0,{-8*\u});
+  % 主応力点
+  \fill ({(\cx+\R)*\u},0) circle (1.2pt) node[above right]{\scriptsize $\sigma_1$};
+  \fill ({(\cx-\R)*\u},0) circle (1.2pt) node[above left]{\scriptsize $\sigma_2$};
+  \node[below] at ({\cx*\u},0) {\scriptsize $\sigma/2$};
+  \node[above] at ({\cx*\u},{\R*\u}) {\scriptsize $\tau_{\max}=R$};
+\end{tikzpicture}
+
+\vspace{1mm}
+モールの応力円（単位 $PL/(\pi d^3)$）
+\end{center}
+検算：$\sigma_1+\sigma_2=2\sigma_{\text{c}}=\dfrac{32PL}{\pi d^3}=\sigma_x+\sigma_y$（不変量），
+また $\sigma_1\sigma_2=(16^2-320)\big(\tfrac{PL}{\pi d^3}\big)^2=-64\big(\tfrac{PL}{\pi d^3}\big)^2=-\tau^2$
+で $\sigma_x\sigma_y-\tau_{xy}^2$ に一致する ✓．
+
+%====================================================================
+\clearpage
+\section*{〔II〕}
+
+図2に示す突き出しはりの自由端 C に集中荷重 $P$, AB 間に等分布荷重 $f_0$ が負荷される場合について答えよ.
+縦弾性係数を $E$, 断面形状を幅 $b$, 高さ $h$ の長方形とする. ただし $\,P<f_0L/4\,$ とする.
+A 端は壁に固定（固定端），B はローラー支持である．
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+  \draw[thick] (0,-0.6) -- (0,1.8);
+  \foreach \y in {-0.5,-0.2,...,1.75} {\draw (0,\y) -- (-0.28,\y+0.28);}
+  \draw[line width=1.2pt] (0,0.1) -- (9,0.1);
+  \draw[line width=1.2pt] (0,-0.1) -- (9,-0.1);
+  \draw (0,1.1) -- (4.5,1.1);
+  \foreach \x in {0,0.5,...,4.5} {\draw[->] (\x,1.1) -- (\x,0.18);}
+  \node at (2.25,1.4) {$f_0$};
+  \draw (4.5,-0.1) -- (4.2,-0.7) -- (4.8,-0.7) -- cycle;
+  \draw (4.15,-0.85) -- (4.85,-0.85);
+  \draw[->,very thick] (9,1.5) -- (9,0.18);
+  \node[right] at (9,1.3) {$P$};
+  \node at (0.2,-0.45) {A};
+  \node at (4.5,-1.05) {B};
+  \node at (9,-0.45) {C};
+  \draw[<->] (0,-1.25) -- (4.5,-1.25) node[midway,fill=white]{$L$};
+  \draw[<->] (4.5,-1.25) -- (9,-1.25) node[midway,fill=white]{$L$};
+  \draw[->] (0,-1.7) -- (1.3,-1.7) node[right]{$x$};
+\end{tikzpicture}
+
+\vspace{1mm}
+図2
+\end{center}
+
+\subsection*{解答}
+
+\noindent\textbf{(1)}\quad 座標 $x$ を A（$x=0$）から C（$x=2L$）へとる．B は $x=L$．
+固定端 A に上向き反力 $R_A$ と反モーメント $M_A$（壁が与えるホギング向きを正），
+ローラー B に上向き反力 $R_B$ を仮定する（ローラーゆえ反モーメントなし）．
+未知数は $R_A,M_A,R_B$ の 3 個に対し，つり合い式は 2 本なので，この系は 1 次不静定である．
+鉛直方向の力のつり合いと，A まわりのモーメントのつり合いは
+\[
+  R_A+R_B-f_0L-P=0,\qquad
+  M_A + R_B\,L - f_0 L\cdot\frac{L}{2} - P\cdot 2L = 0.
+\]
+\[
+  \ans{\;R_A+R_B = f_0L+P,\qquad M_A = f_0\frac{L^2}{2}+2PL - R_B L\;}
+\]
+不足する 1 式はたわみの境界条件（B でたわみ $0$）から (3) で与え，反力を確定する．
+
+\medskip
+\noindent\textbf{(2)}\quad 区間ごとに断面左側のつり合いをとる（反力は $R_A,M_A,R_B$ のまま残す）．
+
+\noindent(I)\ $0\le x\le L$（区間 AB）：
+\[
+  Q(x)=R_A-f_0x,\qquad M(x)=-M_A+R_A x-\frac{f_0}{2}x^2 .
+\]
+(II)\ $L\le x\le 2L$（区間 BC）：この区間には分布荷重がなく，右側には自由端 C の $P$ のみが残るので
+\[
+  Q(x)=P,\qquad M(x)=-P\,(2L-x)=Px-2PL .
+\]
+反力を (3) の結果
+\[
+  R_A=\frac{5}{8}f_0L-\frac{3}{2}P,\qquad R_B=\frac{3}{8}f_0L+\frac{5}{2}P,\qquad M_A=\frac{f_0L^2}{8}-\frac{PL}{2}
+\]
+で表すと，区間 AB の曲げモーメントは
+\[
+  M(x)=-\frac{f_0}{2}x^2+\Big(\frac{5}{8}f_0L-\frac{3}{2}P\Big)x+\Big(\frac{PL}{2}-\frac{f_0L^2}{8}\Big).
+\]
+代表値は $M(0)=\dfrac{PL}{2}-\dfrac{f_0L^2}{8}\,(<0$, ホギング$)$，$M(L)=-PL$，$M(2L)=0$ である．
+\[
+  \ans{\;Q(x)=\begin{cases}\dfrac{5}{8}f_0L-\dfrac{3}{2}P-f_0x & (0\le x\le L)\\[2mm] P & (L\le x\le 2L)\end{cases}\;}
+\]
+\[
+  \ans{\;M(x)=\begin{cases}-\dfrac{f_0}{2}x^2+\big(\tfrac58 f_0L-\tfrac32P\big)x+\big(\tfrac{PL}{2}-\tfrac{f_0L^2}{8}\big) & (0\le x\le L)\\[2mm] Px-2PL & (L\le x\le 2L)\end{cases}\;}
+\]
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=1.0]
+  \def\L{2.6}
+  \begin{scope}
+    \draw[->] (-0.3,0) -- (2*\L+0.6,0) node[right]{$x$};
+    \draw[->] (0,-1.0) -- (0,1.0) node[above]{SFD};
+    % 区間AB: x=0 で R_A>0, 直線で下降, x=L で R_A-f0L = -3f0L/8-3P/2 <0
+    \draw[line width=1pt,blue] (0,0.6) -- (\L,-0.75);
+    % B でローラー反力により上昇, 区間BC で一定 = P >0
+    \draw[line width=1pt,blue] (\L,-0.75) -- (\L,0.4) -- (2*\L,0.4);
+    \node[left] at (0,0.6) {\scriptsize $R_A$};
+    \node[left] at (0,0.4) {\scriptsize $P$};
+    \node[below] at (\L,0) {$L$}; \node[below] at (2*\L,0) {$2L$};
+  \end{scope}
+  \begin{scope}[xshift=7.5cm]
+    \draw[->] (-0.3,0) -- (2*\L+0.6,0) node[right]{$x$};
+    \draw[->] (0,-1.1) -- (0,0.7) node[above]{BMD};
+    % 区間AB: x=0 で M0<0(小さい負), 内部で正の極大, x=L で -PL(負,谷)
+    \draw[line width=1pt,red,smooth,samples=40,domain=0:1]
+      plot ({\L*\x},{0.35*(-(\x*\x)*4 + 4.0*\x -0.6)});
+    % 区間BC: -PL から 0 へ直線
+    \draw[line width=1pt,red] (\L,-1.0) -- (2*\L,0);
+    \node[below left] at (\L,-1.0) {\scriptsize $-PL$};
+    \node[above] at (0,0) {A}; \node[below] at (\L,0) {B}; \node[above] at (2*\L,0) {C};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+（BMD：区間 AB は上に凸の放物線で，A 端は小さな負，途中で正の極大を経て B で $-PL$ の谷．区間 BC は $-PL$ から $0$ への直線．）
+
+\medskip
+\noindent\textbf{(3)}\quad たわみの基礎式 $EI\,v''=M(x)$ を各区間で2回積分する．
+区間 AB（$0\le x\le L$）では，
+\[
+  EI\,v_1' = -\frac{f_0}{6}x^3+\Big(\frac{5}{16}f_0L-\frac34P\Big)x^2+\Big(\frac{PL}{2}-\frac{f_0L^2}{8}\Big)x+C_1,
+\]
+\[
+  EI\,v_1 = -\frac{f_0}{24}x^4+\Big(\frac{5}{48}f_0L-\frac14P\Big)x^3+\frac12\Big(\frac{PL}{2}-\frac{f_0L^2}{8}\Big)x^2+C_1x+C_2 .
+\]
+固定端の境界条件 $v_1(0)=0,\ v_1'(0)=0$ より $C_1=C_2=0$．
+区間 BC（$L\le x\le 2L$）では $M=Px-2PL$ より
+\[
+  EI\,v_2' = \frac{P}{2}x^2-2PL\,x+C_3,\qquad
+  EI\,v_2 = \frac{P}{6}x^3-PL\,x^2+C_3x+C_4 .
+\]
+接続条件 $v_1'(L)=v_2'(L)$ と，ローラー支持 $v_1(L)=0,\ v_2(L)=0$ の3条件から，未知の冗長反力を含めて確定すると
+\[
+  R_B=\frac{3}{8}f_0L+\frac52P,\quad
+  C_3=\frac{f_0L^3}{48}+\frac{5PL^2}{4},\quad
+  C_4=-\frac{f_0L^4}{48}-\frac{5PL^3}{12},
+\]
+であり，これより (2) に示した
+$R_A=\tfrac58 f_0L-\tfrac32P,\ M_A=\tfrac{f_0L^2}{8}-\tfrac{PL}{2}$ が得られる．
+\[
+  \ans{\;R_A=\frac{5}{8}f_0L-\frac{3}{2}P,\quad R_B=\frac{3}{8}f_0L+\frac{5}{2}P,\quad M_A=\frac{f_0L^2}{8}-\frac{PL}{2}\ (\text{ホギング})\;}
+\]
+たわみ角・たわみ曲線は
+\[
+  \ans{\;EI\,v_1=-\frac{f_0}{24}x^4+\Big(\frac{5}{48}f_0L-\frac14P\Big)x^3+\frac12\Big(\frac{PL}{2}-\frac{f_0L^2}{8}\Big)x^2\;}
+\]
+\[
+  \ans{\;EI\,v_2=\frac{P}{6}x^3-PL\,x^2+\Big(\frac{f_0L^3}{48}+\frac{5PL^2}{4}\Big)x-\frac{f_0L^4}{48}-\frac{5PL^3}{12}\;}
+\]
+自由端 C（$x=2L$）のたわみは
+\[
+  EI\,v_2(2L)=\frac{P}{6}(2L)^3-PL(2L)^2+\Big(\frac{f_0L^3}{48}+\frac{5PL^2}{4}\Big)2L-\frac{f_0L^4}{48}-\frac{5PL^3}{12}
+  =\frac{f_0L^4}{48}-\frac{7PL^3}{12}.
+\]
+\[
+  \ans{\;v_C=\frac{1}{EI}\left(\frac{f_0L^4}{48}-\frac{7PL^3}{12}\right),\qquad I=\frac{bh^3}{12}\;}
+\]
+検算：$P=0$（C の荷重なし）とすると $R_B=\dfrac38 f_0L$，$M_A=\dfrac{f_0L^2}{8}$ となり，
+等分布荷重を受ける一端固定・他端ローラー支持はり（プロップド片持ちはり）の既知解に一致する ✓．
+また両支点条件 $v_1(0)=0,\ v_1'(0)=0,\ v_1(L)=0,\ v_2(L)=0$ と接続 $v_1'(L)=v_2'(L)$ がすべて満たされる ✓．
+
+\end{document}
