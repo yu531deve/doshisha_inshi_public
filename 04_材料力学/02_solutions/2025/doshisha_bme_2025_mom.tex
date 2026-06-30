@@ -13,8 +13,9 @@
 \maketitle
 
 \noindent\textbf{符号規約}：軸力・応力は引張りを正，圧縮を負とする．
-〔I〕では下方への移動を正にとる．〔II〕では反力・たわみは荷重 $P$ の向き（下向き）を正，
-たわみの基礎式は $EI\,\dfrac{d^2v}{dx^2}=M(x)$ を用い，曲げモーメントは下に凸を正とする．
+〔I〕では下方への移動を正にとる．〔II〕では反力は上向きを正，たわみ $v$ は上向きを正にとり，
+たわみの基礎式は $EI\,\dfrac{d^2v}{dx^2}=-M(x)$ を用いる．自由体のせん断力 $Q$ は上向きを正，
+曲げモーメント $M$ は時計回りを正にとり，この符号のもとで $\dfrac{dM}{dx}=Q$ が成り立つ．
 断面二次モーメントは $I=\dfrac{\pi d^4}{64}$，断面二次極モーメントは $I_p=\dfrac{\pi d^4}{32}$．
 
 %====================================================================
@@ -152,19 +153,29 @@ $P$ について解いて
 
 \subsection*{解答}
 
-点 A を原点とし，$\mathrm{A}(0,0,0)$，$\mathrm{B}(L,0,0)$，$\mathrm{C}\!\left(L,\tfrac{L}{2},0\right)$ とおく．
-荷重は $\vec F=(0,0,-P)$．区間 AB の軸は $x$ 方向であるから，$x$ 軸まわりのモーメントが「ねじり」，
-$y$ 軸まわりのモーメントが「曲げ」になる．
+区間 AB の軸は $x$ 方向であり，区間 BC は $y$ 方向である．荷重 $P$ は点 C（点 A から見て
+$x$ 方向に $L$，$y$ 方向に $\tfrac{L}{2}$ 離れた位置）に下向き（$z$ 軸負方向）に作用する．
+固定端 A には鉛直反力 $R_A$，曲げモーメント $M_A$（$y$ 軸まわり），ねじりトルク $T_A$（$x$ 軸まわり，
+はりの軸まわり）が生じる．
 
 \medskip
-\noindent\textbf{(1)}\quad 鉛直方向の力のつり合いより，固定端 A の支持力は荷重を支える上向きの力
-$R_A = P$．点 A まわりのモーメントは，C の位置ベクトル $\vec r_{\mathrm C}=\left(L,\tfrac L2,0\right)$ を用いて
+\noindent\textbf{(1)}\quad ベクトルを用いず，力・モーメント・トルクの 3 つのつり合いを別々に立てる．
+
+\noindent 力のつり合い（鉛直方向）：
 \[
-  \vec M_A = -\,\vec r_{\mathrm C}\times\vec F
-  = -\left(L,\tfrac L2,0\right)\times(0,0,-P)
-  = \left(\tfrac{PL}{2},\,-PL,\,0\right).
+  0 = R_A - P \qquad\therefore\quad R_A = P\ (\text{上向き}).
 \]
-$y$ 軸成分が曲げモーメント，$x$ 軸成分がねじりトルクであるから，その大きさは
+モーメントのつり合い（$y$ 軸まわり，曲げ）：点 C の荷重 $P$ は，$x$ 方向の腕の長さ $L$ をもつので，
+点 A に曲げモーメント $P\cdot L$ を生じる．これを $M_A$ がつり合わせるから
+\[
+  0 = M_A - P\,L \qquad\therefore\quad M_A = PL.
+\]
+トルクのつり合い（$x$ 軸まわり，ねじり）：点 C の荷重 $P$ は，はりの軸（$x$ 軸）から $y$ 方向に
+$\tfrac{L}{2}$ 離れているので，軸まわりにねじりトルク $P\cdot\tfrac{L}{2}$ を生じる．これを $T_A$ が
+つり合わせるから
+\[
+  0 = T_A - P\cdot\frac{L}{2} \qquad\therefore\quad T_A = \frac{PL}{2}.
+\]
 \[
   \ans{\;R_A = P\ (\text{上向き}),\qquad M_A = PL\ (\text{$y$ 軸まわり, 曲げ}),\qquad T_A = \frac{PL}{2}\ (\text{$x$ 軸まわり, ねじり})\;}
 \]
@@ -184,15 +195,18 @@ $y$ 軸成分が曲げモーメント，$x$ 軸成分がねじりトルクであ
 
 \medskip
 \noindent\textbf{(2)}\quad 区間 AB（$0\le x\le L$）で断面位置 $x$ をとり，断面より先（C 側）の自由体を考える．
-先端 C には下向きの荷重 $P$ のみが作用するから，断面に伝わるせん断力・曲げモーメント・ねじりトルクは
+せん断力 $Q$ は上向きを正，曲げモーメント $M$ は時計回りを正にとる．先端 C には下向きの荷重 $P$ のみが
+作用する．自由体のつり合いより，曲げモーメントは腕の長さ $(L-x)$ を用いて $M(x)=P(L-x)$（時計回り）となり，
+せん断力は $\dfrac{dM}{dx}=Q$ が成り立つように符号をとると $Q(x)=\dfrac{dM}{dx}=-P$ である．
+ねじりトルクは軸を一定に伝わり $T(x)=P\cdot\dfrac{L}{2}$．
 \[
-  Q(x) = P\ (\text{一定}),\qquad
+  Q(x) = -P\ (\text{一定}),\qquad
   M(x) = P\,(L-x),\qquad
-  T(x) = P\cdot\frac{L}{2}\ (\text{一定}).
+  T(x) = \frac{PL}{2}\ (\text{一定}).
 \]
-端点での値は $M(0)=PL$（$=M_A$），$M(L)=0$（点 B で曲げ 0）．
+端点での値は $M(0)=PL$（$=M_A$），$M(L)=0$（点 B で曲げ 0）．確かに $\dfrac{dM}{dx}=-P=Q$ が成り立つ．
 \[
-  \ans{\;Q(x)=P\quad(0\le x\le L),\qquad M(x)=P(L-x)\quad(M(0)=PL,\ M(L)=0)\;}
+  \ans{\;Q(x)=-P,\qquad M(x)=P(L-x)\quad(M(0)=PL,\ M(L)=0),\qquad \frac{dM}{dx}=Q\;}
 \]
 
 \begin{center}
@@ -200,11 +214,11 @@ $y$ 軸成分が曲げモーメント，$x$ 軸成分がねじりトルクであ
   \def\L{3.2}
   \begin{scope}
     \draw[->] (-0.3,0) -- (\L+0.6,0) node[right]{$x$};
-    \draw[->] (0,-0.3) -- (0,1.3) node[above]{SFD};
-    \draw[line width=1pt,blue] (0,0.8) -- (\L,0.8);
-    \draw[blue] (0,0)--(0,0.8); \draw[blue] (\L,0)--(\L,0.8);
-    \node[left] at (0,0.8) {$P$};
-    \node[below] at (0,0) {$A$}; \node[below] at (\L,0) {$B$};
+    \draw[->] (0,-1.3) -- (0,0.5) node[above]{SFD};
+    \draw[line width=1pt,blue] (0,-0.8) -- (\L,-0.8);
+    \draw[blue] (0,0)--(0,-0.8); \draw[blue] (\L,0)--(\L,-0.8);
+    \node[left] at (0,-0.8) {$-P$};
+    \node[above] at (0,0) {$A$}; \node[above] at (\L,0) {$B$};
   \end{scope}
   \begin{scope}[xshift=6.5cm]
     \draw[->] (-0.3,0) -- (\L+0.6,0) node[right]{$x$};
@@ -245,18 +259,18 @@ $I_p=\dfrac{\pi d^4}{32}$ より $\tau_{xy}=\dfrac{PLd}{4}\cdot\dfrac{32}{\pi d^
 
 \medskip
 \noindent\textbf{(4)}\quad
-\textbf{点 B のたわみ $\delta_B$}：区間 AB は固定端 A の片持ちはりで，内力の曲げモーメントは
-$M(x)=P(L-x)$（先端 B に下向き荷重 $P$ を受ける片持ちと等価）．基礎式 $EI\,v''=M(x)$ を
-$v(0)=0,\ v'(0)=0$ のもとで 2 回積分すると
+\textbf{点 B のたわみ $\delta_B$}：区間 AB は固定端 A の片持ちはりで，曲げモーメントは $M(x)=P(L-x)$．
+たわみ $v$ は上向きを正とし，基礎式 $EI\,v''=-M(x)=-P(L-x)$ を $v(0)=0,\ v'(0)=0$ のもとで
+2 回積分すると
 \[
-  EI\,v(x) = \frac{P}{2}Lx^2 - \frac{P}{6}x^3,\qquad
-  EI\,v'(x) = PLx - \frac{P}{2}x^2 .
+  EI\,v'(x) = -PLx + \frac{P}{2}x^2,\qquad
+  EI\,v(x) = -\frac{P}{2}Lx^2 + \frac{P}{6}x^3 .
 \]
 よって点 B（$x=L$）で
 \[
-  \ans{\;\delta_B = \frac{PL^3}{3EI}\quad(\text{下向き})\;}
+  \ans{\;\delta_B = v(L) = -\frac{PL^3}{3EI}\quad(\text{下向きに }\tfrac{PL^3}{3EI})\;}
 \]
-また点 B での曲げによる傾き（$y$ 軸まわり）は $\theta_B = v'(L) = \dfrac{PL^2}{2EI}$．
+また点 B での曲げによる傾き（$y$ 軸まわり）は $\theta_B = v'(L) = -\dfrac{PL^2}{2EI}$．
 
 \smallskip
 \textbf{点 B のねじれ角 $\psi_B$}：区間 AB には一定のねじりトルク $T=\dfrac{PL}{2}$ が作用するから
@@ -265,24 +279,24 @@ $v(0)=0,\ v'(0)=0$ のもとで 2 回積分すると
 \]
 
 \smallskip
-\textbf{点 C のたわみ $\delta_C$}：C の下方移動は次の 3 つの和である．
+\textbf{点 C のたわみ $\delta_C$}：たわみは上向きを正とする．C の $z$ 変位は次の 3 つの寄与（いずれも下向き）の和である．
 \begin{itemize}
-  \item 区間 AB の曲げによる B の沈下 $\delta_B = \dfrac{PL^3}{3EI}$（C は B と同じ $z$ 変位を受ける）．
+  \item 区間 AB の曲げによる B の沈下 $\delta_B = -\dfrac{PL^3}{3EI}$（C は B と同じ $z$ 変位を受ける）．
   \item 区間 AB のねじれ角 $\psi_B$ により，腕 BC（長さ $L/2$）の先端 C が $\psi_B\cdot\dfrac{L}{2}$ だけ沈下．
   \item 区間 BC 自体の曲げ（B を固定とみた長さ $L/2$ の片持ちに先端荷重 $P$）による先端たわみ
-        $\dfrac{P(L/2)^3}{3EI}=\dfrac{PL^3}{24EI}$．
+        $-\dfrac{P(L/2)^3}{3EI}=-\dfrac{PL^3}{24EI}$．
 \end{itemize}
 （区間 AB の曲げ傾き $\theta_B$ は $y$ 軸まわりの回転であり，C は B から $y$ 方向に離れているため
 $z$ 変位には寄与しない．）したがって
 \[
-  \delta_C = \frac{PL^3}{3EI} + \psi_B\cdot\frac{L}{2} + \frac{PL^3}{24EI}
-  = \frac{PL^3}{3EI} + \frac{PL^3}{4GI_p} + \frac{PL^3}{24EI}.
+  \delta_C = -\frac{PL^3}{3EI} - \psi_B\cdot\frac{L}{2} - \frac{PL^3}{24EI}
+  = -\frac{PL^3}{3EI} - \frac{PL^3}{4GI_p} - \frac{PL^3}{24EI}.
 \]
 $\dfrac{1}{3}+\dfrac{1}{24}=\dfrac{3}{8}$ より
 \[
-  \ans{\;\delta_C = \frac{3PL^3}{8EI} + \frac{PL^3}{4GI_p}\;}
+  \ans{\;\delta_C = -\left(\frac{3PL^3}{8EI} + \frac{PL^3}{4GI_p}\right)\quad(\text{下向き})\;}
 \]
-検算：剛性 $G\to\infty$（ねじれない）極限では $\delta_C\to\dfrac{3PL^3}{8EI}$ となり，
-曲げのみの寄与（AB の $\tfrac{PL^3}{3EI}$ と BC の $\tfrac{PL^3}{24EI}$ の和）に一致する ✓．
+検算：剛性 $G\to\infty$（ねじれない）極限では $\delta_C\to-\dfrac{3PL^3}{8EI}$ となり，
+曲げのみの寄与（AB の $-\tfrac{PL^3}{3EI}$ と BC の $-\tfrac{PL^3}{24EI}$ の和）に一致する ✓．
 
 \end{document}
