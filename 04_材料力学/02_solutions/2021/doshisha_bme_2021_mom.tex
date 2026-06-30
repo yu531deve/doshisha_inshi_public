@@ -37,10 +37,10 @@
   \fill[gray!35] (-0.3,0) rectangle (0.3,2.5); \draw (-0.3,0) rectangle (0.3,2.5);
   \node[left] at (-0.3,4.6) {A}; \node[left] at (-0.3,2.6) {B}; \node[right] at (0.3,0.3) {C};
   \fill (0,2.5) circle (1.6pt);
-  \draw[->,very thick] (0,2.5) -- (0,1.4) node[midway,right]{$P$};
-  \node[right] at (0.35,3.9) {\footnotesize 丸棒 1};
-  \node[right] at (0.35,1.4) {\footnotesize 丸棒 2};
-  \node[right] at (1.55,4.3) {\footnotesize 円管 3};
+  \draw[->,very thick] (0,2.5) -- (0,1.4) node[midway,right,fill=white,inner sep=1pt]{$P$};
+  \node[right,fill=white,inner sep=1pt] at (0.35,3.9) {\footnotesize 丸棒 1};
+  \node[right,fill=white,inner sep=1pt] at (0.35,1.4) {\footnotesize 丸棒 2};
+  \node[right,fill=white,inner sep=1pt] at (1.55,4.3) {\footnotesize 円管 3};
   \draw[<->] (-1.85,0) -- (-1.85,5.0) node[midway,fill=white]{$L$};
   \draw[<->] (-0.8,0) -- (-0.8,2.5) node[midway,fill=white,font=\scriptsize]{$L/2$};
   \draw[->,line width=1pt] (2.2,4.7) arc (70:-20:1.4) node[midway,right]{$T$};
@@ -166,11 +166,11 @@ $\lambda_1+\lambda_2=\dfrac{(40-42)PL}{83E\pi d^2}=-\dfrac{2PL}{83E\pi d^2}=\lam
   \draw[->] (0.6,0.55) -- (2.0,0.55) node[below]{$x$};
   \node at (0.45,0.55) {A}; \node[below] at (6.0,0.25) {B};
   \draw[dashed] (3.3,0.55) ellipse (0.12 and 0.34);
-  \node at (3.3,-0.05) {C};
+  \node[fill=white,inner sep=1pt] at (3.3,-0.05) {C};
   \fill (4.0,0.88) circle (1.8pt); \node[above] at (4.0,0.92) {Q};
   \draw[<->] (0.6,-0.4) -- (6.0,-0.4) node[midway,fill=white]{$L$};
   \draw[<->] (3.3,0.15) -- (6.0,0.15) node[midway,fill=white,font=\scriptsize]{$a$};
-  \draw[<->] (6.2,0.7) -- (8.6,1.45) node[midway,above,font=\scriptsize]{$L$};
+  \draw[<->] (6.2,0.7) -- (8.6,1.45) node[midway,above,fill=white,inner sep=1pt,font=\scriptsize]{$L$};
 \end{tikzpicture}
 
 \vspace{1mm}
@@ -287,10 +287,10 @@ $T(x)=FL$ である．
   \fill (\c+\r,0) circle (1.2pt); \node[below] at (\c+\r,-0.05) {\scriptsize $\sigma_{\max}$};
   \fill (\c-\r,0) circle (1.2pt); \node[below] at (\c-\r,-0.05) {\scriptsize $\sigma_{\min}$};
   % 応力点 (σx, -τ) と (σy=0, +τ)
-  \fill (\c+0.6,-0.95) circle (1.2pt); \node[right] at (\c+0.6,-0.95) {\scriptsize $(\sigma_x,-\tau_{xy})$};
-  \fill (\c-0.6,0.95) circle (1.2pt); \node[left] at (\c-0.6,0.95) {\scriptsize $(\sigma_y,\tau_{xy})$};
+  \fill (\c+0.6,-0.95) circle (1.2pt); \node[right,fill=white,inner sep=1pt] at (\c+0.6,-0.95) {\scriptsize $(\sigma_x,-\tau_{xy})$};
+  \fill (\c-0.6,0.95) circle (1.2pt); \node[left,fill=white,inner sep=1pt] at (\c-0.6,0.95) {\scriptsize $(\sigma_y,\tau_{xy})$};
   \draw[dashed] (\c-0.6,0.95) -- (\c+0.6,-0.95);
-  \node[above] at (\c,\r) {\scriptsize 半径 $r$};
+  \node[above,fill=white,inner sep=1pt] at (\c,\r) {\scriptsize 半径 $r$};
 \end{tikzpicture}
 \end{center}
 

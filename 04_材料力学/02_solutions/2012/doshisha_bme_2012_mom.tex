@@ -86,14 +86,14 @@
     \draw[->] (0,-1.1) -- (0,1.1) node[above]{SFD};
     \draw[line width=1pt,blue] (0,-0.7) -- (\L,-0.7) -- (\L,0.7) -- (2*\L,0.7);
     \node[left] at (0,-0.7) {$-P$}; \node[left] at (0,0.7) {$P$};
-    \node[below] at (\L,0) {$L$}; \node[below] at (2*\L,0) {$2L$};
+    \node[below,fill=white,inner sep=1pt] at (\L,-0.05) {$L$}; \node[below,fill=white,inner sep=1pt] at (2*\L,0) {$2L$};
   \end{scope}
   \begin{scope}[xshift=8.5cm]
     \draw[->] (-0.3,0) -- (2*\L+0.6,0) node[right]{$x$};
     \draw[->] (0,-1.2) -- (0,0.8) node[above]{BMD};
     \draw[line width=1pt,red] (0,0) -- (\L,-1.0) -- (2*\L,0);
     \node[below left] at (\L,-1.0) {$-PL$};
-    \node[above] at (0,0) {$A$}; \node[below] at (\L,0) {$B$}; \node[above] at (2*\L,0) {$C$};
+    \node[above left,inner sep=1pt] at (0,0) {$A$}; \node[above,fill=white,inner sep=1pt] at (\L,0) {$B$}; \node[above] at (2*\L,0) {$C$};
   \end{scope}
 \end{tikzpicture}
 \end{center}

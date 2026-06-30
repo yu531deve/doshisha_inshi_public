@@ -130,6 +130,51 @@ check("〔2〕 σθ*2t = p d", sp.simplify(sig_theta*2*t - p*d), 0)
 check("〔2〕 σx*(π d t) = p(π d^2/4)",
       sp.simplify(sig_x*(sp.pi*d*t) - p*(sp.pi*d**2/4)), 0)
 check("〔2〕 σθ=2 σx", sig_theta, 2*sig_x)
+
+# --- 〔3〕 曲げ＋ねじり（円形断面はり, 先端剛体腕にF） ---
+F, a = sp.symbols('F a', positive=True)
+# 断面定数（中実丸棒）
+I  = sp.pi*d**4/64     # 断面二次モーメント
+Ip = sp.pi*d**4/32     # 断面二次極モーメント
+# 点Q（自由端から距離a）の曲げモーメント M=F a, ねじりトルク T=F(L/2)
+M = F*a
+T = F*(L/2)
+# (1) 曲げ応力 σx = M(d/2)/I, 円周方向 σy=0
+sigx3 = sp.simplify(M*(d/2)/I)
+check("〔3〕(1) σx=32Fa/(πd^3)", sigx3, 32*F*a/(sp.pi*d**3))
+sigy3 = 0
+check("〔3〕(1) σy=0", sigy3, 0)
+# (2) せん断応力 τxy = T(d/2)/Ip （最外縁なので横せん断は0, ねじりのみ）
+tau3 = sp.simplify(T*(d/2)/Ip)
+check("〔3〕(2) τxy=8FL/(πd^3)", tau3, 8*F*L/(sp.pi*d**3))
+# (3) モール円: 中心 σx/2, 半径 R, 主応力, τmax
+center = sp.simplify(sigx3/2)
+check("〔3〕(3) 中心 σx/2=16Fa/(πd^3)", center, 16*F*a/(sp.pi*d**3))
+R = sp.sqrt((sigx3/2)**2 + tau3**2)
+R_closed = 8*F*sp.sqrt(4*a**2 + L**2)/(sp.pi*d**3)
+check("〔3〕(3) R=8F√(4a²+L²)/(πd^3)", sp.simplify(R - R_closed), 0)
+sig1 = sp.simplify(center + R)
+sig2 = sp.simplify(center - R)
+taumax = sp.simplify(R)
+sig_max_closed = (8*F/(sp.pi*d**3))*(2*a + sp.sqrt(4*a**2 + L**2))
+check("〔3〕(3) σmax=σ1=(8F/πd^3)(2a+√(4a²+L²))",
+      sp.simplify(sig1 - sig_max_closed), 0)
+check("〔3〕(3) τmax=R", sp.simplify(taumax - R_closed), 0)
+# σ1+σ2 = σx (不変量), σ1*σ2 = -τxy² (σy=0)
+check("〔3〕(3) σ1+σ2=σx", sp.simplify(sig1 + sig2), sigx3)
+check("〔3〕(3) σ1 σ2 = -τxy²", sp.simplify(sig1*sig2 + tau3**2), 0)
+# (4) 薄肉円筒置換: Iz, Ip を残した一般形
+Iz, Ip2 = sp.symbols('I_z I_p', positive=True)
+sigx4 = sp.simplify(M*(d/2)/Iz)
+tau4  = sp.simplify(T*(d/2)/Ip2)
+check("〔3〕(4) σx=Fad/(2Iz)", sigx4, F*a*d/(2*Iz))
+check("〔3〕(4) σy=0", 0, 0)
+check("〔3〕(4) τxy=FLd/(4Ip)", tau4, F*L*d/(4*Ip2))
+# 中実丸棒の Iz=I, Ip=Ip を代入すると(1)(2)に一致
+check("〔3〕(4)->(1) 整合", sp.simplify(sigx4.subs(Iz, I)), sigx3)
+check("〔3〕(4)->(2) 整合", sp.simplify(tau4.subs(Ip2, Ip)), tau3)
+# モール円作図は数値検算不能
+note_unverifiable("〔3〕(3) モール円の作図", "tikzによる作図（数値検算の対象外）")
 # =========================================================
 
 

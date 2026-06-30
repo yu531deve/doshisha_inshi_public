@@ -230,4 +230,139 @@ $N_2-N_1+F=0$．$N_1=0$ より $F=-N_2=-\dfrac{P}{11}$．
 \medskip
 検算：両者の比は $\sigma_\theta=2\,\sigma_x$ となり，薄肉円筒の周方向応力が軸方向応力の 2 倍という周知の結果に一致する ✓．
 
+%====================================================================
+\clearpage
+\section*{〔3〕}
+
+外径 $d$, 長さ $L$ の円形断面はり（固定端 A，自由端 B）の先端 B に長さ $L/2$ の剛体棒があり，
+その先端に外力 $F$（はり軸に垂直な横荷重）が作用する．縦弾性係数・横弾性係数を $E,\ G$ とする．
+点 $Q$ は固定端から測って $x=L-a$（自由端 B から距離 $a$），表面の最外縁
+（$y=0,\ z=d/2$，曲げの引張り側）である．
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=0.95]
+  % 固定壁
+  \fill[pattern=north east lines] (0,-0.7) rectangle (0.3,0.7);
+  \draw (0.3,-0.7) -- (0.3,0.7);
+  % はり本体
+  \draw (0.3,0.25) -- (5.6,0.25);
+  \draw (0.3,-0.25) -- (5.6,-0.25);
+  \draw (5.6,0) ellipse (0.14 and 0.25);
+  \node[below left] at (0.3,-0.25) {A};
+  \node[below right] at (5.6,-0.3) {B};
+  % 点Q（上面, 引張り側）
+  \fill (4.0,0.25) circle (1.6pt);
+  \node[above] at (4.0,0.3) {$Q$};
+  % 剛体腕とF
+  \draw[line width=1.4pt] (5.6,0.1) -- (6.6,0.9);
+  \node at (6.35,0.35) {\footnotesize $L/2$};
+  \draw[->,very thick] (6.6,1.9) -- (6.6,0.95);
+  \node[right] at (6.7,1.55) {$F$};
+  % 寸法
+  \draw[<->] (0.3,-0.75) -- (5.6,-0.75) node[midway,fill=white]{$L$};
+  \draw[<->] (4.0,-0.45) -- (5.6,-0.45) node[midway,fill=white,font=\scriptsize]{$a$};
+\end{tikzpicture}
+\end{center}
+
+剛体腕の横荷重 $F$ は，はり軸に対して
+\emph{曲げモーメント}と\emph{ねじりトルク}の両方を点 $Q$ の断面に生じさせる
+（曲げ＋ねじりの複合応力問題）．中実丸棒の断面定数は
+\[
+  I=\frac{\pi d^4}{64}\ (\text{断面二次モーメント}),\qquad
+  I_p=\frac{\pi d^4}{32}\ (\text{断面二次極モーメント}).
+\]
+
+\subsection*{解答}
+
+\noindent\textbf{(1)}\quad
+点 $Q$ の断面（自由端 B から距離 $a$）に作用する曲げモーメントは，先端荷重 $F$ がモーメントの腕 $a$ をもつので
+$M=F\,a$ である．最外縁 $z=d/2$ の曲げ応力（軸 $x$ 方向）は
+\[
+  \sigma_x=\frac{M\,(d/2)}{I}=\frac{F a\,(d/2)}{\pi d^4/64}
+  \;\Longrightarrow\;
+  \ans{\;\sigma_x=\frac{32\,F a}{\pi d^3}\quad(\text{引張り})\;}
+\]
+中実丸棒には円周方向の垂直応力は生じないので
+\[
+  \ans{\;\sigma_y=0\;}
+\]
+
+\medskip
+\noindent\textbf{(2)}\quad
+剛体腕のオフセット $L/2$ によって，はり軸まわりにねじりトルク
+$T=F\cdot\dfrac{L}{2}$ が生じる．表面のせん断応力は
+\[
+  \tau_{xy}=\frac{T\,(d/2)}{I_p}=\frac{(FL/2)\,(d/2)}{\pi d^4/32}
+  \;\Longrightarrow\;
+  \ans{\;\tau_{xy}=\frac{8\,F L}{\pi d^3}\;}
+\]
+なお点 $Q$ は断面の最外縁にあり，横せん断力 $F$ によるせん断応力はそこで $0$ になるため，
+$Q$ 点のせん断応力はねじり分のみが残る．
+
+\medskip
+\noindent\textbf{(3)}\quad
+点 $Q$ は $\sigma_x$（引張り），$\sigma_y=0$，$\tau_{xy}$ の平面応力状態にある．モール応力円は
+中心 $\left(\dfrac{\sigma_x}{2},\,0\right)$，半径 $R=\sqrt{\left(\dfrac{\sigma_x}{2}\right)^2+\tau_{xy}^{\,2}}$ の円となる．ここで
+\[
+  \frac{\sigma_x}{2}=\frac{16\,F a}{\pi d^3},\qquad
+  R=\sqrt{\left(\frac{16Fa}{\pi d^3}\right)^2+\left(\frac{8FL}{\pi d^3}\right)^2}
+   =\frac{8F}{\pi d^3}\sqrt{4a^2+L^2}.
+\]
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=1.0]
+  \def\cx{2.6}   % 中心 σx/2
+  \def\R{1.9}    % 半径
+  % 軸
+  \draw[->] (-0.4,0) -- (6.0,0) node[right]{$\sigma$};
+  \draw[->] (0,-2.4) -- (0,2.4) node[above]{$\tau$};
+  % モール円
+  \draw[thick] (\cx,0) circle (\R);
+  \fill (\cx,0) circle (1.2pt);
+  \node[below right] at (\cx,-0.05) {\footnotesize $\dfrac{\sigma_x}{2}$};
+  % 点 Q (σx, τxy) と (σy=0, -τxy)
+  \fill (4.5,1.1) circle (1.4pt); \node[above right] at (4.5,1.1) {\footnotesize $(\sigma_x,\tau_{xy})$};
+  \fill (0.7,-1.1) circle (1.4pt); \node[below left] at (0.7,-1.1) {\footnotesize $(0,-\tau_{xy})$};
+  \draw (4.5,1.1) -- (0.7,-1.1);
+  % 主応力
+  \fill (\cx-\R,0) circle (1.2pt); \node[above left] at (\cx-\R,0) {\footnotesize $\sigma_2$};
+  \fill (\cx+\R,0) circle (1.2pt); \node[above right] at (\cx+\R,0) {\footnotesize $\sigma_1$};
+  % τmax
+  \draw[<->] (\cx,0.06) -- (\cx,\R-0.02);
+  \node[right] at (\cx+0.05,\R/2) {\footnotesize $\tau_{\max}=R$};
+\end{tikzpicture}
+\end{center}
+
+\noindent 主応力 $\sigma_1,\sigma_2$ と最大せん断応力 $\tau_{\max}$ は
+\[
+  \sigma_{1}=\frac{\sigma_x}{2}+R,\qquad
+  \sigma_{2}=\frac{\sigma_x}{2}-R,\qquad
+  \tau_{\max}=R=\frac{8F}{\pi d^3}\sqrt{4a^2+L^2}.
+\]
+最大主応力は $\sigma_{\max}=\sigma_1$ であり，
+\[
+  \sigma_{\max}=\frac{16Fa}{\pi d^3}+\frac{8F}{\pi d^3}\sqrt{4a^2+L^2}
+  \;\Longrightarrow\;
+  \ans{\;\sigma_{\max}=\frac{8F}{\pi d^3}\Bigl(2a+\sqrt{4a^2+L^2}\Bigr)\;}
+\]
+検算：$\sigma_1+\sigma_2=\sigma_x$（応力の不変量），かつ
+$\sigma_1\sigma_2=\left(\dfrac{\sigma_x}{2}\right)^2-R^2=-\tau_{xy}^{\,2}$
+（$\sigma_y=0$ のときの関係）を満たす ✓．
+
+\medskip
+\noindent\textbf{(4)}\quad
+円形断面はりを〔2〕のような薄肉円筒に置きかえても，曲げ・ねじりの応力公式の形は変わらない．
+断面二次モーメントを $I_z$，断面二次極モーメントを $I_p$ として，曲げモーメント $M=Fa$，
+ねじりトルク $T=FL/2$，最外縁 $d/2$ を用いると
+\[
+  \sigma_x=\frac{M\,(d/2)}{I_z}=\frac{F a\,d}{2\,I_z},\qquad
+  \sigma_y=0,\qquad
+  \tau_{xy}=\frac{T\,(d/2)}{I_p}=\frac{F L\,d}{4\,I_p}.
+\]
+\[
+  \ans{\;\sigma_x=\frac{F a\,d}{2 I_z},\qquad \sigma_y=0,\qquad \tau_{xy}=\frac{F L\,d}{4 I_p}\;}
+\]
+検算：中実丸棒の値 $I_z=I=\dfrac{\pi d^4}{64}$，$I_p=\dfrac{\pi d^4}{32}$ を代入すると
+$\sigma_x=\dfrac{32Fa}{\pi d^3}$，$\tau_{xy}=\dfrac{8FL}{\pi d^3}$ となり，(1)(2) に一致する ✓．
+
 \end{document}

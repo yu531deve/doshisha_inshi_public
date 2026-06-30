@@ -36,7 +36,7 @@
   \node[below left] at (1.0,-0.2) {A};
   \node at (6.7,0.75) {B};
   \draw[line width=1.4pt] (1.0,-0.1) -- (1.55,-1.5);
-  \node at (0.9,-1.0) {$L/2$};
+  \node[fill=white,inner sep=1pt] at (0.78,-1.0) {$L/2$};
   \draw[->,very thick] (1.55,-1.5) -- (1.55,-2.6) node[below]{$P$};
   \draw[<->] (1.0,1.55) -- (7.0,1.55) node[midway,fill=white]{$L$};
   \begin{scope}[shift={(-1.3,-0.2)}]
@@ -264,7 +264,7 @@ A 端は壁に固定（固定端），B はローラー支持である．
     % B でローラー反力により上昇, 区間BC で一定 = P >0
     \draw[line width=1pt,blue] (\L,-0.75) -- (\L,0.4) -- (2*\L,0.4);
     \node[left] at (0,0.6) {\scriptsize $R_A$};
-    \node[left] at (0,0.4) {\scriptsize $P$};
+    \node[above] at (1.6*\L,0.4) {\scriptsize $P$};
     \node[below] at (\L,0) {$L$}; \node[below] at (2*\L,0) {$2L$};
   \end{scope}
   \begin{scope}[xshift=7.5cm]
@@ -326,5 +326,161 @@ $R_A=\tfrac58 f_0L-\tfrac32P,\ M_A=\tfrac{f_0L^2}{8}-\tfrac{PL}{2}$ が得られ
 検算：$P=0$（C の荷重なし）とすると $R_B=\dfrac38 f_0L$，$M_A=\dfrac{f_0L^2}{8}$ となり，
 等分布荷重を受ける一端固定・他端ローラー支持はり（プロップド片持ちはり）の既知解に一致する ✓．
 また両支点条件 $v_1(0)=0,\ v_1'(0)=0,\ v_1(L)=0,\ v_2(L)=0$ と接続 $v_1'(L)=v_2'(L)$ がすべて満たされる ✓．
+
+%====================================================================
+\clearpage
+\section*{〔III〕}
+
+図3に示す組合せ棒について答えよ. 丸棒 1（直径 $d$, 縦弾性係数 $E$）は上部 A--B（長さ $L/2$），
+丸棒 2（直径 $2d$, 縦弾性係数 $3E$）は下部 B--C（長さ $L/2$）にあり，両者は B で接合される．
+円管 3（内径 $4d$, 外径 $6d$, 縦弾性係数 $2E$）は全長 $L$ にわたる．組合せ棒の下面は固定され，
+上面も剛体円板で固定される（両端固定）．2 本の丸棒の接合点 B に下向きの外力 $P$ が作用し，
+剛体板は平行を保つ．横弾性係数はすべて $G$ とする．
+
+\begin{center}
+% 断面図（同心円）
+\begin{tikzpicture}[>=Latex,scale=0.9]
+  \begin{scope}
+    \clip (0,0) circle (1.8); \fill[pattern=north east lines] (-2,-2) rectangle (2,2);
+    \fill[white] (0,0) circle (1.2);
+  \end{scope}
+  \draw (0,0) circle (1.8); \draw (0,0) circle (1.2);
+  \fill[gray!45] (0,0) circle (0.6); \draw (0,0) circle (0.6);
+  \fill[white] (0,0) circle (0.3); \draw (0,0) circle (0.3);
+  \node at (0,0.95) {\footnotesize 丸棒 1};
+  \draw[->] (0,0.82) -- (0,0.16);
+  \node at (1.75,-1.55) {\footnotesize 丸棒 2};
+  \draw[->] (1.3,-1.3) -- (0.4,-0.42);
+  \node[below left] at (-1.45,-1.2) {\footnotesize 円管 3};
+  \draw[->] (-1.25,-1.05) -- (-0.95,-0.85);
+  \draw[->,line width=1pt] (1.4,1.6) arc (55:-35:2.1) node[midway,right]{$T$};
+\end{tikzpicture}
+\hspace{8mm}
+% 縦断面図
+\begin{tikzpicture}[>=Latex,scale=0.9]
+  \draw[thick] (-2.0,0) -- (2.0,0);
+  \foreach \x in {-1.9,-1.6,...,1.95} {\draw (\x,0) -- (\x-0.25,-0.25);}
+  \draw[line width=2pt] (-2.0,5.0) -- (2.0,5.0);
+  \foreach \x in {-1.9,-1.6,...,1.95} {\draw (\x+0.25,5.25) -- (\x,5.0);}
+  \fill[gray!20] (-1.5,0) rectangle (-1.2,5.0);
+  \fill[gray!20] (1.2,0) rectangle (1.5,5.0);
+  \draw (-1.5,0) rectangle (-1.2,5.0); \draw (1.2,0) rectangle (1.5,5.0);
+  \draw (-0.3,2.5) rectangle (0.3,5.0);
+  \fill[gray!45] (-0.6,0) rectangle (0.6,2.5); \draw (-0.6,0) rectangle (0.6,2.5);
+  \node[left] at (-0.3,4.6) {A};
+  \node[above,inner sep=1.5pt] at (-0.3,2.5) {B};
+  \node[right] at (0.6,0.3) {C};
+  \fill (0,2.5) circle (1.6pt);
+  \draw[->,very thick] (0,2.5) -- (0,1.4) node[midway,right]{$P$};
+  \node[right,fill=white,inner sep=1pt] at (0.35,3.9) {\footnotesize 丸棒 1};
+  \node[right,fill=white,inner sep=1pt] at (0.65,1.5) {\footnotesize 丸棒 2};
+  \node[right,fill=white,inner sep=1pt] at (1.55,4.3) {\footnotesize 円管 3};
+  \draw[<->] (-1.85,0) -- (-1.85,5.0) node[midway,fill=white]{$L$};
+  \draw[<->] (-0.8,0) -- (-0.8,2.5) node[midway,fill=white,font=\scriptsize]{$L/2$};
+\end{tikzpicture}
+
+\vspace{1mm}
+図3
+\end{center}
+
+\subsection*{解答}
+
+各部材の断面積は
+\[
+  A_1=\frac{\pi d^2}{4},\qquad
+  A_2=\frac{\pi (2d)^2}{4}=\pi d^2,\qquad
+  A_3=\frac{\pi\big((6d)^2-(4d)^2\big)}{4}=5\pi d^2 .
+\]
+
+\medskip
+\noindent\textbf{(1)}\quad 両端（上面・下面）が固定で，荷重は内部節点 B にのみ作用する．
+円管 3 は固定された上面と下面を全長 $L$ で直接つなぐので，その両端は動かず変形しない．
+よって円管 3 には内力が生じない：$N_3=0$．
+内側は丸棒 1（T 端上面 A に固定，長さ $L/2$）と丸棒 2（B--C，長さ $L/2$）が B で直列につながる．
+各部材の軸剛性（$k=EA/\ell$）は
+\[
+  k_1=\frac{E A_1}{L/2}=\frac{\pi d^2 E}{2L},\qquad
+  k_2=\frac{(3E) A_2}{L/2}=\frac{6\pi d^2 E}{L}.
+\]
+節点 B の下向き変位を $u_B$ とすると，丸棒 1 は伸ばされ（引張，復元力 $k_1u_B$ 上向き），
+丸棒 2 は縮められる（圧縮，復元力 $k_2u_B$ 上向き）．B の力のつり合いより
+\[
+  (k_1+k_2)\,u_B=P,\qquad k_1+k_2=\frac{13}{2}\frac{\pi d^2 E}{L},\qquad
+  u_B=\frac{P}{k_1+k_2}=\frac{2PL}{13\pi d^2 E}.
+\]
+内力は荷重を剛性比で分配して
+\[
+  N_1=k_1u_B=\frac{k_1}{k_1+k_2}P=\frac{P}{13},\qquad
+  N_2=k_2u_B=\frac{k_2}{k_1+k_2}P=\frac{12P}{13}.
+\]
+\[
+  \ans{\;N_1=\dfrac{P}{13}\ (\text{引張}),\qquad N_2=\dfrac{12P}{13}\ (\text{圧縮}),\qquad N_3=0\;}
+\]
+検算：$N_1+N_2=\dfrac{P}{13}+\dfrac{12P}{13}=P$ で，B における荷重 $P$ を内側 2 棒が過不足なく分担する ✓．
+
+\medskip
+\noindent\textbf{(2)}\quad 各部材の応力は内力を断面積で割って（大きさで表す）
+\[
+  \sigma_1=\frac{N_1}{A_1}=\frac{P/13}{\pi d^2/4}=\frac{4P}{13\pi d^2},\qquad
+  \sigma_2=\frac{N_2}{A_2}=\frac{12P/13}{\pi d^2}=\frac{12P}{13\pi d^2},\qquad
+  \sigma_3=\frac{N_3}{A_3}=0 .
+\]
+\[
+  \ans{\;\sigma_1=\dfrac{4P}{13\pi d^2}\ (\text{引張}),\quad
+        \sigma_2=\dfrac{12P}{13\pi d^2}\ (\text{圧縮}),\quad \sigma_3=0\;}
+\]
+
+\medskip
+\noindent\textbf{(3)}\quad 各部材の長さ変化 $\lambda=\dfrac{N\ell}{EA}$ は
+\[
+  \lambda_1=\frac{N_1\,(L/2)}{E A_1}=\frac{(P/13)(L/2)}{E\,\pi d^2/4}=\frac{2PL}{13\pi d^2 E}\ (\text{伸び}),
+\]
+\[
+  \lambda_2=\frac{N_2\,(L/2)}{(3E) A_2}=\frac{(12P/13)(L/2)}{3E\,\pi d^2}=\frac{2PL}{13\pi d^2 E}\ (\text{縮み}),\qquad
+  \lambda_3=0 .
+\]
+\[
+  \ans{\;\lambda_1=\dfrac{2PL}{13\pi d^2 E}\ (\text{伸び}),\quad
+        \lambda_2=\dfrac{2PL}{13\pi d^2 E}\ (\text{縮み}),\quad \lambda_3=0\;}
+\]
+検算：丸棒 1 の伸び（B が下がる量）と丸棒 2 の縮み（B が下がる量）は，ともに節点 B の変位
+$u_B=\dfrac{2PL}{13\pi d^2 E}$ に一致し，変形の適合条件 $\lambda_1=\lambda_2=u_B$ を満たす ✓．
+
+\medskip
+\noindent\textbf{(4)}\quad 上部剛体板に中心軸まわりのトルク $T$ を加える．剛体板と下面は平行を保つから，
+ねじれにおいても上面と下面を結ぶ 2 経路，すなわち\textbf{円管 3（全長 $L$）}と
+\textbf{丸棒 1 と丸棒 2 の直列体（内側）}が\textbf{並列}に $T$ を分担する（両経路のねじれ角は等しく $\Psi$）．
+各部材の断面二次極モーメントは
+\[
+  I_{p1}=\frac{\pi d^4}{32},\qquad I_{p2}=\frac{\pi (2d)^4}{32}=\frac{\pi d^4}{2},\qquad
+  I_{p3}=\frac{\pi\big((6d)^4-(4d)^4\big)}{32}=\frac{65\pi d^4}{2}.
+\]
+円管 3 のねじり剛性（$k_t=GI_p/\ell$）は
+\[
+  k_{t3}=\frac{G I_{p3}}{L}=\frac{65}{2}\,\frac{\pi G d^4}{L}.
+\]
+内側は丸棒 1（長さ $L/2$）と丸棒 2（長さ $L/2$）の直列なので，柔性（逆数）を足して
+\[
+  \frac{1}{k_{t,\text{in}}}=\frac{L/2}{G I_{p1}}+\frac{L/2}{G I_{p2}}
+  =\frac{16L}{\pi G d^4}+\frac{L}{\pi G d^4}=\frac{17L}{\pi G d^4},\qquad
+  k_{t,\text{in}}=\frac{\pi G d^4}{17L}.
+\]
+並列合成のねじり剛性は両者の和であり
+\[
+  k_{t3}+k_{t,\text{in}}=\Big(\frac{65}{2}+\frac{1}{17}\Big)\frac{\pi G d^4}{L}
+  =\frac{1107}{34}\,\frac{\pi G d^4}{L}.
+\]
+ねじれ角は
+\[
+  \Psi=\frac{T}{k_{t3}+k_{t,\text{in}}}=\frac{34\,TL}{1107\,\pi G d^4}.
+\]
+\[
+  \ans{\;\Psi=\dfrac{34\,TL}{1107\,\pi G d^4}\;}
+\]
+検算：円管 3 単独なら $\Psi_3=T/k_{t3}=\dfrac{2TL}{65\pi G d^4}$，内側単独なら
+$\Psi_{\text{in}}=T/k_{t,\text{in}}=\dfrac{17TL}{\pi G d^4}$ であり，並列では
+$\Psi<\min(\Psi_3,\Psi_{\text{in}})=\Psi_3$．実際 $\dfrac{34}{1107}=0.0307<\dfrac{2}{65}=0.0308$ で，
+剛い円管に支配されつつ内側がわずかに剛性を増す結果と整合する ✓．
+なお軸力 $P$ は軸方向，トルク $T$ はねじり方向の独立した荷重で，(1)\,$\sim$\,(3) の結果は変わらない．
 
 \end{document}

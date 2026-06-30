@@ -34,12 +34,12 @@
   \draw[->,very thick] (5.33,0) -- (6.3,0); \node[above] at (5.9,0.05) {$P_2$};
   \node at (3.1,0.25) {棒\textcircled{1}}; \node at (3.1,-0.25) {\footnotesize $A,\,3E$};
   \node at (6.9,0.35) {棒\textcircled{2}}; \node at (6.9,-0.1) {\footnotesize $2A,\,E$};
-  \node[below] at (0,-1.0) {a}; \node[below] at (2,-1.0) {b}; \node[below] at (4,-1.0) {c};
-  \node[below] at (5.33,-1.0) {d}; \node[below] at (8,-1.0) {e};
+  \node[below] at (0,-1.45) {a}; \node[below] at (2,-1.45) {b}; \node[below] at (4,-1.45) {c};
+  \node[below] at (5.33,-1.45) {d}; \node[below] at (8,-1.45) {e};
   \draw[<->] (0,1.2) -- (4,1.2) node[midway,fill=white]{$L$};
   \draw[<->] (4,1.2) -- (8,1.2) node[midway,fill=white]{$L$};
-  \draw[<->] (2,-0.75) -- (4,-0.75) node[midway,fill=white,font=\scriptsize]{$L/2$};
-  \draw[<->] (4,-1.05) -- (5.33,-1.05) node[midway,fill=white,font=\scriptsize]{$L/3$};
+  \draw[<->] (2,-0.78) -- (4,-0.78) node[midway,fill=white,inner sep=1pt,font=\scriptsize]{$L/2$};
+  \draw[<->] (4,-1.08) -- (5.33,-1.08) node[midway,fill=white,inner sep=1pt,font=\scriptsize]{$L/3$};
 \end{tikzpicture}
 
 \vspace{1mm}
@@ -195,9 +195,9 @@ B 点では集中モーメント $M_0$ により BMD が $M_0$ だけ跳躍す�
     \draw[red,densely dashed] (\L,-0.9)--(\L,-0.5);
     \draw[red,densely dashed] (0,0)--(0,-1.4);
     \node[left] at (0,-1.4) {\scriptsize $-2PL-M_0$};
-    \node[below right] at (\L,-0.95) {\scriptsize $-PL-M_0$};
-    \node[above right] at (\L,-0.5) {\scriptsize $-PL$};
-    \node[above] at (0,0) {A}; \node[below] at (\L,0) {B}; \node[above right] at (2*\L,0) {C};
+    \node[below right] at (\L,-0.98) {\scriptsize $-PL-M_0$};
+    \node[above right=1pt] at (\L,-0.46) {\scriptsize $-PL$};
+    \node[above] at (0,0) {A}; \node[below left=-1pt] at (\L,0) {B}; \node[above right] at (2*\L,0) {C};
   \end{scope}
 \end{tikzpicture}
 \end{center}

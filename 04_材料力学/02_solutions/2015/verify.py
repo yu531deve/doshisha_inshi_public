@@ -103,6 +103,64 @@ check("(II検算) P=0 で M_A=f0L^2/8", MA_couple.subs(P,0), f0*L**2/8)
 # 検算: f0=0(C先端Pのみ,プロップド片持ち+オーバーハング)→ R_B=5P/2 上向き
 check("(II検算) f0=0 で R_B=5P/2", RB_v.subs(f0,0), sp.Rational(5,2)*P)
 
+# =========================================================
+# 〔III〕 組合せ棒（両端固定）。丸棒1(d,E,上部L/2), 丸棒2(2d,3E,下部L/2),
+#        円管3(内径4d,外径6d,2E,全長L)。接合点Bに下向きP。
+# =========================================================
+A1 = sp.pi*d**2/4
+A2 = sp.pi*(2*d)**2/4
+A3 = sp.pi*((6*d)**2-(4*d)**2)/4
+check("(III-A) A1", A1, sp.pi*d**2/4)
+check("(III-A) A2", A2, sp.pi*d**2)
+check("(III-A) A3", A3, 5*sp.pi*d**2)
+
+# 軸剛性。内側は丸棒1(長さL/2)と丸棒2(長さL/2)の直列でBに荷重。
+# 円管3は両固定端を全長Lでつなぎ、内部節点Bと無関係 → N3=0。
+k1 = A1*E/(L/2)        # = 2 A1 E / L
+k2 = A2*(3*E)/(L/2)    # = 2 A2 (3E) / L
+check("(III-1) k1", k1, sp.pi*d**2*E/(2*L))
+check("(III-1) k2", k2, 6*sp.pi*d**2*E/L)
+uB = P/(k1+k2)
+N1 = k1*uB     # 丸棒1: Bの変位に対応、上端固定→引張
+N2 = k2*uB     # 丸棒2: 圧縮（大きさ）
+N3 = sp.Integer(0)
+check("(III-1) N1", N1, P/13)
+check("(III-1) N2", N2, 12*P/13)
+check("(III-1) N3", N3, 0)
+check("(III-1検算) N1+N2=P", sp.simplify(N1+N2), P)
+
+sig1 = N1/A1
+sig2 = N2/A2
+sig3 = N3/A3
+check("(III-2) σ1", sig1, 4*P/(13*sp.pi*d**2))
+check("(III-2) σ2", sig2, 12*P/(13*sp.pi*d**2))
+check("(III-2) σ3", sig3, 0)
+
+lam1 = N1*(L/2)/(A1*E)
+lam2 = N2*(L/2)/(A2*(3*E))
+lam3 = sp.Integer(0)
+check("(III-3) λ1", lam1, 2*P*L/(13*sp.pi*d**2*E))
+check("(III-3) λ2", lam2, 2*P*L/(13*sp.pi*d**2*E))
+check("(III-3) λ3", lam3, 0)
+check("(III-3検算) λ1=λ2=uB", sp.simplify(lam1-uB), 0)
+check("(III-3検算) λ2=uB", sp.simplify(lam2-uB), 0)
+
+# ねじり: 円管3(全長L,並列) と 丸棒1+2直列(内側) が並列
+Ip1 = sp.pi*d**4/32
+Ip2 = sp.pi*(2*d)**4/32
+Ip3 = sp.pi*((6*d)**4-(4*d)**4)/32
+check("(III-4) Ip1", Ip1, sp.pi*d**4/32)
+check("(III-4) Ip2", Ip2, sp.pi*d**4/2)
+check("(III-4) Ip3", Ip3, sp.Rational(65,2)*sp.pi*d**4)
+kt3 = G*Ip3/L
+ktin = 1/((L/2)/(G*Ip1) + (L/2)/(G*Ip2))
+check("(III-4) k_t3", sp.simplify(kt3), sp.Rational(65,2)*sp.pi*G*d**4/L)
+check("(III-4) k_tin", sp.simplify(ktin), sp.pi*G*d**4/(17*L))
+check("(III-4) 合成剛性", sp.simplify(kt3+ktin), sp.Rational(1107,34)*sp.pi*G*d**4/L)
+Tt = sp.Symbol('T', positive=True)
+Psi = Tt/(kt3+ktin)
+check("(III-4) ねじれ角 Ψ", sp.simplify(Psi), 34*Tt*L/(1107*sp.pi*G*d**4))
+
 if __name__ == "__main__":
     n_pass = sum(1 for _, r in results if r is True)
     n_fail = sum(1 for _, r in results if r is False)
